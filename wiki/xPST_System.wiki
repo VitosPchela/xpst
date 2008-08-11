@@ -8,6 +8,9 @@ Our design for the Extensible Problem-Specific Tutor System is comprised of thre
  # the Presentation Manager, and
  # the Graphical Tutor Editor.
 
+http://xpst.googlecode.com/svn/trunk/design/xPST_architecture.png
+  _*Figure 1:* The architecture of xPST. The xPST Engine "eavesdrops" on the software interface or website that needs tutoring. The Presentation Manager gives visual feedback on the software interface. The xPST File provides the feedback and goal structure needed for each task within the tutor. The Graphical Tutor Editor enables teachers to create the xPST File without programming skills._
+
 Figure 1 shows the relationship between these components and the to-be-tutored interface. The xPST File contains the tutoring information data—what to do when as the student interacts with the interface. This information includes: 
  # how to map interface widgets from the tutored software or website onto more meaningful names and constructs for the various learning goals,
  # the sequence in which students are supposed to interact and complete these learning goals,
