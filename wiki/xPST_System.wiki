@@ -1,5 +1,5 @@
 #summary Description of the xPST System
-#labels Phase-Design
+#labels Featured,Phase-Design
 
 = The Extensible Problem-Specific Tutor (xPST) System =
 
