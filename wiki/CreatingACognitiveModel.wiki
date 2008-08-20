@@ -1,0 +1,78 @@
+#summary How to create a cognitive model for xPST - .eme Files
+
+= Introduction =
+
+In order to create an intelligent tutor using xPST, you must create a cognitive model.  In our task-based ITS, the model represents the procedural knowledge necessary to correctly complete the steps of the task. It must consider the many potential actions of the user during all the different possible states of the application being tutored.  The model must also contain appropriate hints and feedback on incorrect steps taken.
+
+To handle all this, we have created the *.eme file format* to contain the cognitive model in three pieces.  The first piece is the *sequence*, which identifies a path the user takes through the problem space to achieve the goal specified in the task.  Following the sequence is the *mappings* section, which maps GUI identifiers to steps the user takes.  Finally, the *feedback* section provides hints and JITs, or just-in-time messages that guide a user back on track if they make a mistake.
+
+= File structure =
+
+Each .eme file must have a sequence section, a mappings section, and a feedback section, though there may optionally be more than one of each of these types of sections.  
+Order generally doesn't matter.  
+
+== Example file ==
+
+{{{
+sequence
+{
+	Text-ProblemName then
+	Text-Attempts then
+	Click-Update;
+}
+
+mappings
+{
+	#Problem-creation
+	[priority=2]ProblemName=>Text-ProblemName;
+	[priority=2]ProblemAttempts=>Text-Attempts;
+	[priority=2]ProblemEditControls.childNodes-3:click=>Click-Update;
+}
+
+feedback 
+{
+	Text-ProblemName {
+		answer: "AddSubtract";
+		Hint: "Provide a name for this problem, which is used to refer to this problem in the authoring tool.";
+		Hint: "Change the Problem Name to 'AddSubtract' in the <strong>Name</strong> field in the Problems panel.";
+	}
+
+	Text-Attempts {
+		answer: "2";
+		Hint: "Set the number of attempts for this problem. This means that the students will have two opportunities to try out this problem and enter the correct answer.";
+		Hint: "Set the <strong>Attempts</strong> field for this problem to '{answer}'.";
+	}
+
+	Click-Update {
+		answer: 1;
+		Hint: "To save the details of the problem, click the <strong>Update</strong> button.";
+	}
+}
+
+}}}
+
+== Comments ==
+
+Comments may be single lines preceded by # or C-style multi-line comments like this
+{{{
+/*  This is
+a comment */
+}}}
+
+== Includes ==
+
+A line like:
+{{{
+include "sample.eme";
+}}}
+will include the contents of the file sample.eme (location is relative to current .eme file). The entire contents of the file are included pretty much as if they were typed into the file.
+
+This is not quite the same as the #include facility in C, because the include file itself must be syntactically correct as if it were a standalone .eme file (for example, if you have mappings, you must include the 'mappings {...}' around them.) This helps preserve the general property of .eme files that ordering doesn't matter. 
+
+= Sequence =
+
+
+= Event mapping =
+
+
+= Feedback =
