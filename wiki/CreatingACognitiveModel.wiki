@@ -1,14 +1,14 @@
-#summary How to create a cognitive model for xPST - .eme Files
+#summary How to create a cognitive model for xPST - .em Files
 
 = Introduction =
 
 In order to create an intelligent tutor using xPST, you must create a cognitive model.  In our task-based ITS, the model represents the procedural knowledge necessary to correctly complete the steps of the task. It must consider the many potential actions of the user during all the different possible states of the application being tutored.  The model must also contain appropriate hints and feedback on incorrect steps taken.
 
-To handle all this, we have created the *.eme file format* to contain the cognitive model in three pieces.  The first piece is the *sequence*, which identifies a path the user takes through the problem space to achieve the goal specified in the task.  Following the sequence is the *mappings* section, which maps GUI identifiers to steps the user takes.  Finally, the *feedback* section provides hints and JITs, or just-in-time messages that guide a user back on track if they make a mistake.
+To handle all this, we have created the *.em file format* to contain the cognitive model in three pieces.  The first piece is the *sequence*, which identifies a path the user takes through the problem space to achieve the goal specified in the task.  Following the sequence is the *mappings* section, which maps GUI identifiers to steps the user takes.  Finally, the *feedback* section provides hints and JITs, or just-in-time messages that guide a user back on track if they make a mistake.
 
 = File structure =
 
-Each .eme file must have a sequence section, a mappings section, and a feedback section, though there may optionally be more than one of each of these types of sections.  
+Each .em file must have a sequence section, a mappings section, and a feedback section, though there may optionally be more than one of each of these types of sections.  
 Order generally doesn't matter.  
 
 == Example file ==
@@ -53,7 +53,7 @@ feedback
 
 == Comments ==
 
-Comments may be single lines preceded by # or C-style multi-line comments like this
+Comments may be single lines preceded by # or C-style multi-line comments like this:
 {{{
 /*  This is
 a comment */
@@ -71,8 +71,128 @@ This is not quite the same as the #include facility in C, because the include fi
 
 = Sequence =
 
+The EventMapper uses a sequence notation to determine which goal nodes are "listening" to user behavior at any given time. If a GN is listening, we say it's *mapped*. E.g. if one GN is mapped, then the mapping (explained below) between a UI control and a GN is valid. If the GN is unmapped, then the mapping specified below in the mapping section doesn't apply. It's like the GN is no longer listening.
+
+List the GN names separated by various operators. Operators are:
+
+    * then (e.g. A then B) - "then" will map B after A is completed, and unmap A
+    * or (e.g. A or B) - both A and B will be mapped so that either can be done, and after one is done, the other is unmapped
+    * and (e.g. A and B) - both A and B will be mapped, and they must both be completed, but can be done in any order
+    * until (e.g. A until B) - A will remain mapped even after it's completed until B is completed
+    * ( ) (e.g. you can group GNs) 
+
+Finish your sequence with a semicolon. Don't use uppercase, like "OR". 
+
+If any goalnodes are not mentioned in the sequence, but are mentioned in the mappings, they are treated as if they were 'and'ed into the sequence. 
+
 
 = Event mapping =
 
+Event mapping maps events from the user interface to goalnodes, or steps taken along the way to achieving the goal. You need to map all GUI controls that you care about, e.g. not only GN controls but also all JIT-related controls.
+
+You can group mappings that should all go to the same GN, e.g. if your GN is "Flip-Horizontal," but you have JITs related to rotating, you'll want to group the answer mapping and the JIT mappings inside a group for Flip-Horizontal.
+
+Sometimes you can do a one-to-one mapping with GUI control name on the left and GN name on the right, e.g.
+
+{{{
+	Resize.okButton => Click-OK;
+}}}
+
+but other times you want to map not the entire control to a goalnode, but just the mouse clicks on it, e.g. for a menu item or a checkbox. Unlike for a combobox, where you want to know the value (e.g. 42), for controls that have no substantive internal value, like menus and checkboxes, you just need to know they've been clicked. To do this, you map the click onto a semantically useful string for the tutor. The switch function allows this.
+
+{{{
+	switch
+	{
+		mainMenu._3._1.click="Image:Resize..."
+	} => Open-Resize;
+}}}
+
+The switch function also allows many-to-one mappings. This is useful for JITs. Inside a switch, include all the mappings you want and separate them with commas, e.g.
+
+{{{
+	switch
+	{
+		# answer
+		mainMenu._3._4._0.click="Image:Flip:Horizontal",
+		# for JITs
+		mainMenu._3._4._1.click="Image:Flip:Vertical",
+		mainMenu._3._5._0.click="Image:Rotate:90 CW", 
+		mainMenu._3._5._1.click="Image:Rotate:180 CW", 
+		mainMenu._3._5._2.click="Image:Rotate:270 CW", 
+		mainMenu._3._5._4.click="Image:Rotate:90 CCW", 
+		mainMenu._3._5._5.click="Image:Rotate:180 CCW", 
+		mainMenu._3._5._6.click="Image:Rotate:270 CCW", 
+	} => Flip-Horizontal;
+}}}
+
+The above code says to the EventMapper, "For messages from any of the following GUI controls (e.g. mainMenu._3._4._0.click), send them to the following GN (Flip-Horizontal), and use these friendlier name values (e.g. Image:Flip:Horizontal) to tell the GN where the messages came from."
+
+Note that the EventMapper automatically does a reverse mapping for you, so that in the above example, if you're trying to accomplish goalnode Flip-Horizontal but you do an Image Rotate 90CW, the tutor will send a FLAG message ("wrong!") back to the EventMapper, and the Event Mapper will tell the Presentation Manager to flag the appropriate control visually. 
 
 = Feedback =
+
+The feedback section is structured with the goalnode name followed by the details for that goalnode including feedback following in curly brackets.  These details may include:
+  * The "answer" or value that is correct to proceed in the sequence
+  * One or more hints
+  * One or more JITs, with specific conditions specified if desired
+  * Variables and their values
+
+Hints and JITs may refer to variables by using the variable name, or they may refer to the value entered by the student by using {v}.
+
+Here is are some examples of ways that goalnodes might be used in the feedback section, including examples of goalnodes with different answer types like integer, regular expression, string, and file path.
+
+{{{
+	int
+	{
+		answer: 3;
+		JIT {v > 3}: "too big";
+		JIT {v < 3}: "too small";
+		Hint: "a: 3";
+	}
+	
+	filepath
+	{
+		answer: FilePath("foo.jpg");
+		Hint: "b: file path ending in foo.jpg";
+		Hint: "another hint";
+	}
+	
+	string
+	{
+		answer: "hi";
+		JIT {v == "bye"}: "bye to you";
+		JIT: "hi, not {v}";
+		Hint: "c: {answer}";
+	}
+
+	float
+	{
+		answer: 5.5;
+		JIT {v > answer}: "too big";
+		JIT {v < answer}: "too small";
+		Hint: "d: 5.5";
+	}
+	
+	regex
+	{
+		answer: RegEx("what(,what)*");
+		Hint: "what(,what)*";
+	}
+	
+	mixedint
+	{
+		answer: 3;
+		Hint: "3";
+		JIT {v == "text"}: "shouldn't be text";
+		JIT {v > 10}: "way too big";
+	}
+
+	mixedfloat
+	{
+		answer: 3.3;
+		Hint: "3.3";
+		JIT {v == "text"}: "shouldn't be text";
+		JIT {v > 11.1}: "even more way too big";
+		JIT {v > 10}: "way too big";
+	}
+}}}
