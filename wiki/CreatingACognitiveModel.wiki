@@ -1,14 +1,14 @@
-#summary How to create a cognitive model for xPST - .em Files
+#summary How to create a cognitive model for xPST - .xpst Files
 
 = Introduction =
 
 In order to create an intelligent tutor using xPST, you must create a cognitive model.  In our task-based ITS, the model represents the procedural knowledge necessary to correctly complete the steps of the task. It must consider the many potential actions of the user during all the different possible states of the application being tutored.  The model must also contain appropriate hints and feedback on incorrect steps taken.
 
-To handle all this, we have created the *.em file format* to contain the cognitive model in three pieces.  The first piece is the *sequence*, which identifies a path the user takes through the problem space to achieve the goal specified in the task.  Following the sequence is the *mappings* section, which maps GUI identifiers to steps the user takes.  Finally, the *feedback* section provides hints and JITs, or just-in-time messages that guide a user back on track if they make a mistake.
+To handle all this, we have created the *.xpst file format* to contain the cognitive model in three pieces.  The first piece is the *sequence*, which identifies a path the user takes through the problem space to achieve the goal specified in the task.  Following the sequence is the *mappings* section, which maps GUI identifiers to steps the user takes.  Finally, the *feedback* section provides hints and JITs, or just-in-time messages that guide a user back on track if they make a mistake.
 
 = File structure =
 
-Each .em file must have a sequence section, a mappings section, and a feedback section, though there may optionally be more than one of each of these types of sections.  
+Each .xpst file must have a sequence section, a mappings section, and a feedback section, though there may optionally be more than one of each of these types of sections.  
 Order generally doesn't matter.  
 
 == Example file ==
@@ -63,11 +63,11 @@ a comment */
 
 A line like:
 {{{
-include "sample.eme";
+include "sample.xpst";
 }}}
-will include the contents of the file sample.eme (location is relative to current .eme file). The entire contents of the file are included pretty much as if they were typed into the file.
+will include the contents of the file sample.xpst (location is relative to current .xpst file). The entire contents of the file are included pretty much as if they were typed into the file.
 
-This is not quite the same as the #include facility in C, because the include file itself must be syntactically correct as if it were a standalone .eme file (for example, if you have mappings, you must include the 'mappings {...}' around them.) This helps preserve the general property of .eme files that ordering doesn't matter. 
+This is not quite the same as the #include facility in C, because the include file itself must be syntactically correct as if it were a standalone .xpst file (for example, if you have mappings, you must include the 'mappings {...}' around them.) This helps preserve the general property of .xpst files that ordering doesn't matter. 
 
 = Sequence =
 
@@ -84,6 +84,7 @@ List the GN names separated by various operators. Operators are:
 Finish your sequence with a semicolon. Don't use uppercase, like "OR". 
 
 If any goalnodes are not mentioned in the sequence, but are mentioned in the mappings, they are treated as if they were 'and'ed into the sequence. 
+
 
 
 = Event mapping =
