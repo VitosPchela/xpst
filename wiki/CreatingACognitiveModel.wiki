@@ -2,7 +2,7 @@
 
 = Introduction =
 
-Read the xPST architecture page first. 
+Read the [xPST_System] page first. 
 
 In order to create an intelligent tutor using xPST, you must create a cognitive model.  In our task-based ITS, the model represents the procedural knowledge necessary to correctly complete the steps of the task. It must consider the many potential actions of the user during all the different possible states of the application being tutored.  The model must also contain appropriate hints and feedback on incorrect steps taken.
 
