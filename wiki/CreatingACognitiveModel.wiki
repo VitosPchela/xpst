@@ -2,6 +2,8 @@
 
 = Introduction =
 
+Read the xPST architecture page first. 
+
 In order to create an intelligent tutor using xPST, you must create a cognitive model.  In our task-based ITS, the model represents the procedural knowledge necessary to correctly complete the steps of the task. It must consider the many potential actions of the user during all the different possible states of the application being tutored.  The model must also contain appropriate hints and feedback on incorrect steps taken.
 
 To handle all this, we have created the *.xpst file format* to contain the cognitive model in three pieces.  The first piece is the *sequence*, which identifies a path the user takes through the problem space to achieve the goal specified in the task.  Following the sequence is the *mappings* section, which maps GUI identifiers to steps the user takes.  Finally, the *feedback* section provides hints and JITs, or just-in-time messages that guide a user back on track if they make a mistake.
@@ -71,7 +73,11 @@ This is not quite the same as the #include facility in C, because the include fi
 
 = Sequence =
 
-The EventMapper uses a sequence notation to determine which goal nodes are "listening" to user behavior at any given time. If a GN is listening, we say it's *mapped*. E.g. if one GN is mapped, then the mapping (explained below) between a UI control and a GN is valid. If the GN is unmapped, then the mapping specified below in the mapping section doesn't apply. It's like the GN is no longer listening.
+The steps a user makes in order to complete a task are called goal nodes (GNs). GNs can vary in granularity, e.g. if I'm editing a spreadsheet, is the GN "Make a graph" (general), "Graph columns A and B" (more specific) or "Select columns A and B and click the graph button in the top toolbar" (very specific).  Generally, the right level of granularity is one level above the UI controls and button clicks, i.e. in this case probably "Graph columns A and B" or perhaps "Graph the first two columns."  
+
+The sequence is a set of words that describe the steps (GNs) that the user should follow. Multiple paths to the goal are fine; the sequence accepts AND, OR, and other operators. 
+
+The EventMapper uses a sequence notation to determine which GNs are "listening" to user behavior at any given time. If a GN is listening, we say it's *mapped*. E.g. if one GN is mapped, then the mapping (explained below) between a UI control and a GN is valid. If the GN is unmapped, then the mapping specified below in the mapping section doesn't apply. It's like the GN is no longer listening. This is a little like an old telephone switchboard operator; events from the user are coming in, but if your GN is not mapped, it won't hear them. (And you can only give tutoring feedback if you hear them.)
 
 List the GN names separated by various operators. Operators are:
 
