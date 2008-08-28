@@ -197,3 +197,60 @@ Here is are some examples of ways that goalnodes might be used in the feedback s
 		JIT {v > 10}: "way too big";
 	}
 }}}
+
+= JITs for going off path =
+
+Once you have a basic cognitive model built for the correct paths, you may want to consider more carefully what happens when the user does something wrong.
+
+== Priorities ==
+
+Each mapping may have a priority specified with it.  This indicates to the event mapper which of the mappings should be used if more than one goalnode is indicated with a particular mapping.  JITs for going off path have a lower priority number, allowing us to specify “off path” goalnodes as fallbacks for when a mapping is not currently mapped as part of the primary sequence.   
+
+
+== Examples of off path goalnodes ==
+
+Let’s illustrate with a few examples.
+
+In the VaNTH tutor, a large number of GUI interactions are identified as being generally off path by a switch in the mappings section:
+{{{
+	switch
+	{
+		AttemptUp:click="moved the attempt up",
+		...
+		ItemKind="selected the wrong kind for this object"
+	} => Error-Offpath;
+}}}
+
+Then, in the feedback section, the answer doesn’t matter (though it’s best to put something anyway, such as “foo”) and the JIT will include the text that was paired with the mapping for the student input, {v}.
+The feedback for Error-Offpath in our example:
+{{{
+	Error-Offpath {
+		answer: "foo";
+		JIT: "<block/>You {v}. That's not something you need to do right now.  Request a hint if you'd like to know what to do next.";
+	}
+}}}
+The sequence is probably the least intuitive part of creating off path goalnodes.  To have the goalnode always mapped, it must be added to the end of the sequence with an and, e.g. (This-goalnode then That-Goalnode) and Error-Offpath.
+
+In some cases, you may want a more specific JIT message to appear for a subset of the incorrect actions possible.  In the VaNTH authoring tool, there are sometimes multiple buttons of the same name visible at one time, and a user may click the wrong one.  Here is what we did to map all of the “Edit” buttons to a single off path goalnode:
+{{{
+	[priority=1]
+	switch
+	{
+		ProblemEdit:click="Problems",
+		QuestionEdit:click="Questions",
+		EditCase:click="Case Details",
+		AttemptEdit:click="Attempt Details and Feedback",
+		EditItem:click="Items details"
+	} => Error-Wrong-Edit;
+}}}
+Again in the feedback section, any value is OK for the answer, and the JIT can refer to the string provided in the mapping:
+{{{
+	Error-Wrong-Edit {
+		answer: "foo";
+		JIT: "<block/>You clicked the wrong Edit button.  That edit button is used to edit {v}.  Please click on other Edit button.  Ask for a hint if you need help.";
+	}
+}}}
+In this case, we only want the Error-Wrong-Edit JIT to display if the user is at a point in the sequence where the correct step is to click an Edit button but he clicks the wrong one.  Thus, in the sequence, wherever we have an Edit button, we OR the correct goalnode with the Error-Wrong-Edit goalnode.  That way, the JIT will happen every time they click the wrong Edit button until they finally click the correct one.  (The Error-Wrong-Edit goalnode will never be “completed” because the student input will never match the answer, “foo.”)
+
+Not all off path mappings necessarily require multiple items mapped to the same goalnode.  For instance, in the resource view, one should never edit the Name field for the resource, so when the user clicks on it, a JIT appears.  There will never be a mapping with a higher priority, so doing the action associated with this mapping will always result in a JIT.
+[priority=1]ItemName.childNodes-0:click => Error-Item-Name;
