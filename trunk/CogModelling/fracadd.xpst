@@ -1,0 +1,54 @@
+sequence
+{
+	(SetNumerator1 and SetDenominator1 and SetNumerator2 and SetDenominator2) then
+	(SetNumeratorAnswer and SetDenominatorAnswer);
+}
+
+mappings
+{
+	numop1 => SetNumerator1;
+	numop2 => SetNumerator2;
+	numans => SetNumeratorAnswer;
+	denop1 => SetDenominator1;
+	denop2 => SetDenominator2;
+	denans => SetDenominatorAnswer;
+}
+
+feedback
+{
+	SetNumerator1
+	{
+		answer: 1;
+		Hint: "Set first summand numerator to 1";
+	}
+
+	SetNumerator2
+	{
+		answer: 2;
+		Hint: "Set second summand numerator to 2";
+	}
+
+	SetNumeratorAnswer
+	{
+		answer: 11;
+		Hint: "Set answer numerator";
+	}
+
+	SetDenominator1
+	{
+		answer: 3;
+		Hint: "Set first summand denominator to 3";
+	}
+
+	SetDenominator2
+	{
+		answer: 5;
+		Hint: "Set second summand denominator to 5";
+	}
+
+	SetDenominatorAnswer
+	{
+		answer: 15;
+		Hint: "Set answer denominator";
+	}
+}
