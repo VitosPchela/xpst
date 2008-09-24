@@ -1,0 +1,186 @@
+include "OffPath.xpst";
+
+options
+{
+	tutorname="CAPE";
+}
+
+sequence
+{
+   (
+    (
+	(Selection-Problems until
+	Link-Feedback) then
+
+	Selection-Feedback-Case-V1 then
+	(Click-Feedback-New-Attempt-V1 or Error-Wrong-New) then
+	(Text-Feedback-Attempt-V1 then
+	Text-Feedback-V1-Feedback until
+	Click-Feedback-Update-V1) then
+
+	Selection-Feedback-Case-V2 then
+	(Click-Feedback-New-Attempt-V2 or Error-Wrong-New) then
+	(Text-Feedback-Attempt-V2 then
+	Text-Feedback-V2-Feedback until
+	Click-Feedback-Update-V2) then
+
+	Selection-Feedback-Case-V3 then
+	(Click-Feedback-New-Attempt-V3 or Error-Wrong-New) then
+	(Text-Feedback-Attempt-V3 then
+	Text-Feedback-V3-Feedback until
+	Click-Feedback-Update-V3)
+    ) then Click-Problems-Preview then AllDone
+  ) and Error-Offpath and Error-Offpath-Update and Error-Not-Done;
+
+}
+
+mappings
+{
+	#---Select the problem---
+	[priority=2]Problems=>Selection-Problems;
+
+	#Feedback view
+	[priority=2]FeedbackLink.childNodes-3:click=>Link-Feedback;
+	[priority=2]FeedbackButton.childNodes-0:click=>Link-Feedback;
+
+	[priority=2]Cases=>Selection-Feedback-Case-V1;
+	[priority=2]AttemptNew:click=>Click-Feedback-New-Attempt-V1;
+	[priority=2]AttemptLabel=>Text-Feedback-Attempt-V1;
+	[priority=2]AttemptFeedback=>Text-Feedback-V1-Feedback;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update-V1;
+
+	[priority=2]Cases=>Selection-Feedback-Case-V2;
+	[priority=2]AttemptNew:click=>Click-Feedback-New-Attempt-V2;
+	[priority=2]AttemptLabel=>Text-Feedback-Attempt-V2;
+	[priority=2]AttemptFeedback=>Text-Feedback-V2-Feedback;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update-V2;
+
+	[priority=2]Cases=>Selection-Feedback-Case-V3;
+	[priority=2]AttemptNew:click=>Click-Feedback-New-Attempt-V3;
+	[priority=2]AttemptLabel=>Text-Feedback-Attempt-V3;
+	[priority=2]AttemptFeedback=>Text-Feedback-V3-Feedback;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update-V3;	
+
+
+	[priority=2]PreviewButton.childNodes-0:click=>Click-Problems-Preview;
+	[priority=2]TutorLink.Done=>AllDone;
+}
+
+feedback
+{
+	Selection-Problems {
+		answer: "Sphere Volume";
+		Hint: "You need to select a problem before continuing.";
+		Hint: "Highlight the problem 'Sphere Volume' in the <strong>Problems</strong> box.";
+
+	}
+
+	Link-Feedback {
+		answer: 1;
+		Hint: "Provide feedback to the questions you just modified, in the <strong>Feedback View</strong>.";
+		Hint: "Click on the <strong>Feedback View</strong> icon (two persons talking) or the <strong>Feedback View</strong> link to go there. <image src=\"LinkFeedback.png\"/>";
+
+	}
+
+	Selection-Feedback-Case-V1 {
+		answer: "not diameter";
+		Hint: "You need to select a case to edit the attempt feedback to use the variable you created.";
+		Hint: "Select the 'not diameter' case in order to change the attempt feedback to use the variable you created.";
+		JIT: "<block/>You need to select the 'not diameter' case in order to change the attempt feedback to use the variable you created.";
+	}
+
+	Selection-Feedback-Case-V2 {
+		answer: "missing factor";
+		Hint: "You need to select a case to edit the attempt feedback to use the variable you created.";
+		Hint: "Select the 'missing factor' case in order to change the attempt feedback to use the variable you created.";
+		JIT: "<block/>You need to select the 'missing factor' case in order to change the attempt feedback to use the variable you created.";
+	}
+
+	Selection-Feedback-Case-V3 {
+		answer: "cube instead";
+		Hint: "You need to select a case to edit the attempt feedback to use the variable you created.";
+		Hint: "Select the 'cube instead' case in order to change the attempt feedback to use the variable you created.";
+		JIT: "<block/>You need to select the 'cube instead' case in order to change the attempt feedback to use the variable you created.";
+	}
+
+	Click-Feedback-New-Attempt-V1 {
+		answer: 1;
+		Hint: "Add different feedback for a student's second attempt.";
+		Hint: "Click <strong>New</strong> button under the <strong>Attempts</strong> panel to add feedback for a student's second attempt.";
+	}
+
+	Click-Feedback-New-Attempt-V2 {
+		answer: 1;
+		Hint: "Add different feedback for a student's second attempt.";
+		Hint: "Click <strong>New</strong> button under the <strong>Attempts</strong> panel to add feedback for a student's second attempt.";
+	}
+
+	Click-Feedback-New-Attempt-V3 {
+		answer: 1;
+		Hint: "Add different feedback for a student's second attempt.";
+		Hint: "Click <strong>New</strong> button under the <strong>Attempts</strong> panel to add feedback for a student's second attempt.";
+	}
+
+	Text-Feedback-Attempt-V1 {
+		answer:  RegEx(".+");
+		Hint: "Enter a label for the feedback attempt message you are creating.";
+		Hint: "Enter an appropriate label such as 'second' or 'last' in the <strong>Label</strong> box below <strong>Attempt details</strong>.";
+	}
+
+	Text-Feedback-Attempt-V2 {
+		answer:  RegEx(".+");
+		Hint: "Enter a label for the feedback attempt message you are creating.";
+		Hint: "Enter an appropriate label such as 'second' or 'last' in the <strong>Label</strong> box below <strong>Attempt details</strong>.";
+	}
+
+	Text-Feedback-Attempt-V3 {
+		answer:  RegEx(".+");
+		Hint: "Enter a label for the feedback attempt message you are creating.";
+		Hint: "Enter an appropriate label such as 'second' or 'last' in the <strong>Label</strong> box below <strong>Attempt details</strong>.";
+	}
+
+	Click-Feedback-Update-V1 {
+		answer: 1;
+		Hint: "Update to save the changes you made to the feedback case.";
+	}
+
+	Click-Feedback-Update-V2 {
+		answer: 1;
+		Hint: "Update to save the changes you made to the feedback case.";
+	}
+
+	Click-Feedback-Update-V3 {
+		answer: 1;
+		Hint: "Update to save the changes you made to the feedback case.";
+	}
+
+	AllDone {
+		answer: 1;
+		Hint: "You are through with this problem. Move on to a different problem.";
+	}
+
+	Text-Feedback-V1-Feedback {
+		answer: RegEx(".*<py>Data\\.V</py>.*\\s*");
+		Hint: "Enter a feedback message for this attempt, using the variable you created for the correct volume, V.";
+		Hint: "Enter a feedback message such as 'That was your final attempt. The correct volume is &lt;py&gt;Data.V&lt;/py&gt;.'";
+	}
+
+	Text-Feedback-V2-Feedback {
+		answer: RegEx(".*<py>Data\\.V</py>.*\\s*");
+		Hint: "Enter a feedback message for this attempt, using the variable you created for the correct volume, V.";
+		Hint: "Enter a feedback message such as 'That was your final attempt. The correct volume is &lt;py&gt;Data.V&lt;/py&gt;.'";
+	}
+
+	Text-Feedback-V3-Feedback {
+		answer: RegEx(".*<py>Data\\.V</py>.*\\s*");
+		Hint: "Enter a feedback message for this attempt, using the variable you created for the correct volume, V.";
+		Hint: "Enter a feedback message such as 'That was your final attempt. The correct volume is &lt;py&gt;Data.V&lt;/py&gt;.'";
+	}
+
+	Click-Problems-Preview {
+		answer: 1;
+		Hint: "Preview the problem now as described in the assignment.";
+		Hint: "Click on the <strong>Preview</strong> icon in the main toolbar above the <strong>Problems</strong> panel. Then choose the title of your problem from the small menu that appears at the lower left . <image src=\"ProblemPreview.png\"/>";
+	}
+
+}

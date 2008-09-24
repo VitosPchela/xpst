@@ -1,0 +1,6 @@
+<!ENTITY close.label "Close">
+<!ENTITY close.ID "cancel-button">
+<!ENTITY next.ID "next-button">
+<!ENTITY next.label "Next Hint -->">
+<!ENTITY previous.ID "prev-button">
+<!ENTITY previous.label "&lt;-- Previous Hint">

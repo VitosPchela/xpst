@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+		<h3>Computing Volume of a Sphere: Sphere Equation</h3>
+
+<p><strong>Objective:</strong> This is a set of assignments that introduces you to the 'Multiple Choice', 'Selection' and 'True-False' types of assessment.  In addition, you will create new Resources and use them in your assessments.  Finally, the use of follow-up problems will be demonstrated.</p>
+
+<p>In the first problem you will ask the student to identify the correct equation for the volume of a sphere.  If the student gets this correct, he/she will be directed to a second problem in which the sphere radius will be given, and the student will select the correct volume from a list of potential volumes.  If the student answers the first problem incorrectly, he/she will be directed to a True/False problem asking if the student wishes to try the first problem again.</p>
+
+<hr/>
+
+<h3>Detailed Instructions</h3>
+
+<p>Add a new problem named 'Sphere Equation.'  Allow 1 attempt, and make this the first problem that the student will see.</p>
+
+<p>Resources</p>
+<p>The following equation files can be downloaded from the workshop site:</p>
+<p>http://www.clearsighted.net/vanth</p>
+
+<p>V.jpg: <image src="tasks/V.jpg"/></p>
+
+
+<p>V1.jpg: <image src="tasks/V1.jpg"/></p>
+
+
+<p>V2.jpg: <image src="tasks/V2.jpg"/></p>
+
+
+<p>V3.jpg: <image src="tasks/V3.jpg"/></p>
+
+<p>In the Resources view, check the global box, then import the figures above.  Checking the global box ensures that the figures will be available for all problems in the authoring tool.  You can press the 'Preview' button to examine the contents of an imported file.  Notice that the reference for an imported resource is preceded by 'Dynamic/Resources/Global/ '.</p>
+
+
+<p>In the Asssessment View, enter a title and a problem statement.</p>
+<p>Create a Multiple Choice question called 'Q1' that says 'The equation for the volume of a sphere is:'.</p>
+<p>Add the four equations, one next to the other, as the possible answers for the multiple choice question.  They should be labeled V, V1, V2, and V3.</p>
+
+<p>In the 'Question Details' area, add your first choice. Enter 'V' into
+the label box.  For the <strong>Choice Text</strong> area, you can use the HTML editor by clicking <img src="assessment/htmlEdit.gif"/> or type in the following HTML to refer to the image of the first equation you added
+in the Resources View: &lt;img src='Dynamic/Resources/Global/V.jpg'&gt;.
+This will add the image of the correct volume equation as the first
+choice.</p>
+
+<p>Preview the assessment question to see what you have so far.  Add V1 as the next choice and change the row to 1 and column to 2 so the choices will read across in a single row rather than down in a single column.  Add the other choices in a similar manner, using the file names without the extension as the label, and changing the file names in the HTML appropriately, i.e. V1.jpg, V2.jpg, V3.jpg.  When finished, the Assessment page should look like the figure below.</p>
+
+
+		<p>Target image:</p>
+<p><image src="tasks/se-problem-view.png" thumbnail="tasks/thumbnails/thumb_se-problem-view.png"/>
+</p>
+
+<p>In the Feedback view, give tailored feedback for the correct and incorrect cases of 'Q1.' The expression for the correct response is Response.Q1=='V'</p>
+
+<p>Edit the feedback so it reads: 'Yes, that is the correct equation.'</p>
+
+<h3>Previewing</h3>
+
+<p>Run the problem in preview mode to check for correct and incorrect responses.  Finally, add specific feedback for the incorrect cases as follows. Name the incorrect cases 'not diameter,' 'missing factor,' and 'wrong dimensions.'</p>
+
+<ul>
+  <li>If V1 is selected: 'Sorry, the radius must be used in this equation, not the diameter.'</li>
+  <li>If V2 is selected: 'Sorry, a factor of 4/3 is missing from this expression.'</li>
+  <li>If V3 is selected: 'Sorry, the dimensions of this equation are not dimensions of volume.'</li>
+</ul>
+
+<p>Preview your problem again.</p>
+
+<p><strong>Finished?</strong><br/> Now you can create multiple-choice problems and load images (resources) into your problems. Click <strong>Done</strong>.</p>
+
+	
+	</message>
+

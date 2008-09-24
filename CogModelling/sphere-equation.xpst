@@ -1,0 +1,924 @@
+include "OffPath.xpst";
+
+options
+{
+	tutorname="CAPE";
+}
+
+sequence
+{
+#  No longer going to include export sequence
+    (
+	#---Problem creation---
+	(Click-New or Error-Wrong-New) then
+	((
+		Text-ProblemName and
+		Text-Attempts and
+		CheckBox-Start
+	) until
+	Click-Update) then
+
+	#---Add resources---
+	Link-Resources then
+	CheckBox-Resources-Global then
+	(
+		(Click-Resource-New or Error-Wrong-New) then
+		((
+			Selection-Resource-Kind then
+			File-Resource-Select
+		) until
+		Click-Resource-Update) then
+		(#optional preview:
+			(
+				Click-Resource-Preview then
+				Click-Resource-Global
+			) or
+			Click-Resource-Global
+		) then
+		(Click-Resource-New-V1 or Error-Wrong-New) then
+		((
+			Selection-Resource-Kind-V1 then
+			File-Resource-Select-V1
+		) until
+		Click-Resource-Update-V1) then
+		(
+			(
+				Click-Resource-Preview-V1 then
+				Click-Resource-Global-V1
+			) or
+			Click-Resource-Global-V1
+		) then
+		(Click-Resource-New-V2 or Error-Wrong-New) then
+		((
+			Selection-Resource-Kind-V2 then
+			File-Resource-Select-V2
+		) until
+		Click-Resource-Update-V2) then
+		(
+			(
+				Click-Resource-Preview-V2 then
+				Click-Resource-Global-V2
+			) or
+			Click-Resource-Global-V2
+		) then
+		(Click-Resource-New-V3 or Error-Wrong-New) then
+		((
+			Selection-Resource-Kind-V3 then
+			File-Resource-Select-V3
+		) until
+		Click-Resource-Update-V3)
+	) then
+
+	(  #optional preview
+		Click-Resource-Preview-V3 then
+		Link-Assess
+	) or
+	Link-Assess then
+	(
+		Text-Assess-Title and
+		Text-Assess-Problem
+	) then
+	Click-Assess-NewQuestion then
+	((
+		Text-Assess-QuestionName and
+		Selection-Assess-QuestionType then
+		Text-Assess-Question
+	) until
+	Click-Assess-Update) then
+	(#Add correct choice
+		(Click-Assess-New-Choice or Error-Wrong-New) then
+		((
+			Text-Assess-ChoiceLabel and
+			Text-Assess-ChoiceText and
+			Text-Assess-ChoiceRow and
+			Text-Assess-ChoiceColumn
+		) until
+		Click-Assess-Update-Again)
+	 ) and
+	#Add incorrect choices
+	(
+		(Click-Assess-New-Choice-V1 or Error-Wrong-New) then
+		((
+			Text-Assess-ChoiceLabel-V1 and
+			Text-Assess-ChoiceText-V1 and
+			Text-Assess-ChoiceRow-V1 and
+			Text-Assess-ChoiceColumn-V1
+		) until
+		Click-Assess-Update-Again-V1)
+	) and
+	(
+		(Click-Assess-New-Choice-V2 or Error-Wrong-New) then
+		((
+			Text-Assess-ChoiceLabel-V2 and
+			Text-Assess-ChoiceText-V2 and
+			Text-Assess-ChoiceRow-V2 and
+			Text-Assess-ChoiceColumn-V2
+		) until
+		Click-Assess-Update-Again-V2)
+	) and
+	(
+		(Click-Assess-New-Choice-V3 or Error-Wrong-New) then
+		((
+			Text-Assess-ChoiceLabel-V3 and
+			Text-Assess-ChoiceText-V3 and
+			Text-Assess-ChoiceRow-V3 and
+			Text-Assess-ChoiceColumn-V3
+		) until
+		Click-Assess-Update-Again-V3)
+	) then
+	(
+		(
+			Click-Assess-Preview then
+			Link-Feedback
+		) or
+		Link-Feedback
+	)
+	then
+
+	#---Add feedback---
+		(
+			#Selection-Feedback-Q1-Correct then
+			(Click-Feedback-Q1-Edit-CorrectCase or Error-Wrong-Edit) then
+			Text-Feedback-Q1-CorrectExpression then
+			Click-Feedback-Q1-ExpressionUpdate
+		) then
+		(
+			#Selection-Feedback-Q1-DefaultAttempts then
+			(Click-Feedback-Q1-Correct-EditAttempts or Error-Wrong-Edit) then
+			Text-Feedback-Q1-Correct-Feedback then
+			Click-Feedback-Q1-Correct-Update
+		)
+
+		then
+		(
+			(Click-Feedback-New-Expression-NotDiameter or Error-Wrong-New) then
+			((
+				Text-Feedback-Q1-Label-NotDiameter and
+				Text-Feedback-Q1-NotDiameter-Expression
+
+			) until
+			Click-Feedback-Q1-NotDiameter-ExpressionUpdate) then
+			(Click-Feedback-Q1-NotDiameter-EditAttempts or Error-Wrong-Edit) then
+			Text-Feedback-Q1-NotDiameter-Feedback then
+			Click-Feedback-NotDiameter-Feedback-Update
+		) then
+		(
+			(Click-Feedback-New-Expression-MissingFactor or Error-Wrong-New) then
+			((
+				Text-Feedback-Q1-Label-MissingFactor and
+				Text-Feedback-Q1-MissingFactor-Expression
+			) until
+			Click-Feedback-Q1-MissingFactor-ExpressionUpdate) then
+			(Click-Feedback-Q1-MissingFactor-EditAttempts or Error-Wrong-Edit) then
+			Text-Feedback-Q1-MissingFactor-Feedback then
+			Click-Feedback-MissingFactor-Feedback-Update
+		) then
+		(
+			(Click-Feedback-New-Expression-WrongDimensions or Error-Wrong-New) then
+			((
+				Text-Feedback-Q1-Label-WrongDimensions and
+				Text-Feedback-Q1-WrongDimensions-Expression
+			) until
+			Click-Feedback-Q1-WrongDimensions-ExpressionUpdate) then
+			(Click-Feedback-Q1-WrongDimensions-EditAttempts or Error-Wrong-Edit) then
+			Text-Feedback-Q1-WrongDimensions-Feedback then
+			Click-Feedback-WrongDimensions-Feedback-Update
+		) then Click-Problems-Preview then AllDone
+
+   ) and Error-Offpath and Error-View and Error-Offpath-Update and Error-Not-Done and Error-Item-Name;
+
+}
+
+mappings
+{
+	#---Problem-creation---
+	[priority=2]ProblemNew:click=>Click-New;
+	[priority=2]ProblemName=>Text-ProblemName;
+	[priority=2]ProblemAttempts=>Text-Attempts;
+	[priority=2]ProblemStart=>CheckBox-Start;
+	[priority=2]ProblemEditControls.childNodes-3:click=>Click-Update;
+
+	[priority=2]ResourcesLink.childNodes-3:click=>Link-Resources;
+	[priority=2]ResourcesButton.childNodes-0:click=>Link-Resources;
+	[priority=2]ViewGlobal=>CheckBox-Resources-Global;
+
+	#------Adding Resources------
+	[priority=2]NewItem:click=>Click-Resource-New;
+	[priority=2]ItemKind=>Selection-Resource-Kind;
+	[priority=2]FileSelect.childNodes-0=>File-Resource-Select;
+	[priority=2]ItemName=>Text-Resource-Name;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Resource-Update;
+
+	[priority=2]ItemAttributes.childNodes-1.childNodes-1.childNodes-0.childNodes-2.childNodes-1:click=>Click-Resource-Preview;
+	[priority=2]rootItem:click=>Click-Resource-Global;
+	[priority=2]rootItem.childNodes-0:click=>Click-Resource-Global;
+
+	[priority=2]NewItem:click=>Click-Resource-New-V1;
+	[priority=2]ItemKind=>Selection-Resource-Kind-V1;
+	[priority=2]FileSelect.childNodes-0=>File-Resource-Select-V1;
+	[priority=2]ItemName=>Text-Resource-Name-V1;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Resource-Update-V1;
+	[priority=2]ItemAttributes.childNodes-1.childNodes-1.childNodes-0.childNodes-2.childNodes-1:click=>Click-Resource-Preview-V1;
+	[priority=2]rootItem:click=>Click-Resource-Global-V1;
+	[priority=2]rootItem.childNodes-0:click=>Click-Resource-Global-V1;
+
+	[priority=2]NewItem:click=>Click-Resource-New-V2;
+	[priority=2]ItemKind=>Selection-Resource-Kind-V2;
+	[priority=2]FileSelect.childNodes-0=>File-Resource-Select-V2;
+	[priority=2]ItemName=>Text-Resource-Name-V2;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Resource-Update-V2;
+	[priority=2]ItemAttributes.childNodes-1.childNodes-1.childNodes-0.childNodes-2.childNodes-1:click=>Click-Resource-Preview-V2;
+	[priority=2]rootItem:click=>Click-Resource-Global-V2;
+	[priority=2]rootItem.childNodes-0:click=>Click-Resource-Global-V2;
+
+	[priority=2]NewItem:click=>Click-Resource-New-V3;
+	[priority=2]ItemKind=>Selection-Resource-Kind-V3;
+	[priority=2]FileSelect.childNodes-0=>File-Resource-Select-V3;
+	[priority=2]ItemName=>Text-Resource-Name-V3;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Resource-Update-V3;
+	[priority=2]ItemAttributes.childNodes-1.childNodes-1.childNodes-0.childNodes-2.childNodes-1:click=>Click-Resource-Preview-V3;
+
+
+	#----Create Assessment----
+	[priority=2]AssessmentButton.childNodes-0:click=>Link-Assess;
+	[priority=2]ProblemTitle=>Text-Assess-Title;
+	[priority=2]ProblemStatement=>Text-Assess-Problem;
+	[priority=2]QuestionNew:click=>Click-Assess-NewQuestion;
+	[priority=2]QuestionName=>Text-Assess-QuestionName;
+	[priority=2]QuestionKind=>Selection-Assess-QuestionType;
+	[priority=2]QuestionText=>Text-Assess-Question;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Update;
+
+	#----Add choices----
+	[priority=2]ChoiceNew:click=>Click-Assess-New-Choice;
+	[priority=2]ChoiceLabel=>Text-Assess-ChoiceLabel;
+	[priority=2]ChoiceText=>Text-Assess-ChoiceText;
+	[priority=2]ChoiceRow=>Text-Assess-ChoiceRow;
+	[priority=2]ChoiceCol=>Text-Assess-ChoiceColumn;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Update-Again;
+
+	[priority=2]ChoiceNew:click=>Click-Assess-New-Choice-V1;
+	[priority=2]ChoiceLabel=>Text-Assess-ChoiceLabel-V1;
+	[priority=2]ChoiceText=>Text-Assess-ChoiceText-V1;
+	[priority=2]ChoiceRow=>Text-Assess-ChoiceRow-V1;
+	[priority=2]ChoiceCol=>Text-Assess-ChoiceColumn-V1;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Update-Again-V1;
+
+	[priority=2]ChoiceNew:click=>Click-Assess-New-Choice-V2;
+	[priority=2]ChoiceLabel=>Text-Assess-ChoiceLabel-V2;
+	[priority=2]ChoiceText=>Text-Assess-ChoiceText-V2;
+	[priority=2]ChoiceRow=>Text-Assess-ChoiceRow-V2;
+	[priority=2]ChoiceCol=>Text-Assess-ChoiceColumn-V2;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Update-Again-V2;
+
+	[priority=2]ChoiceNew:click=>Click-Assess-New-Choice-V3;
+	[priority=2]ChoiceLabel=>Text-Assess-ChoiceLabel-V3;
+	[priority=2]ChoiceText=>Text-Assess-ChoiceText-V3;
+	[priority=2]ChoiceRow=>Text-Assess-ChoiceRow-V3;
+	[priority=2]ChoiceCol=>Text-Assess-ChoiceColumn-V3;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Update-Again-V3;
+
+	[priority=2]AssessmentPreview:click=>Click-Assess-Preview;
+	[priority=2]FeedbackButton.childNodes-0:click=>Link-Feedback;
+
+	# this step is no longer needed, unless we need to verify when there's only one to select?[priority=2]:click=>Selection-Feedback-Q1-Question;
+	[priority=2]Cases=>Selection-Feedback-Q1-Correct;
+	[priority=2]EditCase:click=>Click-Feedback-Q1-Edit-CorrectCase;
+	[priority=2]CaseExpr=>Text-Feedback-Q1-CorrectExpression;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q1-ExpressionUpdate;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Q1-Correct-EditAttempts;
+	[priority=2,noqiv]AttemptFeedback=>Text-Feedback-Q1-Correct-Feedback;
+	#what happens if they edit the correct case feedback?
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q1-Correct-Update;
+
+	[priority=2]NewCase:click=>Click-Feedback-New-Expression-NotDiameter;
+	[priority=2]CaseExpr=>Text-Feedback-Q1-NotDiameter-Expression;
+	[priority=2]CaseLabel=>Text-Feedback-Q1-Label-NotDiameter;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q1-NotDiameter-ExpressionUpdate;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Q1-NotDiameter-EditAttempts;
+	[priority=2]AttemptFeedback=>Text-Feedback-Q1-NotDiameter-Feedback;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-NotDiameter-Feedback-Update;
+
+	[priority=2]NewCase:click=>Click-Feedback-New-Expression-WrongDimensions;
+	[priority=2]CaseExpr=>Text-Feedback-Q1-WrongDimensions-Expression;
+	[priority=2]CaseLabel=>Text-Feedback-Q1-Label-WrongDimensions;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q1-WrongDimensions-ExpressionUpdate;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Q1-WrongDimensions-EditAttempts;
+	[priority=2]AttemptFeedback=>Text-Feedback-Q1-WrongDimensions-Feedback;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-WrongDimensions-Feedback-Update;
+
+	[priority=2]NewCase:click=>Click-Feedback-New-Expression-MissingFactor;
+	[priority=2]CaseExpr=>Text-Feedback-Q1-MissingFactor-Expression;
+	[priority=2]CaseLabel=>Text-Feedback-Q1-Label-MissingFactor;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q1-MissingFactor-ExpressionUpdate;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Q1-MissingFactor-EditAttempts;
+	[priority=2]AttemptFeedback=>Text-Feedback-Q1-MissingFactor-Feedback;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-MissingFactor-Feedback-Update;
+
+	[priority=2]PreviewButton.childNodes-0:click=>Click-Problems-Preview;
+
+	[priority=2]TutorLink.Done=>AllDone;
+}
+
+feedback
+{
+	Click-New {
+		answer: 1;
+		Hint: "Create a new problem first. Use 'Sphere Equation' as your Problem Name.";
+		Hint: "To create a new problem, click the <strong>New</strong> button in the Problems panel. Then type 'Sphere Equation' for the <strong>Name</strong> field in the <strong>Problem details</strong> section.";
+	}
+
+	Text-ProblemName {
+		answer: "Sphere Equation";
+		Hint: "Provide a name for this problem, which is used to refer to this problem in the authoring tool.";
+		Hint: "Change the Problem Name to 'Sphere Equation' in the <strong>Name</strong> field in the Problems panel.";
+	}
+
+	Text-Attempts {
+		answer: "1";
+		Hint: "Set the number of attempts for this problem. This means that the students will have one opportunity to try out this problem and enter the correct answer.";
+		Hint: "Set the <strong>Attempts</strong> field for this problem to '1'.";
+	}
+
+	CheckBox-Start {
+		answer: "true";
+		Hint: "Ensure that this problem is selected as the start problem.";
+		Hint: "Keep the checkbox <strong>Start</strong> checked to ensure that this problem is selected as the start problem. ";
+		JIT: "<block/>Please leave the <strong>Start</strong> box checked for this problem.";
+	}
+
+	Click-Update {
+		answer: 1;
+		Hint: "To save the details of the problem, click the <strong>Update</strong> button.";
+	}
+
+	Link-Resources {
+		answer: 1;
+		Hint: "Add resources for your problem in the <strong>Resource View</strong>.";
+		Hint: "Click on the <strong>Resource View</strong> icon (abstract face) or the <strong>Resource View</strong> link to go there.  <image src=\"LinkResources.png\"/>";
+	}
+
+	CheckBox-Resources-Global {
+		answer: "true";
+		Hint: "Check <strong>Global</strong> to make the resources you add available for all problems.";
+		JIT: "You need to keep the <strong>Global</strong> checkbox checked while creating resources.";
+	}
+
+	Click-Resource-New {
+		answer: 1;
+		Hint: "Create a new item in the Resources View.";
+		Hint: "Click on the <strong>New</strong> button to create a new resource.";
+	}
+
+	Selection-Resource-Kind {
+		answer: "Resource";
+		Hint: "Select the Resource kind from the drop down menu.";
+		Hint: "Select 'Resource' for the Resource kind.";
+		JIT: "<block/>You've selected the wrong resource kind.  You need to select 'Resource' from the dropdown menu for Resource type.";
+	}
+
+	Click-Resource-Preview {
+		answer: 1;
+		Hint: "Preview your resource to examine its contents.";
+	}
+
+	Click-Resource-Global {
+		answer: 1;
+		Hint: "Click Global at the top of the resource tree.";
+	}
+
+	Click-Resource-Update {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button to save your changes.";
+	}
+
+	Click-Resource-New-V1 {
+		answer: 1;
+		Hint: "Create a new item in the Resources View.";
+		Hint: "Click on the <strong>New</strong> button to create a new resource.";
+	}
+
+	Selection-Resource-Kind-V1 {
+		answer: "Resource";
+		Hint: "Select the Resource kind from the drop down menu.";
+		Hint: "Select 'Resource' for the Resource kind.";
+		JIT: "<block/>You've selected the wrong resource kind.  You need to select 'Resource' from the dropdown menu for Resource type.";
+	}
+
+	Click-Resource-Browse-V1 {
+		answer: 1;
+		Hint: "Upload resources.  Choose browse and locate the file you want to add.";
+		Hint: "Click on <strong>Browse</strong> and find a file to add to the Resources.";
+	}
+
+	Click-Resource-Update-V1 {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button to save your changes.";
+	}
+
+	Click-Resource-Preview-V1 {
+		answer: 1;
+		Hint: "Preview your resource to examine its contents.";
+	}
+
+	Click-Resource-Global-V1 {
+		answer: 1;
+		Hint: "Click Global at the top of the resource tree.";
+	}
+
+	Click-Resource-New-V2 {
+		answer: 1;
+		Hint: "Create a new item in the Resources View.";
+		Hint: "Click on the <strong>New</strong> button to create a new resource.";
+	}
+
+	Selection-Resource-Kind-V2 {
+		answer: "Resource";
+		Hint: "Select the Resource kind from the drop down menu.";
+		Hint: "Select 'Resource' for the Resource kind.";
+		JIT: "<block/>You've selected the wrong resource kind.  You need to select 'Resource' from the dropdown menu for Resource type.";
+	}
+
+	Click-Resource-Browse-V2 {
+		answer: 1;
+		Hint: "Upload resources.  Choose browse and locate the file you want to add.";
+		Hint: "Click on <strong>Browse</strong> and find a file to add to the Resources.";
+	}
+
+	Click-Resource-Update-V2 {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button to save your changes.";
+	}
+
+	Click-Resource-Preview-V2 {
+		answer: 1;
+		Hint: "Preview your resource to examine its contents.";
+	}
+
+	Click-Resource-Global-V2 {
+		answer: 1;
+		Hint: "Click Global at the top of the resource tree.";
+	}
+
+	Click-Resource-New-V3 {
+		answer: 1;
+		Hint: "Create a new item in the Resources View.";
+		Hint: "Click on the <strong>New</strong> button to create a new resource.";
+	}
+
+	Selection-Resource-Kind-V3 {
+		answer: "Resource";
+		Hint: "Select the Resource kind from the drop down menu.";
+		Hint: "Select 'Resource' for the Resource kind.";
+		JIT: "<block/>You've selected the wrong resource kind.  You need to select 'Resource' from the dropdown menu for Resource type.";
+	}
+
+	Click-Resource-Browse-V3 {
+		answer: 1;
+		Hint: "Upload resources.  Choose browse and locate the file you want to add.";
+		Hint: "Click on <strong>Browse</strong> and find a file to add to the Resources.";
+	}
+
+	Click-Resource-Update-V3 {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button to save your changes.";
+	}
+
+	Text-Assess-Title {
+		answer:  RegEx(".+");
+		Hint: "Provide a title for the problem. This title will appear at the top of the whole problem set displayed to the student.";
+		Hint: "Type 'Equation for the Volume of a Sphere' for the <strong>Title</strong>.";
+	}
+
+	Text-Assess-Problem {
+		answer:  RegEx(".+\\s*");
+		Hint: "Provide a problem statement now. The problem statement is an introduction to the problem set, with generic information on the questions that follow.";
+		Hint: "Type 'Select the correct equation for the volume of a sphere with radius R and diameter D' for the <strong>Problem Statement</strong>.";
+	}
+
+	Click-Assess-NewQuestion {
+		answer: 1;
+		Hint: "You are about to create a new question for your problem set.";
+		Hint: "To create a new question, click on the <strong>New</strong> button under the <strong>Questions</strong> Panel.";
+	}
+
+	Text-Assess-QuestionName {
+		answer: "Q1";
+		Hint: "You are about to create a new question for this problem set. Create new questions and provide their details now.";
+		Hint: "Type 'Q1' for the <strong>Name</strong> field under the <strong>Question Details</strong> panel.";
+	}
+
+	Selection-Assess-QuestionType {
+		answer: "Multiple Choice";
+		Hint: "Select the <strong>Kind</strong> of question here.";
+		Hint: "Select the 'Multiple Choice' option for the <strong>Kind</strong> of question.";
+		JIT: "<block/>You selected {v} for the question type, but you need to create a 'Multiple Choice' type of question.";
+	}
+
+	Click-Assess-Update {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem. ";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Text-Assess-Question {
+		answer:  RegEx(".+\\s*");
+		Hint: "Fill in the text of the question here.";
+		Hint: "In the <strong>Question Text</strong> field, enter 'The equation for the volume of a sphere is:'.";
+	}
+
+	Link-Assess {
+		answer: 1;
+		Hint: "Add the question for your problem in the <strong>Assessment View</strong>.";
+		Hint: "Click on the <strong>Assessment View</strong> icon (small pencil image) or the <strong>Assessment View</strong> link to go there.  <image src=\"LinkAssessment.png\"/>";
+	}
+
+	Click-Assess-New-Choice {
+		answer: 1;
+		Hint: "Create a new choice for your multiple choice problem.";
+		Hint: "Click the <strong>New</strong> button below the Question Details section.";
+	}
+
+	Click-Assess-Update-Again {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem.";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Click-Assess-Update-Again-V1 {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem. ";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Click-Assess-Update-Again-V2 {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem. ";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Click-Assess-Update-Again-V3 {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem. ";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Click-Assess-New-Choice-V1 {
+		answer: 1;
+		Hint: "Create a new choice for your multiple choice problem.";
+		Hint: "Click the <strong>New</strong> button below the Question Details section.";
+	}
+
+	Click-Assess-New-Choice-V2 {
+		answer: 1;
+		Hint: "Create a new choice for your multiple choice problem.";
+		Hint: "Click the <strong>New</strong> button below the Question Details section.";
+	}
+
+	Click-Assess-New-Choice-V3 {
+		answer: 1;
+		Hint: "Create a new choice for your multiple choice problem.";
+		Hint: "Click the <strong>New</strong> button below the Question Details section.";
+	}
+
+	Text-Assess-ChoiceLabel {
+		answer: "V";
+		Hint: "Fill in a label for the choice.";
+		Hint: "Type 'V' for the <strong>Label</strong> for this multiple choice option.";
+	}
+
+	Text-Assess-ChoiceLabel-V1 {
+		answer: "V1";
+		Hint: "Fill in a label for the choice.";
+		Hint: "Type 'V1' for the <strong>Label</strong> for this multiple choice option.";
+	}
+
+	Text-Assess-ChoiceLabel-V2 {
+		answer: "V2";
+		Hint: "Fill in a label for the choice.";
+		Hint: "Type 'V2' for the <strong>Label</strong> for this multiple choice option.";
+	}
+
+	Text-Assess-ChoiceLabel-V3 {
+		answer: "V3";
+		Hint: "Fill in a label for the choice.";
+		Hint: "Type 'V3' for the <strong>Label</strong> for this multiple choice option.";
+
+	}
+
+	Text-Assess-ChoiceRow {
+		answer: "1";
+		Hint: "Make the choices be in a single row.";
+		Hint: "Type '1' for the row of the choice.";
+	}
+
+	Text-Assess-ChoiceRow-V1 {
+		answer: "1";
+		Hint: "Make the choices be in a single row.";
+		Hint: "Type '1' for the row of the choice.";
+	}
+
+	Text-Assess-ChoiceRow-V2 {
+		answer: "1";
+		Hint: "Make the choices be in a single row.";
+		Hint: "Type '1' for the row of the choice.";
+	}
+
+	Text-Assess-ChoiceRow-V3 {
+		answer: "1";
+		Hint: "Make the choices be in a single row.";
+		Hint: "Type '1' for the row of the choice.";
+	}
+
+	Text-Assess-ChoiceColumn {
+		answer: "1";
+		Hint: "To make this choice appear to the right of the last one, enter 1 for the column.";
+	}
+
+	Text-Assess-ChoiceColumn-V1 {
+		answer: "2";
+		Hint: "To make this choice appear to the right of the last one, enter 2 for the column.";
+	}
+
+	Text-Assess-ChoiceColumn-V2 {
+		answer: "3";
+		Hint: "To make this choice appear to the right of the last one, enter 3 for the column.";
+	}
+
+	Text-Assess-ChoiceColumn-V3 {
+		answer: "4";
+		Hint: "To make this choice appear to the right of the last one, enter 4 for the column.";
+	}
+
+	Click-Assess-Preview {
+		answer: 1;
+		Hint: "You can preview the question you just now created by clicking the <strong>Preview</strong> button.";
+	}
+
+	Link-Feedback {
+		answer: 1;
+		Hint: "Provide feedback to the questions you just modified, in the <strong>Feedback View</strong>.";
+		Hint: "Click on the <strong>Feedback View</strong> icon (two persons talking) or the <strong>Feedback View</strong> link to go there.  <image src=\"LinkFeedback.png\"/>";
+	}
+
+	Selection-Feedback-Q1-Correct {
+		answer: "Correct";
+		Hint: "Select the <strong>Correct</strong> case now to provide feedback for any correct answer provided by the student.";
+		JIT: "<block/>You need to select the 'Correct' case to provide feedback when the student provide the correct answer.";
+	}
+
+	Click-Feedback-Q1-Edit-CorrectCase {
+		answer: 1;
+		Hint: "Check whether the student's input is correct and provide feedback for the correct case now.";
+		Hint: "Edit the <strong>Correct</strong> case now with the expression to check for the correct equation.";
+		Hint: "Click on the <strong>Edit</strong> button under the <strong>Cases</strong> panel.";
+	}
+
+	Click-Feedback-Q1-ExpressionUpdate {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button under the <strong>Case Details</strong> panel to save the expression.";
+	}
+
+	Selection-Feedback-Q1-DefaultAttempts {
+		answer: "Default";
+		Hint: "You need to select an attempt to edit the feedback.";
+		Hint: "Select the 'Default' attempt to provide feedback.";
+		JIT: "<block/>Please select the 'Default' attempt to edit the feedback for that attempt now.";
+	}
+
+	Click-Feedback-Q1-Correct-EditAttempts {
+		answer: 1;
+		Hint: "Provide feedback for a student's correct answer now.";
+		Hint: "To provide feedback for the Default correct case, click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.";
+	}
+
+	Text-Feedback-Q1-Correct-Feedback {
+		answer:  RegEx(".+\\s*");
+		Hint: "It is time to modify the feedback that you wish to provide to the student, when their answer is correct.";
+		Hint: "Type 'Yes, that is the correct equation.' for the <strong>Feedback</strong>  field.";
+	}
+
+	Click-Feedback-Q1-Correct-Update {
+		answer: 1;
+		Hint: "Update to save the changes you made.";
+		Hint: "Click the <strong>Update</strong> button to save the feedback you have entered for the correct answer.";
+	}
+
+	Click-Feedback-New-Expression-NotDiameter {
+		answer: 1;
+		Hint: "Add a new case 'not diameter' for giving feedback.";
+		Hint: "Click the <strong>New</strong> button below the <strong>Cases panel</strong> and above the <strong>Case Details</strong> to create a new feedback case. Call it 'not diameter'.";
+	}
+
+	Text-Feedback-Q1-Label-NotDiameter {
+		answer: "not diameter";
+		Hint: "Enter a label for this case. ";
+		Hint: "For the <strong>Label</strong>, enter something descriptive of this case. For example, here you must enter 'not diameter'.";
+	}
+
+	Click-Feedback-Q1-NotDiameter-ExpressionUpdate {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button under the <strong>Case Details</strong> panel to save the expression.";
+	}
+
+	Click-Feedback-Q1-NotDiameter-EditAttempts {
+		answer: 1;
+		Hint: "You need to modify the feedback text for the Default case of the not diameter condition.";
+		Hint: "Click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.";
+	}
+
+	Click-Feedback-NotDiameter-Feedback-Update {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button to save the feedback.";
+	}
+
+	Click-Feedback-New-Expression-WrongDimensions {
+		answer: 1;
+		Hint: "Add a new case 'wrong dimensions' for giving feedback.";
+		Hint: "Click the <strong>New</strong> button below the <strong>Cases panel</strong> and above the <strong>Case Details</strong> to create a new feedback case. Call it 'wrong dimensions'.";
+	}
+
+	Text-Feedback-Q1-Label-WrongDimensions {
+		answer: "wrong dimensions";
+		Hint: "Enter a label for this case. ";
+		Hint: "For the <strong>Label</strong>, enter something descriptive of this case. For example, here you must enter 'wrong dimensions'.";
+	}
+
+	Click-Feedback-Q1-WrongDimensions-ExpressionUpdate {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button under the <strong>Case Details</strong> panel to save the expression.";
+	}
+
+	Click-Feedback-Q1-WrongDimensions-EditAttempts {
+		answer: 1;
+		Hint: "You need to modify the feedback text for the Default case of the wrong dimensions condition.";
+		Hint: "Click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.";
+	}
+
+	Click-Feedback-WrongDimensions-Feedback-Update {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button to save the feedback.";
+	}
+
+	Click-Feedback-New-Expression-MissingFactor {
+		answer: 1;
+		Hint: "Add a new case 'missing factor' for giving feedback.";
+		Hint: "Click the <strong>New</strong> button below the <strong>Cases panel</strong> and above the <strong>Case Details</strong> to create a new feedback case. Call it 'missing factor'.";
+	}
+
+	Click-Feedback-Q1-MissingFactor-ExpressionUpdate {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button under the <strong>Case Details</strong> panel to save the expression.";
+	}
+
+	Click-Feedback-Q1-MissingFactor-EditAttempts {
+		answer: 1;
+		Hint: "You need to modify the feedback text for the Default case of the missing factor condition.";
+		Hint: "Click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.";
+	}
+
+	Click-Feedback-MissingFactor-Feedback-Update {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button to save the feedback.";
+	}
+
+	Text-Feedback-Q1-WrongDimensions-Feedback {
+		answer:  RegEx(".+\\s*");
+		Hint: "Now edit the feedback to be provided to the student. ";
+		Hint: "Type 'Dimensions of this equation are not dimensions of volume.' in the <strong>Feedback</strong> box.";
+	}
+
+	Text-Feedback-Q1-MissingFactor-Feedback {
+		answer:  RegEx(".+\\s*");
+		Hint: "Now edit the feedback to be provided to the student. ";
+		Hint: "Type 'A factor of 4/3 is missing from this expression.' in the <strong>Feedback</strong> box.";
+	}
+
+	Text-Feedback-Q1-NotDiameter-Feedback {
+		answer:  RegEx(".+\\s*");
+		Hint: "Now edit the feedback to be provided to the student. ";
+		Hint: "Type 'The radius must be used in this equation, not the diameter.' in the <strong>Feedback</strong> box.";
+	}
+
+	Text-Feedback-Q1-Label-MissingFactor {
+		answer: "missing factor";
+		Hint: "Enter a label for this case. ";
+		Hint: "For the <strong>Label</strong>, enter something descriptive of this case. For example, here you must enter 'missing factor'.";
+	}
+
+	Click-Resource-Preview-V3 {
+		answer: 1;
+		Hint: "Preview your resource to examine its contents.";
+	}
+
+	AllDone {
+		answer: 1;
+		Hint: "You are through with this problem. Move on to a different problem.";
+
+	}
+
+	Text-Feedback-Q1-NotDiameter-Expression {
+		answer: RegEx(" *Response\\.Q1 *== *'V1' *");
+		Hint: "Enter the expression for one of the wrong cases now. The response entered by the student is named Response.[Question Name] where [Question Name] is the name of the current question. ";
+		Hint: "Type 'Response.Q1=='V1'' in the <strong>Expression</strong> field under the <strong>Case Details</strong> section. ";
+	}
+
+	Text-Feedback-Q1-MissingFactor-Expression {
+		answer: RegEx(" *Response\\.Q1 *== *'V2' *");
+		Hint: "Enter the expression for one of the wrong cases now. The response entered by the student is named Response.[Question Name] where [Question Name] is the name of the current question. ";
+		Hint: "Type 'Response.Q1=='V2'' in the <strong>Expression</strong> field under the <strong>Case Details</strong> section.";
+	}
+
+	Text-Feedback-Q1-CorrectExpression {
+		answer: RegEx(" *Response\\.Q1 *== *'V' *");
+		Hint: "To check whether the student's answer is correct, provide the expression for correctness now. The response entered by the student is named Response.[Question Name] where [Question Name] is the name of the current question.";
+		Hint: "Type 'Response.Q1=='V'' in the <strong>Expression</strong> field under the <strong>Case Details</strong> section.";
+	}
+
+	Text-Feedback-Q1-WrongDimensions-Expression {
+		answer: RegEx(" *Response\\.Q1 *== *'V3' *");
+		Hint: "Enter the expression for one of the wrong cases now. The response entered by the student is named Response.[Question Name] where [Question Name] is the name of the current question. ";
+		Hint: "Type 'Response.Q1=='V3'' in the <strong>Expression</strong> field under the <strong>Case Details</strong> section.";
+	}
+
+	File-Resource-Select {
+		answer: FilePath("V.jpg");
+		Hint: "You need to browse to V.jpg in order to import the file.";
+		JIT: "<block/>That is the wrong file to import right now.  Please import V.jpg instead.";
+	}
+
+	Text-Resource-Name {
+		answer: "V.jpg";
+		Hint: "You need to have V.jpg for your resource's name.  Next time, do not edit the name and it will automatically match the file name.";
+	}
+
+	Text-Resource-Name-V1 {
+		answer: "V1.jpg";
+		Hint: "You need to have V1.jpg for your resource's name.  Next time, do not edit the name and it will automatically match the file name.";
+	}
+
+	Text-Resource-Name-V2 {
+		answer: "V2.jpg";
+		Hint: "You need to have V2.jpg for your resource's name.  Next time, do not edit the name and it will automatically match the file name.";
+	}
+
+	Text-Resource-Name-V3 {
+		answer: "V3.jpg";
+		Hint: "You need to have V3.jpg for your resource's name.  Next time, do not edit the name and it will automatically match the file name.";
+	}
+
+	File-Resource-Select-V1 {
+		answer: FilePath("V1.jpg");
+		Hint: "You need to browse to V1.jpg in order to import the file.";
+		JIT: "<block/>That is the wrong file to import right now.  Please import V1.jpg instead.";
+	}
+
+	File-Resource-Select-V2 {
+		answer: FilePath("V2.jpg");
+		Hint: "You need to browse to V2.jpg in order to import the file.";
+		JIT: "<block/>That is the wrong file to import right now.  Please import V2.jpg instead.";
+	}
+
+	File-Resource-Select-V3 {
+		answer: FilePath("V3.jpg");
+		Hint: "You need to browse to V3.jpg in order to import the file.";
+		JIT: "<block/>That is the wrong file to import right now.  Please import V3.jpg instead.";
+	}
+
+
+	Click-Problems-Preview {
+		answer: 1;
+		Hint: "Preview the problem now as described in the assignment.";
+		Hint: "Click on the <strong>Preview</strong> icon in the main toolbar above the <strong>Problems</strong> panel. Then choose the title of your problem from the small menu that appears at the lower left . <image src=\"ProblemPreview.png\"/>";
+	}
+
+	Error-Item-Name {
+		answer: "foo";
+		JIT: "<block/>You {v}. That's not something you need to do right now.  Request a hint if you'd like to know what to do next.";
+	}
+
+	Text-Assess-ChoiceText {
+		answer: RegEx("<img src=('|\")Dynamic/Resources/Global/V\\.jpg('|\").*>\\s*");
+		Hint: "Reference the resource you want to be displayed in the <strong>Choice Text</strong> box.";
+		Hint: "Use the HTML editor <image src=\"assessment/htmlEdit.gif\"/>  to insert the image V.jpg, or type \"&lt;img src='Dynamic/Resources/Global/V.jpg'&gt;\" in the <strong>Choice Text</strong> box.";
+	}
+
+	Text-Assess-ChoiceText-V1 {
+		answer: RegEx("<img src=('|\")Dynamic/Resources/Global/V1\\.jpg('|\").*>\\s*");
+		Hint: "Reference the resource you want to be displayed in the <strong>Choice Text</strong> box.";
+		Hint: "Use the HTML editor <image src=\"assessment/htmlEdit.gif\"/>  to insert the image V1.jpg, or type \"&lt;img src='Dynamic/Resources/Global/V1.jpg'&gt;\" in the <strong>Choice Text</strong> box.";
+	}
+
+	Text-Assess-ChoiceText-V2 {
+		answer: RegEx("<img src=('|\")Dynamic/Resources/Global/V2\\.jpg('|\").*>\\s*");
+		Hint: "Reference the resource you want to be displayed in the <strong>Choice Text</strong> box.";
+		Hint: "Use the HTML editor <image src=\"assessment/htmlEdit.gif\"/>  to insert the image V2.jpg, or type \"&lt;img src='Dynamic/Resources/Global/V2.jpg'&gt;\" in the <strong>Choice Text</strong> box.";
+	}
+
+	Text-Assess-ChoiceText-V3 {
+		answer: RegEx("<img src=('|\")Dynamic/Resources/Global/V3\\.jpg('|\").*>\\s*");
+		Hint: "Reference the resource you want to be displayed in the <strong>Choice Text</strong> box.";
+		Hint: "Use the HTML editor <image src=\"assessment/htmlEdit.gif\"/>  to insert the image V3.jpg, or type \"&lt;img src='Dynamic/Resources/Global/V3.jpg'&gt;\" in the <strong>Choice Text</strong> box.";
+	}
+
+}

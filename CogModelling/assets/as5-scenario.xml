@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+		<h3>AddSubtract Extension 5: Re-randomization on the Second Attempt</h3>
+		
+		<p>This assignment requires that you have completed all previous AddSubtract assignments.</p>	
+
+
+<p><strong>Objective:</strong> Allow the numbers C and D to be re-randomized on the second attempt, so the numbers in the subtraction problem will be different on the second attempt, but the numbers in the addition problem will remain unchanged.</p>
+
+<hr/>
+
+<h3>Detailed Instructions</h3>
+
+<p><strong>Dynamic Mode:</strong> Go to variable C in the Data View and change the mode from <strong>Initial</strong> to <strong>Dynamic</strong>.  This will allow it to be re-randomized upon each iteration.  You must also change the mode from Initial to Dynamic for variable D and all expressions based on C and D, including <strong>not_difference</strong>, <strong>D_minus_C</strong> and <strong>not_sum</strong>.  This allows the expressions to be re-evaluated upon each iteration.</p>
+
+<h3>Previewing</h3>
+
+<p><strong>Using the Preview Delivery Mode: </strong>You must use the Delivery Previewer to examine dynamic effects.  This will deliver the problem in exactly the same manner as it will be delivered to the student from start to finish, except that the debugger is available to the author.  This is necessary when you want to see if the system responds properly for multiple attempts, to see if the followup problem is delivered properly, or to view the message that is displayed when the assignment is finished.</p>
+
+<p>For the case at hand, note the values of A, B, C and D that are displayed initially.  Answer both problems incorrectly.  On the second attempt, note the values of the same variables.  The values for A and B should be the same as on the first attempt, but the values of C and D should be different than they were on the first attempt.  Answer both questions correctly.  If the subtraction feedback is not correct, you probably didn't change the mode from Initial to Dynamic in the variable 'not_difference'.</p>
+
+<p><strong>Exporting and Importing Problems:</strong> Save your work to your computer by selecting the <strong>Export </strong>button (second button above the <strong>Problems </strong>panel).  The file will be saved to your desktop with a file name nameX.xmlc, where X will increase with successive saves.  The file can be renamed and stored in a directory for authored problems.  Problems can be imported by pressing the Import button (first button above the Problems Panel).  Authors have the choice of adding the imported problem to the list or replacing all problems on the list with the imported problem.</p>
+
+<p><strong>Finished?</strong><br/> Now you can change the randomization of your numbers depending on attempts. Click <strong>Done</strong>.</p>
+
+	</message>
+

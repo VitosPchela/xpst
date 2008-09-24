@@ -1,0 +1,46 @@
+Copyright (c) Clearsighted 2006-08 stephen@clearsighted.net
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+==========
+
+WebxPST server component installation
+=====================================
+
+To install this release of the WebxPST server component:
+- on some Java 6 servlet/JSP container, deploy WebxPST.war
+  * this currently must be deployed to the top-level URL /WebxPST on the server.
+    For example, http://its.clearsighted.org/WebxPST
+    This restriction will be removed in the future.
+- The Firefox plugin for the client side of the tutor is currently hosted at
+  https://its.clearsighted.org/webxpst/WebxPST.xpi
+  Provide a link to this .xpi for your users.
+  This will be hosted somewhere else in the future, but the update process should make
+  that transparent to users.
+- The task list in the sidebar is populated by a web page. Provide a web page like
+  demomenu.html
+  included in the .war file to instruct the user on how to start the tutor.
+  In the future, the user will not need to click a 'Choose' button on the page, they'll just need
+  to browse to the page with the sidebar open.
+
+- Once installed, test by browsing to
+  http://server/WebxPST/demomenu.html
+  and following the instructions there.
+- As a sanity check, you can also test the installation by browsing to
+  http://server/WebxPST/WebxPST
+  which should present an ugly menu of debugging options that starts like:
+	Start test session:
+	ct: Goalnode test Appnode test
+	as: Goalnode test Appnode test
+	...

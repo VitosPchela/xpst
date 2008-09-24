@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+		<h3>Sphere Volume: True/False Question</h3>
+		
+	<p>This assignment requires that you have completed all previous Sphere assignments.</p>	
+
+
+<p>The objectives of this sample problem are to introduce you to the True/False type of question and to show how to thread the three problems into a single assignment. This problem forms the bridge between the Sphere Equation and Sphere Volume problems.</p>
+
+<p>Add a new problem in the Problem: panel.  Name it 'Continue,' uncheck the 'start' box and allow a single attempt.</p>
+
+<p><strong>Assessment:</strong> Add a new True-False question with title: 'Try Again?' and question text: 'Choose where to go from here.'  Select the following labeling options - <strong>True:</strong> Return to the previous problem, <strong>False:</strong> Move on to the next problem.  Select the first as the default by adding 'Return to the previous problem' in the <strong>Default </strong>box.</p>
+
+<p>Preview the assessment.  You should see what appears in the figure at below (mouse-over to see larger image).</p>
+
+<p><image src="tasks/ct-problem.png" thumbnail="tasks/thumbnails/ct-problem_thumb.png"/>
+</p>
+
+<p>If the first choice is not pre-selected, then check to make sure that what is typed in the 'Default:' text box is exactly the same as what is typed in the 'True:' label text box.  Using 'cut &amp; paste' will ensure that they are the same.</p>
+
+<p><strong>Feedback:</strong> For the 'Correct' expression, enter 'Response.Q1 == True'</p>
+
+<p>Then enter the following feedback for the correct response:</p>
+
+<p><em>Okay.  Please press the green arrow to return to the previous problem.</em></p>
+
+<p>Enter the following feedback for the Default incorrect feedback:</p>
+<p><em>The correct equation for the volume of a sphere is: &lt;br&gt;&lt;br&gt;&lt;img src='Dynamic/Resources/Global/V.jpg'&gt;.</em></p> 
+
+<p>Test the problem to make sure it behaves properly.</p>
+
+<p><strong>Ordering the follow-up problems:</strong> Go to the problems panel and edit the followup and start sections so that Sphere Equation is the first problem, followed by Sphere Volume if correct or Continue if incorrect.  Problem Continue should be followed by Sphere Equation if correct and Sphere Volume if incorrect.  Sphere Volume should be followed by None for both correct and incorrect.  Save your work and run the Delivery preview a couple of times, answering incorrectly, then correctly, to see how the problems are threaded.</p>
+
+<p><strong>Finished?</strong><br/> Now you can create True/False questions and use them as branching points to create a natural flow of student problems. Click <strong>Done</strong>.</p>
+
+<p>You're finished with all assignments.</p>
+
+	</message>
+

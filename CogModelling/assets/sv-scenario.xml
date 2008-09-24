@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+		<h3>Sphere Volume</h3>
+		
+<p>This assignment requires that you have completed <strong>Sphere Equation</strong>.</p>	
+
+
+<p><strong>Objective: </strong>In this problem we will provide the student with the radius of the sphere and ask the student to select the volume from a list of potential answers.</p>
+
+<hr/>
+
+<h3>Detailed Instructions</h3>
+
+<p>Create a new problem called 'Sphere Volume' and allow 2 attempts.  Leave the Start box unchecked.  Edit the 'Sphere Equation' Problem so that problem 'Sphere Volume' is selected as a follow-up problem for both the correct and incorrect cases.</p>
+<p>Return to the Sphere Volume problem.</p>
+
+<p>Assessment: Provide the title, 'Volume of a Sphere' and a problem statement, like: 'What is the volume of a sphere with radius of 5 cm?'</p>
+
+<p>Add a Question: Give the question the name 'Q1' and choose 'Selection' as the Kind of question you will present to the student.  In the <strong>Before Blank:</strong> space enter "The sphere volume is" and in the <strong>After Blank:</strong> space enter the units as 'cm<sup>3</sup>' (you can type the HTML code, cm&lt;sup&gt;3&lt;/sup&gt;).  Preview the assessment.  Notice that a default 'No answer' is provided to show that the student didn't select an answer.  This can be deleted if desired.</p>
+
+<p>Add the following options as potential answers for the student to select:</p>
+
+<ul>
+  <li>524 (correct response)</li>
+  <li>4189 (used diameter instead of radius)</li>
+  <li>393 (neglected factor of 4/3)</li>
+  <li>105 (used radius squared instead of cubed)</li>
+</ul>
+
+
+
+<p>Check your work using preview.  It should look like the figure below.
+</p>
+ 
+<p><image src="tasks/sv-dropdown.png" thumbnail="tasks/thumbnails/sv-dropdown_thumb.png"/>
+</p>
+
+<p>Feedback: Since the numbers you entered as selections were labels, they are stored as strings of characters, so the numbers need to be entered in quotes.  The expression for the correct response will be</p>
+
+<p>Response.Q1 == '524'</p>
+
+<p>Change the feedback message for the correct response to 'That is the correct volume.' Then create new cases for each of the incorrect responses and provide the following diagnostic messages:</p>
+
+<p>If 4189, name the case 'not diameter': You appear to have used diameter instead of radius in your calculation.</p>
+<p>If 393, name the case 'missing factor': You appear to have forgotten a factor of 4/3 in your volume calculation.</p>
+<p>If 105, name the case 'cube instead': You appear to have squared the radius instead of cubing it in your volume calculation.</p>
+
+<p>Also, modify the Default incorrect feedback (This will be displayed for the 'no answer' selection): You must select a numerical answer from the list.</p>
+
+<h3>Previewing</h3>
+
+<p>Preview the problem to make sure that the feedback is appropriate for each response.  Then perform a Delivery Preview to see how the two problems link together.</p>
+
+<p><strong>Finished?</strong><br/> Now you can make Selection questions and give appropriate feedback depending on the student's answer. Click <strong>Done</strong>.</p>
+
+
+
+	</message>
+

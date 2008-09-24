@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+		<h3>AddSubtract Extension 1: Using Variables</h3>
+		
+<p>This assignment requires that you have completed the <strong>AddSubtract</strong> assignment.</p>	
+	
+<p><strong>Objective:</strong> You will replace the constant values used in the addition and subtraction questions with variable input values that can be easily changed from problem to problem.  You will define four new integers (A, B, C, D) and modify the question statements and feedback messages so values for the new variables appear in place of the original constant values.</p>
+
+<hr/>
+
+<h3>Detailed Instructions</h3>
+
+<p>Go into the Data view and enter four new integers named A, B, C and D with values between -10 and +10.  For testing purposes, use the same values as before: A =  1, B = -5, C = -5, D = 5.  Now define two new derived variables, 'sum' and 'difference', where sum contains the expression A+B and difference contains the expression C-D.  Notice the value in the Reference field for each variable.  This is the way the variable should be referred to when used outside of the Data view.  The word 'Data' plus a dot will precede the variable name.</p>
+
+<p><strong>Modify the Assessment Questions</strong> 
+In the Assessment View, replace the numbers '1' and '-5' in the 'Add' question with the new variables A and B.  The correct syntax for referring to a variable like A in a message is:</p>
+
+<p>&lt;py&gt;Data.A&lt;/py&gt;</p>
+
+<p>Modify the 'Subtract' question statement so that '-5' is replaced by your new variable C and '5' is replaced by your new variable D.  Preview the problem statement to make sure it is correct.</p>
+
+<p><strong>Modify the Feedback Expressions</strong> 
+In the Feedback View, modify the expressions for the correct cases for the Add and Subtract questions so they compare the student response with the correct response:</p>
+
+<p><ul>
+	<li>Response.Add == Data.sum</li>
+	<li>Response.Subtract == Data.difference</li>
+</ul></p>
+
+<p><strong>Modify the Feedback Messages</strong> 
+Replace the numbers in the feedback messages with the correct variables A, B, C, D, sum or difference. Preview your feedback messages.</p>
+
+<h3>Previewing</h3>
+
+<p><strong>Test the Problem</strong> 
+Select the preview button and enter incorrect answers for each question.  Feedback for the incorrect answers should appear.  Repeat entering the correct answers to each question.  The feedback for the correct responses should be displayed.  </p>
+
+<p><strong>Alter Input Data</strong> 
+Change the values for A, B, C, and D.  Now test the problem with these new numbers. Note that no changes needed to be made in the feedback or assessment messages when these data were changed.</p>
+
+<p><strong>Finished?</strong><br/> Now you can use variables. Click <strong>Done</strong>.</p>
+
+	</message>
+

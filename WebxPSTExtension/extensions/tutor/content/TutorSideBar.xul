@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type"text/css" ?>
+<?xml-stylesheet href="chrome://browser/skin/browser.css" type="text/css" ?>
+<!DOCTYPE page SYSTEM "chrome://webxpst/locale/TutorSideBar.dtd">
+
+<!--
+Copyright (c) Clearsighted 2006-08 stephen@clearsighted.net
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+-->
+
+<page id="sbEmptySidebar" title="Tutor" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" onload="onLoad()">
+	<script type="text/javascript" src="sarissa/sarissa.js"></script>
+	<script type="text/javascript" src="sarissa/sarissa_ieemu_xpath.js"></script>
+	<script type="text/javascript" src="jquery/jquery.js"></script>
+	<script type="text/javascript" src="jquery/jquery.xslTransform.js"></script>
+	<script type="text/javascript" src="skin/util.js"/>
+	<script type="text/javascript" src="events.js"/>
+	<vbox id="waitingtext" style="font-size: 120%; font-weight:bold">
+		<label value="Browse to a"/>
+		<label value="WebxPST-compatible page to begin."/>
+	</vbox>
+	<vbox id="tutorstuff" flex="1" collapsed="true">
+		<iframe flex="1" id="scenario" style="background-color: white"/>
+		<hbox pack="center" collapsed="true" id="suspended">
+			<label value="TUTOR SUSPENDED" style="color: red; font-size: 150%"/>
+		</hbox>
+		<hbox pack="center" id="ctrlbuttons">
+			<button id = "&hint.ID;" label="&hint.label;" oncommand="onHint(event);" onmousedown="onHintMouseDown()"/>
+			<button id="&done.ID;" label="&done.label;" oncommand="onDone(event);"/>
+	<!--		<checkbox id = "observeIds" label="Observe ID mode" checked="false"/> -->
+		</hbox>
+	</vbox>
+	<vbox id="taskselect" flex="1" collapsed="true">
+		<label value="Select a task then click Start" style="font-size: 120%; font-weight:bold"/>
+		<listbox id="task" label="task" flex="1" seltype="single"/>
+		<hbox pack="center">
+			<button label="Start" oncommand="start()"/>
+		</hbox>
+	</vbox>
+</page>

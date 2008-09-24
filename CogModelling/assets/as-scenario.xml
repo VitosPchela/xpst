@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+		<h3>Addition &amp; Subtraction (AddSubtract)</h3>
+		
+		
+		<p>This assignment is designed to familiarize you with the Web-based Online Authoring Tool's Assessment and Feedback views.
+		</p>
+		
+
+<p><strong>Problem Objective:</strong> Provide feedback to students for a simple addition question and a simple subtraction question. Have the tool provide different feedback if the student answers correctly vs. incorrectly.  
+</p>
+
+<p><strong>Software Tips:</strong> 
+<ul>
+	<li>Avoid using the Firefox Back button.</li>
+	<li>Avoid opening multiple tabs or browser windows.</li>
+	<li>Press the <strong>Update</strong> button to submit new values that you type in the different boxes.</li>
+	<li>If you're not sure what to do, request a <strong>Hint</strong>.</li>
+	<li>When you are finished with the assignment, click <strong>Done</strong>.</li>
+</ul>
+</p>
+
+<hr/>
+
+<h3>Detailed Instructions</h3>
+
+<p>Create a new problem called <strong>AddSubtract</strong>. Give the students two attempts to answer your questions correctly, and check the <strong>Start</strong> box to make this problem the first in a series.</p>
+
+<p>Your goal is to make the problem look like the image below (mouse over it to enlarge). </p>
+<p><image src="tasks/as-problem-view.png" thumbnail="tasks/thumbnails/as-problem-view_thumb.png"/>
+</p>
+
+<p><strong>Assessment:</strong> <br/>
+In the <strong>Assessment View</strong>, give the title 'Add and Subtract Integers' to your question. Add two questions. Give names to the two questions, add the question text, and use the gray <strong>Preview</strong> button to see how they will look.  Question names are case sensitive.  Use the names 'Add' and 'Subtract' for your two questions.</p>
+
+
+<p>The questions should be (use these exact numbers):<br/>
+Question 1:  What is the sum of 1 and -5?<br/>
+Question 2:  What is the difference between -5 and 5?
+</p>
+
+<p>These are fill-in-the-blank questions with a width of 3 for the blank, since the answers will be small integers.</p> 
+
+<p><strong>Feedback:</strong> 
+An expression must be added for the "Correct" case for each question.  This expression must evaluate to TRUE if the student response is correct.  The student responses to the addition and subtraction questions will be called: 'Response.Add' and 'Response.Subtract'.  The expressions for the correct response to the two questions are:</p>
+
+<p><ul>
+	<li>Response.Add == -4</li>
+	<li>Response.Subtract == -10</li>
+</ul></p>
+
+<p>Provide the following feedback messages for correct and incorrect responses to each question. If correct:</p>
+
+<p>Question 1:	Your addition is correct.  The sum of 1 and -5 is equal to -4.<br/>
+Question 2: 	Your subtraction is correct.  The difference between -5 and 5 is -10.</p>
+
+<p>If the responses are incorrect:</p>
+
+<p>Question 1:	Your addition is incorrect. The sum of 1 and -5 is not &lt;py&gt;Response.Add&lt;/py&gt;.<br/>
+Question 2: 	Your subtraction is incorrect.  The difference between -5 and 5 is not &lt;py&gt;Response.Subtract&lt;/py&gt;.</p>
+
+<p>where Response.Add is the value of the student's incorrect addition and Response.Subtract is the value of the student's incorrect subtraction.</p>
+
+
+<p><strong>Variables:</strong> A student's responses can be displayed in text messages by including them between "py" tags as shown above. "Py" stands for Python, a programming language. <strong>Note: </strong>If you try to use the Preview button to check your feedback messages before delivering the problem, you will receive an error message, since the student responses do not yet exist, and therefore cannot be displayed.  
+</p>
+
+<h3>Previewing</h3>
+
+<p><strong>Test Your Problem:</strong> 
+When the questions and feedback messages have been completed, test the problem by selecting the <strong>Preview</strong> button at the top of the screen (it looks like an eye). The options available are:</p>
+
+<ul>
+	<li>Name of the problem: to test the problem for a single attempt</li>
+	<li>Return to the authoring tool</li>
+	<li>Deliver the problem as though it were assigned to a student (allowing multiple attempts), or </li>
+	<li>Set the attempt number for a single pass through the problem to something other than the first attempt (default = first attempt)</li>
+</ul>
+
+<p>If there are major errors in your module, you may not be able to recover from a Delivery Preview.  It is advisable to select the problem name, AddSubtract, when the problem is initially tested.  When you are satisfied that the module is working properly, select 'Delivery Preview.'  This will deliver the module as though you were a student, allowing as many attempts as you specified in the 'Problems' panel.  Answer each question incorrectly the first time and correctly the second time.  When you have completed the delivery, return to the authoring tool.</p>
+
+<p><strong>Finished?</strong><br/>  You have just authored your first assignment and learned about the Assessment and Feedback Views. Click <strong>Done</strong> to move to the next assignment.</p>
+
+
+	</message>
+

@@ -1,0 +1,73 @@
+// $ANTLR : "emscript.g" -> "EMScriptParser.java"$
+
+package org.clearsighted.tutorbase.emscript;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
+import org.clearsighted.tutorbase.emscript.mappingtree.*;
+import org.clearsighted.tutorbase.emscript.exprtree.*;
+import org.clearsighted.tutorengine.*;
+import org.clearsighted.tutorengine.types.Operations.Op;
+
+public interface EMScriptParserTokenTypes {
+	int EOF = 1;
+	int NULL_TREE_LOOKAHEAD = 3;
+	int DEFINES = 4;
+	int LBRACE = 5;
+	int SEMI = 6;
+	int RBRACE = 7;
+	int ID = 8;
+	int EQ = 9;
+	int INCLUDE = 10;
+	int STRINGLIT = 11;
+	int OPTIONS = 12;
+	int TUTORNAME = 13;
+	int SEQUENCE = 14;
+	int THEN = 15;
+	int UNTIL = 16;
+	int AND = 17;
+	int OR = 18;
+	int LBRACK = 19;
+	int RBRACK = 20;
+	int LPAREN = 21;
+	int RPAREN = 22;
+	int DOT = 23;
+	int COLON = 24;
+	int MAPPINGS = 25;
+	int MAPTO = 26;
+	int SWITCH = 27;
+	int COMMA = 28;
+	int PLUS = 29;
+	int CONCAT = 30;
+	int PRIORITY = 31;
+	int INT = 32;
+	int FOCUSEDONLY = 33;
+	int NOQIV = 34;
+	int FEEDBACK = 35;
+	int VARIABLES = 36;
+	int HINT = 37;
+	int JIT = 38;
+	int ANSWER = 39;
+	int DBLAND = 40;
+	int DBLOR = 41;
+	int LTHAN = 42;
+	int GTHAN = 43;
+	int DBLEQ = 44;
+	int NOTEQ = 45;
+	int LEQ = 46;
+	int GEQ = 47;
+	int TOP = 48;
+	int NODEID = 49;
+	int MAPEXPRHALF = 50;
+	int MAPOPTIONS = 51;
+	int DEFINE = 52;
+	int GROUP = 53;
+	int NODEFEEDBACK = 54;
+	int FLOATLIT = 55;
+	int CONSTRUCTOR = 56;
+	int STAR = 57;
+	int WS = 58;
+	int COMMENT1 = 59;
+	int COMMENT2 = 60;
+}

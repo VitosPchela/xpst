@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/global.css"  type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://webxpst/locale/tutor.dtd">
+
+<!--
+Copyright (c) Clearsighted 2006-08 stephen@clearsighted.net
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+-->
+
+<window
+    id="findfile-window"
+    title="Intelligent Tutor"
+    orient="horizontal"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <!--script src="tutor.js"/-->
+  <script src="events.js"/>
+  <vbox flex="1">
+    <tabbox id="tablist" flex="1">
+      <tabs>
+        <tab label="Contents"/>
+        <tab label="Progress and Hints"/>
+      </tabs>
+      <tabpanels flex="1">
+        <tabpanel flex="1">
+          <vbox flex="1">
+            <hbox>
+              <label control="&find.ID;" font-size="200%" value="&find.title;"/>
+            </hbox>
+            <richlistbox flex="1">
+              <script type="application/x-javascript">
+            <![CDATA[
+            function onQuit() {
+                var element = window.opener.content.document.getElementsByTagName("FONT");
+                for (var i=0; i < element.length;i++){
+                    if(element[i].innerHTML == "BLAST"){
+                      //element[i].parentNode.removeChild(element[i]);
+                      //viewer.selectB
+                      yClick();
+                        //var parent = element[i].parentNode;
+                        //parent.
+                        //element[i].addEventListener("click", function(event){alert("clicked");}, false);
+                        //element[i].removeAttribute("href");
+                        //break;
+			//function unlink(elem) {
+   			//	var text = elem.innerHTML;
+  			//	elem.parentNode.innerHTML = text;
+			//}
+                    }
+                }
+                //var back = window.opener.document.getElementById("Browser:Back");
+                //back.removeAttribute("disabled");
+                //window.close();
+            }
+            ]]>
+              
+            </script>
+             <richlistitem>
+                <vbox align="center">
+                  <label value="Step 1" width="40" flex="1"/>
+                  <checkbox checked="{true | *false}" flex="2"/>
+                  <spacer flex="2"/>
+                </vbox>
+                <textbox id = "box-one" flex="1" multiline="true" value="800" onchange="alert('changed');"/>
+                <button id = "&enter.ID;" label="&enter.label;" oncommand="onEnter(event);"/>
+             </richlistitem>
+             <richlistitem>
+             </richlistitem>
+            <hbox>
+              <label value="Hint" width="40" flex="1"/>
+              <textbox id = "box-two" flex="2" multiline="true" value=""/>
+            </hbox>
+            </richlistbox>
+            </vbox>
+        </tabpanel>
+        <tabpanel flex="1">
+          <vbox>
+            <hbox>
+              <label value="Progress:"/>
+              <progressmeter
+                id="identifier"
+                mode="determined"
+                value="0%"/>
+              <spacer flex="1"/>
+            </hbox>
+          </vbox>
+        </tabpanel>
+      </tabpanels>
+    </tabbox>
+    <hbox>
+      <button id = "&start.ID;" label="&start.label;" oncommand="onStart();"/>
+      <button id = "&hint.ID;" label="&hint.label;" oncommand="onHint();"/>
+	  <button id = "hintPrev-button" label="Prev Hint" oncommand="onHintPrev();"/>	  
+	  <button id = "hintNext-button" label="Next Hint" oncommand="onHintNext();"/>
+      <button id = "&home.ID;" label="&home.label;" oncommand="onQuit();"/>
+      <button id = "&quit.ID;" label="&quit.label;" oncommand="close();"/>
+    </hbox>
+  </vbox>
+</window>

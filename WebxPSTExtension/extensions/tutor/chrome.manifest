@@ -1,0 +1,7 @@
+content webxpst content/
+overlay chrome://browser/content/browser.xul chrome://webxpst/content/overlay.xul
+
+locale webxpst en-US locale/en-US/
+
+skin webxpst classic/1.0 skin/
+style chrome://global/content/customizeToolbar.xul chrome://webxpst/skin/overlay.css

@@ -1,0 +1,718 @@
+include "OffPath.xpst";
+
+options
+{
+	tutorname="CAPE";
+}
+
+sequence
+{
+   (
+    (
+	#---Problem selection---
+	(
+		Selection-Problems until
+		Link-Data
+	) then
+
+	#create R
+	(Click-Data-New or Error-Wrong-New) then
+	(
+		Text-Data-Name and
+		(
+			Selection-Data-Kind then	# Float
+			Text-Data-Value
+		) until
+		Click-Data-Update
+	) then
+
+	#create V
+	Click-Data-Problem-Derived then
+	(Click-Data-New-Derived or Error-Wrong-New) then
+	(
+		Text-Data-Name-Derived and
+		(
+			Selection-Data-Kind-Derived then	# Derived
+			Text-Data-Expression-Derived
+		) until
+	Click-Data-Update-Derived) then
+
+	#create V1
+	Click-Data-Problem-Derived-V1 then
+	(Click-Data-New-Derived-V1 or Error-Wrong-New) then
+	(
+		Text-Data-Name-Derived-V1 and
+		(
+			Selection-Data-Kind-Derived-V1 then	# Derived
+			Text-Data-Expression-Derived-V1
+		) until
+	Click-Data-Update-Derived-V1) then
+
+	#create V2
+	Click-Data-Problem-Derived-V2 then
+	(Click-Data-New-Derived-V2 or Error-Wrong-New) then
+	(
+		Text-Data-Name-Derived-V2 and
+		(
+			Selection-Data-Kind-Derived-V2 then	# Derived
+			Text-Data-Expression-Derived-V2
+		) until
+	Click-Data-Update-Derived-V2) then
+
+	#create V3
+	Click-Data-Problem-Derived-V3 then
+	(Click-Data-New-Derived-V3 or Error-Wrong-New) then
+	(
+		Text-Data-Name-Derived-V3 and
+		(
+			Selection-Data-Kind-Derived-V3 then	# Derived
+			Text-Data-Expression-Derived-V3
+		) until
+	Click-Data-Update-Derived-V3) then
+
+	Link-Assess then
+	(Text-Assess-Problem-Edit until
+	Click-Assess-Edit) then
+	Click-Assess-Update-Edit then
+
+	(Selection-Assess-Choice-V then
+	(Click-Assess-Edit-V or Error-Wrong-Edit) then
+	Text-Assess-Label-V until
+	Click-Assess-Update-Again-V) then
+
+	(Selection-Assess-Choice-V1 then
+	(Click-Assess-Edit-V1 or Error-Wrong-Edit) then
+	Text-Assess-Label-V1 until
+	Click-Assess-Update-Again-V1) then
+
+	(Selection-Assess-Choice-V2 then
+	(Click-Assess-Edit-V2 or Error-Wrong-Edit) then
+	Text-Assess-Label-V2 until
+	Click-Assess-Update-Again-V2) then
+
+	(Selection-Assess-Choice-V3 then
+	(Click-Assess-Edit-V3 or Error-Wrong-Edit) then
+	Text-Assess-Label-V3 until
+	Click-Assess-Update-Again-V3)  then
+
+	Link-Data-Again then
+	(Selection-Data-R until
+	Click-Data-Edit) then
+	Text-Data-Value-Edit then
+	Click-Data-Update-R then
+
+	Link-Assess-Again then
+	Click-Assess-Preview-R then
+
+	Link-Feedback-Edit then
+	(Selection-Feedback-Correct then
+	(Click-Feedback-Edit or Error-Wrong-Edit) then
+	Text-Feedback-Edit-Value until
+	Click-Feedback-Update) then
+
+	(Selection-Feedback-V1 then
+	(Click-Feedback-Edit-V1 or Error-Wrong-Edit) then
+	Text-Feedback-Edit-Value-V1 until
+	Click-Feedback-Update-V1) then
+
+	(Selection-Feedback-V2 then
+	(Click-Feedback-Edit-V2 or Error-Wrong-Edit) then
+	Text-Feedback-Edit-Value-V2 until
+	Click-Feedback-Update-V2) then
+
+	(Selection-Feedback-V3 then
+	(Click-Feedback-Edit-V3 or Error-Wrong-Edit) then
+	Text-Feedback-Edit-Value-V3 until
+	Click-Feedback-Update-V3) then
+
+	Click-Problems-Preview
+
+    ) then AllDone
+  ) and Error-Offpath and Error-Offpath-Update and Error-Not-Done;
+
+}
+
+mappings
+{
+
+	#---Select the problem---
+	[priority=2]Problems=>Selection-Problems;
+
+	#---Data view---
+	[priority=2]DataButton.childNodes-0:click=>Link-Data;
+	[priority=2]DataLink.childNodes-3:click=>Link-Data;
+
+	# Create variable R
+	[priority=2]NewItem:click=>Click-Data-New;
+	[priority=2]ItemName=>Text-Data-Name;
+	[priority=2]ItemKind=>Selection-Data-Kind;	# Float
+	[priority=2]ItemValue=>Text-Data-Value;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update;
+
+	# Create variable V
+	[priority=2]rootItem:click=>Click-Data-Problem-Derived;
+	[priority=2]NewItem:click=>Click-Data-New-Derived;
+	[priority=2]ItemName=>Text-Data-Name-Derived;
+	[priority=2]ItemKind=>Selection-Data-Kind-Derived;
+	[priority=2]ItemValue=>Text-Data-Expression-Derived;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update-Derived;
+
+	# Create variable V1
+	[priority=2]rootItem:click=>Click-Data-Problem-Derived-V1;
+	[priority=2]NewItem:click=>Click-Data-New-Derived-V1;
+	[priority=2]ItemName=>Text-Data-Name-Derived-V1;
+	[priority=2]ItemKind=>Selection-Data-Kind-Derived-V1;
+	[priority=2]ItemValue=>Text-Data-Expression-Derived-V1;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update-Derived-V1;
+
+	# Create variable V2
+	[priority=2]rootItem:click=>Click-Data-Problem-Derived-V2;
+	[priority=2]NewItem:click=>Click-Data-New-Derived-V2;
+	[priority=2]ItemName=>Text-Data-Name-Derived-V2;
+	[priority=2]ItemKind=>Selection-Data-Kind-Derived-V2;
+	[priority=2]ItemValue=>Text-Data-Expression-Derived-V2;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update-Derived-V2;
+
+	# Create variable V3
+	[priority=2]rootItem:click=>Click-Data-Problem-Derived-V3;
+	[priority=2]NewItem:click=>Click-Data-New-Derived-V3;
+	[priority=2]ItemName=>Text-Data-Name-Derived-V3;
+	[priority=2]ItemKind=>Selection-Data-Kind-Derived-V3;
+	[priority=2]ItemValue=>Text-Data-Expression-Derived-V3;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update-Derived-V3;
+
+
+	#Assessment View
+	[priority=2]AssessmentLink.childNodes-3:click=>Link-Assess;
+	[priority=2]AssessmentButton.childNodes-0:click=>Link-Assess;
+
+	[priority=2]ProblemStatement=>Text-Assess-Problem-Edit;
+	[priority=2]QuestionEdit:click=>Click-Assess-Edit;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Update-Edit;
+
+	[priority=2]Options=>Selection-Assess-Choice-V;
+	[priority=2]OptionEdit:click=>Click-Assess-Edit-V;
+	[priority=2]OptionLabel=>Text-Assess-Label-V;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Update-Again-V;
+
+	[priority=2]Options=>Selection-Assess-Choice-V1;
+	[priority=2]OptionEdit:click=>Click-Assess-Edit-V1;
+	[priority=2]OptionLabel=>Text-Assess-Label-V1;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Update-Again-V1;
+
+	[priority=2]Options=>Selection-Assess-Choice-V2;
+	[priority=2]OptionEdit:click=>Click-Assess-Edit-V2;
+	[priority=2]OptionLabel=>Text-Assess-Label-V2;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Update-Again-V2;
+
+	[priority=2]Options=>Selection-Assess-Choice-V3;
+	[priority=2]OptionEdit:click=>Click-Assess-Edit-V3;
+	[priority=2]OptionLabel=>Text-Assess-Label-V3;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Update-Again-V3;
+
+
+	#Data view again
+	[priority=2]DataButton.childNodes-0:click=>Link-Data-Again;
+	[priority=2]DataLink.childNodes-3:click=>Link-Data-Again;
+
+	[priority=2]TreeViewItems=>Selection-Data-R;   #R: 5.0 is answer.
+	[priority=2]EditItem:click=>Click-Data-Edit;
+	[priority=2,noqiv]ItemValue=>Text-Data-Value-Edit;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update-R;
+
+	[priority=2]AssessmentLink.childNodes-3:click=>Link-Assess-Again;
+	[priority=2]AssessmentButton.childNodes-0:click=>Link-Assess-Again;
+	[priority=2]AssessmentPreview:click=>Click-Assess-Preview-R;
+
+	#Feedback view
+	[priority=2]FeedbackLink.childNodes-3:click=>Link-Feedback-Edit;
+	[priority=2]FeedbackButton.childNodes-0:click=>Link-Feedback-Edit;
+
+	[priority=2]Cases=>Selection-Feedback-Correct;
+	[priority=2]EditCase:click=>Click-Feedback-Edit;
+	[priority=2]CaseExpr=>Text-Feedback-Edit-Value;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update;
+
+	[priority=2]Cases=>Selection-Feedback-V1;
+	[priority=2]EditCase:click=>Click-Feedback-Edit-V1;
+	[priority=2]CaseExpr=>Text-Feedback-Edit-Value-V1;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update-V1;
+
+	[priority=2]Cases=>Selection-Feedback-V2;
+	[priority=2]EditCase:click=>Click-Feedback-Edit-V2;
+	[priority=2]CaseExpr=>Text-Feedback-Edit-Value-V2;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update-V2;
+
+	[priority=2]Cases=>Selection-Feedback-V3;
+	[priority=2]EditCase:click=>Click-Feedback-Edit-V3;
+	[priority=2]CaseExpr=>Text-Feedback-Edit-Value-V3;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update-V3;
+
+	# Preview the entire problem
+	[priority=2]PreviewButton.childNodes-0:click=>Click-Problems-Preview;
+
+	[priority=2]TutorLink.Done=>AllDone;
+}
+
+feedback
+{
+	Link-Data {
+		answer: 1;
+		Hint: "Add the data variables for your problem in the <strong>Data View</strong>.";
+		Hint: "Click on the <strong>Data View</strong> icon (blackboard with numbers) or the <strong>Data View</strong> link to go there. <image src=\"LinkData.png\"/>";
+	}
+
+	Click-Data-New {
+		answer: 1;
+		Hint: "Click on the <strong>New</strong> button to create a new Data variable.";
+		Hint: "Click on the <strong>New</strong> button in the <strong>Data</strong> panel of the problem to create 'R'. <image src=\"data/ClickDataNew.png\"/>";
+	}
+
+	Text-Data-Name {
+		answer: "R";
+		Hint: "You need to provide a name for the variable.";
+		Hint: "Type 'R' for the <strong>Name</strong> field.";
+		Hint: "You need to provide a name for the variable.";
+		Hint: "Type 'R' for the <strong>Name</strong> field.";
+	}
+
+	Selection-Data-Kind {
+		answer: "Float";
+		Hint: "You have to select the <strong>Kind</strong> of variable here.";
+		Hint: "Select 'Float' for the <strong>Kind</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct kind of the variable here. Please select 'Float' from the <strong>Kind</strong> dropdown.";
+	}
+
+	Click-Data-Update {
+		answer: 1;
+		Hint: "To save your newly created data variable, click on the <strong>Update</strong> button.";
+	}
+
+	AllDone {
+		answer: 1;
+		Hint: "You are through with this problem. Move on to a different problem.";
+	}
+
+	Selection-Problems {
+		answer: "Sphere Volume";
+		Hint: "You need to select a problem before continuing.";
+		Hint: "Highlight the problem 'Sphere Volume' in the <strong>Problems</strong> box.";
+	}
+
+	Click-Data-New-Derived {
+		answer: 1;
+		Hint: "Click on the <strong>New</strong> button to create a new Data variable.";
+		Hint: "Click on the <strong>New</strong> button in the <strong>Data</strong> panel of the problem to create 'V'. <image src=\"data/ClickDataNew.png\"/>";
+	}
+
+	Selection-Data-Kind-Derived {
+		answer: "Derived";
+		Hint: "You have to select the <strong>Kind</strong> of variable here.";
+		Hint: "Select 'Derived' for the <strong>Kind</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct kind of the variable here. Please select 'Derived' from the <strong>Kind</strong> dropdown.";
+	}
+
+	Text-Data-Name-Derived {
+		answer: "V";
+		Hint: "You need to provide a name for the variable.";
+		Hint: "Type 'V' for the <strong>Name</strong> field.";
+		Hint: "You need to provide a name for the variable.";
+		Hint: "Type 'V' for the <strong>Name</strong> field.";
+	}
+
+	Click-Data-Update-Derived {
+		answer: 1;
+		Hint: "To save your newly created data variable, click on the <strong>Update</strong> button.";
+	}
+
+	Click-Data-Problem-Derived {
+		answer: 1;
+		Hint: "You need to select 'Problem,' the top of the tree, before a variable can be created.";
+	}
+
+	Click-Data-Problem-Derived-V1 {
+		answer: 1;
+		Hint: "You need to select 'Problem,' the top of the tree, before a variable can be created.";
+	}
+
+	Click-Data-Problem-Derived-V2 {
+		answer: 1;
+		Hint: "You need to select 'Problem,' the top of the tree, before a variable can be created.";
+	}
+
+	Click-Data-Problem-Derived-V3 {
+		answer: 1;
+		Hint: "You need to select 'Problem,' the top of the tree, before a variable can be created.";
+	}
+
+	Click-Data-New-Derived-V1 {
+		answer: 1;
+		Hint: "Click on the <strong>New</strong> button to create a new Data variable.";
+		Hint: "Click on the <strong>New</strong> button in the <strong>Data</strong> panel of the problem to create 'V1'. <image src=\"data/ClickDataNew.png\"/>";
+	}
+
+	Click-Data-New-Derived-V2 {
+		answer: 1;
+		Hint: "Click on the <strong>New</strong> button to create a new Data variable.";
+		Hint: "Click on the <strong>New</strong> button in the <strong>Data</strong> panel of the problem to create 'V2'. <image src=\"data/ClickDataNew.png\"/>";
+	}
+
+	Click-Data-New-Derived-V3 {
+		answer: 1;
+		Hint: "Click on the <strong>New</strong> button to create a new Data variable.";
+		Hint: "Click on the <strong>New</strong> button in the <strong>Data</strong> panel of the problem to create 'V3'. <image src=\"data/ClickDataNew.png\"/>";
+	}
+
+	Text-Data-Name-Derived-V1 {
+		answer: "V1";
+		Hint: "You need to provide a name for the variable.";
+		Hint: "Type 'V1' for the <strong>Name</strong> field.";
+		Hint: "You need to provide a name for the variable.";
+		Hint: "Type 'V1' for the <strong>Name</strong> field.";
+	}
+
+	Text-Data-Name-Derived-V2 {
+		answer: "V2";
+		Hint: "You need to provide a name for the variable.";
+		Hint: "Type 'V2' for the <strong>Name</strong> field.";
+		Hint: "You need to provide a name for the variable.";
+		Hint: "Type 'V2' for the <strong>Name</strong> field.";
+	}
+
+	Text-Data-Name-Derived-V3 {
+		answer: "V3";
+		Hint: "You need to provide a name for the variable.";
+		Hint: "Type 'V3' for the <strong>Name</strong> field.";
+		Hint: "You need to provide a name for the variable.";
+		Hint: "Type 'V3' for the <strong>Name</strong> field.";
+	}
+
+	Selection-Data-Kind-Derived-V1 {
+		answer: "Derived";
+		Hint: "You have to select the <strong>Kind</strong> of variable here.";
+		Hint: "Select 'Derived' for the <strong>Kind</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct kind of the variable here. Please select 'Derived' from the <strong>Kind</strong> dropdown.";
+	}
+
+	Selection-Data-Kind-Derived-V2 {
+		answer: "Derived";
+		Hint: "You have to select the <strong>Kind</strong> of variable here.";
+		Hint: "Select 'Derived' for the <strong>Kind</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct kind of the variable here. Please select 'Derived' from the <strong>Kind</strong> dropdown.";
+	}
+
+	Selection-Data-Kind-Derived-V3 {
+		answer: "Derived";
+		Hint: "You have to select the <strong>Kind</strong> of variable here.";
+		Hint: "Select 'Derived' for the <strong>Kind</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct kind of the variable here. Please select 'Derived' from the <strong>Kind</strong> dropdown.";
+	}
+
+	Click-Data-Update-Derived-V1 {
+		answer: 1;
+		Hint: "To save your newly created data variable, click on the <strong>Update</strong> button.";
+	}
+
+	Click-Data-Update-Derived-V2 {
+		answer: 1;
+		Hint: "To save your newly created data variable, click on the <strong>Update</strong> button.";
+	}
+
+	Click-Data-Update-Derived-V3 {
+		answer: 1;
+		Hint: "To save your newly created data variable, click on the <strong>Update</strong> button.";
+	}
+
+	Link-Assess {
+		answer: 1;
+		Hint: "Edit the question for your problem in the <strong>Assessment View</strong>.";
+		Hint: "Click on the <strong>Assessment View</strong> icon (small pencil image) or the <strong>Assessment View</strong> link to go there. <image src=\"LinkAssessment.png\"/>";
+	}
+
+	Click-Assess-Edit {
+		answer: 1;
+		Hint: "To edit the highlighted question, click on the <strong>Edit</strong> button under the <strong>Questions</strong> panel.";
+	}
+
+	Click-Assess-Update-Edit {
+		answer: 1;
+		Hint: "Click update to proceed to the part of the question that you want to edit.";
+	}
+
+	Text-Assess-Label-V {
+		answer: "<py>Data.V</py>";
+		Hint: "Edit the label of your choice to reference your variable.";
+		Hint: "Edit the label to reference your variable: &lt;py&gt;Data.V&lt;/py&gt;";
+	}
+
+	Text-Assess-Label-V1 {
+		answer: "<py>Data.V1</py>";
+		Hint: "Edit the label of your choice to reference your variable.";
+		Hint: "Edit the label to reference your variable: &lt;py&gt;Data.V1&lt;/py&gt;";
+	}
+
+	Text-Assess-Label-V2 {
+		answer: "<py>Data.V2</py>";
+		Hint: "Edit the label of your choice to reference your variable.";
+		Hint: "Edit the label to reference your variable: &lt;py&gt;Data.V2&lt;/py&gt;";
+	}
+
+	Text-Assess-Label-V3 {
+		answer: "<py>Data.V3</py>";
+		Hint: "Edit the label of your choice to reference your variable.";
+		Hint: "Edit the label to reference your variable: &lt;py&gt;Data.V3&lt;/py&gt;";
+	}
+
+	Click-Assess-Update-Again-V {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem. ";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Click-Assess-Update-Again-V1 {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem. ";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Click-Assess-Update-Again-V2 {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem. ";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Click-Assess-Update-Again-V3 {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem. ";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Selection-Assess-Choice-V {
+		answer: "524";
+		Hint: "Select the choice you want to edit.";
+		Hint: "Select 524 from the drop down menu of possible answers.";
+		JIT: "<block/>Please select '524' at this time.";
+	}
+
+	Selection-Assess-Choice-V1 {
+		answer: "4189";
+		Hint: "Select the choice you want to edit.";
+		Hint: "Select 4189 from the drop down menu of possible answers.";
+		JIT: "<block/>Please select '4189' at this time.";
+	}
+
+	Selection-Assess-Choice-V2 {
+		answer: "393";
+		Hint: "Select the choice you want to edit.";
+		Hint: "Select 393 from the drop down menu of possible answers.";
+		JIT: "<block/>Please select '393' at this time.";
+	}
+
+	Selection-Assess-Choice-V3 {
+		answer: "105";
+		Hint: "Select the choice you want to edit.";
+		Hint: "Select 105 from the drop down menu of possible answers.";
+		JIT: "<block/>Please select '105' at this time.";
+	}
+
+	Link-Data-Again {
+		answer: 1;
+		Hint: "Return to the <strong>Data View</strong> to edit variable you created.";
+		Hint: "Click on the <strong>Data View</strong> icon (blackboard with numbers) or the <strong>Data View</strong> link to go there. <image src=\"LinkData.png\"/>";
+	}
+
+	Click-Data-Edit {
+		answer: 1;
+		Hint: "Edit the variable you have selected by clicking on the <strong>Edit</strong> button.";
+	}
+
+	Click-Data-Update-R {
+		answer: 1;
+		Hint: "To save the changes you have made to this variable, click <strong>Update</strong>.";
+	}
+
+	Text-Data-Value-Edit {
+		answer: RegEx("[0-9]*\\.[0-9]*|[0-9]*");
+		Hint: "Change the value of your variable, R, to see what happens with your problem when this variable has a different value.";
+	}
+
+	Link-Feedback-Edit {
+		answer: 1;
+		Hint: "Go to the feedback view to edit the conditions for providing feedback to use the variables you have created.";
+		Hint: "Click on the <strong>Feedback View</strong> icon (two persons talking) or the <strong>Feedback View</strong> link to go there. <image src=\"LinkFeedback.png\"/>";
+	}
+
+	Click-Feedback-Edit {
+		answer: 1;
+		Hint: "Edit the expression taking into account the variables you created.";
+		Hint: "Click the <strong>Edit</strong> button below the <strong>Cases panel</strong> and above the <strong>Case Details</strong> to edit the expression.";
+	}
+
+	Click-Feedback-Update {
+		answer: 1;
+		Hint: "Update to save the changes you made to the feedback case.";
+	}
+
+	Selection-Feedback-Correct {
+		answer: "Correct";
+		Hint: "Select the <strong>Correct</strong> case now to provide feedback for any correct answer provided by the student.";
+		JIT: "<block/>You need to select the 'Correct' case to provide feedback when the student provide the correct answer.";
+	}
+
+	Selection-Feedback-V1 {
+		answer: "not diameter";
+		Hint: "You need to select a case to edit it to use the variable you created.";
+		Hint: "Select the 'not diameter' case in order to change the case expression to use the variable you created.";
+		JIT: "<block/>Select the 'not diameter' case first to edit the feedback conditions for that case.";
+	}
+
+	Selection-Feedback-V2 {
+		answer: "missing factor";
+		Hint: "You need to select a case to edit it to use the variable you created.";
+		Hint: "Select the 'missing factor' case in order to change the case expression to use the variable you created.";
+		JIT: "<block/>Select the 'missing factor' case first to edit the feedback conditions for that case.";
+	}
+
+	Selection-Feedback-V3 {
+		answer: "cube instead";
+		Hint: "You need to select a case to edit it to use the variable you created.";
+		Hint: "Select the 'cube instead' case in order to change the case expression to use the variable you created.";
+		JIT: "<block/>Select the 'cube instead' case first to edit the feedback conditions for that case.";
+	}
+
+	Click-Feedback-Edit-V1 {
+		answer: 1;
+		Hint: "Edit the expression taking into account the variables you created.";
+		Hint: "Click the <strong>Edit</strong> button below the <strong>Cases panel</strong> and above the <strong>Case Details</strong> to edit the expression.";
+	}
+
+	Click-Feedback-Edit-V2 {
+		answer: 1;
+		Hint: "Edit the expression taking into account the variables you created.";
+		Hint: "Click the <strong>Edit</strong> button below the <strong>Cases panel</strong> and above the <strong>Case Details</strong> to edit the expression.";
+	}
+
+	Click-Feedback-Edit-V3 {
+		answer: 1;
+		Hint: "Edit the expression taking into account the variables you created.";
+		Hint: "Click the <strong>Edit</strong> button below the <strong>Cases panel</strong> and above the <strong>Case Details</strong> to edit the expression.";
+	}
+
+	Click-Feedback-Update-V1 {
+		answer: 1;
+		Hint: "Update to save the changes you made to the feedback case.";
+	}
+
+	Click-Feedback-Update-V2 {
+		answer: 1;
+		Hint: "Update to save the changes you made to the feedback case.";
+	}
+
+	Click-Feedback-Update-V3 {
+		answer: 1;
+		Hint: "Update to save the changes you made to the feedback case.";
+	}
+
+	Text-Data-Value {
+		answer: "5";
+		Hint: "You have to provide a value here for the created data variable.";
+		Hint: "Provide a value of 5 for this variable.";
+	}
+
+	Click-Problems-Preview {
+		answer: 1;
+		Hint: "Preview the problem now as described in the assignment.";
+		Hint: "Click on the <strong>Preview</strong> icon in the main toolbar above the <strong>Problems</strong> panel. Then choose the title of your problem from the small menu that appears at the lower left . <image src=\"ProblemPreview.png\"/>";
+	}
+
+	Selection-Data-R {
+		answer: RegEx("R: .*");
+		Hint: "Select the variable 'R' from the tree of variables so that you can edit it.";
+		JIT: "You need to select the correct variable before you can edit it. Please select the variable 'R' to edit it.";
+	}
+
+	Text-Feedback-Edit-Value {
+		answer: RegEx(" *Response\\.Q1 *== *'<py>Data\\.V</py>' *");
+		Hint: "Change the value compared in the expression to use the variable you created.";
+		Hint: "Use your variable in the expression by changing it to \"Response.Q1=='&lt;py&gt;Data.V&lt;/py&gt;'\".";
+	}
+
+	Text-Feedback-Edit-Value-V1 {
+		answer: RegEx(" *Response\\.Q1 *== *'<py>Data\\.V1</py>' *");
+		Hint: "Change the value compared in the expression to use the variable you created.";
+		Hint: "Use your variable in the expression by changing it to \"Response.Q1=='&lt;py&gt;Data.V1&lt;/py&gt;'\".";
+	}
+
+	Text-Feedback-Edit-Value-V2 {
+		answer: RegEx(" *Response\\.Q1 *== *'<py>Data\\.V2</py>' *");
+		Hint: "Change the value compared in the expression to use the variable you created.";
+		Hint: "Use your variable in the expression by changing it to \"Response.Q1=='&lt;py&gt;Data.V2&lt;/py&gt;'\".";
+	}
+
+	Text-Feedback-Edit-Value-V3 {
+		answer: RegEx(" *Response\\.Q1 *== *'<py>Data\\.V3</py>' *");
+		Hint: "Change the value compared in the expression to use the variable you created.";
+		Hint: "Use your variable in the expression by changing it to \"Response.Q1=='&lt;py&gt;Data.V3&lt;/py&gt;'\".";
+	}
+
+	Text-Data-Expression-Derived {
+		answer: RegEx(" *int\\( *4\\. *\\* *pi *\\* *pow\\(R, *3\\) */3\\. *\\+ *\\.5 *\\) *");
+		Hint: "You are calculating the 'volume' expression now.";
+		Hint: "Enter 'int(4.*pi*pow(R,3)/3.+.5)' in the <strong>Expression</strong> field.";
+	}
+
+	Text-Data-Expression-Derived-V1 {
+		answer: RegEx(" *int\\( *4\\. *\\* *pi *\\* *pow\\(2 *\\* *R,3\\)/3\\. *\\+ *\\.5\\) *");
+		Hint: "You are calculating the 'not diameter' expression now.";
+		Hint: "Enter 'int(4.*pi*pow(2*R,3)/3.+.5)' in the <strong>Expression</strong> field.";
+	}
+
+	Text-Data-Expression-Derived-V2 {
+		answer: RegEx(" *int\\(pi *\\* *pow\\(R,3\\) *\\+ *\\.5\\) *");
+		Hint: "You are calculating the 'missing factor' expression now.";
+		Hint: "Enter 'int(pi*pow(R,3)+.5)' in the <strong>Expression</strong> field.";
+	}
+
+	Text-Data-Expression-Derived-V3 {
+		answer: RegEx(" *int\\(4. *\\* *pi *\\* *pow\\(R,2\\)/3\\. *\\+ *\\.5\\) *");
+		Hint: "You are calculating the 'cube instead' expression now.";
+		Hint: "Enter 'int(4.*pi*pow(R,2)/3.+.5)' in the <strong>Expression</strong> field.";
+	}
+
+	Text-Assess-Problem-Edit {
+		answer: RegEx(".*<py>Data.R</py>.*\\s*");
+		Hint: "Edit the problem statement now to include a reference to the variable you just created.";
+		Hint: "Edit the problem statement now. Change the number you had for the radius to &lt;py&gt;Data.R&lt;/py&gt;.";
+	}
+
+	Click-Assess-Edit-V {
+		answer: 1;
+		Hint: "Click <strong>Edit</strong> under the <strong>Question Details</strong> panel to edit the label you have selected.";
+	}
+
+	Click-Assess-Edit-V1 {
+		answer: 1;
+		Hint: "Click <strong>Edit</strong> under the <strong>Question Details</strong> panel to edit the label you have selected.";
+	}
+
+	Click-Assess-Edit-V2 {
+		answer: 1;
+		Hint: "Click <strong>Edit</strong> under the <strong>Question Details</strong> panel to edit the label you have selected.";
+	}
+
+	Click-Assess-Edit-V3 {
+		answer: 1;
+		Hint: "Click <strong>Edit</strong> under the <strong>Question Details</strong> panel to edit the label you have selected.";
+	}
+
+	Link-Assess-Again {
+		answer: 1;
+		Hint: "Go to the assessment view to preview the problem with the new value of variable R.";
+	}
+
+	Click-Assess-Preview-R {
+		answer: 1;
+		Hint: "Click <strong>Preview</strong> to see the problem with the new value for R.";
+	}
+
+}

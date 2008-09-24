@@ -1,0 +1,55 @@
+<!--
+Copyright (c) Clearsighted 2006-08 stephen@clearsighted.net
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+-->
+
+<html>
+	<head><title>Demo WebxPST menu</title></head>
+	<body onload="go()">
+		<script src="tasklist.js" type="text/javascript"></script>
+		<script>
+			function go()
+			{
+				var tasklist = 
+				[
+					['Fraction addition', 'fracadd'],
+					['AddSubtract Basic', 'as'],
+					['   AddSubtract Extension 1', 'as1'],
+					['   AddSubtract Extension 2', 'as2'],
+					['   AddSubtract Extension 3', 'as3'],
+					['   AddSubtract Extension 4', 'as4'],
+					['   AddSubtract Extension 5', 'as5'],
+					['Sphere Equation', 'se'],
+					['Sphere Volume', 'sv'],
+					['   Sphere Extension 1', 'sv1'],
+					['   Sphere Extension 2', 'sv2'],
+					['   Sphere Extension 3', 'sv3'],
+					['   True-False', 'ct']
+				];
+				openTasklist(tasklist);
+			}
+		</script>
+		<div>Welcome to a WebxPST-compatible page. This page is a demo, please refer to the source to learn how to
+		make a nicer one for your real tutor deployment.</div>
+		<div>To start:</div>
+		<ol>
+			<li>Install the WebxPST extension if it isn't already installed, from <a href="https://its.clearsighted.org/webxpst/WebxPST.xpi">here</a></li>
+			<li>Open the WebxPST sidebar (if it is not already open)</li>
+			<li>Choose a task from the sidebar menu and press start</li>
+			<li>Browse to the web application and begin the task (for example, <a href="https://repo.vanth.org/QuotaLinks/cpelE">Web Authoring System</a>)</li>
+		</ol> 
+	</body>
+</html>

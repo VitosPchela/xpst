@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+		<h3>Sphere Volume Extension 2: Randomizing the Radius</h3>
+		
+
+	<p>This assignment requires that you have completed all previous Sphere assignments.</p>	
+
+		<p>Randomize the radius between 1 and 15, as was done in the AddSubtract problem.  You may remember that the integer random number generator is random.randrange(first, last, interval), where 'first' is the lowest number, 'last' is the highest number and 'interval' is the step size between selectable numbers. </p>
+
+<p>Preview the problem.</p>
+
+<p><strong>Finished?</strong><br/> Now you have more practice using randomly chosen values as inputs. Click <strong>Done</strong>.</p>
+
+	</message>
+

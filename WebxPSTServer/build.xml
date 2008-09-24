@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="war" name="WebxPST">
+	<property environment="env"/>
+	<property file="build.properties"/>
+	<property name="tomcat.dir" value="/var/local/tomcat"/>
+	<property name="xpstlib.location" value="../xPSTLib"/>
+	<property name="build.dir" value="../builds"/>
+	<property name="debuglevel" value="source,lines,vars"/>
+	<property name="target" value="1.5"/>
+	<property name="source" value="1.5"/>
+	<path id="tomcat.libraryclasspath">
+		<pathelement location="${tomcat.dir}/lib/servlet-api.jar"/>
+	</path>
+	<path id="webapp.libraryclasspath"/>
+	<path id="WebxPST.classpath">
+		<pathelement location="build/classes"/>
+		<path refid="tomcat.libraryclasspath"/>
+		<path refid="webapp.libraryclasspath"/>
+		<pathelement location="${xpstlib.location}/bin"/>
+	</path>
+	<target name="init">
+		<mkdir dir="build/classes"/>
+		<mkdir dir="dist"/>
+		<copy includeemptydirs="false" todir="build/classes">
+			<fileset dir="src" excludes="**/*.launch, **/*.g, **/*.java"/>
+		</copy>
+	</target>
+	<target name="clean">
+		<delete dir="build/classes"/>
+		<delete dir="dist"/>
+	</target>
+	<target name="cleanboth" depends="clean">
+		<ant dir="../xPSTLib" target="clean"/>
+	</target>
+	<target name="xPSTLib">
+		<ant dir="../xPSTLib" target="jar"/>
+	</target>
+	<target depends="init,xPSTLib" name="build">
+		<echo message="${ant.project.name}: ${ant.file}"/>
+		<javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" source="${source}" target="${target}">
+			<src path="src"/>
+			<classpath refid="WebxPST.classpath"/>
+		</javac>
+	</target>
+	<target depends="build" name="dist">
+		<copy todir="dist/WEB-INF/classes">
+			<fileset dir="build/classes"/>
+			<fileset dir="${xpstlib.location}/bin"/>
+		</copy>
+		<copy todir="dist/WEB-INF/lib" flatten="true">
+			<path refid="webapp.libraryclasspath"/>
+			<fileset dir="${xpstlib.location}/lib" includes="*.jar"/>
+		</copy>
+		<copy todir="dist">
+			<fileset dir="WebContent"/>
+		</copy>
+		<copy todir="dist/assets">
+			<fileset dir="../CogModelling/assets"/>
+		</copy>
+		<copy todir="dist/WEB-INF/classes">
+			<fileset file="tre.properties"/>
+		</copy>
+		<copy todir="dist/WEB-INF/tre">
+			<fileset file="../CogModelling/*" excludes="../CogModelling/assets"/>
+		</copy>
+	</target>
+	<target name="war" depends="dist">
+		<jar basedir="dist" destfile="dist/WebxPST.war" excludes="WebxPST.war"/>
+		<copy todir="${build.dir}/WebxPST">
+			<fileset file="dist/WebxPST.war"/>
+		</copy>
+	</target>
+	<target name="deploy" depends="war">
+		<copy todir="${tomcat.dir}/webapps/" overwrite="true">
+			<fileset file="dist/WebxPST.war"/>
+		</copy>
+	</target>
+</project>
