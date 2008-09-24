@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+		<h3>Sphere Volume Extension 3: Give the correct answer after the second attempt</h3>
+		
+		<p>This assignment requires that you have completed all previous Sphere assignments.</p>	
+	
+		<p>
+		When you created the Sphere Volume assignment, you set the number of attempts students will be allowed to answer a question correctly to two. Now, add better feedback for the second attempt. Go to the <strong>Feedback View</strong>, and for each wrong answer, add a feedback for the second attempt as follows:"</p>
+
+<p><em>That was your final attempt. The correct volume is &lt;py&gt;Data.V&lt;/py&gt;.</em>		</p>
+
+<p><strong>Finished?</strong><br/> Now you have more practice varying the feedback based on how many attempts the student makes. Click <strong>Done</strong>.</p>
+
+	</message>
+

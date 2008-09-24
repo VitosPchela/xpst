@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+		<h3>AddSubtract Extension 4: Randomize Input Variables</h3>
+		
+		
+<p>This assignment requires that you have completed all previous AddSubtract assignments.</p>	
+
+
+<p><strong>Objective:</strong> Randomize the values of A, B, C, and D so they lie between -10 and +10.  All four numbers should be the same on the second attempt.  Consequently, each student will be presented with a unique set of questions.</p>
+
+<hr/>
+
+<h3>Detailed Instructions</h3>
+
+<p><strong>Randomizing variables:</strong> The Python language has many useful functions that can be used to enhance your problems (e.g., www.python.org).  The integer random number generator is random.randrange(first, last, interval), where 'first' is the lowest number, 'last' is the highest number and 'interval' is the step size between selectable numbers.  If you want to randomly select from all even numbers between -10 and +10, we could use random.randrange(-10,10,2).  For this assignment, go to the Data View and change variables A, B, C, and D from integers to derived quantities.  Change each of these variables to derived quantities, entering as the expression:</p>
+
+<p>random.randrange(-10,10,1)</p>
+
+<h3>Previewing</h3>
+
+<p>Now go to the Data Previewer and note the numbers used for A, B, C, and D.  After answering the questions, return to the Authoring view, then select the Data Previewer again.  A new set of numbers are displayed.  The input variables are randomly generated and are properly displayed in the assessment and feedback messages.</p>
+
+
+<p><strong>Finished?</strong><br/> Now you can use randomly chosen numbers in your problems. Click <strong>Done</strong>.</p>
+
+
+
+	</message>
+

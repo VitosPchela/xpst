@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+		<h3>AddSubtract Extension 3: Provide Different Feedback After the Second Attempt</h3>
+		
+<p>This assignment requires that you have completed all previous AddSubtract assignments.</p>	
+
+<p><strong>Objective:</strong> Display different feedback messages on successive attempts.  If this feature is not used, the student will receive the same response each time the student supplies the same incorrect response.  In this assignment, if the student misses the problem on the second attempt, provide a different message and the correct answer.  The Default_Incorrect messages to be displayed after the second attempt are:</p>
+
+<p>Add:  <em>Sorry, that was your last attempt.  The sum of (display A) and (display B) is (display correct sum).</em></p>
+
+<p>Subtract: <em>Sorry, that was your last attempt.  The difference between (display C) and (display D) is (display difference).</em></p>
+
+<p>We will also provide the correct result for the three diagnosed cases:</p>
+
+<p>For case <strong>Add: not_difference</strong>, the new message will be:</p>
+<p><em>Your addition is incorrect. You appear to have subtracted (display B) from (display A).  The correct sum of (display A) and (display B) is (display sum).</em></p>
+
+<p>For case <strong>Subtract: not_sum</strong>, the new message will be:</p>
+<p><em>Your subtraction is incorrect. You appear to have added (display C) and (display D).  The correct difference between (display C) and (display D) is (display difference).</em></p>
+
+<p>For case <strong>Subtract: D_minus_C</strong>, the new message will be:</p>
+<p><em>Your subtraction is incorrect. You appear to have subtracted (display C) from (display D).  The correct difference between (display C) and (display D) is (display difference).</em></p>
+
+<hr/>
+
+<h3>Detailed Instructions</h3>
+
+<p><strong>Add new feedback for the second attempt:</strong> Enter the Feedback View and select the appropriate question.  Select one of the incorrect cases, and under the "Attempts" panel click the 'New' button.  This will add a new message for the second attempt.  Enter an appropriate label such as "second" or "last" and in the feedback panel enter the appropriate message.  Repeat for second attempts on each of the other diagnosed and undiagnosed incorrect responses.</p>
+
+<h3>Previewing</h3>
+
+<p>Click on the Data viewer icon to preview the problem.  This time select Attempts and enter the number 2.  Then test the problem by entering diagnosed and undiagnosed incorrect responses for the sum and difference.  The feedback messages should contain the correct answers.</p>
+
+<p><strong>Finished?</strong><br/> Now you can give different feedback depending on how many attempts the student makes. Click <strong>Done</strong>.</p>
+
+
+	</message>
+

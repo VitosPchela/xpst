@@ -1,0 +1,43 @@
+<!--
+Copyright (c) Clearsighted 2006-08 stephen@clearsighted.net
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+-->
+
+<project default="WebTutorDist">
+	<target name="prepare">
+	</target>
+
+	<property name="build.dir" value="../../builds/WebxPST"/>
+
+	<target name="WebTutorDist" depends="prepare">
+		<property file="../../builtversions.txt"/>
+		<copy file="updates.rdf.t" tofile="updates.rdf" overwrite="true"/>
+		<replace file="updates.rdf" token="@VERSION@" value="0.2.${BuiltPluginVer}" summary="true"/>
+		<copy file="tutor/install.rdf" tofile="tutor/install.rdf.bk" overwrite="true"/>
+		<copy file="tutor/install.rdf.t" tofile="tutor/install.rdf" overwrite="true"/>
+		<replace file="tutor/install.rdf" token="@VERSION@" value="0.2.${BuiltPluginVer}" summary="true"/>
+		<jar jarfile="WebxPST.xpi" basedir="tutor" excludes="**/.svn"/>
+		<copy file="tutor/install.rdf.bk" tofile="tutor/install.rdf" overwrite="true"/>
+		<delete file="tutor/install.rdf.bk"/>
+		<copy file="WebxPST.xpi" tofile="${build.dir}/WebxPST.xpi"/>
+		<copy file="updates.rdf" tofile="${build.dir}/updates.rdf"/>
+	</target>
+
+	<target name="clean">
+		<delete dir="WebxPST.xpi"/>
+	</target>
+</project>
+

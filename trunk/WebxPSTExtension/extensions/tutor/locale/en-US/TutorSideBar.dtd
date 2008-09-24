@@ -1,0 +1,32 @@
+<!ENTITY title.label "Tutoring Software">
+<!ENTITY separate.label "">
+<!ENTITY find.title "Welcome to the Clearsighted Intelligent Tutoring System!">
+<!ENTITY find.label "Find">
+<!ENTITY find.ID "find-button">
+<!ENTITY cancel.label "Cancel">
+<!ENTITY cancel.ID "cancel-button">
+<!ENTITY hint.label "Hint">
+<!ENTITY next.label "Next">
+<!ENTITY previous.label "Previous">
+<!ENTITY entry.ID "entry-textbox">
+<!ENTITY background.label "Background">
+<!ENTITY quit.label "Quit">
+<!ENTITY quit.ID "quit-button">
+<!ENTITY home.label "Home">
+<!ENTITY home.ID "home-button">
+<!ENTITY start.label "Start">
+<!ENTITY start.ID "start-button">
+<!ENTITY done.label "Done">
+<!ENTITY done.ID "done">
+<!ENTITY enter.label "Check Answer">
+<!ENTITY enter.ID "answer-button">
+<!ENTITY boxone.ID "box-one">
+<!ENTITY hint.ID "hint-button">
+<!ENTITY hint.label "hint">
+<!ENTITY nextHint.ID "hintNext-button">
+<!ENTITY nextHint.label "Next Hint">
+<!ENTITY previousHint.ID "hintPrev-button">
+<!ENTITY previousHint.label "Previous Hint">
+<!ENTITY options.label "Options">
+<!ENTITY options.ID "options-button">
+

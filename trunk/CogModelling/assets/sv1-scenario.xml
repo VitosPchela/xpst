@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+		<h3>Sphere Volume Extension 1: Display Volume for an Arbitrary Radius</h3>
+		
+	<p>This assignment requires that you have completed all previous Sphere assignments.</p>	
+
+
+		<p>Replace the radius of 5 cm with a variable R so that you can easily change the entire problem to use a different radius.  Set R to 5 initially, then once you have updated the assessment to use R, test your work with another value.</p>
+
+<hr/>
+
+<h3>Detailed Instructions</h3>
+
+		<p><strong>Data:</strong> You will need to define a new variable R with value 5 and derived variables for the correct and diagnosed incorrect sphere volumes.  The correct Python code for each volume is given next to each equation:</p>
+
+<ul>
+  <li>V:		  		int(4.*pi*pow(R,3)/3.+.5)</li>
+  <li>V1:	 	int(4.*pi*pow(2*R,3)/3.+.5)</li>
+  <li>V2:	 		int(pi*pow(R,3)+.5)</li>
+  <li>V3:	 		int(4.*pi*pow(R,2)/3.+.5)</li>
+</ul>
+
+			<p><strong>Assessment:</strong> Change the problem statement to display the value of R.  Also, replace the numbers in the 'Label:' field for the choices with Python expressions for the computed volumes.  The first label would be:</p>
+
+		<p>&lt;py&gt;Data.V&lt;/py&gt;</p>
+
+		<p><strong>Data:</strong>Change the value of R.</p>
+
+<h3>Previewing</h3>
+
+		<p>Preview the Assessment page to make sure the numbers displayed have changed accordingly with the new value for R.</p>
+
+		<p><strong>Feedback:</strong> Modify the expressions for the correct case and for each diagnosed case.  The expression for the correct case is:</p>
+
+		<p>Response.Q1=='&lt;py&gt;Data.V&lt;/py&gt;'</p>
+
+		<p>The quotation marks are important here, since each side of this expression represents a string. </p>
+
+<p>After changing the expression for each case, preview the problem again.</p>
+
+<p><strong>Finished?</strong><br/> Now you can use the tool to calculate the values of variables for you. Click <strong>Done</strong>.</p>
+
+
+	</message>
+

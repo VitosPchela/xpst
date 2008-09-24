@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+		<h3>AddSubtract Extension 2: Diagnosing Student Responses</h3>
+		
+<p>This assignment requires that you have completed all previous AddSubtract assignments.</p>	
+
+<p><strong>Objective:</strong> Show how to diagnose a specific error and provide feedback based on that error.  A common error is for students to add when they are asked to subtract and vice-versa.  Another common subtraction error is to subtract C from D rather than D from C.</p>
+
+<p>If the student answers question 'Add' with the difference rather than the sum, provide the following feedback:</p>
+
+<p><em>Your addition is incorrect. You appear to have subtracted (display variable B) from (display A) rather than adding (display B) to (display A).</em></p>
+
+<p>If the student answers question 'Subtract' with the sum rather than the difference, provide the following feedback:</p>
+
+<p><em>Your subtraction is incorrect. You appear to have added (display C) and (display D), rather than to have subtracted (display D) from (display C).</em></p>
+
+<p>If the student answers question 'Subtract' with the difference D - C rather than the difference C - D, provide the following feedback:</p>
+
+<p><em>Your subtraction is incorrect. You appear to have subtracted (display C) from (display D) rather than (display D) from (display C).</em></p>
+
+<hr/>
+
+
+<h3>Detailed Instructions</h3>
+
+<p><strong>Define New Variables:</strong> In the <strong>Data View</strong> define three new derived variables corresponding to the diagnosed conditions: 'not_difference = A-B', 'not_sum = C+D', and 'D_minus_C = D-C'</p>
+
+<p><strong>Add new Feedback Cases:</strong> In the Feedback View, add three <strong>new </strong>diagnosed cases.  You can use the names of the variables you defined above as labels for each case.  The expressions for testing the student responses for each of these cases are:</p>
+
+<ul>
+  <li>Response.Add == Data.not_difference</li>
+  <li>Response.Subtract == Data.not_sum</li>
+  <li>Response.Subtract == Data.D_minus_C</li>
+</ul>
+
+<p><strong>Add new Feedback Messages:</strong> Add the appropriate correct and incorrect feedback messages for each case, as provided above.</p>
+
+<h3>Previewing</h3>
+
+<p><strong>Test the Problem:</strong> Enter the value of not_difference for the 'Add' question and the value of not_sum or D_minus_C in response to the Subtract question.  The feedback for the diagnosed cases should appear.</p>
+
+<p><strong>Using the Online Debugger:</strong> While previewing a problem you will notice a new orange icon in the right portion of the navigation panel that looks like an eye.  If you click on this icon, the Debugger will appear in a separate window.  Click on the Data label and scroll through this to view the current values for all variables defined in your problem.  This tool is very handy for testing feedback for each of your diagnostics.  For example, the current values for the diagnosed cases not_sum, D_minus_C and not_difference can be obtained from the Debugger without having to make the calculations yourself.  This is a minor convenience for these simple addition and subtraction problems, but can save a great deal of time for complex problems where some of the input values are randomly generated.</p>
+
+<p><strong>Finished?</strong><br/> Now you can offer specialized feedback for specific common errors. Click <strong>Done</strong>.</p>
+
+
+</message>
+
+

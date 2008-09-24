@@ -1,0 +1,341 @@
+include "OffPath.xpst";
+
+options
+{
+	tutorname="CAPE";
+}
+
+sequence
+{
+	(
+		# Select AddSubtract problem
+		Selection-Problems then		# QIV: Needed
+
+		# Go to Feedback view
+		Link-Feedback-Attempt then
+
+		# Add second feedback for Default_Incorrect case of Add
+		Selection-Feedback-Question-Q1-Msg1 then
+		Selection-Feedback-Cases-Q1-1-e3 then			# Default_Incorrect
+		(Click-Feedback-Cases-New-Q1-Attempt1 or Error-Wrong-New) then
+		(
+			(
+				Text-Feedback-Attempts-Label-Q1-1 then
+				Text-Feedback-FeedbackText-Q1-1
+			) until
+			Click-Feedback-Update-Q1-Msg1
+		) then
+
+		# Add second feedback for not_difference case of Add
+		Selection-Feedback-Cases-Q1-2-e3 then			# not_difference
+		(Click-Feedback-Cases-New-Q1-Attempt2 or Error-Wrong-New) then
+		(
+			(
+				Text-Feedback-Attempts-Label-Q1-2 then
+				Text-Feedback-FeedbackText-Q1-2
+			) until
+			Click-Feedback-Update-Q1-Msg2
+		) then
+
+		# Add second feedback for Default_Incorrect case of Subtract
+		Selection-Feedback-Question-Q2-Msg1 then
+		Selection-Feedback-Cases-Q2-1-e3 then			# Default_Incorrect
+		(Click-Feedback-Cases-New-Q2-Attempt1 or Error-Wrong-New) then
+		(
+			(
+				Text-Feedback-Attempts-Label-Q2-1 then
+				Text-Feedback-FeedbackText-Q2-1
+			) until
+			Click-Feedback-Update-Q2-Msg1
+		) then
+
+		# Add second feedback for not_sum case of Subtract
+		Selection-Feedback-Cases-Q2-2-e3 then			# not_sum
+		(Click-Feedback-Cases-New-Q2-Attempt2 or Error-Wrong-New) then
+		(
+			(
+				Text-Feedback-Attempts-Label-Q2-2 then
+				Text-Feedback-FeedbackText-Q2-2
+			) until
+			Click-Feedback-Update-Q2-Msg2
+		) then
+
+		# Add second feedback for not_D_minus_C case of Subtract
+		Selection-Feedback-Cases-Q2-3-e3 then			# D_minus_C
+		(Click-Feedback-Cases-New-Q2-Attempt3 or Error-Wrong-New) then
+		(
+			(
+				Text-Feedback-Attempts-Label-Q2-3 then
+				Text-Feedback-FeedbackText-Q2-3
+			) until
+			Click-Feedback-Update-Q2-Msg3
+		) then
+
+		# Preview the entire problem
+		Click-Problems-Preview then
+
+		# Done
+		AllDone
+	) and
+	Error-Offpath and
+	Error-Offpath-Update and
+	Error-Not-Done;
+}
+
+mappings
+{
+	# Select AddSubtract problem
+	[priority=2]Problems=>Selection-Problems;
+
+	# Go to Feedback view
+	[priority=2]FeedbackButton.childNodes-0:click=>Link-Feedback-Attempt;
+	[priority=2]FeedbackLink.childNodes-3:click=>Link-Feedback-Attempt;
+
+	# Add second feedback for Default_Incorrect case of Add
+	[priority=2]FeedbackQuestions=>Selection-Feedback-Question-Q1-Msg1;
+	[priority=2]Cases=>Selection-Feedback-Cases-Q1-1-e3;
+	[priority=2]AttemptNew:click=>Click-Feedback-Cases-New-Q1-Attempt1;
+	[priority=2]AttemptLabel=>Text-Feedback-Attempts-Label-Q1-1;
+	[priority=2]AttemptFeedback=>Text-Feedback-FeedbackText-Q1-1;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update-Q1-Msg1;
+
+	# Add second feedback for not_difference case of Add
+	[priority=2]Cases=>Selection-Feedback-Cases-Q1-2-e3;
+	[priority=2]AttemptNew:click=>Click-Feedback-Cases-New-Q1-Attempt2;
+	[priority=2]AttemptLabel=>Text-Feedback-Attempts-Label-Q1-2;
+	[priority=2]AttemptFeedback=>Text-Feedback-FeedbackText-Q1-2;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update-Q1-Msg2;
+
+	# Add second feedback for Default_Incorrect case of Subtract
+	[priority=2]FeedbackQuestions=>Selection-Feedback-Question-Q2-Msg1;
+	[priority=2]Cases=>Selection-Feedback-Cases-Q2-1-e3;
+	[priority=2]AttemptNew:click=>Click-Feedback-Cases-New-Q2-Attempt1;
+	[priority=2]AttemptLabel=>Text-Feedback-Attempts-Label-Q2-1;
+	[priority=2]AttemptFeedback=>Text-Feedback-FeedbackText-Q2-1;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update-Q2-Msg1;
+
+	# Add second feedback for not_sum case of Subtract
+	[priority=2]FeedbackQuestions=>Selection-Feedback-Question-Q2-Msg2;
+	[priority=2]Cases=>Selection-Feedback-Cases-Q2-2-e3;
+	[priority=2]AttemptNew:click=>Click-Feedback-Cases-New-Q2-Attempt2;
+	[priority=2]AttemptLabel=>Text-Feedback-Attempts-Label-Q2-2;
+	[priority=2]AttemptFeedback=>Text-Feedback-FeedbackText-Q2-2;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update-Q2-Msg2;
+
+	# Add second feedback for not_D_minus_C case of Subtract
+	[priority=2]Cases=>Selection-Feedback-Cases-Q2-3-e3;
+	[priority=2]AttemptNew:click=>Click-Feedback-Cases-New-Q2-Attempt3;
+	[priority=2]AttemptLabel=>Text-Feedback-Attempts-Label-Q2-3;
+	[priority=2]AttemptFeedback=>Text-Feedback-FeedbackText-Q2-3;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update-Q2-Msg3;
+	
+	# Preview the entire problem
+	[priority=2]PreviewButton.childNodes-0:click=>Click-Problems-Preview;
+
+	# All done
+	[priority=2]TutorLink.Done=>AllDone;
+}
+
+feedback
+{
+	Link-Feedback-Attempt {
+		answer: 1;
+		Hint: "Go to the feedback view to add a different feedback on the second attempt.";
+		Hint: "Click on the <strong>Feedback View</strong> icon (two persons talking) or the <strong>Feedback View</strong> link to go there.  <image src=\"LinkFeedback.png\"/>";
+	}
+
+	Selection-Problems {
+		answer: "AddSubtract";
+		Hint: "You need to select a problem before continuing.";
+		Hint: "Highlight the problem 'AddSubtract' in the <strong>Problems</strong> box.";
+
+	}
+
+	AllDone {
+		answer: 1;
+		Hint: "You are through with this problem. Move on to a different problem.";
+	}
+
+	Click-Problems-Preview {
+		answer: 1;
+		Hint: "Preview the problem now as described in the assignment.";
+		Hint: "Click on the <strong>Preview</strong> icon in the main toolbar above the <strong>Problems</strong> panel. Then choose the title of your problem from the small menu that appears at the lower left . <image src=\"ProblemPreview.png\"/>";
+	}
+
+	Selection-Feedback-Question-Q1-Msg1 {
+		answer: "Add";
+		Hint: "Select the question for which you want to provide feedback.";
+		Hint: "Ensure that the question 'Add' is selected in the <strong>Question</strong> dropbox.";
+		JIT: "<block/> You selected the wrong question.  You need to provide feedback for the 'Add' question now.";
+
+	}
+
+	Selection-Feedback-Question-Q2-Msg1 {
+		answer: "Subtract";
+		Hint: "Select the question for which you want to provide feedback.";
+		Hint: "Ensure that the question 'Subtract' is selected in the <strong>Question</strong> dropbox.";
+		JIT: "<block/> You selected the wrong question.  You need to provide feedback for the 'Subtract' question now.";
+	}
+
+	Selection-Feedback-Question-Q2-Msg2 {
+		answer: "Subtract";
+		Hint: "Select the question for which you want to provide feedback.";
+		Hint: "Ensure that the question 'Subtract' is selected in the <strong>Question</strong> dropbox.";
+		JIT: "<block/> You selected the wrong question.  You need to provide feedback for the 'Subtract' question now.";
+	}
+
+	Selection-Feedback-Cases-Q1-1-e3 {
+		answer: "Default_Incorrect";
+		Hint: "You need to select a case to add a different feedback for a student's second attempt.";
+		Hint: "Select the 'Default_Incorrect' case in order to add feedback for a student's second attempt.";
+		JIT: "<block/>You need to select the 'Default_Incorrect' case to provide feedback for the second attempt now.";
+	}
+
+	Selection-Feedback-Cases-Q1-2-e3 {
+		answer: "not_difference";
+		Hint: "You need to select a case to add a different feedback for a student's second attempt.";
+		Hint: "Select the 'not_difference' case in order to add feedback for a student's second attempt.";
+		JIT: "<block/>You need to select the 'not_difference' case to provide feedback for the second attempt now.";
+	}
+
+	Selection-Feedback-Cases-Q2-1-e3 {
+		answer: "Default_Incorrect";
+		Hint: "You need to select a case to add a different feedback for a student's second attempt.";
+		Hint: "Select the 'Default_Incorrect' case in order to add feedback for a student's second attempt.";
+		JIT: "<block/>You need to select the 'Default_Incorrect' case to provide feedback for the second attempt now.";
+	}
+
+	Selection-Feedback-Cases-Q2-2-e3 {
+		answer: "not_sum";
+		Hint: "You need to select a case to add a different feedback for a student's second attempt.";
+		Hint: "Select the 'not_sum' case in order to add feedback for a student's second attempt.";
+		JIT: "<block/>You need to select the 'not_sum' case to provide feedback for the second attempt now.";
+	}
+
+	Selection-Feedback-Cases-Q2-3-e3 {
+		answer: "D_minus_C";
+		Hint: "You need to select a case to add a different feedback for a student's second attempt.";
+		Hint: "Select the 'D_minus_C' case in order to add feedback for a student's second attempt.";
+		JIT: "<block/>You need to select the 'D_minus_C' case to provide feedback for the second attempt now.";
+	}
+
+	Click-Feedback-Cases-New-Q1-Attempt1 {
+		answer: 1;
+		Hint: "Add different feedback for a student's second attempt.";
+		Hint: "Click <strong>New</strong> button under the <strong>Attempts</strong> panel to add feedback for a student's second attempt.";
+	}
+
+	Click-Feedback-Cases-New-Q1-Attempt2 {
+		answer: 1;
+		Hint: "Add different feedback for a student's second attempt.";
+		Hint: "Click <strong>New</strong> button under the <strong>Attempts</strong> panel to add feedback for a student's second attempt.";
+	}
+
+	Click-Feedback-Cases-New-Q2-Attempt1 {
+		answer: 1;
+		Hint: "Add different feedback for a student's second attempt.";
+		Hint: "Click <strong>New</strong> button under the <strong>Attempts</strong> panel to add feedback for a student's second attempt.";
+	}
+
+	Click-Feedback-Cases-New-Q2-Attempt2 {
+		answer: 1;
+		Hint: "Add different feedback for a student's second attempt.";
+		Hint: "Click <strong>New</strong> button under the <strong>Attempts</strong> panel to add feedback for a student's second attempt.";
+	}
+
+	Click-Feedback-Cases-New-Q2-Attempt3 {
+		answer: 1;
+		Hint: "Add different feedback for a student's second attempt.";
+		Hint: "Click <strong>New</strong> button under the <strong>Attempts</strong> panel to add feedback for a student's second attempt.";
+	}
+
+	Click-Feedback-Update-Q1-Msg1 {
+		answer: 1;
+		Hint: "Update to save the changes you made.";
+		Hint: "Click the <strong>Update</strong> button to save the feedback message.";
+	}
+
+	Click-Feedback-Update-Q1-Msg2 {
+		answer: 1;
+		Hint: "Update to save the changes you made.";
+		Hint: "Click the <strong>Update</strong> button to save the feedback message.";
+	}
+
+	Click-Feedback-Update-Q2-Msg1 {
+		answer: 1;
+		Hint: "Update to save the changes you made.";
+		Hint: "Click the <strong>Update</strong> button to save the feedback message.";
+	}
+
+	Click-Feedback-Update-Q2-Msg2 {
+		answer: 1;
+		Hint: "Update to save the changes you made.";
+		Hint: "Click the <strong>Update</strong> button to save the feedback message.";
+	}
+
+	Click-Feedback-Update-Q2-Msg3 {
+		answer: 1;
+		Hint: "Update to save the changes you made.";
+		Hint: "Click the <strong>Update</strong> button to save the feedback message.";
+	}
+
+	Text-Feedback-Attempts-Label-Q1-1 {
+		answer:  RegEx(".+");
+		Hint: "Enter a label for the feedback attempt message you are creating.";
+		Hint: "Enter an appropriate label such as 'second' or 'last' in the <strong>Label</strong> box below <strong>Attempt details</strong>.";
+	}
+
+	Text-Feedback-Attempts-Label-Q1-2 {
+		answer:  RegEx(".+");
+		Hint: "Enter a label for the feedback attempt message you are creating.";
+		Hint: "Enter an appropriate label such as 'second' or 'last' in the <strong>Label</strong> box below <strong>Attempt details</strong>.";
+	}
+
+	Text-Feedback-Attempts-Label-Q2-1 {
+		answer:  RegEx(".+");
+		Hint: "Enter a label for the feedback attempt message you are creating.";
+		Hint: "Enter an appropriate label such as 'second' or 'last' in the <strong>Label</strong> box below <strong>Attempt details</strong>.";
+	}
+
+	Text-Feedback-Attempts-Label-Q2-2 {
+		answer:  RegEx(".+");
+		Hint: "Enter a label for the feedback attempt message you are creating.";
+		Hint: "Enter an appropriate label such as 'second' or 'last' in the <strong>Label</strong> box below <strong>Attempt details</strong>.";
+	}
+
+	Text-Feedback-Attempts-Label-Q2-3 {
+		answer:  RegEx(".+");
+		Hint: "Enter a label for the feedback attempt message you are creating.";
+		Hint: "Enter an appropriate label such as 'second' or 'last' in the <strong>Label</strong> box below <strong>Attempt details</strong>.";
+	}
+
+	Text-Feedback-FeedbackText-Q1-1 {
+		answer: RegEx(".*<py>Data\\.([AB]|sum)</py>.*\\s*");
+		Hint: "Now edit the feedback to be provided to the student using the variables you created, A, B, and sum. To display the value of a variable, write the variable within <strong>&lt;py&gt;&lt;/py&gt;</strong> tags. For e.g. <strong>&lt;py&gt;Data.A&lt;/py&gt;</strong> will display the value of the variable <strong>A</strong>. ";
+		Hint: "Type 'Sorry, that was your last attempt. The sum of &lt;py&gt;Data.A&lt;/py&gt; and &lt;py&gt;Data.B&lt;/py&gt; is &lt;py&gt;Data.sum&lt;/py&gt;.' in the <strong>Feedback</strong> box.";
+	}
+
+	Text-Feedback-FeedbackText-Q1-2 {
+		answer: RegEx(".*<py>Data\\.([AB]|sum)</py>.*\\s*");
+		Hint: "Now edit the feedback to be provided to the student using the variables you created, A, B, and sum. To display the value of a variable, write the variable within <strong>&lt;py&gt;&lt;/py&gt;</strong> tags. For e.g. <strong>&lt;py&gt;Data.A&lt;/py&gt;</strong> will display the value of the variable <strong>A</strong>.";
+		Hint: "Type 'Your addition is incorrect. You appear to have subtracted &lt;py&gt;Data.B&lt;/py&gt; from &lt;py&gt;Data.A&lt;/py&gt;. The correct sum of &lt;py&gt;Data.A&lt;/py&gt; and &lt;py&gt;Data.B&lt;/py&gt; is &lt;py&gt;Data.sum&lt;/py&gt;.' in the <strong>Feedback</strong> box.";
+	}
+
+	Text-Feedback-FeedbackText-Q2-1 {
+		answer: RegEx(".*<py>Data\\.([CD]|difference)</py>.*\\s*");
+		Hint: "Now edit the feedback to be provided to the student using the variables you created, C, D, and difference. To display the value of a variable, write the variable within <strong>&lt;py&gt;&lt;/py&gt;</strong> tags. For e.g. <strong>&lt;py&gt;Data.A&lt;/py&gt;</strong> will display the value of the variable <strong>A</strong>.";
+		Hint: "Type 'Sorry, that was your last attempt. The difference between &lt;py&gt;Data.C&lt;/py&gt; and &lt;py&gt;Data.D&lt;/py&gt; is &lt;py&gt;Data.difference&lt;/py&gt;.' in the <strong>Feedback</strong> box.";
+	}
+
+	Text-Feedback-FeedbackText-Q2-2 {
+		answer: RegEx(".*<py>Data\\.([CD]|difference)</py>.*\\s*");
+		Hint: "Now edit the feedback to be provided to the student using the variables you created, C, D, and difference. To display the value of a variable, write the variable within <strong>&lt;py&gt;&lt;/py&gt;</strong> tags. For e.g. <strong>&lt;py&gt;Data.A&lt;/py&gt;</strong> will display the value of the variable <strong>A</strong>.";
+		Hint: "Type 'Your subtraction is incorrect. You appear to have added &lt;py&gt;Data.C&lt;/py&gt; and &lt;py&gt;Data.D&lt;/py&gt;. The correct difference between &lt;py&gt;Data.C&lt;/py&gt; and &lt;py&gt;Data.D&lt;/py&gt; is &lt;py&gt;Data.difference&lt;/py&gt;.' in the <strong>Feedback</strong> box.";
+	}
+
+	Text-Feedback-FeedbackText-Q2-3 {
+		answer: RegEx(".*<py>Data\\.([CD]|difference)</py>.*\\s*");
+		Hint: "Now edit the feedback to be provided to the student using the variables you created, C, D, and difference. To display the value of a variable, write the variable within <strong>&lt;py&gt;&lt;/py&gt;</strong> tags. For e.g. <strong>&lt;py&gt;Data.A&lt;/py&gt;</strong> will display the value of the variable <strong>A</strong>.";
+		Hint: "Type 'Your subtraction is incorrect. You appear to have subtracted &lt;py&gt;Data.C&lt;/py&gt; from &lt;py&gt;Data.D&lt;/py&gt;. The correct difference between &lt;py&gt;Data.C&lt;/py&gt; and &lt;py&gt;Data.D&lt;/py&gt; is &lt;py&gt;Data.difference&lt;/py&gt;.' in the <strong>Feedback</strong> box.";
+	}
+}
