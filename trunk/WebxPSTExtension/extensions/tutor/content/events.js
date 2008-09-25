@@ -32,7 +32,7 @@ objScriptLoader1.loadSubScript("chrome://webxpst/content/BubbleTooltips.js");
 var objScriptLoader2 = Components.classes["@mozilla.org/moz/jssubscript-loader;1"].getService(Components.interfaces.mozIJSSubScriptLoader);
 objScriptLoader2.loadSubScript("chrome://webxpst/content/catcher.js");
 
-var catcher;
+var catcher = null;
 
 // window.addEventListener("load", EventCatcher_initialize, false);
 window.addEventListener('unload', onUnload, false);
@@ -50,6 +50,13 @@ var g_prefs = Components.classes["@mozilla.org/preferences-service;1"].getServic
 
 function onLoad()
 {
+	if (g_prefs.getBoolPref('authoringmode'))
+	{
+		g_observeIDs = true;
+		$('#idbox').attr('collapsed', false);
+		startEventCatcher();
+	}
+
 	var doc = content.document;
 	var evt = doc.createEvent('Events');
 	evt.initEvent('webxpst-sidebar-opened', true, false);
@@ -238,12 +245,15 @@ Listener.prototype =
 }
 function startEventCatcher()
 {
-	catcher = new EventCatcher();
-	catcher.startSelectByClick(window, "initialize");
-
-	// TODO: need to respond to DOM mutation events, etc., but for now just do it
-	// on a timer
-	window.setInterval('catcher.sendPendingQIVs()', 300);
+	if (catcher == null)
+	{
+		catcher = new EventCatcher();
+		catcher.startSelectByClick(window, "initialize");
+	
+		// TODO: need to respond to DOM mutation events, etc., but for now just do it
+		// on a timer
+		window.setInterval('catcher.sendPendingQIVs()', 300);
+	}
 }
 
 function stopEventCatcher()
@@ -455,9 +465,7 @@ function completeCurrentGoalnode()
 
 function onKeypress(evt)
 {
-	if (evt.keyCode == 122) // Ctrl-F11
-		g_observeIDs = !g_observeIDs;
-	else if (evt.keyCode == 121) // Ctrl-F10
+	if (evt.keyCode == 121) // Ctrl-F10
 	{
 		g_isTutorRunning = !g_isTutorRunning;
 		logToServer(g_isTutorRunning ? 'TUTOR UNSUSPENDED' : 'TUTOR SUSPENDED');

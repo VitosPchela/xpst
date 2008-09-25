@@ -29,6 +29,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
                    em:homepageURL="http://www.clearsighted.org/"
                    em:updateURL="https://its.clearsighted.org/webtutor/updates.rdf">
     <em:targetApplication RDF:resource="rdf:#$ZxpaP3"/>
+    <em:optionsURL>chrome://webxpst/content/TutorOptions.xul</em:optionsURL>
   </RDF:Description>
   <RDF:Description RDF:about="rdf:#$ZxpaP3"
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"

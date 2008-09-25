@@ -70,7 +70,7 @@ CSObserver.prototype =
 	{
 		if (topic == OB_DWC)
 		{
-			var brs = subject.document.getElementsByTagNameNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'tabbrowser');
+			var brs = subject.document.getElementsByTagNameNS(XULNS, 'tabbrowser');
 			if (brs.length > 0 && g_vanthEditorAssociatedNode)
 			{
 				if (brs[0].contentWindow.location.href.match(VANTH_HTML_EDITOR))
@@ -93,25 +93,17 @@ CSObserver.prototype =
 			{
 				if (topic == OB_HOMR)
 				{
-					dump('homr\n');
 					if (g_inEvent)
 					{
 						if (g_requestQIVs)
-						{
-							dump('conc ' + g_requestQIVs + '\n');
 							g_requestQIVs = g_requestQIVs.concat(g_newQIVs);
-						}
 						else
-						{
-							dump('newr\n')
 							g_requestQIVs = g_newQIVs;
-						}
 						g_newQIVs = [];
 					}
 				}
 				else if (topic == OB_HOER)
 				{
-					dump('hoer\n');
 					// TODO: want to associate the QIVs with specific requests, but the request objects are not hashably-unique.
 					if (g_requestQIVs)
 					{
@@ -185,104 +177,103 @@ EventCatcher.prototype =
 
 	sendValueMessage: function(isinitial, node, event)
 	{
+		if (node.namespaceURI == XULNS)
+			return false;
+		if (node.ownerDocument.documentElement.namespaceURI == XULNS)
+			return false;
+
 		var path = this.getPath(node);
 
 		var sent = false;
-		if (node.namespaceURI != "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul")
+
+		if (g_vanthUsername == null && event != null)
 		{
-			if (g_vanthUsername == null && event != null)
+			var ref = event.originalTarget.ownerDocument.location.href;
+			const getuname = /.*?quotalink_.*?_.*?_(.*?)~(.*?)~/;
+			var matches = ref.match(getuname);
+			if (matches)
 			{
-				var ref = event.originalTarget.ownerDocument.location.href;
-				const getuname = /.*?quotalink_.*?_.*?_(.*?)~(.*?)~/;
-				var matches = ref.match(getuname);
-				if (matches)
-				{
-					g_vanthUsername = matches[1];
-					logToServer('USERNAME:' + g_vanthUsername);
-				}
-			}
-			
-			if (event != null && event.type == 'click' && g_vanthEditorAssociations[path] != null)
-			{
-				g_vanthEditorAssociatedNode = this.getNode(g_vanthEditorAssociations[path]);
-				if (g_vanthEditorAssociatedNode != null)
-					g_vanthEditorPrevValue = g_vanthEditorAssociatedNode.value;
-			}
-			
-			if (g_observeIDs)
-			{
-				if (event.type == 'blur')
-					dump(path + " :blur (':blur' not part of the mapping)\n");
-				else
-				{
-					dump(event.originalTarget.className+"\n");
-					dump(path + ":click (only keep the ':click' tag if the target is a button or hyperlink)\n");
-				}
-			}
-	
-			if (event != null && event.type == 'mousedown')
-			{
-				// remember old index so we can restore it in a block JIT
-				if (event.originalTarget.nodeName == 'SELECT' && (event.originalTarget.size == 0 || event.originalTarget.size == 1))
-					g_oldSelectedIndex = event.originalTarget.selectedIndex;
-				if (event.originalTarget.nodeName == 'OPTION' && event.originalTarget.parentNode.size > 1)
-					g_oldSelectedIndex = event.originalTarget.parentNode.selectedIndex;
-			}
-
-			var value = null, pathsuffix = '';
-			if ((node.nodeName == "INPUT" || node.nodeName == "TEXTAREA") && (node.type == "text" || node.type == "textarea") && (isinitial || event.type == "change"))
-				value = node.value;
-			else if ((node.nodeName == "INPUT" && node.type == "file") && (isinitial || event.type == "change"))
-				value = node.value;
-			else if (node.type == "checkbox" && (isinitial || event.type == 'click'))
-				value = node.checked.toString();
-			else if ((node.nodeName == "INPUT" && node.type == "radio") && (isinitial || event.type == 'change'))
-			{
-				// Radio buttons are special. We have to name their paths differently than everything else
-				var groupspace = null;
-				if (node.form)
-					groupspace = this.getPath(node.form);
-				else
-				{
-					// TODO: this is a hack, but we try to do _something_ when the radio buttons are not part of a form.
-					groupspace = this.getPath(node.ownerDocument.documentElement);
-				}
-				var group = node.name;
-				path = groupspace + '.radioGroup-' + group;
-				value = node.value;
-			}
-			else if (node.nodeName == "SELECT" && (isinitial || event.type == 'change'))
-			{
-				if (node.selectedIndex > -1)
-				{
-					var optnode = node.options[node.selectedIndex];
-					var nodeText = optnode.lastChild.nodeValue;
-					while (nodeText.charAt(nodeText.length - 1) == " " || nodeText.charAt(nodeText.length - 1) == "\n")
-					{
-						nodeText = nodeText.substring(0, nodeText.length - 1);
-					}
-					value = nodeText;
-				}
-				else
-					value = nodeText;
-			}
-			else if (node.nodeName == "OPTION")
-				; // do nothing, let select case above handle it
-			else if (node.className != undefined && node.className.substr(0, 4) == "leaf" && event.type == 'click')
-				value = node.lastChild.nodeValue;
-			else if (!isinitial && event.type == 'click')
-			{
-				pathsuffix = ':click';
-				value = '1';
-			}
-
-			if (value != null)
-			{
-				var msg = new DorminMessage(path + pathsuffix, isinitial ? 'NOTEINITIALVALUE' : 'NOTEVALUESET', value);
-				sendTutorMessage(msg.MakeString(), event);
-				sent = true;
+				g_vanthUsername = matches[1];
+				logToServer('USERNAME:' + g_vanthUsername);
 			}
 		}
+		
+		if (event != null && event.type == 'click' && g_vanthEditorAssociations[path] != null)
+		{
+			g_vanthEditorAssociatedNode = this.getNode(g_vanthEditorAssociations[path]);
+			if (g_vanthEditorAssociatedNode != null)
+				g_vanthEditorPrevValue = g_vanthEditorAssociatedNode.value;
+		}
+		
+		if (g_observeIDs && event.type == 'click')
+		{
+			var list = document.getElementById('idlist');
+			list.value = list.value + path + '\n';
+		}
+
+		if (event != null && event.type == 'mousedown')
+		{
+			// remember old index so we can restore it in a block JIT
+			if (event.originalTarget.nodeName == 'SELECT' && (event.originalTarget.size == 0 || event.originalTarget.size == 1))
+				g_oldSelectedIndex = event.originalTarget.selectedIndex;
+			if (event.originalTarget.nodeName == 'OPTION' && event.originalTarget.parentNode.size > 1)
+				g_oldSelectedIndex = event.originalTarget.parentNode.selectedIndex;
+		}
+
+		var value = null, pathsuffix = '';
+		if ((node.nodeName == "INPUT" || node.nodeName == "TEXTAREA") && (node.type == "text" || node.type == "textarea") && (isinitial || event.type == "change"))
+			value = node.value;
+		else if ((node.nodeName == "INPUT" && node.type == "file") && (isinitial || event.type == "change"))
+			value = node.value;
+		else if (node.type == "checkbox" && (isinitial || event.type == 'click'))
+			value = node.checked.toString();
+		else if ((node.nodeName == "INPUT" && node.type == "radio") && (isinitial || event.type == 'change'))
+		{
+			// Radio buttons are special. We have to name their paths differently than everything else
+			var groupspace = null;
+			if (node.form)
+				groupspace = this.getPath(node.form);
+			else
+			{
+				// TODO: this is a hack, but we try to do _something_ when the radio buttons are not part of a form.
+				groupspace = this.getPath(node.ownerDocument.documentElement);
+			}
+			var group = node.name;
+			path = groupspace + '.radioGroup-' + group;
+			value = node.value;
+		}
+		else if (node.nodeName == "SELECT" && (isinitial || event.type == 'change'))
+		{
+			if (node.selectedIndex > -1)
+			{
+				var optnode = node.options[node.selectedIndex];
+				var nodeText = optnode.lastChild.nodeValue;
+				while (nodeText.charAt(nodeText.length - 1) == " " || nodeText.charAt(nodeText.length - 1) == "\n")
+				{
+					nodeText = nodeText.substring(0, nodeText.length - 1);
+				}
+				value = nodeText;
+			}
+			else
+				value = nodeText;
+		}
+		else if (node.nodeName == "OPTION")
+			; // do nothing, let select case above handle it
+		else if (node.className != undefined && node.className.substr(0, 4) == "leaf" && event.type == 'click')
+			value = node.lastChild.nodeValue;
+		else if (!isinitial && event.type == 'click')
+		{
+			pathsuffix = ':click';
+			value = '1';
+		}
+
+		if (value != null)
+		{
+			var msg = new DorminMessage(path + pathsuffix, isinitial ? 'NOTEINITIALVALUE' : 'NOTEVALUESET', value);
+			sendTutorMessage(msg.MakeString(), event);
+			sent = true;
+		}
+
 		return sent;
 	},
 
@@ -382,7 +373,6 @@ EventCatcher.prototype =
 	eventDispatcher: function(event)
 	{
 		g_inEvent = true;
-		dump("inevent " + event + "\n");
 		catcher.sendValueMessage(false, event.originalTarget, event);
 	},
 
@@ -399,7 +389,6 @@ EventCatcher.prototype =
 	afterEventDispatcher: function(event)
 	{
 		g_inEvent = false;
-		dump("outevent " + event + "\n");
 		catcher.processNewQIVs();
 	},
 	
@@ -545,9 +534,9 @@ function findDocuments(aDoc, aArray)
 {
 	addKidsToArray(aDoc.getElementsByTagName("frame"), aArray);
 	addKidsToArray(aDoc.getElementsByTagName("iframe"), aArray);
-	addKidsToArray(aDoc.getElementsByTagNameNS("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul", "browser"), aArray);
-	addKidsToArray(aDoc.getElementsByTagNameNS("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul", "tabbrowser"), aArray);
-	addKidsToArray(aDoc.getElementsByTagNameNS("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul", "editor"), aArray);
+	addKidsToArray(aDoc.getElementsByTagNameNS(XULNS, "browser"), aArray);
+	addKidsToArray(aDoc.getElementsByTagNameNS(XULNS, "tabbrowser"), aArray);
+	addKidsToArray(aDoc.getElementsByTagNameNS(XULNS, "editor"), aArray);
 }
 
 function addKidsToArray(aKids, aArray)
@@ -557,7 +546,7 @@ function addKidsToArray(aKids, aArray)
 		try
 		{
 			aArray.push(aKids[i].contentDocument);
-			this.findDocuments(aKids[i].contentDocument, aArray);
+			findDocuments(aKids[i].contentDocument, aArray);
 		}
 		catch (ex)
 		{

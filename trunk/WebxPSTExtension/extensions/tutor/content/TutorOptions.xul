@@ -25,12 +25,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 		var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch('webxpst.');
 		function onLoad()
 		{
-			document.getElementById('packages').value = prefs.getCharPref('packages');
+			document.getElementById('authoringmode').value = prefs.getBoolPref('authoringmode');
 		}
 		
 		function ok()
 		{
-			prefs.setCharPref('packages', document.getElementById('packages').value);
+			prefs.setBoolPref('authoringmode', document.getElementById('authoringmode').value);
 			close();
 		}
 		
@@ -39,7 +39,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 			close();
 		}
 	</script>
-	<label value="Package URLs (comma separated)" control="packages"/><textbox id="packages"/>
+	<label value="Authoring mode on" control="authoringmode"/><checkbox id="authoringmode"/>
 	<button label="OK" oncommand="ok()"/>
 	<button label="Cancel" oncommand="cancel()"/>
 </window>
