@@ -20,17 +20,17 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 -->
 
-<window width="500" height="80" id="TutorOptions" title="Options" onload="onLoad()" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<window width="120" height="40" id="TutorOptions" title="Options" onload="onLoad()" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 	<script>
 		var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch('webxpst.');
 		function onLoad()
 		{
-			document.getElementById('authoringmode').value = prefs.getBoolPref('authoringmode');
+			document.getElementById('authoringmode').checked = prefs.getBoolPref('authoringmode');
 		}
 		
 		function ok()
 		{
-			prefs.setBoolPref('authoringmode', document.getElementById('authoringmode').value);
+			prefs.setBoolPref('authoringmode', document.getElementById('authoringmode').checked);
 			close();
 		}
 		
@@ -39,8 +39,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 			close();
 		}
 	</script>
-	<label value="Authoring mode on" control="authoringmode"/><checkbox id="authoringmode"/>
-	<button label="OK" oncommand="ok()"/>
-	<button label="Cancel" oncommand="cancel()"/>
+	<checkbox id="authoringmode" label="Authoring mode on"/>
+	<hbox>
+		<button label="OK" oncommand="ok()"/>
+		<button label="Cancel" oncommand="cancel()"/>
+	</hbox>
 </window>
 
