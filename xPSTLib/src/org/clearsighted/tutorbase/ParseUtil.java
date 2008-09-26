@@ -28,4 +28,17 @@ public class ParseUtil
 		else
 			return in.substring(0, idx);
 	}
+
+	public static String join(String[] strs, String delim)
+	{
+		StringBuffer ret = new StringBuffer();
+		for (int i = 0; i < strs.length - 1; i++)
+		{
+			ret.append(strs[i]);
+			ret.append(delim);
+		}
+		if (strs.length > 0)
+			ret.append(strs[strs.length - 1]);
+		return ret.toString();
+	}
 }
