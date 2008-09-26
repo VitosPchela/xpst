@@ -24,8 +24,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 
+import org.clearsighted.tutorbase.ParseUtil;
+import org.clearsighted.tutorbase.TutorException;
+import org.clearsighted.tutorbase.emscript.mappingtree.LeafNode;
+import org.clearsighted.tutorbase.emscript.mappingtree.MappingNode;
 import org.clearsighted.tutorbase.emscript.mappingtree.Tree;
+import org.clearsighted.tutorengine.Tutor;
 
 
 import antlr.ASTFactory;
@@ -102,12 +108,43 @@ public class EMScript
 		return esp;
 	}
 	
-	public static Object[] createMappingAndTutor(String fname) throws RecognitionException, TokenStreamException, IOException
+	public static Object[] createMappingAndTutor(String fname) throws RecognitionException, TokenStreamException, IOException, TutorException
 	{
 		EMScriptParser p = parse(null, fname);
 		EMScriptTreeParser tp = new EMScriptTreeParser();
 		Object[] ret = tp.createMappingAndTutor(p.getAST());
+		checkErrors((Tree)ret[0], (Tutor)ret[1]);
 		((Tree)ret[0]).setScript(getFileContents(null, fname));
 		return ret;
+	}
+
+	private static void checkErrors(Tree tree, Tutor tutor) throws TutorException
+	{
+		checkMissingFeedback(tree, tutor);
+	}
+
+	private static void checkMissingFeedback(Tree tree, Tutor tutor) throws TutorException
+	{
+		HashSet<String> missing = new HashSet<String>();
+		checkMissingFeedback(missing, tree.getRoot(), tutor);
+		if (missing.size() > 0)
+			throw new TutorException("Nodes mentioned in sequence section but not in feedback section: " + ParseUtil.join(missing.toArray(new String[0]), ", "), null);
+	}
+
+	private static void checkMissingFeedback(HashSet<String> missing, MappingNode root, Tutor tutor)
+	{
+		if (root instanceof LeafNode)
+		{
+			LeafNode leaf = (LeafNode)root;
+			if (tutor.getGoalNode(leaf.name) == null)
+				missing.add(leaf.name);
+		}
+		else
+		{
+			if (root.getLeftChild() != null)
+				checkMissingFeedback(missing, root.getLeftChild(), tutor);
+			if (root.getRightChild() != null)
+				checkMissingFeedback(missing, root.getRightChild(), tutor);
+		}
 	}
 }

@@ -190,7 +190,16 @@ function getAppNodes()
 
 function startedTask(data)
 {
-	trename = data;
+	var brk = data.indexOf(' ');
+	if (brk == -1)
+		trename = data;
+	else
+	{
+		trename = data.substring(0, brk);
+		var errmsg = data.substring(brk + 1);
+		if (errmsg.length > 0)
+			alert(errmsg);
+	}
 	if (window.console)
 		console.log("started '" + trename + "'");
 	getAppNodes();

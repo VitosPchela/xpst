@@ -18,6 +18,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 package org.clearsighted.tutorbase.dormin;
 
+import org.clearsighted.tutorbase.ParseUtil;
+
 /// <summary>
 /// Describes a message target for a Dormin message. Basically a string of names
 /// running down a heirarchy.
@@ -53,25 +55,12 @@ public class DorminAddress
 		Names = addr.Names.clone();
 	}
 	
-	private String join(String[] strs, char delim)
-	{
-		StringBuffer ret = new StringBuffer();
-		for (int i = 0; i < strs.length - 1; i++)
-		{
-			ret.append(strs[i]);
-			ret.append(delim);
-		}
-		if (strs.length > 0)
-			ret.append(strs[strs.length - 1]);
-		return ret.toString();
-	}
-
 	/// <summary>
 	/// Convert the address to a nice string representation, like foo.bar.baz
 	/// </summary>
 	/// <returns>Dotted string representation of address</returns>
 	public String toDottedString()
 	{
-		return join(Names, '.');
+		return ParseUtil.join(Names, ".");
 	}
 }
