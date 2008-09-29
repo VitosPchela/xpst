@@ -42,6 +42,10 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+/**
+ * Displays the sequence in a Swing pane to aid in debugging. Needs to be updated.
+ *
+ */
 public class DebugFrame extends JFrame implements ActionListener
 {
 	public JTextPane textPane = new JTextPane();

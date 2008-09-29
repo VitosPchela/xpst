@@ -20,7 +20,7 @@ package org.clearsighted.tutorbase;
 
 public class GoalNodeStatus
 {
-	// does TRE say this node is enabled, completed?
+	/** Does TRE say this node is enabled, completed? */
 	public boolean enabled, completed;
 	
 	GoalNodeStatus(boolean en)

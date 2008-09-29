@@ -29,6 +29,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Properties;
 
+/** Hooks xPST to an LMS. This is a basic demo, not fully functional and may need updating to work at all. */
 public class LMSLink
 {
 	private String username, pwhash, application;

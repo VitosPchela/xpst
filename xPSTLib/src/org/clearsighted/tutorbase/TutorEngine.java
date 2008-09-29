@@ -25,7 +25,11 @@ import org.clearsighted.tutorbase.dormin.DorminAdapter;
 import org.clearsighted.tutorbase.dormin.DorminMessage;
 import org.clearsighted.tutorbase.dormin.DorminReceiver;
 
-
+/**
+ * Base class for tutor engine implementations. It would be rare to want to extend this; instead,
+ * you'd probably extend the capabilities of the XPSTTutorEngine.
+ * @see org.clearsighted.xpstengine.XPSTTutorEngine
+ */
 public abstract class TutorEngine
 {
 	private EventMapper eventMapper = null;

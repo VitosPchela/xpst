@@ -10,6 +10,7 @@ import org.clearsighted.tutorbase.emscript.exprtree.*;
 import org.clearsighted.tutorengine.*;
 import org.clearsighted.tutorengine.types.Operations.Op;
 }
+/** Parses EMScript/xPST language */
 class EMScriptParser extends Parser;
 options
 {
@@ -23,19 +24,19 @@ options
 	String TutorName = null;
 }
 
-// all sections are basically optional and can basically be in any order, but you're best
-// off if you include at least a 'mappings', at most one of 'option', 'sequence', and 'mappings'
-// and put things in the below-listed canonical order
+/** all sections are basically optional and can basically be in any order, but you're best
+ * off if you include at least a 'mappings', at most one of 'option', 'sequence', and 'mappings'
+ * and put things in the below-listed canonical order. */
 top: (defines | sequence | mappings | include | option | feedback)* EOF! {#top = #([TOP, "top"], #top);};
 
-// defines group predefined elements, mostly for use in common include files
+/** defines group predefined elements, mostly for use in common include files */
 defines!: DEFINES^ LBRACE! (defineexpr SEMI!)* RBRACE!;
 defineexpr!: id:ID EQ! sw:switcht
 {
 	Defines.put(id.getText(), #sw);
 };
 
-// include another file wholesale
+/** include another file wholesale */
 include: INCLUDE fname:STRINGLIT SEMI!
 {
 	try
@@ -50,23 +51,23 @@ include: INCLUDE fname:STRINGLIT SEMI!
 	}
 };
 
-// generic settings that apply to the whole file
+/** generic settings that apply to the whole file */
 option: OPTIONS^ LBRACE! (optionexpr SEMI!)* RBRACE!;
-// the only option currently defined is to set the tutor name
+/** the only option currently defined is to set the tutor name */
 optionexpr: TUTORNAME EQ! stringlit;
 
-// description of the sequence in which goal nodes should be completed
+/** description of the sequence in which goal nodes should be completed */
 sequence: SEQUENCE^ LBRACE! seqexpr SEMI! RBRACE!;
-// 'then' and 'until' have higher precedence than 'and' and 'or'
+/** 'then' and 'until' have higher precedence than 'and' and 'or' */
 seqexpr: minseqexpr ((THEN^ | UNTIL^) minseqexpr)*;
 minseqexpr: (atom | groupexpr) ((AND^ | OR^) (atom | groupexpr))*;
-// groups of nodes within brackets are mapped together, and can be cancelled
-// or OK'd by nodes marked as Cancel and OK in the group
+/** groups of nodes within brackets are mapped together, and can be cancelled
+ * or OK'd by nodes marked as Cancel and OK in the group */
 groupexpr: LBRACK! seqexpr RBRACK! { #groupexpr = #([GROUP, "GROUP"], #groupexpr); };
-// can group with parens
+/** can group with parens */
 atom: nodeid | LPAREN! seqexpr RPAREN!;
 
-// this serves for appnode IDs, goalnode IDs, and event IDs (appnode IDs plus a colon and an event name)
+/** this serves for appnode IDs, goalnode IDs, and event IDs (appnode IDs plus a colon and an event name) */
 nodeid {String fullname = null;}:
 	i1:ID {fullname = i1.getText();}
 	(DOT i2:ID {fullname = fullname + "." + i2.getText();})*
@@ -77,10 +78,10 @@ nodeid {String fullname = null;}:
 	((EMAST)#nodeid).column = i1.getColumn();
 };
 
-// the actual mappings from appnodes to goalnodes
+/** the actual mappings from appnodes to goalnodes */
 mappings: MAPPINGS^ LBRACE! (mapexpr)* RBRACE!;
 mapexpr: (mapoptions)? mapexprhalf MAPTO^ mapexprhalf SEMI!;
-// can be just a goalnode ID, a 'switch' construct, or a 'concat' construct.
+/** can be just a goalnode ID, a 'switch' construct, or a 'concat' construct. */
 mapexprhalf: fn:nodeid
 {
 	#mapexprhalf = #([MAPEXPRHALF, "MAPEXPRHALF"], #mapexprhalf);
@@ -88,10 +89,10 @@ mapexprhalf: fn:nodeid
 	| switcht { #mapexprhalf = #([MAPEXPRHALF, "MAPEXPRHALF"], #mapexprhalf); }
 	| concat { #mapexprhalf = #([MAPEXPRHALF, "MAPEXPRHALF"], #mapexprhalf); };
 
-// 'switch' maps a set of events to strings, which are then sent to a goalnode
+/** 'switch' maps a set of events to strings, which are then sent to a goalnode */
 switcht: SWITCH^ LBRACE! switchexpr (COMMA! switchexpr)* (COMMA!)? RBRACE!;
-// each expression in the switch is a mapping from an event to a literal,
-// or a bundle already defined in a 'defines' section
+/** each expression in the switch is a mapping from an event to a literal,
+ * or a bundle already defined in a 'defines' section */
 switchexpr: nodeid EQ! literal |
 (PLUS! id:ID!)
 {
@@ -114,23 +115,28 @@ switchexpr: nodeid EQ! literal |
 	}
 };
 
-// 'concat' maps a set of values to a comma-delimited string, sent to a goalnode
-// after all the values have been sent and whenever one of them changes after that.
+/** 'concat' maps a set of values to a comma-delimited string, sent to a goalnode
+ * after all the values have been sent and whenever one of them changes after that. */
 concat: CONCAT^ LBRACE! concatexpr (COMMA! concatexpr)* (COMMA!)? RBRACE!;
 concatexpr: nodeid;
 
+/** options for an individual mapping */
 mapoptions: LBRACK! mapoption (COMMA! mapoption)* RBRACK!
 {
 	#mapoptions = #([MAPOPTIONS, "MAPOPTIONS"], #mapoptions);
 };
+/** a single option for an individual mapping */
 mapoption: PRIORITY^ EQ! INT | FOCUSEDONLY | NOQIV;
 
+/** simple float literal (xyz.abc) */
 floatlit: i:INT DOT m:INT
 {
 	String str = i.getText() + "." + m.getText();
 	#floatlit = #([FLOATLIT, str]);
 };
+/** any of the built-in literal types */
 literal: stringlit | INT | floatlit;
+/** string literal, with some backslash-escaping */
 stringlit: s:STRINGLIT
 {
 	String olds = s.getText();
@@ -153,9 +159,12 @@ stringlit: s:STRINGLIT
 	#stringlit = #([STRINGLIT, news], #stringlit);
 };
 
+/** feedback section */
 feedback: FEEDBACK^ LBRACE! feedbackstmt RBRACE!;
 feedbackstmt: (variabledecls | nodefeedback)*;
+/** variable declarations, which are really constant declarations at this point */
 variabledecls: VARIABLES^ LBRACE! (variabledecl SEMI!)* RBRACE!;
+/** feedback for one goalnode */
 nodefeedback: nodeid LBRACE! ((hintdecl | jitdecl | answerdecl | propertydecl) SEMI!)* RBRACE!
 {
 	#nodefeedback = #([NODEFEEDBACK, "NODEFEEDBACK"], #nodefeedback);
@@ -262,6 +271,7 @@ COMMENT2: "/*" (
     {$setType(Token.SKIP);}
 ;
 
+/** parses the AST from EMScriptParser into our internal Java objects */
 class EMScriptTreeParser extends TreeParser;
 {
 	Tree MTree;
@@ -271,6 +281,9 @@ class EMScriptTreeParser extends TreeParser;
 	List<LeafNode> CurGroup = null; // nodes mentioned inside brackets in a sequence are added to a group.
 }
 
+/** parses the AST from EMScriptParser into our internal Java objects. As is standard
+ * for ANTLR tree parsers, the structure of this parser pretty closely mimics that of the
+ * text parser. */
 createMappingAndTutor returns [Object[] t = null] { MTree = new Tree(); MTutor = new Tutor(); }: #(TOP (seq | map | opt | feedback)*) { MTree.finishConstruction(); t = new Object[2]; t[0] = MTree; t[1] = MTutor; };
 opt: #(OPTIONS (option)*);
 option: TUTORNAME tutorname:STRINGLIT { /*MTree.setTutorName(tutorname.getText());*/ };

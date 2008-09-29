@@ -32,9 +32,10 @@ import org.clearsighted.tutorbase.emscript.mappingtree.Tree;
 import org.clearsighted.tutorbase.stockeventmappers.EMScriptEventMapper;
 import org.clearsighted.tutorengine.Tutor;
 
-import antlr.RecognitionException;
-
-
+/**
+ * Main tutor engine implementation.
+ *
+ */
 public class XPSTTutorEngine extends TutorEngine
 {
 	private DorminAdapter adapter;

@@ -18,6 +18,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 package org.clearsighted.tutorbase.dormin;
 
+/**
+ * Source of Dormin messages.
+ *
+ */
 public interface DorminSender
 {
 	public void addReceiver(DorminReceiver receiver);

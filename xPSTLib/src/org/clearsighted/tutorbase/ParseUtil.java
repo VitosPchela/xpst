@@ -18,6 +18,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 package org.clearsighted.tutorbase;
 
+/**
+ * A couple simple string utilities.
+ *
+ */
 public class ParseUtil
 {
 	public static String stripComment(String in)

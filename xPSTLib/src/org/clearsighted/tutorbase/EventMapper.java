@@ -25,21 +25,24 @@ import java.util.HashMap;
 
 import org.clearsighted.tutorbase.dormin.DorminMessage;
 
-
+/**
+ * Implements the event mapper, which primarily consists of two HalfEventMappers.
+ *
+ */
 public abstract class EventMapper
 {
-	private HalfEventMapper ToApp = new HalfEventMapper(true, this), ToTutor = new HalfEventMapper(false, this);
-	protected ArrayList<String> AppNodes = null;
-	private ArrayList<PropertyChangeListener> PropertyChangeListeners = new ArrayList<PropertyChangeListener>();
-	private ArrayList<IEventMapperListener> Listeners = new ArrayList<IEventMapperListener>();
-	protected HashMap<String, GoalNodeStatus> GoalNodes = new HashMap<String, GoalNodeStatus>();
-	protected String FocusedNode = null;
-	private MessageLogger TheLogger;
+	private HalfEventMapper toApp = new HalfEventMapper(true, this), toTutor = new HalfEventMapper(false, this);
+	protected ArrayList<String> appNodes = null;
+	private ArrayList<PropertyChangeListener> propertyChangeListeners = new ArrayList<PropertyChangeListener>();
+	private ArrayList<IEventMapperListener> listeners = new ArrayList<IEventMapperListener>();
+	protected HashMap<String, GoalNodeStatus> goalNodes = new HashMap<String, GoalNodeStatus>();
+	protected String focusedNode = null;
+	private MessageLogger theLogger;
 	public TutorEngine tutorEngine;
 
 	public EventMapper()
 	{
-		TheLogger = MessageLogger.getInstance();
+		theLogger = MessageLogger.getInstance();
 	}
 	
 	public abstract void start();
@@ -53,104 +56,104 @@ public abstract class EventMapper
 	 */
 	public void map(boolean toapp, DorminMessage dm)
 	{
-		TheLogger.logDormin(toapp, true, dm);
+		theLogger.logDormin(toapp, true, dm);
 	}
 	
 	public void sendOut(boolean toapp, DorminMessage dm)
 	{
-		TheLogger.logDormin(toapp, false, dm);
+		theLogger.logDormin(toapp, false, dm);
 		if (toapp)
-			ToApp.receiveNoMapping(dm);
+			toApp.receiveNoMapping(dm);
 		else
-			ToTutor.receiveNoMapping(dm);
+			toTutor.receiveNoMapping(dm);
 	}
 	
 	public HalfEventMapper getToAppHalf()
 	{
-		return ToApp;
+		return toApp;
 	}
 
 	public HalfEventMapper getToTutorHalf()
 	{
-		return ToTutor;
+		return toTutor;
 	}
 
 	protected void setAppNodes(ArrayList<String> nodes)
 	{
-		Object old = AppNodes;
-		AppNodes = nodes;
-		firePropertyChange("AppNodes", old, nodes);
+		Object old = appNodes;
+		appNodes = nodes;
+		firePropertyChange("appNodes", old, nodes);
 	}
 	
 	public void addPropertyChangeListener(PropertyChangeListener listener)
 	{
-		PropertyChangeListeners.add(listener);
+		propertyChangeListeners.add(listener);
 	}
 	
 	public void removePropertyChangeListener(PropertyChangeListener listener)
 	{
-		PropertyChangeListeners.remove(listener);
+		propertyChangeListeners.remove(listener);
 	}
 	
 	protected void firePropertyChange(String name, Object oldvalue, Object newvalue)
 	{
-		for (PropertyChangeListener pcl: PropertyChangeListeners)
+		for (PropertyChangeListener pcl: propertyChangeListeners)
 			pcl.propertyChange(new PropertyChangeEvent(this, name, oldvalue, newvalue));
 	}
 
 	public HashMap<String, GoalNodeStatus> getGoalNodes()
 	{
-		return GoalNodes;
+		return goalNodes;
 	}
 	
 	public boolean isGoalNodeEnabled(String name)
 	{
 		// TODO: restore
 		return true;
-//		return GoalNodes == null || (GoalNodes.containsKey(name) && GoalNodes.get(name).enabled);
+//		return goalNodes == null || (goalNodes.containsKey(name) && goalNodes.get(name).enabled);
 	}
 
 	public boolean isGoalNodeCompleted(String name)
 	{
-		return GoalNodes != null && GoalNodes.containsKey(name) && GoalNodes.get(name).completed;
+		return goalNodes != null && goalNodes.containsKey(name) && goalNodes.get(name).completed;
 	}
 
 	public void completeGoalNode(String name)
 	{
-		if (GoalNodes != null && GoalNodes.containsKey(name))
+		if (goalNodes != null && goalNodes.containsKey(name))
 		{
-			GoalNodeStatus gns = GoalNodes.get(name);
+			GoalNodeStatus gns = goalNodes.get(name);
 			gns.completed = true;
 		}
 	}
 
 	public void uncompleteGoalNode(String name)
 	{
-		if (GoalNodes != null && GoalNodes.containsKey(name))
+		if (goalNodes != null && goalNodes.containsKey(name))
 		{
-			GoalNodeStatus gns = GoalNodes.get(name);
+			GoalNodeStatus gns = goalNodes.get(name);
 			gns.completed = false;
 		}
 	}
 
 	public ArrayList<String> getAppNodes()
 	{
-		return AppNodes;
+		return appNodes;
 	}
 
 	public String getFocusedNode()
 	{
-		return FocusedNode;
+		return focusedNode;
 	}
 	
 	public void addListener(IEventMapperListener ieml)
 	{
-		Listeners.add(ieml);
+		listeners.add(ieml);
 	}
 
 	protected void onEnabledChanged(String gnname, boolean enabled)
 	{
-		for (IEventMapperListener ieml: Listeners)
+		for (IEventMapperListener ieml: listeners)
 			ieml.enabledChanged(gnname, enabled);
 	}
 }

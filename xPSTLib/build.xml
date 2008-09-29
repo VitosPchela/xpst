@@ -56,4 +56,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 	<target name="jar-debug" depends="compile-debug">
 		<jar basedir="bin" compress="true" jarfile="lib/xpstlib.jar"/>
 	</target>
+	<target name="doc" depends="antlr">
+		<javadoc access="public" author="true" classpath="lib/junit.jar:/usr/local/lib/antlr3/lib/antlr-3.0.1.jar:/usr/local/eclipse/plugins/org.antlr_2.7.6/antlr.jar:lib/antlr.jar" destdir="doc/javadoc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" overview="doc/overview.html" packagenames="org.clearsighted.launcher,org.clearsighted.tutorbase.emscript.mappingtree,org.clearsighted.tutorbase.emscript.exprtree,org.clearsighted.tutorengine,org.clearsighted.tutorbase.dormin,org.clearsighted.lmslink,org.clearsighted.xpstengine,org.clearsighted.tutorbase.emscript,org.clearsighted.tutorbase.stockeventmappers,org.clearsighted.tutorbase,org.clearsighted.tresim,org.clearsighted.tutorengine.types" source="1.6" sourcepath="src" splitindex="true" use="true" version="true"/>
+	</target>
 </project>
