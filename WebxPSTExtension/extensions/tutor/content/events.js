@@ -53,7 +53,7 @@ function onLoad()
 	if (g_prefs.getBoolPref('authoringmode'))
 	{
 		g_observeIDs = true;
-		$('#idbox').attr('collapsed', false);
+		$('#evtbox').attr('collapsed', false);
 		startEventCatcher();
 	}
 
