@@ -31,7 +31,10 @@ import org.clearsighted.tutorbase.dormin.DorminAdapter;
 import org.clearsighted.tutorbase.dormin.DorminReceiver;
 import org.clearsighted.tutorbase.dormin.DorminSocket;
 
-
+/**
+ * Holds some functions to help embed xPSTLib in an application. launchEngine is the most useful one. See WebxPST in WebxPSTServer for an example of using this class.
+ *
+ */
 public class Interface
 {
 	private TutorEngine tutorEngine = null;
@@ -59,6 +62,22 @@ public class Interface
 		}
 	}
 
+	/**
+	 * Launches a tutor engine, hooking up some debugging and logging stuff at the same time. See WebxPST in WebxPSTServer for an example of using this function.
+	 * @param ds
+	 * @param logger
+	 * @param logfile
+	 * @param trefile
+	 * @param emfile
+	 * @param lmsfile
+	 * @param debug
+	 * @param premappertoolrecs
+	 * @param postmappertoolrecs
+	 * @param premappertutorrecs
+	 * @param postmappertutorrecs
+	 * @return
+	 * @throws Exception
+	 */
 	public static TutorEngine launchEngine(DorminAdapter ds, Logger logger, String logfile, String trefile, String emfile, String lmsfile, boolean debug, List<DorminReceiver> premappertoolrecs, List<DorminReceiver> postmappertoolrecs, List<DorminReceiver> premappertutorrecs, List<DorminReceiver> postmappertutorrecs) throws Exception
 	{
 		if (premappertoolrecs == null)

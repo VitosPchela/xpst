@@ -20,6 +20,10 @@ package org.clearsighted.tutorbase.dormin;
 
 import java.util.ArrayList;
 
+/**
+ * Adapts between a DorminSender and a DorminReceiver, as well as allowing other Receivers to listen in.
+ *
+ */
 public abstract class DorminAdapter implements DorminSender, DorminReceiver
 {
 	protected ArrayList<DorminReceiver> receivers = new ArrayList<DorminReceiver>();

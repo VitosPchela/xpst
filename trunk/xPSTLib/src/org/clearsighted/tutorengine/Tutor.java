@@ -36,7 +36,6 @@ import org.clearsighted.tutorbase.emscript.EMScriptTreeParser;
 import org.clearsighted.tutorbase.emscript.exprtree.ExprEnv;
 import org.clearsighted.tutorbase.emscript.exprtree.ExprNode;
 
-
 public class Tutor implements DorminReceiver, DorminSender
 {
 	private LinkedList<DorminReceiver> receivers = new LinkedList<DorminReceiver>();

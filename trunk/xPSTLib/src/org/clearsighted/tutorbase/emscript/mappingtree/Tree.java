@@ -32,7 +32,20 @@ import org.clearsighted.tutorbase.WebDebugFrame;
 import org.clearsighted.tutorbase.dormin.DorminAddress;
 import org.clearsighted.tutorbase.dormin.DorminMessage;
 
-
+/**
+ * Implements the sequence tree in EMScript. The sequence expression in an .xpst file is parsed
+ * into objects, some representing operators and some representing goalnodes. The tree is something
+ * like a Petri net, in that it holds the current state of completion of the sequence as flags (like tokens)
+ * in a tree of objects (like nodes).
+ * 
+ * MappingNode is the base for all the nodes, and implements general binary tree functionality as well
+ * as the methods that control changing the state of the tree. LeafNode implements the references to
+ * goalnodes, and a variety of classes implement the operators.
+ * 
+ * @see MappingNode
+ * @see LeafNode
+ *
+ */
 public class Tree implements IEventMapperListener
 {
 	private MappingNode root = null;

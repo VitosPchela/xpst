@@ -63,10 +63,10 @@ public class HalfEventMapper implements DorminReceiver, DorminSender
 			{
 				boolean hasfocus = !((Integer)(dm.Parameters[0].Value)).equals(0);
 				if (hasfocus)
-					Mapper.FocusedNode = name.substring(0, name.length() - 6);
+					Mapper.focusedNode = name.substring(0, name.length() - 6);
 				// TODO: we're going with sloppy focus because of event order issues. Is this a good thing?
 //				else
-//					Mapper.FocusedNode = null;
+//					Mapper.focusedNode = null;
 			}
 		}
 

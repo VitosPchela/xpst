@@ -20,7 +20,6 @@ package org.clearsighted.tutorbase.emscript;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,6 +37,10 @@ import antlr.ASTFactory;
 import antlr.RecognitionException;
 import antlr.TokenStreamException;
 
+/**
+ * Implements some functions to parse, check, and generate mapping tree for an .xpst file.
+ *
+ */
 public class EMScript
 {
 	private static File getFile(String fromfname, String fname)
@@ -50,7 +53,6 @@ public class EMScript
 
 	private static ArrayList<String> getFileContents(String fromfname, String fname) throws IOException
 	{
-		String sep = System.getProperty("line.separator");
 		ArrayList<String> ret = new ArrayList<String>();
 		BufferedReader br = new BufferedReader(new FileReader(getFile(fromfname, fname)));
 		String line;
@@ -88,10 +90,13 @@ public class EMScript
 	}
 
 	/**
-	 * @param args
-	 * @throws TokenStreamException 
-	 * @throws RecognitionException 
-	 * @throws FileNotFoundException 
+	 * Parse an .xpst file, possibly included from another .xpst file
+	 * @param fromfname the file from which this file was included, or null
+	 * @param fname the file to be parsed
+	 * @return an EMScriptParser object that contains all the data parsed from the file as internal objects
+	 * @throws RecognitionException
+	 * @throws TokenStreamException
+	 * @throws IOException
 	 */
 	public static EMScriptParser parse(String fromfname, String fname) throws RecognitionException, TokenStreamException, IOException
 	{
