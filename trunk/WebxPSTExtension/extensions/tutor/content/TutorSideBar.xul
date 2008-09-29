@@ -43,9 +43,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 	<!--		<checkbox id = "observeIds" label="Observe ID mode" checked="false"/> -->
 		</hbox>
 	</vbox>
-	<vbox collapsed="true" id="idbox">
-		<label value="Recently clicked nodes"/>
-		<textbox pack="center" id="idlist" height="100" multiline="true"/>
+	<vbox collapsed="true" id="evtbox">
+		<label value="Recent events"/>
+		<textbox pack="center" id="evtlist" height="100" multiline="true"/>
 	</vbox>
 	<vbox id="taskselect" flex="1" collapsed="true">
 		<label value="Select a task then click Start" style="font-size: 120%; font-weight:bold"/>

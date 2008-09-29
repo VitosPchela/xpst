@@ -205,12 +205,6 @@ EventCatcher.prototype =
 				g_vanthEditorPrevValue = g_vanthEditorAssociatedNode.value;
 		}
 		
-		if (g_observeIDs && event.type == 'click')
-		{
-			var list = document.getElementById('idlist');
-			list.value = list.value + path + '\n';
-		}
-
 		if (event != null && event.type == 'mousedown')
 		{
 			// remember old index so we can restore it in a block JIT
@@ -269,6 +263,12 @@ EventCatcher.prototype =
 
 		if (value != null)
 		{
+			if (g_observeIDs && !isinitial)
+			{
+				var list = document.getElementById('evtlist');
+				list.value = list.value + path + pathsuffix + '=' + value + '\n';
+			}
+
 			var msg = new DorminMessage(path + pathsuffix, isinitial ? 'NOTEINITIALVALUE' : 'NOTEVALUESET', value);
 			sendTutorMessage(msg.MakeString(), event);
 			sent = true;
@@ -286,30 +286,20 @@ EventCatcher.prototype =
 
 		var parent;
 		if (node.nodeName == "OPTION")
-		{
 			parent = node.parentNode;
-		}
-		else if (node.className != undefined && node.className.substr(0, 4) == "leaf")
-		{
+		else if (node.className != undefined && node.className.substr(0, 4) == "leaf")  // TODO: 'leaf' is VaNTH-specific
 			parent = node.parentNode.parentNode;
-		}
 		else
-		{
 			parent = node;
-		}
 
 		while (parent != null)
 		{
 			if (!idFound && parent.id != "" && parent.id != undefined)
 			{
 				if (path != "")
-				{
 					path = parent.id + "." + path;
-				}
 				else
-				{
 					path = parent.id;
-				}
 				idFound = true;
 			}
 			children = 0;
@@ -321,43 +311,33 @@ EventCatcher.prototype =
 				children++;
 			}
 			if (!idFound && parents != 0)
-			{
 				path = "." + path;
-			}
 
-			if (parent.parentNode == null)
+			var attop = parent.parentNode == parent.ownerDocument;
+			if (attop)
 			{
-				if (!idFound && parent.defaultView != undefined && parent.defaultView.frameElement != null)
-				{
+//				if (!idFound && parent.defaultView != undefined && parent.defaultView.frameElement != null)
+				if (!idFound)
 					path = "contentDocument" + path;
-				}
 			}
 			else if (parent.parentNode.tagName == "browser")
 			{
 				if (!idFound)
-				{
 					path = parent.tagName + path;
-				}
 			}
 			else
 			{
 				if (!idFound)
-				{
 					path = "childNodes-" + children + path;
-				}
 			}
 
-			if (parent.parentNode == null)
+			if (attop)
 			{
 				refElem = parent;
 				if (parent.defaultView != null)
-				{
 					parent = parent.defaultView.frameElement;
-				}
 				else
-				{
 					parent = null;
-				}
 			}
 			else
 			{
@@ -455,7 +435,12 @@ EventCatcher.prototype =
 			for (var k in namearr)
 			{
 				if (k == 0)
-					n = docs[j].getElementById(namearr[0]);
+				{
+					if (namearr[0] == 'contentDocument')
+						n = docs[j].documentElement;
+					else
+						n = docs[j].getElementById(namearr[0]);
+				}
 				else
 				{
 					var name = namearr[k];
