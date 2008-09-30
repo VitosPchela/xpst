@@ -31,7 +31,10 @@ import java.net.Socket;
 
 import org.clearsighted.tresim.App;
 
-
+/**
+ * Runs a socket that sends and receives Dormin messages.
+ *
+ */
 public class DorminSocket extends DorminAdapter
 {
 	LoopThread Loop;
