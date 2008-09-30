@@ -136,6 +136,8 @@ The above code says to the EventMapper, "For messages from any of the following 
 
 Note that the EventMapper automatically does a reverse mapping for you, so that in the above example, if you're trying to accomplish goalnode Flip-Horizontal but you do an Image Rotate 90CW, the tutor will send a FLAG message ("wrong!") back to the EventMapper, and the Event Mapper will tell the Presentation Manager to flag the appropriate control visually. 
 
+To view GUI control names (also known as appnode names), turn on the 'Authoring mode' checkbox in the WebxPST Tutor plugin in Firefox. To turn this on, go to Tools->Add-ons->Extensions->WebxPST->Preferences in Firefox, click the 'Authoring mode on' checkbox, then OK. When this mode is on, you should see a "Recent events" section in the tutor sidebar (you may need to restart the WebxPST Tutor plugin to see this). Each line in this textbox shows one GUI event, with the appnode name, an '=' sign, and the value sent for the appnode. You can cut and paste appnode names from this box into your .xpst file.
+
 = Feedback =
 
 The feedback section is structured with the goalnode name followed by the details for that goalnode including feedback following in curly brackets.  These details may include:
