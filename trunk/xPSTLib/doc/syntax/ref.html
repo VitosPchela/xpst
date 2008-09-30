@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -9,41 +9,6 @@
 </style>
 </head>
 <body>
-<h2>XPST example</h2>
-<div class="code">
-<a href="#include">include</a> "OffPath.xpst";<br/>
-<br/>
-<a href="#options">options</a><br/>
-{<br/>
-&nbsp;&nbsp;<a href="#tutorname">tutorname</a>="CAPE";<br/>
-}<br/>
-<br/>
-<a href="#sequence">sequence</a><br/>
-{<br/>
-&nbsp;&nbsp;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#comment">#---Problem-creation</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#paren">(</a><a href="#gnname">Click-New</a> <a href="#or">or</a> <a href="#gnname">Error-Wrong-New</a>) <a href="#then">then</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text-ProblemName <a href="#and">and</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text-Attempts <a href="#and">and</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CheckBox-Start<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) <a href="#until">until</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#gnname">Click-Update</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;) <a href="#then">then</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;...<br/>
-&nbsp;&nbsp;) <a href="#and">and</a><br/>
-&nbsp;&nbsp;<a href="#offpath">Error-Offpath</a><a href="#semicolon">;</a><br/>
-}<br/>
-mappings<br/>
-{<br/>
-&nbsp;&nbsp;[priority=2] ProblemNew:click =&gt; Click-New;<br/>
-&nbsp;&nbsp;[priority=2] ProblemName =&gt; Text-ProblemName;<br/>
-&nbsp;&nbsp;[priority=2] ProblemEditControls.childNodes-3:click =&gt; Click-Update;<br/>
-&nbsp;&nbsp;...<br/>
-}<br/>
-</div>
-
 <div id="include">
 <h3>include</h3>
 Include the contents of another .xpst file. This is not a straight textual substitution (like C); in particular,
@@ -62,6 +27,12 @@ Options that apply globally to the file. There is only one option defined, and i
 Obsolete.
 </div>
 
+<div id="mappings">
+<h3>mappings</h3>
+Defines mappings between <a href="#appnode">appnode</a> names and goalnode names. There are several types of mappings:
+<a href="#rename">rename</a>, <a href="#switch">switch</a>, and <a href="#concat">concat</a>. 
+</div>
+
 <div id="sequence">
 <h3>sequence</h3>
 Defines the acceptable sequences in which goalnodes can be completed. Overall, the sequence is a single expression with a semicolon
@@ -70,19 +41,29 @@ at the end. Parentheses group subexpression and operators combine subexpressions
 The operators are defined below.
 </div>
 
+<div id="feedback">
+<h3>feedback</h3>
+Defines answers, hints, JITs and variables for goalnodes.
+</div>
+
 <div id="comment">
-<h3>comments</h3>
+<h3>Comments</h3>
 Explain parts of the file to humans. These are simply discarded when the file is interpreted. Both single-line '#-style' and multi-line
 'C-style' (/* ... */) comments can be used.
 </div>
 
 <div id="paren">
-<h3>parentheses</h3>
+<h3>Parentheses</h3>
 Group parts of a sequence expression.
 </div>
 
+<div id="brace">
+<h3>Braces</h3>
+Delimit file sections, enclose feedback attributes, and enclose JIT condition expressions.
+</div>
+
 <div id="gnname">
-<h3>goalnode name</h3>
+<h3>Goalnode name</h3>
 Refers to a goalnode. The goalnodes in the sequence must refer to goalnodes defined in the 'feedback' section.
 </div>
 
@@ -109,50 +90,34 @@ mapping below.)
 </div>
 
 <div id="offpath">
-<h3>off-path</h3>
+<h3>Off-path</h3>
 Error-Off-Path is just another goalnode name, but it represents a useful concept. In any task, there are often a lot of things that can be
 done in the interface that are not relevant to the task, and may be harmful. The idea of an off-path goalnode is to have a place to catch all
 these problems and give appropriate feedback. Appnodes can be mapped to such a goalnode through a <a href="#switch">switch</a> mapping, giving
 a short textual description of each action that can be <a href="#substitution">substituted</a> in a JIT message.<br/>
+<br/>
 There are also usually appnodes that are useful some times, but not other times, in which case they can be mapped in the off-path mapping with
 a lower <a href="#priority">priority</a> than the main mapping, so that they'll be mapped as off-path whenever they aren't mapped as part of the main
 sequence.
-
-<h3>Off-path sample</h3>
-(this would be from the contents of the offpath.xpst file included in the above example)<br/>
-<div class="code">
-<a href="#mappings">mappings</a><br/>
-{<br/>
-&nbsp;&nbsp;[priority=0]<br/>
-&nbsp;&nbsp;switch<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;AssessmentLink.childNodes-3:click="clicked on the Assessment view link",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;AssessmentButton.childNodes-0:click="clicked on the Assessment view link",<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;FeedbackLink.childNodes-3:click="clicked on the Feedback view link",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;FeedbackButton.childNodes-0:click="clicked on the Feedback view link",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;...<br/>
-&nbsp;&nbsp;} =&gt; Error-Offpath;<br/>
-}<br/>
-<br/>
-feedback<br/>
-{<br/>
-&nbsp;&nbsp;Error-Offpath
-&nbsp;&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;answer: "foo";
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#jit">JIT</a>: "&lt;block/&gt;You {v}. That's not something you need to do right now.  Request a hint if you'd like to know what to do next.";
-&nbsp;&nbsp;}
-}<br/>
 </div>
+
+<div id="rename">
+<h3>Rename mapping</h3>
+Mapping type that simply renames the node. For example, with the mapping
+<div class="code">
+ProblemNew:click =&gt; Click-New;
+</div>
+if the value '1' is sent from the ProblemNew:click appnode, the value '1' will be sent to the Click-New goalnode.
 </div>
 
 <div id="switch">
 <h3>switch</h3>
 Mapping type that maps a number of appnodes to one goalnode, with a different string value for each. These can be useful, for example, in
 <a href="#offpath">off-path</a> mappings.<br/>
+<br/>
 Whenever a value is sent from an appnode in a switch, the appnode is matched to the string it's paired with, and that string is sent as
-the value to the goalnode. In the example above, if someone clicked the AssessmentButton.childNodes-0 node, the value "clicked on the Assessment view link"
-would be sent to the Error-Offpath node. This will trigger the JIT, and by <a href="#substitution">substitution</a>, the JIT message will be
+the value to the goalnode. In the <a target="example" href="example.html#offpath">Off-path example</a>, if someone clicked the AssessmentButton.childNodes-0 node,
+the value "clicked on the Assessment view link" would be sent to the Error-Offpath node. This will trigger the JIT, and by <a href="#substitution">substitution</a>, the JIT message will be
 "You clicked on the Assessment view link. That's not something you need to do right now.  Request a hint if you'd like to know what to do next."
 </div>
 
@@ -170,6 +135,16 @@ Value that orders the priority of mappings when more than one are active for an 
 If more than one mapping match an appnode at a time, the one with the highest priority is the one that is used.
 </div>
 
+<div id="answer">
+<h3>answer</h3>
+The correct answer for the goalnode. This can be a string, a number, or a <a href="#type">type</a>.
+</div>
+
+<div id="type">
+<h3>Types</h3>
+
+</div>
+
 <div id="jit">
 <h3>JIT</h3>
 'Just In Time' message, that is delivered immediately to the user if the user inputs a wrong answer and the <a href="#jitcondition">JIT condition</a> is matched.
@@ -178,28 +153,103 @@ If more than one mapping match an appnode at a time, the one with the highest pr
 <div id="jitcondition">
 <h3>JIT condition</h3>
 Expression that specifies when this JIT will fire. The first JIT with a condition that matches will fire. A JIT with no condition will match unconditionally.<br/>
+<br/>
 JIT conditions can compare 'v', the input value, to a literal value or variable, with the operators '&lt;', '&gt;', '==', '!=', '&gt;=', '&lt;=', as appropriate for
 the types being compared. Some examples:<br/>
 <div class="code">
-answer: 3;
-# simple comparisons
-JIT {v &gt; 3}: "too big";
-JIT {v &lt; 3}: "too small";
-...
-answer: "hi";
-JIT {v == "bye"}: "bye to you";
-# this JIT would fire whenever the input was not 'hi' or 'bye'
-JIT: "hi, not {v}";
-...
-answer: 5.5;
-# simple comparison like above, but using 'answer' variable for comparison
-JIT {v &gt; answer}: "too big";
-JIT {v &lt; answer}: "too small";
-...
-answer: 5;
-# JITs can check against strings, even if the answer is supposed to be a number.
-# This might be useful in a text box where the user is allowed to type arbitrary strings.
-JIT {v == RegEx("xy+z")}: "strange answer";
+answer: 3;<br/>
+# simple comparisons<br/>
+JIT {v &gt; 3}: "too big";<br/>
+JIT {v &lt; 3}: "too small";<br/>
+...<br/>
+answer: "hi";<br/>
+JIT {v == "bye"}: "bye to you";<br/>
+# this JIT would fire whenever the input was not 'hi' or 'bye'<br/>
+JIT: "hi, not {v}";<br/>
+...<br/>
+answer: 5.5;<br/>
+# simple comparison like above, but using 'answer' variable for comparison<br/>
+JIT {v &gt; answer}: "too big";<br/>
+JIT {v &lt; answer}: "too small";<br/>
+...<br/>
+answer: 5;<br/>
+# JITs can check against strings, even if the answer is supposed to be a number.<br/>
+# This might be useful in a text box where the user is allowed to type arbitrary strings.<br/>
+JIT {v == RegEx("xy+z")}: "strange answer";<br/>
+<!-- some empty space so that anchors will work at the end of the file -->
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 </div>
 </div>
 </body>
