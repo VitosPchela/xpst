@@ -1,0 +1,12 @@
+org.clearsighted.launcher
+org.clearsighted.lmslink
+org.clearsighted.tresim
+org.clearsighted.tutorbase
+org.clearsighted.tutorbase.dormin
+org.clearsighted.tutorbase.emscript
+org.clearsighted.tutorbase.emscript.exprtree
+org.clearsighted.tutorbase.emscript.mappingtree
+org.clearsighted.tutorbase.stockeventmappers
+org.clearsighted.tutorengine
+org.clearsighted.tutorengine.types
+org.clearsighted.xpstengine
