@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
+<title>xPST examples</title>
 <style type="text/css">
 .code { font-family: monospace; }
 a { text-decoration: none; }
@@ -27,9 +27,9 @@ a { text-decoration: none; }
 &nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#paren">(</a><a target="ref" href="ref.html#gnname">Click-New</a> <a target="ref" href="ref.html#or">or</a> <a target="ref" href="ref.html#gnname">Error-Wrong-New</a><a target="ref" href="ref.html#paren">)</a> <a target="ref" href="ref.html#then">then</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#paren">(</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#paren">(</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text-ProblemName <a target="ref" href="ref.html#and">and</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text-Attempts <a target="ref" href="ref.html#and">and</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CheckBox-Start<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#gnname">Text-ProblemName</a> <a target="ref" href="ref.html#and">and</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#gnname">Text-Attempts</a> <a target="ref" href="ref.html#and">and</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#gnname">CheckBox-Start</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#paren">)</a> <a target="ref" href="ref.html#until">until</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#gnname">Click-Update</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#paren">)</a> <a target="ref" href="ref.html#then">then</a><br/>
@@ -40,26 +40,26 @@ a { text-decoration: none; }
 <br/>
 <a target="ref" href="ref.html#mappings">mappings</a><br/>
 <a target="ref" href="ref.html#brace">{</a><br/>
-&nbsp;&nbsp;[<a target="ref" href="ref.html#priority">priority</a>=2] ProblemNew:click <a target="ref" href="ref.html#rename">=&gt;</a> Click-New;<br/>
+&nbsp;&nbsp;[<a target="ref" href="ref.html#priority">priority</a>=2] ProblemNew<a target="ref" href="ref.html#suffix">:click</a> <a target="ref" href="ref.html#rename">=&gt;</a> Click-New;<br/>
 &nbsp;&nbsp;[<a target="ref" href="ref.html#priority">priority</a>=2] ProblemName <a target="ref" href="ref.html#rename">=&gt;</a> Text-ProblemName;<br/>
-&nbsp;&nbsp;[<a target="ref" href="ref.html#priority">priority</a>=2] ProblemEditControls.childNodes-3:click <a target="ref" href="ref.html#rename">=&gt;</a> Click-Update;<br/>
+&nbsp;&nbsp;[<a target="ref" href="ref.html#priority">priority</a>=2] ProblemEditControls.childNodes-3<a target="ref" href="ref.html#suffix">:click</a> <a target="ref" href="ref.html#rename">=&gt;</a> Click-Update;<br/>
 &nbsp;&nbsp;...<br/>
 <a target="ref" href="ref.html#brace">}</a><br/>
 <br/>
 <a target="ref" href="ref.html#feedback">feedback</a><br/>
 {<br/>
-&nbsp;&nbsp;Text-Attempts<br/>
+&nbsp;&nbsp;<a target="ref" href="ref.html#gnname">Text-Attempts</a><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#answer">answer</a>: "2";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Hint: "Set the number of attempts for this problem. This means that the students will have two opportunities to try out this problem and enter the correct answer.";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Hint: "Set the &lt;strong&gt;Attempts&lt;/strong&gt; field for this problem to '<a target="ref" href="ref.html#substitution">{answer}</a>'.";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#hint">Hint</a>: "Set the number of attempts for this problem. This means that the students will have two opportunities to try out this problem and enter the correct answer.";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#hint">Hint</a>: "Set the &lt;strong&gt;Attempts&lt;/strong&gt; field for this problem to '<a target="ref" href="ref.html#substitution">{answer}</a>'.";<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;Text-Assess-Title<br/>
+&nbsp;&nbsp;<a target="ref" href="ref.html#gnname">Text-Assess-Title</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#answer">answer</a>:  RegEx(".+");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Hint: "Provide a title for the problem. This title will appear at the top of the whole problem set displayed to the student.";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Hint: "Type 'Add and Subtract Integers' for the &lt;strong&gt;Title&lt;/strong&gt;.";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#answer">answer</a>:  <a target="ref" href="ref.html#constructor">RegEx(".+")</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#hint">Hint</a>: "Provide a title for the problem. This title will appear at the top of the whole problem set displayed to the student.";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#hint">Hint</a>: "Type 'Add and Subtract Integers' for the &lt;strong&gt;Title&lt;/strong&gt;.";<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 </div>
@@ -78,12 +78,12 @@ a { text-decoration: none; }
 &nbsp;&nbsp;&nbsp;&nbsp;FeedbackLink.childNodes-3:click="clicked on the Feedback view link",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;FeedbackButton.childNodes-0:click="clicked on the Feedback view link",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;...<br/>
-&nbsp;&nbsp;} <a target="ref" href="ref.html#switch">=&gt;</a> Error-Offpath;<br/>
+&nbsp;&nbsp;} <a target="ref" href="ref.html#switch">=&gt;</a> <a target="ref" href="ref.html#offpath">Error-Offpath</a>;<br/>
 }<br/>
 <br/>
 <a target="ref" href="ref.html#feedback">feedback</a><br/>
 {<br/>
-&nbsp;&nbsp;Error-Offpath<br/>
+&nbsp;&nbsp;<a target="ref" href="ref.html#offpath">Error-Offpath</a><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#answer">answer</a>: "foo";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a target="ref" href="ref.html#jit">JIT</a>: "&lt;block/&gt;You {v}. That's not something you need to do right now.  Request a hint if you'd like to know what to do next.";<br/>
