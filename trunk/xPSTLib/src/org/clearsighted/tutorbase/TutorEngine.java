@@ -35,10 +35,19 @@ public abstract class TutorEngine
 	private EventMapper eventMapper = null;
 	private String tutorName = null;
 
+	/** Start sending and receiving tutor messages. Runs on a separate thread until waitUntilDone is called */
 	abstract public void start(HashMap<String, String> properties, DorminAdapter adapter, List<DorminReceiver> premappertoolrecs, List<DorminReceiver> postmappertoolrecs, List<DorminReceiver> premappertutorrecs, List<DorminReceiver> postmappertutorrecs) throws TutorException;
+	/** Stop tutor thread and wait until done. */
 	abstract public void waitUntilDone();
 	// TODO: probably don't want to take a DorminMessage argument here
+	/** Test given message to see if it is the correct answer for the goalnode. Doesn't modify any state. */
 	abstract public boolean testAnswer(DorminMessage dm);
+	/** Get a value that, when sent as an input, would complete the goalnode.
+	 * Usually, this is some value that matches, but in the case of types where it is too difficult to guess
+	 * a correct answer (like for general RegEx), it can be a sentinel value that is always correct.
+	 * @param gnname
+	 * @return a correct value, or a sentinel
+	 */
 	abstract public Object getRepresentativeValue(String gnname);
 
 	public void setEventMapper(EventMapper eventMapper)

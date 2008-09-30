@@ -75,7 +75,7 @@ public class Interface
 	 * @param postmappertoolrecs
 	 * @param premappertutorrecs
 	 * @param postmappertutorrecs
-	 * @return
+	 * @return a running TutorEngine
 	 * @throws Exception
 	 */
 	public static TutorEngine launchEngine(DorminAdapter ds, Logger logger, String logfile, String trefile, String emfile, String lmsfile, boolean debug, List<DorminReceiver> premappertoolrecs, List<DorminReceiver> postmappertoolrecs, List<DorminReceiver> premappertutorrecs, List<DorminReceiver> postmappertutorrecs) throws Exception

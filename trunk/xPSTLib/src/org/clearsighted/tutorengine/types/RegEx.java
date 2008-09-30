@@ -20,6 +20,10 @@ package org.clearsighted.tutorengine.types;
 
 import org.clearsighted.tutorengine.Type;
 
+/**
+ * Regular expression type. xPST constructor takes one argument in standard Java regex syntax.
+ * Split into this class and RegExTypeCore for historical reuse purposes.
+ */
 public class RegEx extends Type
 {
 	private RegExTypeCore core;

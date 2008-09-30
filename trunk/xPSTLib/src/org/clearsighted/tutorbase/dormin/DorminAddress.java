@@ -20,10 +20,10 @@ package org.clearsighted.tutorbase.dormin;
 
 import org.clearsighted.tutorbase.ParseUtil;
 
-/// <summary>
-/// Describes a message target for a Dormin message. Basically a string of names
-/// running down a heirarchy.
-/// </summary>
+/**
+ * Describes a message target for a Dormin message. Basically a string of names
+ * running down a heirarchy.
+ */
 public class DorminAddress
 {
 	/** Special node that means that the event mapper script is trying to send to a node that doesn't exist */

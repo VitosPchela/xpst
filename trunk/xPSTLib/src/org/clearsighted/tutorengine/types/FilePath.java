@@ -20,6 +20,13 @@ package org.clearsighted.tutorengine.types;
 
 import org.clearsighted.tutorengine.Type;
 
+/**
+ * FilePath type, which is similar to command-line globbing.
+ * xPST constructor takes one argument with *, ? interpreted as usual for globbing.
+ * On Windows, matching is not case-sensitive. On any platform, slash and backslashes are
+ * considered equivalent.
+ * Split into this class and FilePathTypeCore for historical reuse purposes.
+ */
 public class FilePath extends Type
 {
 	private FilePathTypeCore core;

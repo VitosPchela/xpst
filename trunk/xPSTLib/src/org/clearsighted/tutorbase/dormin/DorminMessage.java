@@ -26,109 +26,72 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- * @author SDO
- * Port CS code for 'Dormin' back to Java, so we can extend it freely without dependence on
- * CLI. The app side of the socket isn't really Dormin anyway...  
- *
+ * Represents a Dormin message as Java objects.
  */
 public class DorminMessage
 {
-	//		public static String Verb = "";
-	/// <summary>
-	/// static String to use for a "NOTEVALUESET" verb
-	/// </summary>
+	/** static String to use for a "NOTEVALUESET" verb */
 	public static String NoteValueSetVerb = "NOTEVALUESET";
-	/// <summary>
-	/// static String to use for a "FLAG" verb
-	/// </summary>
+	/** static String to use for a "FLAG" verb */
 	public static String FlagVerb = "FLAG";
-	/// <summary>
-	/// static String to use for a "APPROVE" verb
-	/// </summary>
+	/** static String to use for a "APPROVE" verb */
 	public static String ApproveVerb = "APPROVE";
-	/// <summary>
-	/// static String to use for a "HINTMESSAGE" verb
-	/// </summary>
+	/** static String to use for a "HINTMESSAGE" verb */
 	public static String HintMessageVerb = "HINTMESSAGE";
-	/// <summary>
-	/// static String to use for a "JITMESSAGE" verb
-	/// </summary>
+	/** static String to use for a "JITMESSAGE" verb */
 	public static String JITMessageVerb = "JITMESSAGE";
-	/// <summary>
-	/// static String to use for a "GETHINT" verb
-	/// </summary>
+	/** static String to use for a "GETHINT" verb */
 	public static String GetHintVerb = "GETHINT";
-	/// <summary>
-	/// static String to use for a "SETPROPERTY" verb
-	/// </summary>
+	/** static String to use for a "SETPROPERTY" verb */
 	public static String SetPropertyVerb = "SETPROPERTY";
-	/// <summary>
-	/// static String to use for a "CREATE" verb
-	/// </summary>
+	/** static String to use for a "CREATE" verb */
 	public static String CreateVerb = "CREATE";
-	/// <summary>
-	/// static String to use for a "ENUMAVAILABLENODES" verb (Clearsighted-specific)
-	/// </summary>
+	/** static String to use for a "ENUMAVAILABLENODES" verb (Clearsighted-specific) */
 	public static String EnumAvailableNodesVerb = "ENUMAVAILABLENODES";
-	/// <summary>
-	/// static String to use for a "NOTEAVAILABLENODES" verb (Clearsighted-specific)
-	/// </summary>
+	/** static String to use for a "NOTEAVAILABLENODES" verb (Clearsighted-specific) */
 	public static String NoteAvailableNodesVerb = "NOTEAVAILABLENODES";
-	/// <summary>
-	/// static String to use for a "STOPTRE" verb (Clearsighted-specific)
-	/// </summary>
+	/** static String to use for a "STOPTRE" verb (Clearsighted-specific) */
 	public static String StopTREVerb = "STOPTRE";
-	/// <summary>
-	/// static String to use for a "NOTEINITIALVALUE" verb (Clearsighted-specific)
-	/// </summary>
+	/** static String to use for a "NOTEINITIALVALUE" verb (Clearsighted-specific) */
 	public static String NoteInitialValue = "NOTEINITIALVALUE";
-	/// <summary>
-	/// static String to use for a "QUERYINITIALVALUE" verb (Clearsighted-specific)
-	/// </summary>
+	/** static String to use for a "QUERYINITIALVALUE" verb (Clearsighted-specific) */
 	public static String QueryInitialValue = "QUERYINITIALVALUE";
 
 	public static String ToolNode = "tool";
 	public static String TutorNode = "tutor";
 
-	/// <summary>
-	/// The Dormin verb. These are defined semantically by the CLI TRE (potentially with
-	/// supplementary ones by Clearsighted.
-	/// </summary>
+	/**
+	 *  The Dormin verb.
+	 */
 	public String Verb;
-	/// <summary>
-	/// A message sequence number that should usually be incremented for each message.
-	/// The constructor does this automatically, but it can be overwritten if necessary.
-	/// </summary>
+	/**
+	 *  A message sequence number that should usually be incremented for each message.
+	 *  The constructor does this automatically, but it can be overwritten if necessary.
+	 */
 	public int MessageNum;
-	/// <summary>
-	/// The address of the target of the message.
-	/// </summary>
+	/** The address of the target of the message. */
 	public DorminAddress Address;
-	/// <summary>
-	/// Parameters for the message, as defined semantically by the CLI TRE.
-	/// </summary>
+	/** Parameters for the message. */
 	public DorminParameter[] Parameters;
 
 	static int NextMessageNum = 0;
 
-	// Mostly for setting up in unit tests.
+	/** Mostly for setting up in unit tests. */
 	public static void resetMessageNum()
 	{
 		NextMessageNum = 0;
 	}
 
-	/// <summary>
-	/// Construct a fresh Dormin message. Fill in the necessary fields before
-	/// sending (MessageNumber will be initialized for you unless you need to override it)
-	/// </summary>
+	/**
+	 *  Construct a fresh Dormin message. Fill in the necessary fields before
+	 *  sending (MessageNumber will be initialized for you unless you need to override it)
+	 */
 	public DorminMessage()
 	{
 		MessageNum = NextMessageNum++;
 	}
 
-	/// <summary>
-	/// Construct a fresh Dormin message with address, verb, and value
-	/// </summary>
+	/** Construct a fresh Dormin message with address, verb, and value */
 	public DorminMessage(String address, String verb, String value)
 	{
 		MessageNum = NextMessageNum++;
@@ -138,6 +101,7 @@ public class DorminMessage
 			Parameters = new DorminParameter[] { new DorminParameter("VALUE", value) };
 	}
 
+	/** Copy constructor */
 	public DorminMessage(DorminMessage in)
 	{
 		Address = new DorminAddress(in.Address);
@@ -432,11 +396,9 @@ public class DorminMessage
 			Parameters = parms.toArray(new DorminParameter[0]);
 	}
 
-	/// <summary>
-	/// Parse a Dormin string from the TRE and fill out a DorminMessage object.
-	/// </summary>
-	/// <param name="dorminstring">the string representation of the message</param>
-	/// <returns>A DorminMessage object corresponding to the string</returns>
+	/**
+	 * Parse a Dormin string from the TRE and fill out a DorminMessage object.
+	 */
 	public static DorminMessage createFromString(String dorminstring)
 	{
 		DorminMessage ret = new DorminMessage();
@@ -578,10 +540,10 @@ public class DorminMessage
 	}
 	// END: Functions to translate DorminMessage objects into strings
 
-	/// <summary>
-	/// Get the string representation of this DorminMessage, compatible with the CLI TRE.
-	/// </summary>
-	/// <returns>a Dormin string for this DorminMessage</returns>
+	/**
+	 * Get a string representation of the message, suitable for sending over the wire
+	 * and for parsing by createFromString.
+	 */
 	@Override
 	public String toString()
 	{
@@ -608,6 +570,10 @@ public class DorminMessage
 		return ret.toString();
 	}
 
+	/**
+	 * Get a friendly string representation.
+	 * @return less informative but more UI-friendly string representation of the message
+	 */
 	public String toFriendlyString()
 	{
 		StringBuilder sb = new StringBuilder();

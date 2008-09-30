@@ -18,9 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 package org.clearsighted.tutorbase.dormin;
 
-/// <summary>
-/// A list of items for a Dormin message.
-/// </summary>
+/** A list of items for a Dormin message. */
 public class DorminList
 {
 	///
