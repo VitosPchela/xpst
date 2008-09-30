@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-import org.clearsighted.tutorbase.emscript.EMScriptParserTokenTypes;
 import org.clearsighted.tutorbase.emscript.exprtree.ConstructorNode;
 import org.clearsighted.tutorbase.emscript.exprtree.ExprEnv;
 import org.clearsighted.tutorbase.emscript.exprtree.ExprException;
