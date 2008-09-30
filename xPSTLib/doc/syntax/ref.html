@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>xPST file syntax reference</title>
+<title>xPST syntax reference</title>
 <style type="text/css">
-.code { font-family: monospace; }
+.code { font-family: monospace; margin-top: 2px; margin-bottom: 2px; }
 </style>
 </head>
 <body>
@@ -65,6 +65,13 @@ Delimit file sections, enclose feedback attributes, and enclose JIT condition ex
 <div id="gnname">
 <h3>Goalnode name</h3>
 Refers to a goalnode. The goalnodes in the sequence must refer to goalnodes defined in the 'feedback' section.
+</div>
+
+<div id="appnode">
+<h3>Appnode</h3>
+As opposed to a goalnode, an appnode refers to some specific UI element in the application. The application defines
+the names of these nodes, so xPST has to <a href="#mappings">map</a> them to goalnodes in order for the goalnode names to make
+sense when developing the cognitive model.
 </div>
 
 <div id="or">
@@ -128,6 +135,13 @@ at the time of the hint or JIT will be substituted there. There is a special var
 In the example above...
 </div>
 
+<div id="suffix">
+<h3>Event suffix</h3>
+Indicates a particular event on the node. In general, the model of xPST is to send 'value changed' messages from the application to the tutor engine.
+But for things like clicking a button, this model doesn't fit well. The compromise is to append a suffix to the appnode name to indicate the sort
+of event that has occurred, and send a value which is basically ignored. 'click' is the suffix for a click event, and is currently the only suffix used.
+</div>
+
 <div id="priority">
 <h3>priority</h3>
 Value that orders the priority of mappings when more than one are active for an appnode at the same time. These are useful, for example, in
@@ -137,17 +151,46 @@ If more than one mapping match an appnode at a time, the one with the highest pr
 
 <div id="answer">
 <h3>answer</h3>
-The correct answer for the goalnode. This can be a string, a number, or a <a href="#type">type</a>.
+The correct answer for the goalnode. This can be a string, a number, or a <a href="#constructor">constructor</a>.
+</div>
+
+<div id="constructor">
+<h3>Constructor</h3>
+An expression that designates a value with <a href="#type">type</a> other than string or number.
 </div>
 
 <div id="type">
 <h3>Types</h3>
-
+The values in xPST can have a number of types. Strings and numbers are treated as integrated into the language. Other types are represented by constructors.
+The other types currently defined are:
+<ul>
+<li>FilePath: takes one argument, which is a string with * and ? wildcards, similar to those used in command line systems.
+<ul>
+<li>* matches any substring</li>
+<li>? matches any single character</li>
+<li>Slashes and backslashes are treated as equivalent</li>
+<li>On Windows, characters are not case-sensitive</li>
+<li>Matches only the end of the path; any base path is accepted</li>
+</ul>
+For example: FilePath("data/analysis*.txt") would match
+<ul>
+<li class="code">data\analysis-one.txt</li>
+<li class="code">c:\Documents and Settings\someone\data\Analysis.txt</li>
+<li class="code">/usr/local/data/analysis_previous.txt", etc.</li>
+</ul>
+</li>
+<li>RegEx: takes one argument, which is a regular expression (using <a target="_new" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html">the Java syntax</a>).</li>
+</ul>
 </div>
 
 <div id="jit">
 <h3>JIT</h3>
 'Just In Time' message, that is delivered immediately to the user if the user inputs a wrong answer and the <a href="#jitcondition">JIT condition</a> is matched.
+</div>
+
+<div id="hint">
+<h3>Hint</h3>
+Hint message, that is delivered to the user if the user requests it with the Hint button in the tutor interface.
 </div>
 
 <div id="jitcondition">
