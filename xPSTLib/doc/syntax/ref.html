@@ -193,6 +193,30 @@ For example: FilePath("data/analysis*.txt") would match
 Hint message, that is delivered to the user if the user requests it with the Hint button in the tutor interface.
 </div>
 
+<div id="markup">
+<h3>Markup</h3>
+Within JIT and hint messages, a small set of markup tags are available. Some are based on HTML, and some are specific to xPST.<br/>
+<br/>
+The messages are parsed as XML. The outermost XML tag is stripped, so typing plain text works, but some XML tags that can be used are:
+<div class="code">
+&lt;p&gt;&lt;/p&gt;<br/>
+&lt;em&gt;&lt;/em&gt;<br/>
+&lt;strong&gt;&lt;/strong&gt;<br/>
+&lt;h1&gt;&lt;/h1&gt;<br/>
+&lt;h2&gt;&lt;/h2&gt;<br/>
+&lt;h3&gt;&lt;/h3&gt;<br/>
+&lt;ol&gt;&lt;/ol&gt;<br/>
+&lt;ul&gt;&lt;/ul&gt;<br/>
+&lt;li&gt;&lt;/li&gt;<br/>
+&lt;br/&gt;<br/>
+&lt;image src="images/foo.png" thumbnail="images/foo_thumb.png"/&gt;: This is similar to &lt;img&gt;, but displays the thumbnail and shows the entire image in a rollover.<br/>
+<br/>
+&lt;block/&gt;: This tag has no text inside it, it just acts as a flag. In a JIT it means that the JIT should block the event that caused it, so that, for example, when a user clicks a link,
+a block-JIT will prevent the page from actually changing.<br/>
+</div>
+
+</div>
+
 <div id="jitcondition">
 <h3>JIT condition</h3>
 Expression that specifies when this JIT will fire. The first JIT with a condition that matches will fire. A JIT with no condition will match unconditionally.<br/>
