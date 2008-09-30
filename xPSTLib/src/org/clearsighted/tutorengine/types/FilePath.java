@@ -30,6 +30,7 @@ import org.clearsighted.tutorengine.Type;
 public class FilePath extends Type
 {
 	private FilePathTypeCore core;
+	@Override
 	public void construct(Object[] args)
 	{
 		core = new FilePathTypeCore((String)args[0]);
