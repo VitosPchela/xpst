@@ -1,0 +1,34 @@
+Release contents:
+- updates.rdf - update file for WebxPSTExtension.
+  - Note: this should only be deployed to the 'official' URL, which is currently
+    https://its.clearsighted.org/webxpst/updates.rdf
+- WebxPST.war - WAR archive for deployment to Java servlet/JSP container
+- WebxPST.xpi - Firefox extension archive
+- src - source for all of the above, as well as documentation, license, build files, etc.
+
+Building:
+- src/getandbuild.sh and src/release.sh are scripts to help with automating the release
+  process. They may not be very useful for day-to-day development.
+- xPSTLib, WebxPSTServer, and WebxPSTExtension/extensions each contain an Ant
+  build.xml file. Each component can be built using Ant in the particular directory.
+  Look through the targets in the build.xml files to familiarize yourself with what's
+  available. The default target in each is useful for local development.
+- Ant and its documentation are available at http://ant.apache.org/
+- When developing the extension, rather than building and installing the .xpi into Firefox
+  each time, it's best to skip building the XPI and just have Firefox point directly to
+  the extension directory from which you are developing.
+  To do this:
+  - Install the XPI once to get Firefox acquainted with it.
+  - Close Firefox
+  - Find your Firefox extensions directory. For example, /home/me/.mozilla/firefox/default.uwi/extensions.
+  - There should be a directory {7d8fe5ef-4859-42e7-abfd-3f2c5a30e46d} here. This is where the installed
+    extension lives.
+  - Remove the extension directory.
+  - Point Firefox at your development directory:
+    - On Unix-type platforms, you can softlink, like
+      ln -s /home/me/projects/WebxPST/WebxPSTExtension/extensions/tutor/ {7d8fe5ef-4859-42e7-abfd-3f2c5a30e46d}
+    - On Windows-type platforms, you can make a file named '{7d8fe5ef-4859-42e7-abfd-3f2c5a30e46d}'
+      containing the path to the extensions/tutor/ directory, as text.
+  - Start Firefox. You should see that the extension is still available, but the version number in
+    the Add-Ons panel will be 'svn'.
+
