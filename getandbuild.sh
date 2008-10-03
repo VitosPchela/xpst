@@ -2,7 +2,7 @@
 ant=ant
 export JAVA_HOME=/usr/lib/jvm/java-6-sun
 
-svn up xPSTLib WebxPSTServer WebxPSTExtension CogModelling builds
+svn up
 
 NewxPSTLibVer=`svn info xPSTLib | grep "Last Changed Rev" | cut -d' ' -f4`
 NewWebxPSTVer=`svn info WebxPSTServer | grep "Last Changed Rev" | cut -d' ' -f4`
