@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 	<style>
 		.flagged { color: red }
 		.approved { color: limegreen }
+		
 	</style>
 	<script type="text/javascript" src="jquery/jquery.js"></script>
 	<script type="text/javascript" src="dormin.js"></script>
@@ -51,17 +52,21 @@ function gotSubmitResponse(data)
 			if (verb == 'APPROVE')
 			{
 				document.getElementById('appnname' + appn).className = 'approved';
-				document.getElementById('appncomp' + appn).firstChild.nodeValue = 'true';
+				document.getElementById('appncomp' + appn).checked=true;
 				document.getElementById('appnjit' + appn).value = '';
 			}
 			else if (verb == 'FLAG')
 			{
 				document.getElementById('appnname' + appn).className = 'flagged';
-				document.getElementById('appncomp' + appn).firstChild.nodeValue = 'false';
+				document.getElementById('appncomp' + appn).checked = false;
 				document.getElementById('appnjit' + appn).value = '';
 			}
 			else if (verb == 'JITMESSAGE')
+			{
+				document.getElementById('appnjit' + appn).disabled=false;
+				document.getElementById('appnjit' + appn).style.color="green";
 				document.getElementById('appnjit' + appn).value = dm.arrParameters[0].objValue.value[0].value;
+			}
 			else if (verb == 'HINTMESSAGE')
 			{
 				var hints = dm.arrParameters[0].objValue.value;
@@ -155,16 +160,18 @@ function gotAppNodes(data)
 				var tr = $('<tr></tr>');
 				$(tr).append($('<td id="appnname' + i + '"></td>').text(appn));
 				$(tr).append($('<td id="appngn' + i + '"></td>').text(gn));
-				$(tr).append($('<td id="appncomp' + i + '">false</td>'));
+				$(tr).append($('<td><input id="appncomp' + i + '" type="checkbox" disabled="true"></td>'));
 				$(tr).append($('<td><input id="appnval' + i + '" type="text"/></td>'));
 				$(tr).append($('<td><input type="button" onclick="submit(' + i + ')" value="submit"/></td>'));
 				$(tr).append($('<td><input type="button" onclick="complete(' + i + ')" value="complete"/></td>'));
-				$(tr).append($('<td><input id="appnjit' + i + '" type="text"/></td>'));
+				$(tr).append($('<td><input id="appnjit' + i + '" type="text" disabled="true"/></td>'));
 				$(table).append(tr);
 				i++;
 			}
 		);
+		$("#gntable").tablesorter({sortList:[[0,0],[2,1]], widgets: ['zebra']});
 	}
+	
 	else
 	{
 		var i = 0;
@@ -190,16 +197,7 @@ function getAppNodes()
 
 function startedTask(data)
 {
-	var brk = data.indexOf(' ');
-	if (brk == -1)
-		trename = data;
-	else
-	{
-		trename = data.substring(0, brk);
-		var errmsg = data.substring(brk + 1);
-		if (errmsg.length > 0)
-			alert(errmsg);
-	}
+	trename = data;
 	if (window.console)
 		console.log("started '" + trename + "'");
 	getAppNodes();
@@ -253,13 +251,39 @@ $(document).ready(
 );
 	</script>
 </head>
+
 <body>
-	<table id="gntable">
-		<tr><th>appnode</th><th>goalnode</th><th>completed</th><th>value</th><th></th><th></th><th>JIT</th></tr>
+	<center><b><u><H3>APPNODE TESTER</center></b></u></i>
+<link rel="stylesheet" href="http://dev.jquery.com/view/trunk/themes/flora/flora.all.css" type="text/css" media="screen" title="Flora (Default)">
+<script src="http://tablesorter.com/jquery-latest.js"></script>
+<script src="http://tablesorter.com/jquery.tablesorter.js"></script>
+<link rel="stylesheet" href="http://tablesorter.com/themes/blue/style.css" type="text/css" media="print, projection, screen" />
+
+	<table id="gntable" class="tablesorter" border="0" cellpadding="0" cellspacing="1">
+		<thead>
+			<tr>
+				<th>AppNode</th>
+				<th>GoalNode</th>
+				<th>Completed</th>
+				<th>Value</th>
+				<th></th>
+				<th></th>
+				<th>JIT</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
 	</table>
-	<input type="button" onclick="getHint()" value="hint"/>
-	<input type="button" onclick="log()" value="log"/>
-	<textarea id="hint" rows="5" cols="80"></textarea>
-	<input id="arbappnname" type="text"/><input type="button" onclick="testArbAppNode()" value="test arb"/>
+
+<hr>
+Enter an AppNode in the textbox and Click on Hint Button to get the hint.<br>
+<textarea id="hint" rows="5" cols="80"></textarea>
+<input type="button" onclick="getHint()" value="Get Hint"/><hr>
+Click on the View Log button to view the log.
+<input type="button" onclick="log()" value="View Log"/><hr>
+<i>Debug Section:</i><br>
+<input id="arbappnname" type="text"/>
+<input type="button" onclick="testArbAppNode()" value="Test ARB"/>
+
 </body>
 </html>
