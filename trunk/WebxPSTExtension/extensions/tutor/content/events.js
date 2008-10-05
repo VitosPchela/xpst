@@ -89,8 +89,8 @@ function onOpenTasklist(evt)
 		listitem.setAttribute('value', task.getAttribute('name'));
 		taskel.appendChild(listitem);
 	}
-//	taskel.firstChild.setAttribute('selected', true);
-
+	// taskel.firstChild.setAttribute('selected', true);
+	
 	document.getElementById('waitingtext').setAttribute('collapsed', true);
 	document.getElementById('taskselect').setAttribute('collapsed', false);
 }
@@ -377,7 +377,23 @@ function sendTutorMessage(sendMsg, event)
 		{
 			var addrarr = msg.DorminAddr.strArrNames;
 			if (addrarr[0] == 'TutorLink' && addrarr[1] == 'Done')
-				stop();
+			{
+				alert("Congratulations.You have succesfully completed the task.");
+			    var taskel = document.getElementById('task');
+			    if(taskel.childNodes.length >1)
+			    {
+					stop();
+					onLoad();
+			    }
+			    else
+			    {
+					stop();
+					document.getElementById('tutorstuff').collapsed = true;
+					document.getElementById('taskselect').collapsed = true;
+					document.getElementById('waitingtext').setAttribute('collapsed',false);
+					
+			    }
+			}
 		}
 		else if (msg.strVerb == "JITMESSAGE")
 		{
