@@ -444,8 +444,13 @@ function sendTutorMessage(sendMsg, event)
 
 function start()
 {
-	g_taskName = document.getElementById('task').selectedItem.value;
-	onStart();
+	if(document.getElementById('task').selectedIndex==-1)
+	alert("Please select a task in the Tasklist and then click on Start.");
+	else
+	{
+		g_taskName = document.getElementById('task').selectedItem.value;
+		onStart();
+	}
 }
 
 function onOptions()
