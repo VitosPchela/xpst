@@ -20,7 +20,7 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 -->
 
-<window width="120" height="40" id="TutorOptions" title="Options" onload="onLoad()" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<window width="200" height="50" id="TutorOptions" title="Options" onload="onLoad()" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 	<script>
 		var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch('webxpst.');
 		function onLoad()
