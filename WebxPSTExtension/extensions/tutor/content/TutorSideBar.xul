@@ -32,6 +32,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 		<label value="Browse to a"/>
 		<label value="WebxPST-compatible page to begin."/>
 	</vbox>
+	<vbox id="serverdetails" style="font-size: 120%; font-weight:bold" collapsed="true">
+		<label value="The server is communicating with"/>
+		<label id="servername" value=""/>
+	</vbox>
 	<vbox id="tutorstuff" flex="1" collapsed="true">
 		<iframe flex="1" id="scenario" style="background-color: white"/>
 		<hbox pack="center" collapsed="true" id="suspended">
