@@ -266,7 +266,7 @@ EventCatcher.prototype =
 			if (g_observeIDs && !isinitial)
 			{
 				var list = document.getElementById('evtlist');
-				list.value = list.value + path + pathsuffix + '=' + value + '\n';
+				list.value = path + pathsuffix + '=' + value + '\n';
 			}
 
 			var msg = new DorminMessage(path + pathsuffix, isinitial ? 'NOTEINITIALVALUE' : 'NOTEVALUESET', value);
