@@ -1,0 +1,44 @@
+mappings
+{
+	[priority=1]TutorLink.Done=>Error-Not-Done;
+	
+	[priority=0]
+	switch
+	{
+		contentDocument.childNodes-1.childNodes-7.childNodes-1.childNodes-0.childNodes-1.childNodes-0.childNodes-0:click = "Public Medicine",
+		contentDocument.childNodes-1.childNodes-7.childNodes-1.childNodes-0.childNodes-3.childNodes-0.childNodes-0:click = "All Databases",
+		contentDocument.childNodes-1.childNodes-7.childNodes-1.childNodes-0.childNodes-7.childNodes-0.childNodes-0:click = "OMIM Homepage Link",
+		contentDocument.childNodes-1.childNodes-7.childNodes-1.childNodes-0.childNodes-9.childNodes-0.childNodes-0:click = "Books Link",
+		contentDocument.childNodes-1.childNodes-7.childNodes-1.childNodes-0.childNodes-11.childNodes-0.childNodes-0:click = "Taxonomy Homepage Link",
+		contentDocument.childNodes-1.childNodes-7.childNodes-1.childNodes-0.childNodes-13.childNodes-0.childNodes-0:click = "Structure Homepage Link"
+	} => Error-Offpath1;
+	
+	[priority=0]
+	switch
+	{
+		homeBlastp:click = "protein blast",
+		homeBlastx:click = "blastx",
+		homeTblastn:click = "tblastn",
+		homeTblastx:click = "tblastx"
+	} => Error-Offpath2;
+
+}
+
+feedback
+{
+	Error-Not-Done {
+		answer: "0";
+		JIT: "You are not done with this problem yet. Ask for a hint if you would like help.";
+	}
+	
+	Error-Offpath2 {
+		answer: "foo";
+		JIT: "<block/>You have clicked on {v}.Please click on the First link <strong>Nucleotide Blast</strong> and proceed.";
+	}	
+	
+	
+	Error-Offpath1 {
+		answer: "foo";
+		JIT: "<block/>You have clicked on {v}. That's not something you need to do right now. Request a hint if you would like to know what to do next.";
+	}	
+}

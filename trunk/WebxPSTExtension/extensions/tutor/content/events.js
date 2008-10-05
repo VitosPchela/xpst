@@ -90,6 +90,14 @@ function onOpenTasklist(evt)
 		taskel.appendChild(listitem);
 	}
 	// taskel.firstChild.setAttribute('selected', true);
+	if(g_observeIDs)
+	{
+		var urlparts = new Array();
+		urlparts=g_webTREURL.split('/');
+		var hostmach=urlparts[2]; 
+		document.getElementById('serverdetails').setAttribute('collapsed', false);
+		document.getElementById('servername').value=hostmach;
+	}
 	
 	document.getElementById('waitingtext').setAttribute('collapsed', true);
 	document.getElementById('taskselect').setAttribute('collapsed', false);
@@ -101,6 +109,14 @@ function onStartTask(evt)
 	g_webTREURL = task.getAttribute('webtreurl');
 	g_taskName = task.getAttribute('task');
 	document.getElementById('waitingtext').setAttribute('collapsed', true);
+	if(g_observeIDs)
+	{
+		var urlparts = new Array();
+		urlparts=g_webTREURL.split('/');
+		var hostmach=urlparts[2]; 
+		document.getElementById('serverdetails').setAttribute('collapsed', false);
+		document.getElementById('servername').value=hostmach;
+	}
 	onStart();
 }
 
@@ -258,6 +274,7 @@ function startEventCatcher()
 
 function stopEventCatcher()
 {
+	document.getElementById('serverdetails').setAttribute('collapsed', true);
 	catcher.removeClickListeners();
 	windowListener.unregister();
 }
@@ -313,6 +330,7 @@ function onStart()
 	displayScenario(g_taskName + '-scenario.xml');
 	document.getElementById('taskselect').collapsed = true;
 	document.getElementById('tutorstuff').collapsed = false;
+	document.getElementById('serverdetails').collapsed = false;
 }
 
 var hintNumber = 0;
@@ -348,6 +366,7 @@ function stop()
 
 	document.getElementById('tutorstuff').collapsed = true;
 	document.getElementById('taskselect').collapsed = false;
+	document.getElementById('serverdetails').collapsed = true;
 }
 
 function goQIV(msg)
@@ -492,5 +511,6 @@ function onKeypress(evt)
 		logToServer(g_isTutorRunning ? 'TUTOR UNSUSPENDED' : 'TUTOR SUSPENDED');
 		$('#suspended').attr('collapsed', g_isTutorRunning);
 		$('#ctrlbuttons').attr('collapsed', !g_isTutorRunning);
+		$('#serverdetails').attr('collapsed',true);
 	}
 }

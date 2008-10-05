@@ -1,0 +1,105 @@
+include "ncbiblast-offpath.xpst";
+
+sequence
+{
+	(
+		# goto blast home page
+		(
+			link-homepage-blast
+		) then
+		# goto the nucleotide blast search page
+		(
+			link-nucleotide-blast
+		) then
+		# enter the search parameters
+		(
+			(
+				# enter the dna sequence
+				dna-sequence and
+				# select the Nucleotide Collection (nr/nt)
+				choose-nucleotide-database and
+				#name the search
+				name-of-search
+				
+			) until
+			blast-search-button
+		) 
+		
+		
+		then
+		All-Done
+	)
+	and
+	Error-Not-Done and
+	Error-Offpath1 and
+	Error-Offpath2;
+}
+
+feedback
+{
+	link-homepage-blast
+	{
+		answer: "1";
+		Hint: "Go to BLAST homepage by clicking the <strong>BLAST</strong> link.";
+		Hint: "The <strong>BLAST</strong> link is in the menubar below the NCBI logo.";
+		JIT: "<block/>To do a search using BLAST, you need to go to the BLAST Homepage";
+	}
+	
+	link-nucleotide-blast
+	{
+		answer: "1";
+		Hint: "Click on the <strong>Nucleotide blast</strong> link.";
+		Hint: "The <strong>Nucleotide blast</strong> link is in the section subtitiled Basic Blast.";
+		JIT: "<block/>To do a search using BLAST, you need to go to the BLAST Homepage";
+	}
+	
+	dna-sequence
+	{
+		answer: RegEx(".+");
+		Hint: "Copy and paste the DNA sequence given by the instructor into Accession number box.";
+		Hint: "The <strong>Accession Number</strong> textbox is the first box in the page.";
+		JIT: "<block/>Please paste the correct DNA sequence into <strong>Accession Number</strong> textbox.DNA sequence only contains letters G or T or C or A ";
+	}
+	
+	choose-nucleotide-database
+	{
+		answer: "Nucleotide collection (nr/nt)";
+		Hint: "Please specify your database as Nucleotide Database.";
+		Hint: "To set the database as Nucleotide Database, select '{answer}' in the <strong>Database</strong> dropdown box.";
+		JIT: "<block/>Please select Nucleotide Database to search.";
+	}
+	
+	name-of-search
+	{
+		answer: RegEx(".+");
+		Hint: "Please give a title to your search.";
+		Hint: "You can give a name to your search in the <strong>Job Title</strong> textbox.";
+		Hint: "The <strong>Job Title</strong> textbox is present just above the Database section.";
+		JIT: "<block/>Giving a name to your search in <strong>Job Title</strong> textbox makes easy to access the results at a later point of time.";
+	}
+	
+	blast-search-button
+	{
+		answer: "1";
+		Hint: "You need to finally click on the <strong>BLAST</strong> button to search.";
+		Hint: "Click on the <strong>BLAST</strong> button at the bottom of the page.";
+	}
+	
+	
+	All-Done
+	{
+		answer: 1;
+		Hint: "You have successfully made the search using BLAST.";
+	}
+}
+
+mappings
+{
+	[priority=2] contentDocument.childNodes-1.childNodes-7.childNodes-1.childNodes-0.childNodes-5.childNodes-0.childNodes-0:click => link-homepage-blast;
+	[priority=2] homeBlastn:click => link-nucleotide-blast;
+	[priority=2] seq => dna-sequence;
+	[priority=2] DATABASE => choose-nucleotide-database;
+	[priority=2] qtitle => name-of-search;
+	[priority=2] b1:click => blast-search-button;
+	[priority=2] TutorLink.Done => All-Done;
+}
