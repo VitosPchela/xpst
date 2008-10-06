@@ -47,7 +47,7 @@ function onWebxPSTSidebarOpened(evt)
 {
 	if (g_currentTask != null)
 		startTask(g_currentTask);
-	if (g_currentTaskList != null)
+	if (g_currentTasklist != null)
 		openTasklist(g_currentTasklist);
 }
 

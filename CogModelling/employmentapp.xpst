@@ -1,0 +1,134 @@
+include "employmentapp-offpath.xpst";
+
+sequence
+{
+	(
+		# Fill in the application
+		(
+			(
+				Combo-Position and
+				Radio-Major and
+				File-Resume-Text and
+				Check-Relocate and
+				Text-Contact-Name-First and
+				Text-Contact-Name-Last and
+				Text-Contact-Email and
+				Text-Contact-Phone-AreaCode and
+				Text-Contact-Phone-First3 and
+				Text-Contact-Phone-Last4
+			) until
+			Button-Submit
+		) then
+		All-Done
+	) and
+	Error-Radio-Major and
+	Error-Not-Done;
+}
+
+feedback
+{
+	Combo-Position
+	{
+		answer: "Software Engineer";
+		Hint: "You need to select the position that you want to apply. You want to apply for '{answer}' position.";
+		Hint: "Please select '{answer}' from the <strong>Which position are you applying for</strong> dropdown.";
+		JIT: "<block/>You must select '{answer}' position.";
+	}
+
+	Radio-Major
+	{
+		answer: 1;
+		major: "HCI";
+		Hint: "You need to select the major. You must assume that your major is '{major}'.";
+		Hint: "Please select '{major}' radio button as your <strong>Major</strong>.";
+	}
+
+	File-Resume-Text
+	{
+		answer: RegEx(".+");
+		Hint: "You must provide your resume.";
+		Hint: "Click on the <strong>Browse</strong> button to attach a copy of your resume.";
+	}
+
+	Check-Relocate
+	{
+		answer: "true";
+		Hint: "You must specify if you are willing to relocate or not? Here you must say that you are willing to relocate.";
+		Hint: "Check the <strong>Willing to relocate</strong> checkbox";
+		JIT: "<block/>You must specify that you are willing to relocate.";
+	}
+
+	Text-Contact-Name-First
+	{
+		answer: RegEx(".+");
+		Hint: "You must provide your first name.";
+		Hint: "Enter your first name in the <strong>First</strong> field of <strong>Name</strong>.";
+	}
+
+	Text-Contact-Name-Last
+	{
+		answer: RegEx(".+");
+		Hint: "You must provide your last name.";
+		Hint: "Enter your last name in the <strong>Last</strong> field of <strong>Name</strong>.";
+	}
+
+	Text-Contact-Email
+	{
+		answer: RegEx(".+@.+\\..+");
+		Hint: "You must provide your email address.";
+		Hint: "Enter a valid email address of the form 'name@company.domain' in the <strong>Email Address</strong> field.";
+	}
+
+	Text-Contact-Phone-AreaCode
+	{
+		answer: RegEx("\\d\\d\\d");
+		Hint: "You need to specify the area code of <strong>Phone</strong> number.";
+		Hint: "Enter the area code of the <strong>Phone</strong> number in the <strong>(###)</strong> field.";
+	}
+
+	Text-Contact-Phone-First3
+	{
+		answer: RegEx("\\d\\d\\d");
+		Hint: "You need to specify the first 3 digits of <strong>Phone</strong> number.";
+		Hint: "Enter the first 3 digits of the <strong>Phone</strong> number in the <strong>###</strong> field.";
+	}
+
+	Text-Contact-Phone-Last4
+	{
+		answer: RegEx("\\d\\d\\d\\d");
+		Hint: "You need to specify the last 4 digits of <strong>Phone</strong> number.";
+		Hint: "Enter the last 4 digits of the <strong>Phone</strong> number in the <strong>####</strong> field.";
+	}
+
+	Button-Submit
+	{
+		answer: 1;
+		Hint: "You need to submit your application.";
+		Hint: "Click on the <strong>Submit</strong> button at the bottom of the page.";
+		JIT: "<block/>Your entry will not be saved unless you click on the <strong>Submit</strong> button.";
+	}
+
+	All-Done
+	{
+		answer: 1;
+		Hint: "You have successfully submitted your application. You may quit now.";
+	}
+}
+
+mappings
+{
+	[priority=2] Field17 => Combo-Position;
+	[priority=2] Field19_2:click => Radio-Major;
+	# [priority=2] Field12.childNodes-0:click => File-Resume-Browse;
+	[priority=2] Field12.childNodes-0 => File-Resume-Text;
+	[priority=2] Field28 => Check-Relocate;
+
+	# removed .childNodes-0 from  the end of text fields
+	[priority=2] Field22 => Text-Contact-Name-First;
+	[priority=2] Field23 => Text-Contact-Name-Last;
+	[priority=2] Field13 => Text-Contact-Email;
+	[priority=2] Field25 => Text-Contact-Phone-AreaCode;
+	[priority=2] Field25-1 => Text-Contact-Phone-First3;
+	[priority=2] Field25-2 => Text-Contact-Phone-Last4;
+	[priority=2] saveForm:click => Button-Submit;
+}
