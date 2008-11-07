@@ -98,6 +98,10 @@ function onOpenTasklist(evt)
 		document.getElementById('serverdetails').setAttribute('collapsed', false);
 		document.getElementById('servername').value=hostmach;
 	}
+	else
+	{
+		document.getElementById('serverdetails').setAttribute('collapsed', true);
+	}
 	
 	document.getElementById('waitingtext').setAttribute('collapsed', true);
 	document.getElementById('taskselect').setAttribute('collapsed', false);
@@ -117,6 +121,8 @@ function onStartTask(evt)
 		document.getElementById('serverdetails').setAttribute('collapsed', false);
 		document.getElementById('servername').value=hostmach;
 	}
+	else
+		document.getElementById('serverdetails').setAttribute('collapsed', true);
 	onStart();
 }
 
@@ -330,7 +336,7 @@ function onStart()
 	displayScenario(g_taskName + '-scenario.xml');
 	document.getElementById('taskselect').collapsed = true;
 	document.getElementById('tutorstuff').collapsed = false;
-	document.getElementById('serverdetails').collapsed = false;
+	//document.getElementById('serverdetails').collapsed = false;
 }
 
 var hintNumber = 0;
