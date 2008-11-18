@@ -33,7 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 		<label value="WebxPST-compatible page to begin."/>
 	</vbox>
 	<vbox id="serverdetails" style="font-size: 120%; font-weight:bold" collapsed="true">
-		<label value="The server is communicating with"/>
+		<label value="The plugin is communicating with"/>
 		<label id="servername" value=""/>
 	</vbox>
 	<vbox id="tutorstuff" flex="1" collapsed="true">
@@ -48,8 +48,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 		</hbox>
 	</vbox>
 	<vbox collapsed="true" id="evtbox">
-		<label value="Recent events"/>
-		<textbox pack="center" id="evtlist" height="100" multiline="true"/>
+		<label value="Most Recent events"/>
+		<textbox pack="center" id="evtlist" height="135" multiline="true"/>
 	</vbox>
 	<vbox id="taskselect" flex="1" collapsed="true">
 		<label value="Select a task then click Start" style="font-size: 120%; font-weight:bold"/>
