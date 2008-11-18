@@ -2,20 +2,15 @@
 <message>
 	<h3>Example: Employment Application</h3>
 	<p>xPST Demostration</p>
-	<p><strong>Problem Objective:</strong> LATER</p>
+	<p><strong>Problem Objective:</strong> This simple assignment is designed to demonstrate an xPST web based tutor.</p>
 	<p>
 		<strong>Software Tips:</strong> 
 		<ul>
-			<li>LATER</li>
+			<li>You need to have the xPST sidebar plugin installed.</li>
 		</ul>
 	</p>
 	<hr/>
 
 	<h3>Detailed Instructions</h3>
-	<p>LATER</p>
-
-	<h3>LATER</h3>
-	<p><strong>Test Your Problem:</strong> LATER</p>
-	<p><strong>Finished?</strong><br/> 
-	LATER</p>
+	<p>You need to submit your application for the job of a <strong>Software Engineer</strong>. Assume you are majoring in <strong>HCI</strong> and <strong>willing to relocate</strong>.</p>
 </message>
