@@ -23,10 +23,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="{7d8fe5ef-4859-42e7-abfd-3f2c5a30e46d}"
                    em:name="WebxPST"
-                   em:version="svn"
+                   em:version="0.3.30"
                    em:description="WebxPST Tutoring System"
                    em:creator="Clearsighted"
-                   em:homepageURL="http://www.clearsighted.org/"
+                   em:homepageURL="http://code.google.com/p/xpst/"
                    em:updateURL="https://its.clearsighted.org/webtutor/updates.rdf">
     <em:targetApplication RDF:resource="rdf:#$ZxpaP3"/>
     <em:optionsURL>chrome://webxpst/content/TutorOptions.xul</em:optionsURL>
@@ -34,5 +34,5 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
   <RDF:Description RDF:about="rdf:#$ZxpaP3"
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
                    em:minVersion="2.0.0.0"
-                   em:maxVersion="3.0.*.*" />
+                   em:maxVersion="3.*.*" />
 </RDF:RDF>
