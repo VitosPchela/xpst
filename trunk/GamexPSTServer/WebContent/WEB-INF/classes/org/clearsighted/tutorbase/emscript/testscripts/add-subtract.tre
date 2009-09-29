@@ -1,0 +1,2303 @@
+Version 4
+<<Initial Tool Settings>>
+0// number of initial tool settings
+<</Initial Tool Settings>>
+<<GuidedExampleOrdering>>
+77// number of guided example gns
+CAPE// tutor
+Text-FirstName// goalnode
+CAPE// tutor
+Text-LastName// goalnode
+CAPE// tutor
+Text-Institution// goalnode
+CAPE// tutor
+Text-Email// goalnode
+CAPE// tutor
+Text-Password// goalnode
+CAPE// tutor
+Text-ProblemName// goalnode
+CAPE// tutor
+Text-Attempts// goalnode
+CAPE// tutor
+Text-Assess-Title// goalnode
+CAPE// tutor
+Text-Assess-Problem// goalnode
+CAPE// tutor
+Text-Assess-QuestionName// goalnode
+CAPE// tutor
+Text-Assess-BeforeBlank// goalnode
+CAPE// tutor
+Text-Assess-Width// goalnode
+CAPE// tutor
+Text-Assess-Default// goalnode
+CAPE// tutor
+Text-Assess-AfterBlank// goalnode
+CAPE// tutor
+Text-Assess-FinalQuestionName// goalnode
+CAPE// tutor
+Text-Assess-FinalBeforeBlank// goalnode
+CAPE// tutor
+Text-Assess-FinalWidth// goalnode
+CAPE// tutor
+Text-Assess-FinalDefault// goalnode
+CAPE// tutor
+Text-Assess-FinalAfterBlank// goalnode
+CAPE// tutor
+Text-Feedback-Q1-CorrectExpression// goalnode
+CAPE// tutor
+Text-Feedback-Q1-Incorrect-Feedback// goalnode
+CAPE// tutor
+Text-Preview-Q1-Incorrect// goalnode
+CAPE// tutor
+Text-Preview-Q2-Incorrect// goalnode
+CAPE// tutor
+Text-Preview-Q1-Correct// goalnode
+CAPE// tutor
+Text-Preview-Q2-Correct// goalnode
+CAPE// tutor
+Text-Feedback-Q2-CorrectExpression// goalnode
+CAPE// tutor
+Text-Feedback-Q2-Correct-Feedback// goalnode
+CAPE// tutor
+Text-Feedback- Q2-Incorrect-Feedback// goalnode
+CAPE// tutor
+Click-Submit// goalnode
+CAPE// tutor
+Click-New// goalnode
+CAPE// tutor
+Click-Update// goalnode
+CAPE// tutor
+Click-Assess-NewQuestion// goalnode
+CAPE// tutor
+Click-Assess-Update// goalnode
+CAPE// tutor
+Click-Assess-Preview// goalnode
+CAPE// tutor
+Click-Assess-FinalNewQuestion// goalnode
+CAPE// tutor
+Click-Assess-FinalUpdate// goalnode
+CAPE// tutor
+Click-Feedback-Q1-Edit-CorrectCase// goalnode
+CAPE// tutor
+Click-Feedback-Q1-ExpressionUpdate// goalnode
+CAPE// tutor
+Click-Feedback-Q1-Correct-EditAttempts// goalnode
+CAPE// tutor
+Click-Feedback-Q1-Correct-Update// goalnode
+CAPE// tutor
+Click-Feedback-Q1-Correct-Preview// goalnode
+CAPE// tutor
+Click-Feedback-Q1-Incorrect-EditAttempts// goalnode
+CAPE// tutor
+Click-Main-Q1-Preview// goalnode
+CAPE// tutor
+Click-Flash-Toolbar-Q1Preview// goalnode
+CAPE// tutor
+Click-Preview-Submit// goalnode
+CAPE// tutor
+Click-Flash-Toolbar-Q1Preview-Correct// goalnode
+CAPE// tutor
+Click-Preview-Submit-Correct// goalnode
+CAPE// tutor
+Click-Flash-Toolbar-Q1Done// goalnode
+CAPE// tutor
+Click-Assess-Preview-MovedDown// goalnode
+CAPE// tutor
+Click-Feedback-Q2-Edit-CorrectCase// goalnode
+CAPE// tutor
+Click-Feedback-Q2-ExpressionUpdate// goalnode
+CAPE// tutor
+Click-Feedback-Q2-Correct-EditAttempts// goalnode
+CAPE// tutor
+Click-Feedback-Q2-Correct-Update// goalnode
+CAPE// tutor
+Click-Feedback-Q2-Correct-Preview// goalnode
+CAPE// tutor
+Click-Feedback-Q2-Incorrect-EditAttempts// goalnode
+CAPE// tutor
+Click-Feedback-Q2-Incorrect-Update// goalnode
+CAPE// tutor
+Click-Feedback-Q2-Incorrect-Preview// goalnode
+CAPE// tutor
+Click-Feedback-Q1-Incorrect-Preview// goalnode
+CAPE// tutor
+Click-Feedback-Q1-Incorrect-Update// goalnode
+CAPE// tutor
+All-Done// goalnode
+CAPE// tutor
+CheckBox-Start// goalnode
+CAPE// tutor
+Checkbox-Assess-Validate// goalnode
+CAPE// tutor
+Checkbox-Assess-FinalValidate// goalnode
+CAPE// tutor
+Arrow-Assess-MoveDown// goalnode
+CAPE// tutor
+Link-Assess// goalnode
+CAPE// tutor
+Link-Feedback// goalnode
+CAPE// tutor
+Link-Assess-Problem-MoveDown// goalnode
+CAPE// tutor
+Selection-Assess-QuestionType// goalnode
+CAPE// tutor
+Selection-Assess-ResponseType// goalnode
+CAPE// tutor
+Selection-Assess-FinalQuestionType// goalnode
+CAPE// tutor
+Selection-Assess-FinalResponseType// goalnode
+CAPE// tutor
+Selection-Feedback-Q1-Question// goalnode
+CAPE// tutor
+Selection-Feedback-Q1-Correct// goalnode
+CAPE// tutor
+Selection-Feedback-Q1-DefaultIncorrect// goalnode
+CAPE// tutor
+Selection-Feedback-Q1-DefaultAttempts// goalnode
+CAPE// tutor
+Selection-Feedback-Q2-Question// goalnode
+CAPE// tutor
+Text-Feedback-Q1-Correct-Feedback// goalnode
+<</GuidedExampleOrdering>>
+<<CAPE>>
+Version 1
+<<tutor-specific data>>
+0// no tutor specific data
+<</tutor-specific data>>
+<<ToolCreationData>>
+
+<</ToolCreationData>>
+<<general data>>
+0// Number of tutor variables
+77// number of goalnodes
+Text-FirstName// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-FirstName// modeling rule
+0// number of answers
+0// number of jit messages
+Hint-FirstName// hint rule name
+2// number of hint levels
+You are about to login to the Web authoring tool. If you are a returning user, provide your login information in this webpage. If you are a new user, create your login account for future logins by filling in all your information here. 
+0// Number of tags
+0// number of semantic classifications
+If you are a new user, you can create your login by filling in this form. Provide your first name in the "First Name" field.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-LastName// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-LastName// modeling rule
+0// number of answers
+0// number of jit messages
+Hint-LastName// hint rule name
+2// number of hint levels
+For creating your login account, fill in this field.
+0// Number of tags
+0// number of semantic classifications
+Provide your last name in the “Last Name” field.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Institution// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Institution// modeling rule
+0// number of answers
+0// number of jit messages
+Hint-Institution// hint rule name
+1// number of hint levels
+Provide the Institution you belong to in the "Institution" field.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Email// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Email// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+1// number of jit messages
+Email-SoftJIT// JIT action name
+14// cl.sdk.tdde.predicate.LogicalTest
+OR// Logical operator: OR
+3// number of boolean operand subconditions
+1// cl.sdk.tdde.predicate.NodeCompletedCondition
+0// if condition false
+CAPE// tutor/tool
+Text-FirstName// goalnode
+1// cl.sdk.tdde.predicate.NodeCompletedCondition
+0// if condition false
+CAPE// tutor/tool
+Text-LastName// goalnode
+1// cl.sdk.tdde.predicate.NodeCompletedCondition
+0// if condition false
+CAPE// tutor/tool
+Text-Institution// goalnode
+1// number of answers
+11// checktype: Match anything  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$MatchAnything
+<b><*></b><hr><side/>If you are a returning user, proceed further. Else, look for hints and provide all 5 details.
+0// Number of tags
+0// number of semantic classifications
+Hint-Email// hint rule name
+2// number of hint levels
+Enter your email address now. If you are new user creating your account, please check to make sure the email address is valid. You will require this email address for future logins.
+0// Number of tags
+0// number of semantic classifications
+Enter your email address in the "eMail" field. 
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Password// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Password// modeling rule
+0// number of answers
+0// number of jit messages
+Hint-Password// hint rule name
+1// number of hint levels
+Type your password in the "Passcode" field. Select a password of your choice if you are creating a new account.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-ProblemName// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-ProblemName// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+1// number of jit messages
+JIT-ProblemName// JIT action name
+1// number of answers
+11// checktype: Match anything  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$MatchAnything
+<b><*></b><hr><side/>You’ve named the problem <v>, while the task asked you to call it Add/Subtract. This is not critical, but might make it easier to talk about later if you were consistent.
+0// Number of tags
+0// number of semantic classifications
+Hint-ProblemName// hint rule name
+2// number of hint levels
+Provide a name for this problem, which is used to refer to this problem in the authoring tool.  
+0// Number of tags
+0// number of semantic classifications
+Change the Problem Name to 'Add-Subtract' in the "Name" field in the "Problems" panel.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Attempts// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Attempts// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+1// number of jit messages
+Attempts-jit// JIT action name
+1// number of answers
+11// checktype: Match anything  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$MatchAnything
+<b><*></b><hr><modal/>Please set the number of attempts to 2 for this problem
+0// Number of tags
+0// number of semantic classifications
+Hint-Attempts// hint rule name
+2// number of hint levels
+Set the number of attempts for this problem. This means that the students will have two opportunities to try out this problem and enter the correct answer.
+0// Number of tags
+0// number of semantic classifications
+Set "Attempts" field for this problem to '2'.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Assess-Title// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Assess-Title// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+Hint-Assess-Title// hint rule name
+2// number of hint levels
+Provide a title for the problem. This title will appear at the top of the whole problem set displayed to the student.
+0// Number of tags
+0// number of semantic classifications
+Type 'Add and Subtract Integers' for the "Title".
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Assess-Problem// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Assess-Problem// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+Hint-Assess-Problem// hint rule name
+2// number of hint levels
+Provide a problem statement now. The problem statement is an introduction to the problem set, with generic information on the questions that follow.
+0// Number of tags
+0// number of semantic classifications
+Type 'Please solve the addition and subtraction problems below.' for the "Problem Statement".
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Assess-QuestionName// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Assess-QuestionName// modeling rule
+0// number of answers
+0// number of jit messages
+Hint-Assess-QuestionName// hint rule name
+2// number of hint levels
+You are about to create a new question for this problem set. Create new questions and provide their details now.
+0// Number of tags
+0// number of semantic classifications
+Type 'Add' for the "Name" field under the "Question Details" panel. You can select your own question name as well based on the guidelines here <Aditya's documentation Link>.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Assess-BeforeBlank// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Assess-BeforeBlank// modeling rule
+0// number of answers
+0// number of jit messages
+Hint-Assess-BeforeBlank// hint rule name
+2// number of hint levels
+Provide the the question for the first problem now. This part of the question appears before the blank for the answer.
+0// Number of tags
+0// number of semantic classifications
+In the "Before Blank" field, enter 'What is the sum of 1 and -5?'
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Assess-Width// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Assess-Width// modeling rule
+0// number of answers
+0// number of jit messages
+Hint-Assess-Width// hint rule name
+2// number of hint levels
+Width of the answer is the size of the blank which the students use for providing their answers.
+0// Number of tags
+0// number of semantic classifications
+Enter the width of the answer. Enter 3 for the "Width" field.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Assess-Default// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+NULL MODELING RULE// modeling rule
+0// number of answers
+0// number of jit messages
+MISSING HINT// hint rule name
+0// null hint
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Assess-AfterBlank// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+NULL MODELING RULE// modeling rule
+0// number of answers
+0// number of jit messages
+MISSING HINT// hint rule name
+0// null hint
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Assess-FinalQuestionName// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Assess-FinalQuestionName// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+Hint-Assess-FinalQuestionName// hint rule name
+2// number of hint levels
+You are about to create a new question for this problem set. Create new questions and provide their details now.
+0// Number of tags
+0// number of semantic classifications
+Type ‘Subtract’ for the Name field under the Question Details section. You can select your own question name as well based on the guidelines here.<Link for the documentation of Aditya>
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Assess-FinalBeforeBlank// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Assess-FinalBeforeBlank// modeling rule
+0// number of answers
+0// number of jit messages
+Hint-Assess-FinalBeforeBlank// hint rule name
+2// number of hint levels
+Provide the the question for the second problem now. This part of the question appears before the blank for the answer.
+0// Number of tags
+0// number of semantic classifications
+In the "Before Blank" field, enter What is the difference between 5 and -5?
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Assess-FinalWidth// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Assess-FinalWidth// modeling rule
+0// number of answers
+0// number of jit messages
+Hint-Assess-FinalWidth// hint rule name
+2// number of hint levels
+Width of the answer is the size of the blank which the students use for providing their answers. Provide the width for the second question's answer.
+0// Number of tags
+0// number of semantic classifications
+Enter the width of the answer now. Enter ‘3’ for the “Width”
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Assess-FinalDefault// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+NULL MODELING RULE// modeling rule
+0// number of answers
+0// number of jit messages
+MISSING HINT// hint rule name
+0// null hint
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Assess-FinalAfterBlank// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+NULL MODELING RULE// modeling rule
+0// number of answers
+0// number of jit messages
+MISSING HINT// hint rule name
+0// null hint
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Feedback-Q1-CorrectExpression// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Feedback-Q1-CorrectExpression// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintText-Feedback-Q1-CorrectExpression// hint rule name
+2// number of hint levels
+To check whether the student's answer is correct, provide the expression for correctness now. The response entered by the student is named Response.[Question Name] where [Question Name] is the name of the current question.
+0// Number of tags
+0// number of semantic classifications
+Type ‘Response.Add == -4’ in the "Expression" field under the "Case Details" section. 
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Feedback-Q1-Incorrect-Feedback// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Feedback-Q1-Incorrect-Feedback// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintText-Feedback-Q1-Incorrect-Feedback// hint rule name
+3// number of hint levels
+Provide feedback to the students for any incorrect answer they come up with for this problem. 
+0// Number of tags
+0// number of semantic classifications
+Provide a feedback of 'Your addition is incorrect. The sum of 1 and -5 is not X' where X is the student's incorrect response.  This value of X is 'Response.Add'.  The value of the user's response can be displayed in the feedback message by placing it between "py tags"
+0// Number of tags
+0// number of semantic classifications
+Type ‘Your addition is incorrect. The sum of 1 and -5 is not <py> Response.Add</py>' for the "Feedback" field.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Preview-Q1-Incorrect// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Preview-Q1-Incorrect// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintText-Preview-Q1-Incorrect// hint rule name
+2// number of hint levels
+Check whether the problem you created provides proper feedback for wrong answers. 
+0// Number of tags
+0// number of semantic classifications
+Provide a wrong answer to check your feedback for the default incorrect case for the ‘Add’ question of the 'Add-Subtract' problem.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Preview-Q2-Incorrect// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Preview-Q2-Incorrect// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintText-Preview-Q2-Incorrect// hint rule name
+2// number of hint levels
+Check whether the problem you created provides proper feedback for wrong answers for the final question of the same problem.
+0// Number of tags
+0// number of semantic classifications
+Provide a wrong answer to check your feedback for the default incorrect case for the ‘Subtract’ question of the 'Add-Subtract' problem.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Preview-Q1-Correct// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Preview-Q1-Correct// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintText-Preview-Q1-Correct// hint rule name
+2// number of hint levels
+Provide the correct answer to check your correct feedback for the ‘Add’ question.
+0// Number of tags
+0// number of semantic classifications
+Type ‘4’ in the answer field.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Preview-Q2-Correct// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Preview-Q2-Correct// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintText-Preview-Q2-Correct// hint rule name
+2// number of hint levels
+Provide the correct answer to check your correct feedback for the ‘Subtract’ question.
+0// Number of tags
+0// number of semantic classifications
+Type ‘-10’ in the answer field.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Feedback-Q2-CorrectExpression// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Feedback-Q2-CorrectExpression// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintText-Feedback-Q2-CorrectExpression// hint rule name
+2// number of hint levels
+To check whether the student's answer is correct, provide the expression for correctness now. The response entered by the student is named Response.[Question Name] where [Question Name] is the name of the current question.
+0// Number of tags
+0// number of semantic classifications
+Type ‘Response.Subtract == -10’ in the "Expression" field under the "Case Details" section. 
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Feedback-Q2-Correct-Feedback// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Feedback-Q2-Correct-Feedback// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintText-Feedback-Q2-Correct-Feedback// hint rule name
+2// number of hint levels
+It is time to modify the feedback that you wish to provide to the student, when their answer is correct.
+0// Number of tags
+0// number of semantic classifications
+Type 'Your answer is correct. The difference between -5 and 5 is -10.' for the "Feedback"  field.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Feedback- Q2-Incorrect-Feedback// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+NULL MODELING RULE// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+MISSING HINT// hint rule name
+0// null hint
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Submit// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Submit// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Submit// hint rule name
+1// number of hint levels
+Submit the details provided by clicking on the <strong>Submit</strong> button.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-New// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-New// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-New// hint rule name
+2// number of hint levels
+Create a new problem first. Use 'Add-Subtract' as your Problem Name.
+0// Number of tags
+0// number of semantic classifications
+To create a new problem, click the <strong>New</strong> button in the Problems panel. Then type ‘Add-Subtract’ for the <strong>Name</strong> field in the <strong>Problem details</strong> section.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Update// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Update// modeling rule
+0// number of answers
+0// number of jit messages
+HintClick-Update// hint rule name
+1// number of hint levels
+To save the details of the new problem , click the <strong>Update</strong> button.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Assess-NewQuestion// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Assess-NewQuestion// modeling rule
+0// number of answers
+0// number of jit messages
+HintClick-Assess-NewQuestion// hint rule name
+2// number of hint levels
+You are about to create a new question for your problem set.
+0// Number of tags
+0// number of semantic classifications
+To create a new question, click on the <strong>New</strong> button under the <strong>Questions</strong> Panel.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Assess-Update// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Assess-Update// modeling rule
+0// number of answers
+0// number of jit messages
+HintClick-Assess-Update// hint rule name
+2// number of hint levels
+Save all the information you had entered for the assessment of this problem. 
+0// Number of tags
+0// number of semantic classifications
+To save this problem. click on the <strong>Update</strong> button to save your changes.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Assess-Preview// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Assess-Preview// modeling rule
+0// number of answers
+0// number of jit messages
+HintClick-Assess-Preview// hint rule name
+1// number of hint levels
+You can preview the question you just now created by clicking the <strong>Preview</strong> button.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Assess-FinalNewQuestion// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Assess-FinalNewQuestion// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Assess-FinalNewQuestion// hint rule name
+2// number of hint levels
+You are done with creating question 'Add' and you can start creating your next question 'Subtract'. 
+0// Number of tags
+0// number of semantic classifications
+For creating your new question, click on the <strong>New</strong> button under the Questions Panel.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Assess-FinalUpdate// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Assess-FinalUpdate// modeling rule
+0// number of answers
+0// number of jit messages
+HintClick-Assess-FinalUpdate// hint rule name
+2// number of hint levels
+Save all the information you had entered for the assessment of this problem.   
+0// Number of tags
+0// number of semantic classifications
+To save this problem, click on the <strong>Update</strong> button to save your changes.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Feedback-Q1-Edit-CorrectCase// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Feedback-Q1-Edit-CorrectCase// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Feedback-Q1-Edit-CorrectCase// hint rule name
+3// number of hint levels
+Check whether the student's input is correct and provide feedback for the correct case now.
+0// Number of tags
+0// number of semantic classifications
+Edit the <strong>Correct</strong> case now with the expression to check for the sum.
+0// Number of tags
+0// number of semantic classifications
+Click on the <strong>Edit</strong> button under the <strong>Cases</strong> panel.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Feedback-Q1-ExpressionUpdate// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Feedback-Q1-ExpressionUpdate// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Feedback-Q1-ExpressionUpdate// hint rule name
+1// number of hint levels
+Click the <strong>Update</strong> button under the <strong>Case Details</strong> panel to save the expression.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Feedback-Q1-Correct-EditAttempts// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Feedback-Q1-Correct-EditAttempts// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Feedback-Q1-Correct-EditAttempts// hint rule name
+2// number of hint levels
+Provide feedback for a student’s correct answer now.
+0// Number of tags
+0// number of semantic classifications
+To provide feedback for the Default correct case, click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Feedback-Q1-Correct-Update// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Feedback-Q1-Correct-Update// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Feedback-Q1-Correct-Update// hint rule name
+1// number of hint levels
+Click the <strong>Update</strong> button under the <strong>Case Details</strong> panel to save the feedback.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Feedback-Q1-Correct-Preview// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Feedback-Q1-Correct-Preview// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Feedback-Q1-Correct-Preview// hint rule name
+2// number of hint levels
+Verify if your feedback is correct by taking a preview of it.
+0// Number of tags
+0// number of semantic classifications
+Preview your feedback by clicking the <strong>Preview</strong> button.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Feedback-Q1-Incorrect-EditAttempts// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Feedback-Q1-Incorrect-EditAttempts// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Feedback-Q1-Incorrect-EditAttempts// hint rule name
+2// number of hint levels
+Edit the feedback for the <strong>Default</strong> attempts now, which is the feedback for any incorrect answer the student provides.
+0// Number of tags
+0// number of semantic classifications
+Click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Main-Q1-Preview// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Main-Q1-Preview// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Main-Q1-Preview// hint rule name
+2// number of hint levels
+Preview the entire problem now.
+0// Number of tags
+0// number of semantic classifications
+Click on the <strong>Preview</strong> eye in the main toolbar above the <strong>Problems</strong> panel. <image src="images/ProblemPreview.png">
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Flash-Toolbar-Q1Preview// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Flash-Toolbar-Q1Preview// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Flash-Toolbar-Q1Preview// hint rule name
+1// number of hint levels
+Select the problem name for previewing it. <image src ="images/Authoring-PreviewProblemSelection.png">
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Preview-Submit// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Preview-Submit// modeling rule
+0// number of answers
+0// number of jit messages
+HintClick-Preview-Submit// hint rule name
+1// number of hint levels
+ Click the <strong>Submit</strong> button to preview your feedback.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Flash-Toolbar-Q1Preview-Correct// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Flash-Toolbar-Q1Preview-Correct// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Flash-Toolbar-Q1Preview-Correct// hint rule name
+2// number of hint levels
+Preview the correct answer feedback now. Go back to the preview again.
+0// Number of tags
+0// number of semantic classifications
+Click on the green Flash button at the bottom and select the problem name here. 
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Preview-Submit-Correct// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Preview-Submit-Correct// modeling rule
+0// number of answers
+0// number of jit messages
+HintClick-Preview-Submit-Correct// hint rule name
+1// number of hint levels
+Click the <strong>Submit</strong> button to preview your feedback.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Flash-Toolbar-Q1Done// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Flash-Toolbar-Q1Done// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Flash-Toolbar-Q1Done// hint rule name
+2// number of hint levels
+You are done with the preview. You can go back to <strong>Authoring</strong> now. 
+0// Number of tags
+0// number of semantic classifications
+Click on the green Flash button at the bottom and select <strong>Authoring</strong>. 
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Assess-Preview-MovedDown// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Assess-Preview-MovedDown// modeling rule
+0// number of answers
+0// number of jit messages
+HintClick-Assess-Preview-MovedDown// hint rule name
+1// number of hint levels
+You can preview the created question by clicking the <strong>Preview</strong> button.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Feedback-Q2-Edit-CorrectCase// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Feedback-Q2-Edit-CorrectCase// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Feedback-Q2-Edit-CorrectCase// hint rule name
+3// number of hint levels
+Check whether the student's input is correct and provide feedback for the correct case now.
+0// Number of tags
+0// number of semantic classifications
+Edit the <strong>Correct</strong> case now with the expression to check for the difference..
+0// Number of tags
+0// number of semantic classifications
+Click on the <strong>Edit</strong> button under the <strong>Cases</strong> panel.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Feedback-Q2-ExpressionUpdate// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Feedback-Q2-ExpressionUpdate// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Feedback-Q2-ExpressionUpdate// hint rule name
+1// number of hint levels
+Click the <strong>Update</strong> button under the <strong>Case Details</strong> panel to save the expression.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Feedback-Q2-Correct-EditAttempts// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Feedback-Q2-Correct-EditAttempts// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Feedback-Q2-Correct-EditAttempts// hint rule name
+2// number of hint levels
+Provide feedback for a student’s correct answer now.
+0// Number of tags
+0// number of semantic classifications
+To provide feedback for the Default correct case, click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Feedback-Q2-Correct-Update// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Feedback-Q2-Correct-Update// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Feedback-Q2-Correct-Update// hint rule name
+1// number of hint levels
+Click the <strong>Update</strong> button under the <strong>Case Details</strong> panel to save the feedback.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Feedback-Q2-Correct-Preview// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Feedback-Q2-Correct-Preview// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Feedback-Q2-Correct-Preview// hint rule name
+2// number of hint levels
+Verify if your feedback is correct by taking a preview of it.
+0// Number of tags
+0// number of semantic classifications
+Preview your feedback by clicking the <strong>Preview</strong> button.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Feedback-Q2-Incorrect-EditAttempts// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Feedback-Q2-Incorrect-EditAttempts// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Feedback-Q2-Correct-EditAttempts// hint rule name
+2// number of hint levels
+Provide feedback for a student’s correct answer now.
+0// Number of tags
+0// number of semantic classifications
+To provide feedback for the Default correct case, click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Feedback-Q2-Incorrect-Update// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Feedback-Q2-Incorrect-Update// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Feedback-Q2-Correct-Update// hint rule name
+1// number of hint levels
+Click the <strong>Update</strong> button under the <strong>Case Details</strong> panel to save the feedback.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Feedback-Q2-Incorrect-Preview// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Feedback-Q2-Incorrect-Preview// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Feedback-Q2-InCorrect-Preview// hint rule name
+2// number of hint levels
+Verify if your feedback is correct by taking a preview of it.
+0// Number of tags
+0// number of semantic classifications
+Preview your feedback by clicking the <strong>Preview</strong> button.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Feedback-Q1-Incorrect-Preview// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Feedback-Q1-Incorrect-Preview// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Feedback-Q1-InCorrect-Preview// hint rule name
+2// number of hint levels
+Verify if your feedback is correct by taking a preview of it.
+0// Number of tags
+0// number of semantic classifications
+Preview your feedback by clicking the <strong>Preview</strong> button.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Click-Feedback-Q1-Incorrect-Update// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Click-Feedback-Q1-Incorrect-Update// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintClick-Feedback-Q1-Incorrect-Update// hint rule name
+1// number of hint levels
+Click the <strong>Update</strong> button under the <strong>Case Details</strong> panel to save the feedback.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+All-Done// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+NULL MODELING RULE// modeling rule
+0// number of answers
+0// number of jit messages
+MISSING HINT// hint rule name
+0// null hint
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+CheckBox-Start// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, CheckBox-Start// modeling rule
+0// number of answers
+0// number of jit messages
+HintCheckBox-Start// hint rule name
+2// number of hint levels
+Ensure that this problem is selected as the start problem.
+0// Number of tags
+0// number of semantic classifications
+Keep the checkbox <strong>Start</strong> checked to ensure that this problem is selected as the start problem. 
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Checkbox-Assess-Validate// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Checkbox-Assess-Validate// modeling rule
+0// number of answers
+0// number of jit messages
+HintCheckbox-Assess-Validate// hint rule name
+2// number of hint levels
+Ensure that the input provided by the user is validated for the correct data type. 
+0// Number of tags
+0// number of semantic classifications
+Keep the checkbox <strong>Validate</strong> checked.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Checkbox-Assess-FinalValidate// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Checkbox-Assess-FinalValidate// modeling rule
+0// number of answers
+0// number of jit messages
+HintCheckbox-Assess-FinalValidate// hint rule name
+2// number of hint levels
+Ensure that the input provided by the user is validated for the correct data type.
+0// Number of tags
+0// number of semantic classifications
+Keep the checkbox <strong>Validate</strong> checked.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Arrow-Assess-MoveDown// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Arrow-Assess-MoveDown// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintArrow-Assess-MoveDown// hint rule name
+2// number of hint levels
+Move the 'Add' question down in the list displayed under the Questions panel. 
+0// Number of tags
+0// number of semantic classifications
+Click on the move down arrow to move the 'Add' question down.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Link-Assess// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Link-Assess// modeling rule
+0// number of answers
+0// number of jit messages
+HintLink-Assess// hint rule name
+2// number of hint levels
+Create the question for your problem now in the Assessment View.
+0// Number of tags
+0// number of semantic classifications
+Click on the small pencil image or the Assessment View link to go there.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Link-Feedback// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Link-Feedback// modeling rule
+0// number of answers
+0// number of jit messages
+Link-FeedbackHint// hint rule name
+2// number of hint levels
+Provide feedback to the questions you just created in the Assessment View.
+0// Number of tags
+0// number of semantic classifications
+Click on the Feedback view link or the two persons talking icon to provide feedback for the created questions.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Link-Assess-Problem-MoveDown// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Link-Assess-Problem-MoveDown// modeling rule
+0// number of answers
+0// number of jit messages
+HintLink-Assess-Problem-MoveDown// hint rule name
+2// number of hint levels
+To reorder the questions for your problem go to the Assessment View.
+0// Number of tags
+0// number of semantic classifications
+Click on the small pencil image or the Assessment View link to go there.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Selection-Assess-QuestionType// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Selection-Assess-QuestionType// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintSelection-Assess-QuestionType// hint rule name
+2// number of hint levels
+Select the <strong>Kind</strong> of question here.
+0// Number of tags
+0// number of semantic classifications
+Select  Fill in the Blank option here.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Selection-Assess-ResponseType// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Selection-Assess-ResponseType// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintSelection-Assess-ResponseType// hint rule name
+2// number of hint levels
+Select the data type of the <strong>Response</strong>.
+0// Number of tags
+0// number of semantic classifications
+Select 'Integer' for the <strong>Response</strong> field.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Selection-Assess-FinalQuestionType// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Selection-Assess-FinalQuestionType// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintSelection-Assess-FinalQuestionType// hint rule name
+2// number of hint levels
+Select the <strong>Kind</strong> of question.
+0// Number of tags
+0// number of semantic classifications
+Select  Fill in the Blank option now.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Selection-Assess-FinalResponseType// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Selection-Assess-FinalResponseType// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintSelection-Assess-FinalResponseType// hint rule name
+2// number of hint levels
+Select the data type of the <strong>Response</strong>.
+0// Number of tags
+0// number of semantic classifications
+Select 'Integer' for the <strong>Response</strong> field.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Selection-Feedback-Q1-Question// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Selection-Feedback-Q1-Question// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintSelection-Feedback-Q1-Question// hint rule name
+2// number of hint levels
+Select the question for which you want to provide feedback now.
+0// Number of tags
+0// number of semantic classifications
+Ensure that the 'Add'question is selected in the <strong>Question</strong> dropbox.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Selection-Feedback-Q1-Correct// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Selection-Feedback-Q1-Correct// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintSelection-Feedback-Q1-Correct// hint rule name
+1// number of hint levels
+Select the <strong>Correct</strong> case now to provide feedback for any correct answer provided by the student.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Selection-Feedback-Q1-DefaultIncorrect// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Selection-Feedback-Q1-DefaultIncorrect// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintSelection-Feedback-Q1-DefaultIncorrect// hint rule name
+1// number of hint levels
+Select the <strong>Default_Incorrect</strong> case now to provide feedback for any wrong answer provided by the student.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Selection-Feedback-Q1-DefaultAttempts// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Selection-Feedback-Q1-DefaultAttempts// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintSelection-Feedback-Q1-DefaultAttempts// hint rule name
+1// number of hint levels
+Select the <strong>Default</strong> attempt to provide feedback on.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Selection-Feedback-Q2-Question// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Selection-Feedback-Q2-Question// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintSelection-Feedback-Q2-Question// hint rule name
+2// number of hint levels
+Select the question for which you want to provide feedback now.
+0// Number of tags
+0// number of semantic classifications
+Ensure that the 'Subtract'question is selected in the <strong>Question</strong> dropbox.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+Text-Feedback-Q1-Correct-Feedback// goalnode name
+Version 5
+0// dormin levels - always 0
+ignored type// proxy type
+set property// action type
+value// action subtype
+none// goalnode group
+none// associated group
+1// number of conditions
+default condition// default condition : 
+0// Number of subconditions
+1// is required
+3// auto-help threshold
+null, Text-Feedback-Q1-Correct-Feedback// modeling rule
+1// number of answers
+0// checktype: String Match, with Spell Correction  cl.sdk.tdde.problemspace.checktype.CheckedValueInstance$SpellCorrection
+1// value
+0// number of jit messages
+HintText-Feedback-Q1-Correct-Feedback// hint rule name
+2// number of hint levels
+It is time to modify the feedback that you wish to provide to the student, when their answer is correct.
+0// Number of tags
+0// number of semantic classifications
+Type 'Your answer is correct. The sum of 1 and -5 is -4.' for the "Feedback"  field.
+0// Number of tags
+0// number of semantic classifications
+0// number of skills
+0// trigger output moved into trigger blocks
+0// number of triggers in trigger block
+<</general data>>
+<</CAPE>>
