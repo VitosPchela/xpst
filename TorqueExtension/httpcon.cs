@@ -1,5 +1,5 @@
 $MAX_HTTP_QUERY_STRING = 255;
-$message_received = 0;
+$what_ondisconnect = 0;
 
 function httpPage::init(%this, %url) {
    %host = "";
@@ -33,7 +33,7 @@ function httpPage::get(%this, %url)
    %this.connect(%this.Address);
 }
 
-function httpPage::post(%this, %url, %data)
+function httpPage::post(%this, %url, %data, %type)
 {
   %this.Data = "";
   if(isObject(%data)) {
@@ -55,6 +55,7 @@ function httpPage::post(%this, %url, %data)
   %this.init(%url);
   warn("Connecting to: " @ %this.Address @ %this.Page);
   %this.Method = "POST";
+  $what_ondisconnect = %type;
   %this.connect(%this.Address);
 }
 
@@ -87,15 +88,33 @@ function httpPage::onLine(%this, %line)
 
 function httpPage::getResult(%this)
 {  
-   //while ($message_received <= 0) { }
-   //$message_received = 0;
    return %this.Buffer;
 }
 
 function httpPage::onDisconnect(%this)
 {
   warn("Disconnected: " @ %this.Address);
-  //$message_received = 1;
+  %resp = %this.Buffer;
+  if($what_ondisconnect == 0)
+  {
+      %brk = strpos(%resp," ");
+	   if (%brk == -1)
+   		$mytre = %resp;
+	   else
+	   {
+		   $mytre = getSubStr(%resp,0,%brk);
+		   %errmsg = getSubStr(%resp,%brk+1,5000);
+		   if (strlen(%errmsg) > 0)
+			   error(%errmsg);
+	   }
+	   $g_isTutorRunning = true;
+      sendblankmessage();
+  }
+  else if($what_ondisconnect == 1)
+  {
+      
+  }
+  
 }
 
 function httpPage::onConnectFailed(%this)
