@@ -108,11 +108,11 @@ function httpPage::onDisconnect(%this)
 			   error(%errmsg);
 	   }
 	   $g_isTutorRunning = true;
-      sendblankmessage();
+      sendMessage("");  
   }
   else if($what_ondisconnect == 1)
   {
-      
+      parseReceivedMessage(%resp);
   }
   
 }
@@ -120,4 +120,68 @@ function httpPage::onDisconnect(%this)
 function httpPage::onConnectFailed(%this)
 {
    error("Connection Failed: " @ %this.Address);
+}
+
+
+function parseReceivedMessage(%message)
+{
+   %loop = true;
+   echo("-----------------------------------------" @ %message);
+   %msg = DorminMsgFromString(%message);
+   %rtnValue = "";
+
+	while (%loop == true)
+	{
+		%loop = false;
+		if (%msg.strVerb $= "APPROVE")
+		{
+			%addrarr = %msg.DorminAddr.strArrNames;
+			if (%addrarr.getValue(0) $= 'TutorLink' && %addrarr.getValue(1) $= 'Done')
+			{
+				echo("Done.......Congratulations.You have succesfully completed the task.");
+				//implement messagebox to show this
+            //stopTutor();
+			}
+		}
+		else if (%msg.strVerb $= "JITMESSAGE")
+		{
+			if ($g_blockJITs == false)
+				//show messagebox with JIT message
+				echo("JIT....." @ %msg.arrParameters.getValue(0).objValue.value.getValue(0).value);
+		}
+		else if (%msg.strVerb $= "HINTMESSAGE")
+		{
+			for(%tempHint = 0;%tempHint<%msg.arrParameters.count();%tempHint++)
+			{
+				if (%msg.arrParameters.getValue(%tempHint).strName $= "MESSAGE")
+				{
+					%hintLocation = %tempHint;
+					break;
+				}
+			}
+			%rtnValue = %msg;
+		}
+		else if (%msg.strVerb $= "FLAG")
+		{
+		}
+		else if (%msg.strVerb $= "GETHINT")
+		{
+		}
+		else if (%msg.strVerb $= "SETPROPERTY")
+		{
+		}
+		else if (%msg.strVerb $= "QUERYINITIALVALUE")
+		{
+		}
+
+		%nextMsgLocation = strpos(%message,"\n");// check if there is another message
+		if (%nextMsgLocation != -1)
+		{
+			%loop = true;
+			%nextMsgLocation++;
+			%message = getSubStr(%message,%nextMsgLocation,strlen(%message));
+			%msg = DorminMsgFromString(%message);
+		}
+	}
+	return %rtnValue;
 }
