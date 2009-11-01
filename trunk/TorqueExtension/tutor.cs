@@ -2,6 +2,10 @@ $g_gameTREURL = "";
 $g_taskName = "";
 $g_isTutorRunning = false;
 $mytre = "";
+$g_blockJITs = false;
+$hintNumber = 0;
+$hintMsg = "";
+$hintLocation = "";
 
 function startTutor(%id,%mission)
 {
@@ -17,8 +21,18 @@ function startTutor(%id,%mission)
    httpPage.post($g_gameTREURL,%data,0);
 }
 
-function sendblankmessage()
+function sendMessage(%msg)
 {
+   if ($g_isTutorRunning == false)
+		return false;
+   echo("###Sending message:" @ %msg);
    new TCPObject(httpPage) { };
-   httpPage.post($g_gameTREURL @ "/" @ $mytre,"",1);
+   httpPage.post($g_gameTREURL @ "/" @ $mytre,%msg,1);
+}
+
+function onHint()
+{
+   %msg1 = new ScriptObject(DorminMessage).create("", "GETHINT", "answer","Undefined","String","String");
+   sendMessage(%msg1.MakeString());
+   $g_blockJITs = true;
 }
