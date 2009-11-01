@@ -25,17 +25,17 @@ function DorminAddress::ConvertToBrackets(%this)
 {
    %output = "";
    %temp = "";
-   if(%this.index>0){
-	   %output = %this.strArrNames[0];
+   if(%this.strArrNames.count()>0){
+	   %output = %this.strArrNames.getValue(0);
    }
-   for(%i = 1; %i<%this.index;%i++){
-	   if(strpos(%this.strArrNames[i],";")==-1)
+   for(%i = 1; %i<%this.strArrNames.count();%i++){
+	   if(strpos(%this.strArrNames.getValue(i),";")==-1)
 	   {
-   		%output = %output @ "." @ %this.strArrNames[i];
+   		%output = %output @ "." @ %this.strArrNames.getValue(i);
 	   }
 	   else
 	   {
-   		%temp = strreplace(%this.strArrNames[i],";","[") @ "]";
+   		%temp = strreplace(%this.strArrNames.getValue(i),";","[") @ "]";
 	   }
    }
    return %output;
@@ -44,41 +44,57 @@ function DorminAddress::ConvertToBrackets(%this)
 function DorminAddress::ToDottedString(%this)
 {
     %output = "";
-    if(%this.index>0){
-      %output = %this.strArrNames[0];
+    if(%this.strArrNames.count()>0){
+      %output = %this.strArrNames.getValue(0);
     }
-    for(%i = 1; %i<this.index;%i++){
-      %output = %output @ "." @ %this.strArrNames[i];
+    for(%i = 1; %i<this.strArrNames.count();%i++){
+      %output = %output @ "." @ %this.getValue(i);
     }
     return %output;
 }
 
-function DorminAddress::create(%this,%objNames)
+function splitString(%parse, %delim)
 {
-   //code for string split function. %objNames is always assumed to be a string
-   //use the count attribute to form the array later.
-   %index = 0;
-   %splitString = ".";
-   %prev = 0;
-
-   for(%a =0;%a <strlen(%objNames);%a++)
+   if(%parse $="") 
    {
-      if(getSubStr(%objNames, %a, 1) $= %splitString)
-      {
-         %this.strArrNames[%index] = getSubStr(%objNames,%prev,(%a-%prev+1));
-         %index = %index +1;
-         %prev = %a + 1;
-      }
-   %this.strArrNames[%index] = getSubStr(%objNames,%prev,1000);
+      %temarr = new array();
+	   %temarr.add(0,"");
+	   return %temarr;
    }
-   %this.count = %index;
-   %this.ConvertToBrackets = DorminAddress::ConvertToBrackets();
-   %this.ToDottedString = DorminAddress::ToDottedString();
-   
+	if (%delim !$= ""){
+		%posDelim = strpos(%parse, %delim);
+		if (%posDelim == 0)
+			return -1;
+		%len = strlen(%parse);
+		%temp = new array();
+		%temp.add(0,getSubStr (%parse, 0, %posDelim - 1));
+		%parse = getSubStr (%parse, %posDelim + 1, %len - %posDelim);
+		%posDelim = strpos (%parse, %delim);
+		%x = 1;
+		while (%posDelim > 0) {
+			%len = strlen(%parse);
+			%temp.add(%x,getSubStr (%parse, 0, %posDelim));
+			%parse = getSubStr (%parse, %posDelim + 1, %len - %posDelim);
+			%posDelim = strpos (%parse, %delim);
+			%x++;
+		}
+		%temp.add(%x,%parse);
+		return %temp;
+	} else {
+		return new array();
+	}
+}
+
+function DorminAddress::create(%this,%objNames,%bArray)
+{
+   if(%bArray == false)
+      %this.strArrNames = splitString(%objNames,".");
+   else
+      %this.strArrNames = %objNames;
    return %this;
 }
 
-function DorminMessage::create(%this,%strAddress, %strVerb, %objValue)
+function DorminMessage::create(%this,%strAddress, %strVerb, %objValue, %type1,%type2,%type3)
 {
    $numNextMessageNum = $numNextMessageNum + 1;
    %this.strNoteValueSetVerb = "NOTEVALUESET";
@@ -102,13 +118,75 @@ function DorminMessage::create(%this,%strAddress, %strVerb, %objValue)
 	%this.strNoteInitialValue = "NOTEINITIALVALUE";
 
 	%this.strSkillVerb = "SkillVerb";
-	%this.strVerb = %strVerb;
+	
 	%this.numMessageNum = $numNextMessageNum;
 	
-	%this.DorminAddr = new ScriptObject(DorminAddress).create(%strAddress);
-	//here typechecking goes for various types of objvalues.
-	//For hint functionality we just implement string type for now.
-	%this.arrParameters = new ScriptObject(DorminParameter).create("VALUE",new ScriptObject(TypeHolder).create('S', escapeString(%objValue)));
+	if(%type2 !$= "Undefined")
+	{
+		%this.strVerb = %strVerb;
+	}
+	else
+	{
+		%this.strVerb = "";
+	}	
+	
+	if(%type1 !$= "Undefined")
+	{
+		%this.DorminAddr = new ScriptObject(DorminAddress).create(%strAddress,false);
+	}
+	else
+	{
+	   %temarr = new array();
+	   %temarr.add(0,"");
+      %this.DorminAddr = new ScriptObject(DorminAddress).create(%temarr,true);
+	}
+	
+	%this.arrParameters = new array();
+	
+	if(%type3 !$= "Undefined")
+	{
+		if(objValue !$= "")
+		{
+			if(%type3 $= "String")
+			{
+				%this.arrParameters.add(0,new ScriptObject(DorminParameter).create("VALUE",new ScriptObject(TypeHolder).create("S", escapeString(%objValue))));
+			}
+			else if(%type3 $= "Object")
+			{
+				if(%objValue.getClassName() $= "Array")
+				{
+					%this.arrParameters.add(0,new ScriptObject(DorminParameter).create("VALUE",new ScriptObject(TypeHolder).create("L", %objValue)));
+				}
+				else if(%objValue.getClassName() $= "DorminAddress")
+				{
+					%this.arrParameters.add(0,new ScriptObject(DorminParameter).create("VALUE",new ScriptObject(TypeHolder).create("O", %objValue)));
+				}
+				else
+				{
+					%this.arrParameters.add(0,new ScriptObject(DorminParameter).create("VALUE",new ScriptObject(TypeHolder).create("X", %objValue)));
+				}
+			}
+			else if(%type3 $= "Boolean")
+			{
+				%this.arrParameters.add(0,new ScriptObject(DorminParameter).create("VALUE",new ScriptObject(TypeHolder).create("B", %objValue)));
+			}
+			else if(%type3 $= "Number")
+			{
+				if(mFloor(%objValue) == %objValue)
+				{
+					%this.arrParameters.add(0,new ScriptObject(DorminParameter).create("VALUE",new ScriptObject(TypeHolder).create("I", %objValue)));	
+				}
+				else
+				{
+					%this.arrParameters.add(0,new ScriptObject(DorminParameter).create("VALUE",new ScriptObject(TypeHolder).create("D", %objValue)));	
+				}
+			}
+			else
+			{
+				%this.arrParameters.add(0,new ScriptObject(DorminParameter).create("VALUE",new ScriptObject(TypeHolder).create("N", %objValue)));	
+			}
+		}
+	}	
 	return %this;
 }
 
@@ -122,7 +200,7 @@ function AppendDorminPrimitive(%objValue)
 		return AppendDecimal(%objValue.value);
 	else if(%objValue.typeChar $= "B")
 	{
-		if(%objValue.value == 0)
+		if(%objValue.value == 0 || %objValue.value $= "" || %objValue.value == false)
 			return AppendBoolean(false);
 		else
 			return AppendBoolean(true);
@@ -151,13 +229,26 @@ function AppendNull(){
 	return "N:0:";
 }
 function AppendList(%list){
-	//ToDo: not implemented
+	%str = "L:" @ %list.count() @ ":[";
+	for(%i = 0; %i<%list.count();%i++){
+		%str = %str @ AppendDorminPrimitive(%list.getValue(%i));
+		if(%i<%list.count()-1){
+			%str = %str @ ",";
+		}
+	}
+	%str = %str @ "]";
+	return %str;
 }
 function AppendRange(%range){
 	//ToDo: not implemented
 }
 function AppendMapping(%map){
-	//ToDo: not implemented
+	%str = "X:" @ %map.count() @ ":[";
+	for(%i = 0; %i<%map.count();%i++){
+		%str = %str @ "[" @ AppendDorminPrimitive(%i) @ "," @ AppendDorminPrimitive(%map.getValue(i)) @ "],";
+	}
+	%str = getSubStr(%str,0,strlen(%str)-1);//remove extra trailing comma
+	%str = %str @ "]";
 }
 
 function AppendString(%str){
@@ -169,10 +260,10 @@ function AppendInteger(%number){
 }
 
 function AppendAddress(%DorminAddr){
-	%rtn = "OBJECT=O:" @ %DorminAddr.index @ ":";
-	for(%i = 0; %i<%DorminAddr.index;%i++){
-		%rtn = %rtn @ AppendString("OBJECT") @ "," @ AppendString("NAME") @ "," @ AppendString(%DorminAddr.strArrNames[%i]);
-		if(%i<%DorminAddr.index-1){
+	%rtn = "OBJECT=O:" @ %DorminAddr.strArrNames.count() @ ":";
+	for(%i = 0; %i<%DorminAddr.strArrNames.count();%i++){
+		%rtn = %rtn @ AppendString("OBJECT") @ "," @ AppendString("NAME") @ "," @ AppendString(%DorminAddr.strArrNames.getValue(%i));
+		if(%i<%DorminAddr.strArrNames.count()-1){
 			%rtn = %rtn @ ",";
 		}
 	}
@@ -193,21 +284,22 @@ function DorminMessage::MakeString(%this)
    %output= %output @ "&";
    %output= %output @ AppendAddress(%this.DorminAddr);
    %output= %output @ "&";
-   if(isObject(%this.arrParameters)){
-      %output = %output @ AppendParameter(%this.arrParameters.strValueName);
-      %output = %output @ AppendParameter(%this.arrParameters.strName);
-      %output = %output @ AppendParameter(%this.arrParameters.objValue);
+   if(%this.arrParameters.count()>=1){
+         for(%i = 0; %i<%this.arrParameters.count(); %i++){
+               %output = %output @ AppendParameter(%this.arrParameters.getValue(%i));
+         }
    }
-   return output;
+   return %output;
 }
 
 function DorminStringReader::create(%this,%strDorminString){
 	%this.numLocation = 0;
 	%this.strDorminString = %strDorminString;
+	return %this;
 }
 
 function DorminMsgFromString(%strDorminString){
-	%message = new ScriptObject(DorminMessage).create("","","");
+	%message = new ScriptObject(DorminMessage).create("","","","Undefined","Undefined","Undefined");
 	%DSR = new ScriptObject(DorminStringReader).create(%strDorminString);
    %DSR.numLocation = 7;
 	%message.strVerb =  strReadVerb(%DSR);
@@ -255,7 +347,11 @@ function strReadAddr(%reader){
 	%reader.numLocation = %reader.numLocation + 9;
 	%numargs = mFloor(getSubStr(%reader.strDorminString,%reader.numLocation,strpos(%reader.strDorminString,":",%reader.numLocation)));
 	%reader.numLocation = strpos(%reader.strDorminString,":",%reader.numLocation)+1;
-	return new ScriptObject(DorminAddress).create(numReadIdentifier(%reader));
+	%arrIdents = new array();
+	for(%i = 0; %i<%numargs;%i++){
+		%arrIdents.add(%arrIdents.count(),numReadIdentifier(%reader));
+	}
+	return new ScriptObject(DorminAddress).create(%arrIdents, true);
 }
 
 function numReadIdentifier(%reader){
@@ -266,8 +362,9 @@ function numReadIdentifier(%reader){
 }
 
 function arrReadParams(%reader){
-	if(%reader.numLocation<strlen(%reader.strDorminString)-1 && charAt(%reader.strDorminString,%reader.numLocation)!$="\n"){
-		%params = DPReadParameter(%reader);
+   %params = new array();
+   while(%reader.numLocation<strlen(%reader.strDorminString)-1 && charAt(%reader.strDorminString,%reader.numLocation)!$="\n"){
+		%params.add(%params.count(),DPReadParameter(%reader));
 	}
 	return %params;
 }
@@ -308,7 +405,7 @@ function objReadPrimitive(%reader){
    else if(charAt(%reader.strDorminString,%reader.numLocation) $= "X")
       return new ScriptObject(TypeHolder).create("X", mapReadMapping(%reader));
    else
-      return -1;
+      return "";
 }
 
 function numReadReal(%reader){
@@ -342,9 +439,15 @@ function listReadList(%reader){
 	%reader.numLocation+=2;
 	%place = strpos(%reader.strDorminString,":",%reader.numLocation);
 	%num = mFloor(getSubStr(%reader.strDorminString,%reader.numLocation,%place));
-	%reader.numLocation = %place+1;
-	%list = objReadPrimitive(%reader);
-	%reader.numLocation++;
+	%reader.numLocation = %place+1+1;
+	%list = new array();
+   for(%i = 0; %i < %num; %i++)
+	{
+		%list.add(%list.count(),objReadPrimitive(%reader));
+		if (%i < %num - 1)
+		   %reader.numLocation++;//go past the ","
+	}
+	%reader.numLocation++;//go past the "]"
 	return %list;
 }
 
@@ -357,23 +460,18 @@ function mapReadMapping(%reader){
 	%place = strpos(%reader.strDorminString,":",%reader.numLocation);
 	%num = mFloor(getSubStr(%reader.strDorminString,%reader.numLocation,%place));
 	%reader.numLocation++;
-	//even elements are keys and odd elements are values
-	//var dict = [];
-	//for (i = 0; i < num; i++){
-		//reader.numLocation++;
-		//var key = strReadString(reader);
-		//reader.numLocation++;
-		//var val = objReadPrimitive(reader);
-		//dict[dict.length] = key;
-		//dict[dict.length] = val;
-		//reader.numLocation++;
-		//if (i < num - 1)reader.numLocation++;
-	//}
-		//reader.numLocation++;
-	//return dict;
-	
-	//This function is incompletely implemented.
-	//You need to devise a common way of how to pass arrays to functions.
-	//Eeither pass them as encoded strings and do necessary processing 
-	//at the function which uses them.
+	%dict = new array();
+	for(%i = 0; %i < %num; %i++){
+		%reader.numLocation++;
+		%key = strReadString(%reader);
+		%reader.numLocation++;
+		%val = objReadPrimitive(%reader);
+		%dict.add(%dict.count(),%key);
+		%dict.add(%dict.count(),%val);
+		%reader.numLocation++;
+		if (%i < %num - 1)
+		   %reader.numLocation++;
+	}
+		%reader.numLocation++;
+	return %dict;
 }
