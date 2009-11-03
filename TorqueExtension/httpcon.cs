@@ -126,9 +126,8 @@ function httpPage::onConnectFailed(%this)
 function parseReceivedMessage(%message)
 {
    %loop = true;
-   echo("-----------------------------------------" @ %message);
    %msg = DorminMsgFromString(%message);
-   %rtnValue = "";
+   %rtnVal = "";
 
 	while (%loop == true)
 	{
@@ -155,11 +154,12 @@ function parseReceivedMessage(%message)
 			{
 				if (%msg.arrParameters.getValue(%tempHint).strName $= "MESSAGE")
 				{
-					%hintLocation = %tempHint;
+					$hintLocation = %tempHint;
 					break;
 				}
 			}
-			%rtnValue = %msg;
+			%rtnVal = %msg;
+			
 		}
 		else if (%msg.strVerb $= "FLAG")
 		{
@@ -183,5 +183,5 @@ function parseReceivedMessage(%message)
 			%msg = DorminMsgFromString(%message);
 		}
 	}
-	return %rtnValue;
+	showHint(%rtnVal);
 }
