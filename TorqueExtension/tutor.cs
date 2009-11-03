@@ -6,10 +6,11 @@ $g_blockJITs = false;
 $hintNumber = 0;
 $hintMsg = "";
 $hintLocation = "";
+$hintCount = 0;
 
 function startTutor(%id,%mission)
 {
-   // you can start event catching here
+   GlobalActionMap.bind(keyboard, "h", onHint);
    
    $g_gameTREURL = "http://localhost:8080/WebxPSTServer/WebxPST";
    $g_taskName = getMissionDisplayName(%mission);
@@ -25,7 +26,6 @@ function sendMessage(%msg)
 {
    if ($g_isTutorRunning == false)
 		return false;
-   echo("###Sending message:" @ %msg);
    new TCPObject(httpPage) { };
    httpPage.post($g_gameTREURL @ "/" @ $mytre,%msg,1);
 }
