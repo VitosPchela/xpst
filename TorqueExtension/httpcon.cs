@@ -137,7 +137,7 @@ function parseReceivedMessage(%message)
 			%addrarr = %msg.DorminAddr.strArrNames;
 			if (%addrarr.getValue(0) $= 'TutorLink' && %addrarr.getValue(1) $= 'Done')
 			{
-				echo("Done.......Congratulations.You have succesfully completed the task.");
+			   MessageBoxOK("DONE!!!","Congratulations.You have succesfully completed the task");
 				//implement messagebox to show this
             //stopTutor();
 			}
@@ -146,7 +146,7 @@ function parseReceivedMessage(%message)
 		{
 			if ($g_blockJITs == false)
 				//show messagebox with JIT message
-				echo("JIT....." @ %msg.arrParameters.getValue(0).objValue.value.getValue(0).value);
+				MessageBoxOK("JIT Message",%msg.arrParameters.getValue(0).objValue.value.getValue(0).value);
 		}
 		else if (%msg.strVerb $= "HINTMESSAGE")
 		{
