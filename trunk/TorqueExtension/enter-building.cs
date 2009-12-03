@@ -1,22 +1,13 @@
-$b1 = false;
-$b2 = false;
-$b3 = false;
 
 function onEnterBuilding(%trigger,%obj)
 {
-   if(%trigger.getName() $= "building1trigger" && $b1 == false)
+   if(!%trigger.doneOnce)
    {
-      echo("entered building1");
-      $b1 = true;
-   }
-   else if(%trigger.getName() $= "building2trigger" && $b2 == false)
-   {
-      echo("entered building2");
-      $b2 = true;
-   }
-   else if(%trigger.getName() $= "building3trigger" && $b3 == false)
-   {
-      echo("entered building3");
-      $b3 = true;
+      %entname = %trigger.getName() @ ":Enter";
+      %msg1 = new ScriptObject(DorminMessage).create(%entname, "NOTEVALUESET", "1","","String","String");
+      sendMessage(%msg1.MakeString());
+      %temp = getSubStr(%trigger.getName(),0,strpos(%trigger.getName(),"Trigger"));
+      MessageBoxOK("Message","You have entered " @ %temp);
+      %trigger.doneOnce = true;
    }
 }
