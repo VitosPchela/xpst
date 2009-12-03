@@ -1,0 +1,34 @@
+mappings
+{
+	[priority=1]TutorLink.Done=>Error-Not-Done;
+	
+	[priority=0]
+	switch
+	{
+		b1Occupant:Ammo = "Ammo command on b1 occupant",
+		b2Occupant:Ammo = "Ammo command on b2 occupant",
+		b3Occupant:Ammo = "Ammo command on b2 occupant",
+		b1Occupant:Fire = "Fire command on b1 occupant",
+		b2Occupant:Fire = "Fire command on b2 occupant",
+		b3Occupant:Fire = "Fire command on b3 occupant",
+		b1Occupant:Jump = "Jump command on b1 occupant",
+		b2Occupant:Jump = "Jump command on b2 occupant",
+		b3Occupant:Jump = "Jump command on b3 occupant",
+		b1Occupant:Destroy = "Destroy command on b1 occupant",
+		b2Occupant:Destroy = "Destroy command on b2 occupant",
+		b3Occupant:Destroy = "Destroy command on b3 occupant"
+	} => Error-Offpath;
+}
+
+feedback
+{
+	Error-Not-Done {
+		answer: "0";
+		JIT: "You are not done with this problem yet. Ask for a hint if you would like help.";
+	}
+	
+	Error-Offpath {
+		answer: "foo";
+		JIT: "You used {v}. That's not something you need to do right now.";
+	}
+}
