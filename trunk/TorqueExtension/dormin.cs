@@ -55,10 +55,17 @@ function DorminAddress::ToDottedString(%this)
 
 function splitString(%parse, %delim)
 {
+   %temp = new array();
    if(%parse $="") 
    {
       %temarr = new array();
 	   %temarr.add(0,"");
+	   return %temarr;
+   }
+   if(strpos(%parse,%delim) == -1)
+   {
+      %temarr = new array();
+	   %temarr.add(0,%parse);
 	   return %temarr;
    }
 	if (%delim !$= ""){
@@ -66,8 +73,7 @@ function splitString(%parse, %delim)
 		if (%posDelim == 0)
 			return -1;
 		%len = strlen(%parse);
-		%temp = new array();
-		%temp.add(0,getSubStr (%parse, 0, %posDelim - 1));
+		%temp.add(0,getSubStr (%parse, 0, %posDelim));
 		%parse = getSubStr (%parse, %posDelim + 1, %len - %posDelim);
 		%posDelim = strpos (%parse, %delim);
 		%x = 1;
@@ -78,7 +84,7 @@ function splitString(%parse, %delim)
 			%posDelim = strpos (%parse, %delim);
 			%x++;
 		}
-		%temp.add(%x,%parse);
+      %temp.add(%x,%parse);
 		return %temp;
 	} else {
 		return new array();
