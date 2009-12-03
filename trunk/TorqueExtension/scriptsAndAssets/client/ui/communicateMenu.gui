@@ -1,0 +1,283 @@
+//--- OBJECT WRITE BEGIN ---
+%guiContent = new GuiControl(communicateMenu) {
+   canSaveDynamicFields = "0";
+   Enabled = "1";
+   isContainer = "1";
+   HorizSizing = "width";
+   VertSizing = "height";
+   position = "0 0";
+   Extent = "1024 768";
+   MinExtent = "8 8";
+   canSave = "1";
+   Visible = "1";
+   hovertime = "1000";
+
+   new GuiControl() {
+      canSaveDynamicFields = "0";
+      Enabled = "1";
+      isContainer = "1";
+      Profile = "GuiWindowProfile";
+      HorizSizing = "center";
+      VertSizing = "center";
+      position = "160 224";
+      Extent = "680 328";
+      MinExtent = "8 8";
+      canSave = "1";
+      Visible = "1";
+      hovertime = "1000";
+
+      new GuiTextCtrl() {
+         canSaveDynamicFields = "0";
+         Enabled = "1";
+         isContainer = "0";
+         Profile = "GuiTextProfile";
+         HorizSizing = "right";
+         VertSizing = "bottom";
+         position = "8 32";
+         Extent = "392 16";
+         MinExtent = "8 8";
+         canSave = "1";
+         Visible = "1";
+         hovertime = "1000";
+         Margin = "0 0 0 0";
+         Padding = "0 0 0 0";
+         AnchorTop = "1";
+         AnchorBottom = "0";
+         AnchorLeft = "1";
+         AnchorRight = "0";
+         text = "Please select a command and player to communicate the command to the player";
+         maxLength = "255";
+      };
+      new GuiButtonCtrl() {
+         canSaveDynamicFields = "0";
+         Enabled = "1";
+         isContainer = "0";
+         Profile = "GuiButtonProfile";
+         HorizSizing = "right";
+         VertSizing = "bottom";
+         position = "264 296";
+         Extent = "127 23";
+         MinExtent = "8 8";
+         canSave = "1";
+         Visible = "1";
+         Command = "communicate_message();";
+         hovertime = "1000";
+         text = "Send Message";
+         groupNum = "-1";
+         buttonType = "PushButton";
+         useMouseEvents = "0";
+      };
+      new GuiScrollCtrl() {
+         canSaveDynamicFields = "0";
+         Enabled = "1";
+         isContainer = "1";
+         Profile = "GuiScrollProfile";
+         HorizSizing = "right";
+         VertSizing = "bottom";
+         position = "8 88";
+         Extent = "320 200";
+         MinExtent = "8 8";
+         canSave = "1";
+         Visible = "1";
+         hovertime = "1000";
+         willFirstRespond = "1";
+         hScrollBar = "dynamic";
+         vScrollBar = "alwaysOn";
+         constantThumbHeight = "0";
+         childMargin = "0 0";
+
+         new GuiTextListCtrl(command_List) {
+            canSaveDynamicFields = "0";
+            Enabled = "1";
+            isContainer = "1";
+            Profile = "GuiTextArrayProfile";
+            HorizSizing = "right";
+            VertSizing = "bottom";
+            position = "2 2";
+            Extent = "298 80";
+            MinExtent = "8 8";
+            canSave = "1";
+            Visible = "1";
+            hovertime = "1000";
+            enumerate = "0";
+            resizeCell = "1";
+            columns = "0";
+            fitParentWidth = "1";
+            clipColumnText = "0";
+         };
+      };
+      new GuiScrollCtrl() {
+         canSaveDynamicFields = "0";
+         Enabled = "1";
+         isContainer = "1";
+         Profile = "GuiScrollProfile";
+         HorizSizing = "right";
+         VertSizing = "bottom";
+         position = "344 88";
+         Extent = "320 200";
+         MinExtent = "8 2";
+         canSave = "1";
+         Visible = "1";
+         hovertime = "1000";
+         willFirstRespond = "1";
+         hScrollBar = "dynamic";
+         vScrollBar = "alwaysOn";
+         constantThumbHeight = "0";
+         childMargin = "0 0";
+
+         new GuiTextListCtrl(player_List) {
+            canSaveDynamicFields = "0";
+            Enabled = "1";
+            isContainer = "1";
+            Profile = "GuiTextArrayProfile";
+            HorizSizing = "right";
+            VertSizing = "bottom";
+            position = "2 2";
+            Extent = "300 2";
+            MinExtent = "8 2";
+            canSave = "1";
+            Visible = "1";
+            hovertime = "1000";
+            enumerate = "0";
+            resizeCell = "1";
+            columns = "0";
+            fitParentWidth = "1";
+            clipColumnText = "0";
+         };
+      };
+      new GuiTextCtrl() {
+         canSaveDynamicFields = "0";
+         Enabled = "1";
+         isContainer = "0";
+         Profile = "GuiTextProfile";
+         HorizSizing = "right";
+         VertSizing = "bottom";
+         position = "16 64";
+         Extent = "64 16";
+         MinExtent = "8 2";
+         canSave = "1";
+         Visible = "1";
+         hovertime = "1000";
+         Margin = "0 0 0 0";
+         Padding = "0 0 0 0";
+         AnchorTop = "1";
+         AnchorBottom = "0";
+         AnchorLeft = "1";
+         AnchorRight = "0";
+         text = "Commands";
+         maxLength = "1024";
+      };
+      new GuiTextCtrl() {
+         canSaveDynamicFields = "0";
+         Enabled = "1";
+         isContainer = "0";
+         Profile = "GuiTextProfile";
+         HorizSizing = "right";
+         VertSizing = "bottom";
+         position = "352 64";
+         Extent = "64 16";
+         MinExtent = "8 2";
+         canSave = "1";
+         Visible = "1";
+         hovertime = "1000";
+         Margin = "0 0 0 0";
+         Padding = "0 0 0 0";
+         AnchorTop = "1";
+         AnchorBottom = "0";
+         AnchorLeft = "1";
+         AnchorRight = "0";
+         text = "Player Entities";
+         maxLength = "1024";
+      };
+   };
+};
+//--- OBJECT WRITE END ---
+
+function communicateMenu::onWake()
+{
+   command_List.clear();
+   command_List.addRow(0, "Ammo--Command to pickup Ammo" );
+   command_List.addRow(1, "Evacuate--Command to evacuate the location" );
+   command_List.addRow(2, "Fire--Command to start firing" );
+   command_List.addRow(3, "Jump--Command to Jump" );
+   command_List.addRow(4, "Destroy--Command to destroy an entity" );
+   command_List.sort(0);
+   command_List.setSelectedRow(0);
+   command_List.scrollVisible(0);
+   
+   player_List.clear();
+   %i = 0;
+   %gID = MissionCleanup.getId();
+   if (%gID != -1) {
+      %gCount = MissionCleanup.getCount();
+      for (%idx = 0; %idx < %gCount; %idx++) {
+         %obj = %gID.getObject(%idx);
+         %obj = %obj.getName();
+         if(%obj !$= "")
+         {
+            if(%obj.getClassName() $= "AIPlayer")
+            {
+               player_List.addRow(%i, %obj );
+               %i = %i + 1;
+            }
+         }
+      }
+    }
+   player_List.sort(0);
+   player_List.setSelectedRow(0);
+   player_List.scrollVisible(0);
+}
+
+function communicate_message()
+{
+   %id = command_List.getSelectedId();
+   %cmd_name = command_List.getRowTextById(%id);
+   %cmd_name = getSubStr(%cmd_name,0,strpos(%cmd_name,"-"));
+
+   %id = player_List.getSelectedId();
+   %player_name = player_List.getRowTextById(%id);
+   
+   if(%cmd_name $= "Ammo")
+      doAmmo(%player_name);
+   else if(%cmd_name $= "Evacuate")
+      doEvacuate(%player_name);
+   else if(%cmd_name $= "Fire")
+      doFire(%player_name);
+   else if(%cmd_name $= "Jump")
+      doJump(%player_name);
+   else if(%cmd_name $= "Destroy")
+      doDestroy(%player_name);
+
+   Canvas.popDialog("communicateMenu");
+}
+
+function doAmmo(%player_name)
+{
+   %msg1 = new ScriptObject(DorminMessage).create(%player_name @ ":Ammo", "NOTEVALUESET", "Ammo","","String","String");
+	sendMessage(%msg1.MakeString());
+}
+
+function doEvacuate(%player_name)
+{
+   %player_name.setMoveDestination(%player_name.moveTo);
+   %msg1 = new ScriptObject(DorminMessage).create(%player_name @ ":Evacuate", "NOTEVALUESET", "Evacuate","","String","String");
+	sendMessage(%msg1.MakeString());
+}
+
+function doFire(%player_name)
+{
+   %msg1 = new ScriptObject(DorminMessage).create(%player_name @ ":Fire", "NOTEVALUESET", "Fire","","String","String");
+	sendMessage(%msg1.MakeString());
+}
+
+function doJump(%player_name)
+{
+   %msg1 = new ScriptObject(DorminMessage).create(%player_name @ ":Jump", "NOTEVALUESET", "Jump","","String","String");
+	sendMessage(%msg1.MakeString());
+}
+
+function doDestroy(%player_name)
+{
+   %msg1 = new ScriptObject(DorminMessage).create(%player_name @ ":Destroy", "NOTEVALUESET", "Destroy","","String","String");
+	sendMessage(%msg1.MakeString());
+}
