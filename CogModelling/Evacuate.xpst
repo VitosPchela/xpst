@@ -1,0 +1,75 @@
+include "Evacuate-offpath.xpst";
+
+sequence
+{
+	(
+		(b1-enter or b2-enter or b3-enter) then (starttalk) then (b1-evacuate or b2-evacuate or b3-evacuate) and
+		(b1-enter or b2-enter or b3-enter) then (starttalk) then (b1-evacuate or b2-evacuate or b3-evacuate) and
+		(b1-enter or b2-enter or b3-enter) then (starttalk) then (b1-evacuate or b2-evacuate or b3-evacuate) then
+		All-Done
+	)
+	and
+	Error-Not-Done and
+	Error-Offpath;
+}
+
+feedback
+{
+	b1-enter
+	{
+		answer: "1";
+		Hint: "Explore to find an unevacuated building and evacuate it";
+	}
+	b2-enter
+	{
+		answer: "1";
+		Hint: "Explore to find an unevacuated building to evacuate it";
+	}
+	b3-enter
+	{
+		answer: "1";
+		Hint: "Explore to find an unevacuated building to evacuate it";
+	}
+	starttalk
+	{
+		answer: "c";
+		Hint: "You need to communicate with the occupant to evacuate the building";
+		Hint: "To start communicating with the occupant of this building, press C";
+		JIT: "You have pressed {v} .It is the wrong key. Ask for a Hint.";
+	}
+	b1-evacuate
+	{
+		answer: "Evacuate";
+		Hint: "Select the Evacuate command and the corresponding player to send him the command";
+		Hint: "Click on the Send Message button to send the command";
+	}
+	b2-evacuate
+	{
+		answer: "Evacuate";
+		Hint: "Select the Evacuate command and the corresponding player to send him the command";
+		Hint: "Click on the Send Message button to send the command";
+	}
+	b3-evacuate
+	{
+		answer: "Evacuate";
+		Hint: "Select the Evacuate command and the corresponding player to send him the command";
+		Hint: "Click on the Send Message button to send the command";
+	}
+	All-Done
+	{
+		answer: "1";
+		Hint: "You have successfully completed the Evacuate task.";
+	}
+}
+
+mappings
+{
+	[priority=2] b1Trigger:Enter => b1-enter;
+	[priority=2] b2Trigger:Enter => b2-enter;
+	[priority=2] b3Trigger:Enter => b3-enter;
+	[priority=2] startcommunicate => starttalk;
+	[priority=2] b1Occupant:Evacuate => b1-evacuate;
+	[priority=2] b2Occupant:Evacuate => b2-evacuate;
+	[priority=2] b3Occupant:Evacuate => b3-evacuate;
+	[priority=2] TutorLink.Done => All-Done;
+}
