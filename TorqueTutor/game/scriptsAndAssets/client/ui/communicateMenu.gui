@@ -198,11 +198,10 @@ function communicateMenu::onWake()
    command_List.clear();
    command_List.addRow(0, "Ammo--Command to pickup Ammo" );
    command_List.addRow(1, "Evacuate--Command to evacuate the location" );
-   command_List.addRow(2, "Fire--Command to start firing" );
-   command_List.addRow(3, "Jump--Command to Jump" );
-   command_List.addRow(4, "Destroy--Command to destroy an entity" );
-   command_List.addRow(5, "ReportLoc--Command to report location of the Target to Base" );
-   command_List.addRow(6, "Acquire--Command to have Base Acquire the Target" );
+   command_List.addRow(2, "Jump--Command to Jump" );
+   command_List.addRow(3, "Destroy--Command to destroy an entity" );
+   command_List.addRow(4, "ReportLoc--Command to report location of the Target to Base" );
+   command_List.addRow(5, "Fire--Command to have Base Fire the Target" );
    command_List.setSelectedRow(0);
    command_List.scrollVisible(0);
    
@@ -250,8 +249,6 @@ function communicate_message()
       doDestroy(%player_name);
    else if(%cmd_name $= "ReportLoc")
       doReportLoc(%player_name);
-   else if(%cmd_name $= "Acquire")
-      doAcquire(%player_name);
             
    Canvas.popDialog("communicateMenu");
 }
@@ -273,6 +270,10 @@ function doEvacuate(%player_name)
 
 function doFire(%player_name)
 {
+   if($flag == 2)
+   {
+      createFire();
+   }
    %msg1 = new ScriptObject(DorminMessage).create(%player_name @ ":Fire", "NOTEVALUESET", "Fire","","String","String");
 	sendMessage(%msg1.MakeString());
 }
@@ -294,14 +295,4 @@ function doReportLoc(%player_name)
 	sendMessage(%msg1.MakeString());
 	MessageBoxOK("Location Reported","The location of the Target has been reported to the Base");
 	$flag = 2;
-}
-
-function doAcquire(%player_name)
-{
-   if($flag == 2)
-   {
-      createFire();
-   }
-   %msg1 = new ScriptObject(DorminMessage).create(%player_name @ ":Acquire", "NOTEVALUESET", "Acquire","","String","String");
-	sendMessage(%msg1.MakeString());
 }
