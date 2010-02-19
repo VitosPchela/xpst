@@ -1,0 +1,25 @@
+mappings
+{
+	[priority=1]TutorLink.Done=>Error-Not-Done;
+	
+	[priority=0]
+	switch
+	{
+		base:Ammo = "Ammo command on Base",
+		base:Jump = "Jump command on Base",
+		base:Destroy = "Destroy command on Base"
+	} => Error-Offpath;
+}
+
+feedback
+{
+	Error-Not-Done {
+		answer: "0";
+		JIT: "You are not done with this problem yet. Ask for a hint if you would like help.";
+	}
+	
+	Error-Offpath {
+		answer: "foo";
+		JIT: "You used {v}. That's not something you need to do right now.";
+	}
+}

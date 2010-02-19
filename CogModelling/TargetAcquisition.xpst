@@ -1,0 +1,60 @@
+
+include "TargetAcquisition-offpath.xpst";
+
+sequence
+{
+	(
+		enter-target-proximity then starttalk then report-location-to-base then
+		starttalk then send-fire-command then
+		All-Done
+	)
+	and
+	Error-Not-Done and
+	Error-Offpath;
+}
+
+feedback
+{
+	enter-target-proximity
+	{
+		answer: "1";
+		Hint: "Go search for the Target and enter its proximity region";
+	}
+
+	starttalk
+	{
+		answer: "c";
+		Hint: "Invoke communication with the Base.";
+		Hint: "To start communicating with the Base, press C";
+		JIT: "You have pressed {v} .It is the wrong key. Ask for a Hint.";
+	}
+
+	report-location-to-base
+	{
+		answer: "ReportLoc";
+		Hint: "Select the ReportLoc command and Base to report the location of target to the base.";
+		Hint: "Click on the Send Message button to send the command";
+	}
+
+	send-fire-command
+	{
+		answer: "Fire";
+		Hint: "Select the Fire command and Base to have Base fire the target.";
+		Hint: "Click on the Send Message button to send the command";		
+	}
+
+	All-Done
+	{
+		answer: "1";
+		Hint: "You have successfully completed the TargetAcquisition task.";
+	}
+}
+
+mappings
+{
+	[priority=2] Target:EnterProximity => enter-target-proximity;
+	[priority=2] startcommunicate => starttalk;
+	[priority=2] base:ReportLoc => report-location-to-base;
+	[priority=2] base:Fire => send-fire-command;
+	[priority=2] TutorLink.Done => All-Done;
+}
