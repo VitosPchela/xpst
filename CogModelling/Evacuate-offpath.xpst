@@ -5,18 +5,21 @@ mappings
 	[priority=0]
 	switch
 	{
-		b1Occupant:Ammo = "Ammo command on b1 occupant",
-		b2Occupant:Ammo = "Ammo command on b2 occupant",
-		b3Occupant:Ammo = "Ammo command on b2 occupant",
-		b1Occupant:Fire = "Fire command on b1 occupant",
-		b2Occupant:Fire = "Fire command on b2 occupant",
-		b3Occupant:Fire = "Fire command on b3 occupant",
-		b1Occupant:Jump = "Jump command on b1 occupant",
-		b2Occupant:Jump = "Jump command on b2 occupant",
-		b3Occupant:Jump = "Jump command on b3 occupant",
-		b1Occupant:Destroy = "Destroy command on b1 occupant",
-		b2Occupant:Destroy = "Destroy command on b2 occupant",
-		b3Occupant:Destroy = "Destroy command on b3 occupant"
+		cottage1Occupant:Ammo = "Ammo command on cottage1Occupant",
+		cottage2Occupant:Ammo = "Ammo command on cottage2Occupant",
+		cottage3Occupant:Ammo = "Ammo command on cottage3Occupant",
+		cottage1Occupant:Fire = "Fire command on cottage1Occupant",
+		cottage2Occupant:Fire = "Fire command on cottage2Occupant",
+		cottage3Occupant:Fire = "Fire command on cottage3Occupant",
+		cottage1Occupant:Jump = "Jump command on cottage1Occupant",
+		cottage2Occupant:Jump = "Jump command on cottage2Occupant",
+		cottage3Occupant:Jump = "Jump command on cottage3Occupant",
+		cottage1Occupant:Destroy = "Destroy command on cottage1Occupant",
+		cottage2Occupant:Destroy = "Destroy command on cottage2Occupant",
+		cottage3Occupant:Destroy = "Destroy command on cottage3Occupant",
+		cottage1Occupant:ReportLoc = "ReportLoc command on cottage1Occupant",
+		cottage2Occupant:ReportLoc = "ReportLoc command on cottage2Occupant",
+		cottage3Occupant:ReportLoc = "ReportLoc command on cottage3Occupant"
 	} => Error-Offpath;
 }
 
