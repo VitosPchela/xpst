@@ -1,3 +1,4 @@
+#summary Description of the Enhanced xPST System
 
 = Extensions to xPST system to enable authoring tutors in 3D games =
 
