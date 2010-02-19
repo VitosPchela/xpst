@@ -1,11 +1,12 @@
+
 include "Evacuate-offpath.xpst";
 
 sequence
 {
 	(
-		(b1-enter or b2-enter or b3-enter) then (starttalk) then (b1-evacuate or b2-evacuate or b3-evacuate) and
-		(b1-enter or b2-enter or b3-enter) then (starttalk) then (b1-evacuate or b2-evacuate or b3-evacuate) and
-		(b1-enter or b2-enter or b3-enter) then (starttalk) then (b1-evacuate or b2-evacuate or b3-evacuate) then
+		(cottage1-enter or cottage2-enter or cottage3-enter) then (starttalk) then (cottage1-evacuate or cottage2-evacuate or cottage3-evacuate) and
+		(cottage1-enter or cottage2-enter or cottage3-enter) then (starttalk) then (cottage1-evacuate or cottage2-evacuate or cottage3-evacuate) and
+		(cottage1-enter or cottage2-enter or cottage3-enter) then (starttalk) then (cottage1-evacuate or cottage2-evacuate or cottage3-evacuate) then
 		All-Done
 	)
 	and
@@ -15,17 +16,18 @@ sequence
 
 feedback
 {
-	b1-enter
+	cottage1-enter
 	{
 		answer: "1";
 		Hint: "Explore to find an unevacuated building and evacuate it";
 	}
-	b2-enter
+	cottage2-enter
+
 	{
 		answer: "1";
 		Hint: "Explore to find an unevacuated building to evacuate it";
 	}
-	b3-enter
+	cottage3-enter
 	{
 		answer: "1";
 		Hint: "Explore to find an unevacuated building to evacuate it";
@@ -37,19 +39,19 @@ feedback
 		Hint: "To start communicating with the occupant of this building, press C";
 		JIT: "You have pressed {v} .It is the wrong key. Ask for a Hint.";
 	}
-	b1-evacuate
+	cottage1-evacuate
 	{
 		answer: "Evacuate";
 		Hint: "Select the Evacuate command and the corresponding player to send him the command";
 		Hint: "Click on the Send Message button to send the command";
 	}
-	b2-evacuate
+	cottage2-evacuate
 	{
 		answer: "Evacuate";
 		Hint: "Select the Evacuate command and the corresponding player to send him the command";
 		Hint: "Click on the Send Message button to send the command";
 	}
-	b3-evacuate
+	cottage3-evacuate
 	{
 		answer: "Evacuate";
 		Hint: "Select the Evacuate command and the corresponding player to send him the command";
@@ -64,12 +66,12 @@ feedback
 
 mappings
 {
-	[priority=2] b1Trigger:Enter => b1-enter;
-	[priority=2] b2Trigger:Enter => b2-enter;
-	[priority=2] b3Trigger:Enter => b3-enter;
+	[priority=2] cottage1Trigger:Enter => cottage1-enter;
+	[priority=2] cottage2Trigger:Enter => cottage2-enter;
+	[priority=2] cottage3Trigger:Enter => cottage3-enter;
 	[priority=2] startcommunicate => starttalk;
-	[priority=2] b1Occupant:Evacuate => b1-evacuate;
-	[priority=2] b2Occupant:Evacuate => b2-evacuate;
-	[priority=2] b3Occupant:Evacuate => b3-evacuate;
+	[priority=2] cottage1Occupant:Evacuate => cottage1-evacuate;
+	[priority=2] cottage2Occupant:Evacuate => cottage2-evacuate;
+	[priority=2] cottage3Occupant:Evacuate => cottage3-evacuate;
 	[priority=2] TutorLink.Done => All-Done;
 }
