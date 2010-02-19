@@ -1,0 +1,80 @@
+//--- OBJECT WRITE BEGIN ---
+%guiContent = new GuiChunkedBitmapCtrl(MainMenuGui) {
+   canSaveDynamicFields = "0";
+   Enabled = "1";
+   isContainer = "1";
+   Profile = "GuiContentProfile";
+   HorizSizing = "width";
+   VertSizing = "height";
+   position = "0 0";
+   Extent = "1024 768";
+   MinExtent = "8 8";
+   canSave = "1";
+   Visible = "1";
+   hovertime = "1000";
+   bitmap = "scriptsAndAssets/client/ui/background";
+   useVariable = "0";
+   tile = "0";
+
+   new GuiButtonCtrl() {
+      canSaveDynamicFields = "0";
+      Enabled = "1";
+      isContainer = "0";
+      Profile = "GuiButtonProfile";
+      HorizSizing = "right";
+      VertSizing = "top";
+      position = "36 680";
+      Extent = "110 20";
+      MinExtent = "8 8";
+      canSave = "1";
+      Visible = "1";
+      Command = "quit();";
+      hovertime = "1000";
+      text = "Quit!";
+      groupNum = "-1";
+      buttonType = "PushButton";
+      useMouseEvents = "0";
+   };
+   new GuiButtonCtrl() {
+      canSaveDynamicFields = "0";
+      Enabled = "1";
+      isContainer = "0";
+      Profile = "GuiButtonProfile";
+      HorizSizing = "right";
+      VertSizing = "top";
+      position = "36 600";
+      Extent = "110 20";
+      MinExtent = "8 8";
+      canSave = "1";
+      Visible = "1";
+      Command = "Canvas.setContent(startMissionGui);";
+      hovertime = "1000";
+      text = "Start Mission...";
+      groupNum = "-1";
+      buttonType = "PushButton";
+      useMouseEvents = "0";
+   };
+   new GuiButtonCtrl() {
+      canSaveDynamicFields = "0";
+      Enabled = "1";
+      isContainer = "0";
+      Profile = "GuiButtonProfile";
+      HorizSizing = "right";
+      VertSizing = "top";
+      position = "36 640";
+      Extent = "110 20";
+      MinExtent = "8 8";
+      canSave = "1";
+      Visible = "1";
+      Command = "Canvas.pushDialog(aboutDlg);";
+      hovertime = "1000";
+      text = "About...";
+      groupNum = "-1";
+      buttonType = "PushButton";
+      useMouseEvents = "0";
+   };
+};
+//--- OBJECT WRITE END ---
+
+
+
