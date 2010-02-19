@@ -1,0 +1,295 @@
+//-------------------------- 2/16/2010 -- 17:34:59 -----
+Processor Init:
+   Intel Pentium III, ~2.85 Ghz
+   FPU detected
+   MMX detected
+   SSE detected
+ 
+Math Init:
+   Installing Standard C extensions
+   Installing Assembly extensions
+   Installing FPU extensions
+   Installing MMX extensions
+   Installing SSE extensions
+ 
+Initializing platform...
+Input Init:
+   keyboard0 input device created.
+   mouse0 input device created.
+   DirectInput enabled.
+
+Done
+--------- Loading DIRS ---------
+
+--------- Parsing Arguments ---------
+Reading Display Device information...
+   Primary Display Device Found:
+      Vendor Id: VEN_10DE
+      Device Id: DEV_0605
+Binding server port to default IP
+UDP initialized on port 0
+DirectX 8 version - 10.0
+DirectX 9 version - 10.0
+GLExtensions: Extension bind failed for glBufferRegionEnabledEXT
+GLExtensions: Extension bind failed for glNewBufferRegionEXT
+GLExtensions: Extension bind failed for glDeleteBufferRegionEXT
+GLExtensions: Extension bind failed for glReadBufferRegionEXT
+GLExtensions: Extension bind failed for glDrawBufferRegionEXT
+GLExtensions: Extension bind failed for glVertexWeighthNV
+GLExtensions: Extension bind failed for glVertexWeighthvNV
+Attempting to create GFX device: NVIDIA GeForce 9800 GT  (D3D9)
+GFXD3D9EnumTranslate: Unassigned value in GFXD3D9TextureFormat: 11
+Device created, setting adapter and enumerating modes
+GFXD3D9Device - using 'd3dx9_41.dll' for dynamic linking.
+   Cur. D3DDevice ref count=1
+   Maximum number of simultaneous samplers: 8
+   Pix version detected: 3.000000
+   Vert version detected: 3.000000
+WMIVideoInfo: DxDiag initialized
+Initializing GFXCardProfiler (D3D9)
+   o Chipset : 'GeForce 9800 GT'
+   o Card    : 'GeForce 9800 GT '
+   o Version : '8.15.0011.9038'
+   - Scanning card capabilities...
+GFXCardProfiler (D3D9) - Setting capability 'autoMipMapLevel' to 1.
+GFXCardProfiler (D3D9) - Setting capability 'maxTextureWidth' to 8192.
+GFXCardProfiler (D3D9) - Setting capability 'maxTextureHeight' to 8192.
+GFXCardProfiler (D3D9) - Setting capability 'maxTextureSize' to 8192.
+GFXCardProfiler (D3D9) - Setting capability 'lerpDetailBlend' to 1.
+GFXCardProfiler (D3D9) - Setting capability 'fourStageDetailBlend' to 1.
+GFXCardProfiler (D3D9) - Setting capability 'allowRGB24BitTextures' to 0.
+   - Loading card profiles...
+      - Loaded card profile profile/D3D9.cs
+      - No card profile profile/D3D9.GeForce9800GT.cs exists
+      - No card profile profile/D3D9.GeForce9800GT.GeForce9800GT.cs exists
+      - No card profile profile/D3D9.GeForce9800GT.GeForce9800GT.81500119038.cs exists
+ % - Initialized Common
+
+--------- Initializing Directory: scriptsAndAssets ---------
+
+--------- Initializing Stronghold: Server Scripts ---------
+
+--------- Initializing Stronghold: Client Scripts ---------
+--------------
+Attempting to set resolution to "800 600 false 32 60 0"
+Accepted Mode: 
+--Resolution : 800 600
+--Full Screen : No
+--Bits Per Pixel : 32
+--Refresh Rate : 60
+--FSAA Level 0
+--------------
+SFXProfile(AudioButtonOver)::onAdd: The preload failed!
+Binding server port to default IP
+UDP initialized on port 0
+ % - Initializing common GUIs
+SFXProfile(messageBoxBeep)::onAdd: The preload failed!
+ % - Initializing Tools
+ % - Initializing Tools Base
+ % - Initializing Base Editor
+ % - Initializing Mission Editor
+ % - Initializing Gui Builder
+ % - Initializing Debugger
+Engine initialized...
+Window focus status changed: focus: 1
+*** Load Main Menu
+Warning! You have a duplicate datablock name of MissionInfo. This can cause problems. You should rename one of them.
+Warning! You have a duplicate datablock name of MissionInfo. This can cause problems. You should rename one of them.
+Warning! You have a duplicate datablock name of MissionInfo. This can cause problems. You should rename one of them.
+Warning! You have a duplicate datablock name of MissionInfo. This can cause problems. You should rename one of them.
+Exporting server prefs...
+SFXProfile(Shore01Snd)::onAdd: The preload failed!
+SFXProfile(TreeGrove01Snd)::onAdd: The preload failed!
+SFXProfile(Tree01Snd)::onAdd: The preload failed!
+SFXProfile(Fire01Snd)::onAdd: The preload failed!
+SFXProfile(HealthUseSound)::onAdd: The preload failed!
+SFXProfile(WeaponUseSound)::onAdd: The preload failed!
+SFXProfile(WeaponPickupSound)::onAdd: The preload failed!
+SFXProfile(AmmoPickupSound)::onAdd: The preload failed!
+SFXProfile(CrossbowReloadSound)::onAdd: The preload failed!
+SFXProfile(CrossbowFireSound)::onAdd: The preload failed!
+SFXProfile(CrossbowFireEmptySound)::onAdd: The preload failed!
+SFXProfile(CrossbowExplosionSound)::onAdd: The preload failed!
+
+//-----------------------------------------------
+Loading light datablocks from: common/lighting/lights/
+
+//-----------------------------------------------
+Loading light datablocks from: common/lighting/filters/
+SFXProfile(DeathCrySound)::onAdd: The preload failed!
+SFXProfile(PainCrySound)::onAdd: The preload failed!
+SFXProfile(FootLightSoftSound)::onAdd: The preload failed!
+SFXProfile(FootLightHardSound)::onAdd: The preload failed!
+SFXProfile(FootLightMetalSound)::onAdd: The preload failed!
+SFXProfile(FootLightSnowSound)::onAdd: The preload failed!
+SFXProfile(FootLightShallowSplashSound)::onAdd: The preload failed!
+SFXProfile(FootLightWadingSound)::onAdd: The preload failed!
+SFXProfile(FootLightUnderwaterSound)::onAdd: The preload failed!
+Validation required for shape: scriptsAndAssets/data/shapes/player/player.dts
+Validation required for shape: scriptsAndAssets/data/shapes/player/player.dts
+scriptsAndAssets/server/scripts/sgExamples.cs (8): ::addMaterialMapping - wrong number of arguments.
+scriptsAndAssets/server/scripts/sgExamples.cs (8): usage: (string matName) Set up a material to texture mapping.
+
+//-----------------------------------------------
+Loading light datablocks from: scriptsAndAssets/server/scripts/sgCustomLights/
+*** LOADING MISSION: scriptsAndAssets/data/missions/Evacuate.mis
+*** Stage 1 load
+Warning! You have a duplicate datablock name of MissionInfo. This can cause problems. You should rename one of them.
+*** Stage 2 load
+CREATING TERRAIN 0xb190020
+*** Mission loaded
+Connect request from: 
+Connection established 2404
+CADD: 2405 local
+*** Sending mission load to client: scriptsAndAssets/data/missions/Evacuate.mis
+Data is Object: false
+Data: command=starttre&task=xxxx_A
+%data: command=starttre&task=xxxx_A
+Connecting to: aphrodite.vrac.iastate.edu:8080/WebxPST/WebxPST
+Mapping string: ServerMessage to index: 0
+Mapping string: MsgConnectionError to index: 1
+Mapping string: MsgLoadInfo to index: 2
+Mapping string: MsgLoadDescripition to index: 3
+Mapping string: MsgLoadInfoDone to index: 4
+Mapping string: MsgClientJoin to index: 5
+Mapping string: Welcome to a Torque application %1. to index: 6
+Mapping string: Sateesh to index: 7
+Mapping string: MissionStartPhase1 to index: 8
+*** New Mission: scriptsAndAssets/data/missions/Evacuate.mis
+*** Phase 1: Download Datablocks & Targets
+Mapping string: MissionStartPhase1Ack to index: 0
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/shapes/crossbow/clip
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/shapes/crossbow/crossbow
+Validation required for shape: scriptsAndAssets/data/shapes/player/player.dts
+Validation required for shape: scriptsAndAssets/data/shapes/player/player.dts
+Mapping string: MissionStartPhase2 to index: 9
+*** Phase 2: Download Ghost Objects
+Mapping string: MissionStartPhase2Ack to index: 1
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/shapes/rocks/rock2
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/shapes/Winter/Branch02_512x512
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/shapes/Winter/RootsNoSnow
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/shapes/Winter/TrunkNoSnow
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/shapes/Winter/TrunkNoSnowBase
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/shapes/Winter/Unnamed
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/shapes/campfires/stone
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/OAK2
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/OAK2_END
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/METAL_STRIP
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/BWOOD
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/MTL
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/MTLPILRBOTTOM
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/GRANITE
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/E7SBRICKFLOOR
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/GRANITE_DARK
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/IK_WOODV256A
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/WESTROOF
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/ROOF_TILES02
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/SNAGS2
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/PLANK5
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/IK_WOOD_TRIMH64
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/MOUNT4A
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/MOUNT4BUB
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/ONEBOARDNAIL
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/CASTLESTONE1A
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/IK_BRICK_12864A
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/E7SBRICKFLOORBI
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/BRIDGE02
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/FLOORBOARDS
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/BRIDGE02_DECO
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/ONEBOARDA
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/FLOOR
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/cottage/FLOOR_TRIM
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/dock/MTLPILRFRONT
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/dock/wood1_256
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/dock/tall_original
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/dock/MTLPILRTOP
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/dock/WALL_PANEL01
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/PLANK7
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/E7BRNMETAL
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/E7BMTRIM2
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/PLANK5A
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/FLOORBOARDS2B
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/CASTLESTONE3
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/E7BEAM01
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/E7BEAM02
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/LLOYDMDM2_ROOF1
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/E7TRIM01
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/E7PLATE01
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/METAL_TRIM03
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/STEP_BORDER
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/RUST_DARK
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/IK_BRICK_6464A
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/WHEAT
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/MOLD
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/E7PANELWOOD
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/interiors/tower/SNAGS
+Allocating a 1024 px clipmap for a 8192px source texture.
+   - 3 base clipstack entries, + 1 cap.
+   - Using approximately 21.280001MB of texture memory.
+Connected ...
+QUERY: POST /WebxPST/WebxPST HTTP/1.0
+Host: aphrodite.vrac.iastate.edu:8080
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 28
+
+command=starttre&task=xxxx_A
+
+Ghost Always objects received.
+LINE: HTTP/1.1 200 OK
+LINE: Server: Apache-Coyote/1.1
+LINE: Content-Type: text/plain
+LINE: Content-Length: 41
+LINE: Date: Tue, 16 Feb 2010 23:35:14 GMT
+LINE: Connection: close
+LINE: 
+LINE: 9d657078-0b34-45c6-9878-e6925a77b108 null
+BUFFER: 9d657078-0b34-45c6-9878-e6925a77b108 null
+Disconnected: aphrodite.vrac.iastate.edu:8080
+null
+Warning! You have a duplicate datablock name of httpPage. This can cause problems. You should rename one of them.
+Data is Object: false
+Data: 
+%data: 
+Connecting to: aphrodite.vrac.iastate.edu:8080/WebxPST/WebxPST/9d657078-0b34-45c6-9878-e6925a77b108
+Mapping string: MissionStartPhase3 to index: 10
+Client Replication Startup has Happened!
+fxFoliageReplicator - replicated client foliage for 0 objects
+*** Phase 3: Mission Lighting
+ Successfully loaded mission lighting file: 'scriptsAndAssets/data/missions/Evacuate_6174e433sg.ml'
+Mission lighting done
+Mapping string: MissionStartPhase3Ack to index: 2
+Mapping string: MissionStart to index: 11
+Mapping string: SyncClock to index: 12
+Connected ...
+QUERY: POST /WebxPST/WebxPST/9d657078-0b34-45c6-9878-e6925a77b108 HTTP/1.0
+Host: aphrodite.vrac.iastate.edu:8080
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 0
+
+
+
+*** Initial Control Object
+Activating DirectInput...
+Mapping string: Kork to index: 13
+[MaterialList::mapMaterials] Creating missing material for texture: scriptsAndAssets/data/shapes/items/smallhealth
+LINE: HTTP/1.1 200 OK
+LINE: Server: Apache-Coyote/1.1
+LINE: Content-Type: text/plain
+LINE: Content-Length: 0
+LINE: Date: Tue, 16 Feb 2010 23:35:14 GMT
+LINE: Connection: close
+LINE: 
+Disconnected: aphrodite.vrac.iastate.edu:8080
+getSubStr(...): error, starting position and desired length must be >= 0: (14, -1)
+getSubStr(...): error, starting position and desired length must be >= 0: (17, -1)
+getSubStr(...): error, starting position and desired length must be >= 0: (10, -1)
+Warning! You have a duplicate datablock name of DorminAddress. This can cause problems. You should rename one of them.
+CDROP: 2405 local
+*** ENDING MISSION
+CREATING TERRAIN 0xb190020 (scriptsAndAssets/data/missions/Evacuate_0.ter)
+Exporting server prefs...
+Exporting Gui preferences.
+Exporting server prefs...
+Exporting client prefs
+Exporting server prefs
+Cur. D3DDevice ref count=2

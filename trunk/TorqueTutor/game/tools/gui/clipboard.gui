@@ -1,0 +1,44 @@
+new SimSet(guiClipboard) {
+   canSaveDynamicFields = "1";
+   Enabled = "1";
+
+   new GuiScrollCtrl() {
+      canSaveDynamicFields = "0";
+      Enabled = "1";
+      isContainer = "1";
+      Profile = "GuiScrollProfile";
+      HorizSizing = "right";
+      VertSizing = "bottom";
+      position = "24 56";
+      Extent = "272 200";
+      MinExtent = "8 8";
+      canSave = "1";
+      Visible = "1";
+      hovertime = "1000";
+      willFirstRespond = "1";
+      hScrollBar = "dynamic";
+      vScrollBar = "alwaysOn";
+      constantThumbHeight = "0";
+      childMargin = "0 0";
+
+      new GuiTextListCtrl(command_List) {
+         canSaveDynamicFields = "0";
+         Enabled = "1";
+         isContainer = "1";
+         Profile = "GuiTextArrayProfile";
+         HorizSizing = "right";
+         VertSizing = "bottom";
+         position = "2 2";
+         Extent = "414 80";
+         MinExtent = "8 8";
+         canSave = "1";
+         Visible = "1";
+         hovertime = "1000";
+         enumerate = "0";
+         resizeCell = "1";
+         columns = "0";
+         fitParentWidth = "1";
+         clipColumnText = "0";
+      };
+   };
+};

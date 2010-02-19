@@ -1,0 +1,157 @@
+//--- OBJECT WRITE BEGIN ---
+new GuiControl(objectViewExample) {
+   profile = "GuiDefaultProfile";
+   horizSizing = "right";
+   vertSizing = "bottom";
+   position = "0 0";
+   extent = "640 480";
+   minExtent = "8 8";
+   visible = "1";
+   helpTag = "0";
+
+   new GuiWindowCtrl() {
+      profile = "GuiWindowProfile";
+      horizSizing = "center";
+      vertSizing = "center";
+      position = "20 20";
+      extent = "600 440";
+      minExtent = "8 8";
+      visible = "1";
+      helpTag = "0";
+      text = "ObjectViewExample";
+      maxLength = "255";
+      resizeWidth = "0";
+      resizeHeight = "0";
+      canMove = "1";
+      canClose = "1";
+      canMinimize = "0";
+      canMaximize = "0";
+      minSize = "50 50";
+      closeCommand = "Canvas.popDialog(objectViewExample);";
+
+      new GuiBitmapCtrl() {
+         profile = "GuiDefaultProfile";
+         horizSizing = "right";
+         vertSizing = "bottom";
+         position = "188 30";
+         extent = "400 400";
+         minExtent = "8 2";
+         visible = "1";
+         helpTag = "0";
+         bitmap = "./hudfill.png";
+         wrap = "0";
+
+         new GuiObjectView(view) {
+            profile = "GuiDefaultProfile";
+            horizSizing = "relative";
+            vertSizing = "relative";
+            position = "0 0";
+            extent = "400 400";
+            minExtent = "8 2";
+            visible = "1";
+            helpTag = "0";
+            cameraZRot = "0";
+            forceFOV = "0";
+         };
+      };
+      new GuiButtonCtrl() {
+         profile = "GuiButtonProfile";
+         horizSizing = "right";
+         vertSizing = "bottom";
+         position = "25 30";
+         extent = "140 30";
+         minExtent = "8 2";
+         visible = "1";
+         command = "view.setSequence(\"player\", \"Root\", 1);";
+         helpTag = "0";
+         text = "Root";
+         groupNum = "-1";
+         buttonType = "PushButton";
+      };
+      new GuiButtonCtrl() {
+         profile = "GuiButtonProfile";
+         horizSizing = "right";
+         vertSizing = "bottom";
+         position = "25 70";
+         extent = "140 30";
+         minExtent = "8 2";
+         visible = "1";
+         command = "view.setSequence(\"player\", \"forward\", 1);";
+         helpTag = "0";
+         text = "Forward";
+         groupNum = "-1";
+         buttonType = "PushButton";
+      };
+      new GuiButtonCtrl() {
+         profile = "GuiButtonProfile";
+         horizSizing = "right";
+         vertSizing = "bottom";
+         position = "25 150";
+         extent = "140 30";
+         minExtent = "8 2";
+         visible = "1";
+         command = "view.setSequence(\"player\", \"jump\", 1);";
+         helpTag = "0";
+         text = "Jump";
+         groupNum = "-1";
+         buttonType = "PushButton";
+      };
+      new GuiButtonCtrl() {
+         profile = "GuiButtonProfile";
+         horizSizing = "right";
+         vertSizing = "bottom";
+         position = "25 110";
+         extent = "140 30";
+         minExtent = "8 2";
+         visible = "1";
+         command = "view.setSequence(\"player\", \"back\", 1);";
+         helpTag = "0";
+         text = "Back";
+         groupNum = "-1";
+         buttonType = "PushButton";
+      };
+      new GuiButtonCtrl() {
+         profile = "GuiButtonProfile";
+         horizSizing = "right";
+         vertSizing = "bottom";
+         position = "25 260";
+         extent = "140 30";
+         minExtent = "8 2";
+         visible = "1";
+         command = "view.unMountObject(\"weapon\", \"\");";
+         helpTag = "0";
+         text = "unMountWeapon";
+         groupNum = "-1";
+         buttonType = "PushButton";
+      };
+      new GuiButtonCtrl() {
+         profile = "GuiButtonProfile";
+         horizSizing = "right";
+         vertSizing = "bottom";
+         position = "25 220";
+         extent = "140 30";
+         minExtent = "8 2";
+         visible = "1";
+         command = "view.mountObject(\"weapon\", \"fps/data/shapes/rifle/weapon.dts\", \"\", \"mount0\", 0);";
+         helpTag = "0";
+         text = "Mount Weapon";
+         groupNum = "-1";
+         buttonType = "PushButton";
+      };
+      new GuiButtonCtrl() {
+         profile = "GuiButtonProfile";
+         horizSizing = "right";
+         vertSizing = "bottom";
+         position = "25 400";
+         extent = "140 30";
+         minExtent = "8 2";
+         visible = "1";
+         command = "Canvas.popDialog(objectViewExample);";
+         helpTag = "0";
+         text = "Exit";
+         groupNum = "-1";
+         buttonType = "PushButton";
+      };
+   };
+};
+//--- OBJECT WRITE END ---
