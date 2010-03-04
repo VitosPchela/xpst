@@ -4,9 +4,9 @@ include "Evacuate-offpath.xpst";
 sequence
 {
 	(
-		(cottage1-enter or cottage2-enter or cottage3-enter) then (starttalk) then (cottage1-evacuate or cottage2-evacuate or cottage3-evacuate) and
-		(cottage1-enter or cottage2-enter or cottage3-enter) then (starttalk) then (cottage1-evacuate or cottage2-evacuate or cottage3-evacuate) and
-		(cottage1-enter or cottage2-enter or cottage3-enter) then (starttalk) then (cottage1-evacuate or cottage2-evacuate or cottage3-evacuate) then
+		(cottage1-enter then starttalk then cottage1-evacuate) then
+		(cottage2-enter then starttalk then cottage2-evacuate) then
+		(cottage3-enter then starttalk then cottage3-evacuate) then
 		All-Done
 	)
 	and
@@ -19,18 +19,18 @@ feedback
 	cottage1-enter
 	{
 		answer: "1";
-		Hint: "Explore to find an unevacuated building and evacuate it";
+		Hint: "Explore to find cottage 1 and enter it";
 	}
 	cottage2-enter
 
 	{
 		answer: "1";
-		Hint: "Explore to find an unevacuated building to evacuate it";
+		Hint: "Explore to find cottage 2 and enter it";
 	}
 	cottage3-enter
 	{
 		answer: "1";
-		Hint: "Explore to find an unevacuated building to evacuate it";
+		Hint: "Explore to find cottage 3 and enter it";
 	}
 	starttalk
 	{
@@ -42,19 +42,19 @@ feedback
 	cottage1-evacuate
 	{
 		answer: "Evacuate";
-		Hint: "Select the Evacuate command and the corresponding player to send him the command";
+		Hint: "Select the Evacuate command and Cottage1Occupant";
 		Hint: "Click on the Send Message button to send the command";
 	}
 	cottage2-evacuate
 	{
 		answer: "Evacuate";
-		Hint: "Select the Evacuate command and the corresponding player to send him the command";
+		Hint: "Select the Evacuate command and Cottage2Occupant";
 		Hint: "Click on the Send Message button to send the command";
 	}
 	cottage3-evacuate
 	{
 		answer: "Evacuate";
-		Hint: "Select the Evacuate command and the corresponding player to send him the command";
+		Hint: "Select the Evacuate command and Cottage3Occupant";
 		Hint: "Click on the Send Message button to send the command";
 	}
 	All-Done
