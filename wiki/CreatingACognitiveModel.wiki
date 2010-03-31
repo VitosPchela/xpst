@@ -185,7 +185,7 @@ Here is are some examples of ways that goalnodes might be used in the feedback s
 	regex
 	{
 		answer: RegEx("what(,what)*");
-		Hint: "what(,what)*";
+		Hint: "Type something that starts with 'what' and has as many other what's as you want.";
 	}
 	
 	mixedint
