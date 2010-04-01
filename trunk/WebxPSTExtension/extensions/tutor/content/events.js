@@ -203,7 +203,7 @@ function openPopup(event, jitData)
 	page += '<iframe id="frameid" src="data:text/html;base64,' + btoa(htmlPage) + '" flex="1"/>';
 	page += '</window>';
 	var el = event.originalTarget;
-	var pos;
+	/*var pos;
 	pos = findPos(el);
 	if (pos)
 	{
@@ -211,7 +211,7 @@ function openPopup(event, jitData)
 		window.openDialog("data:text/xml," + page, 'JIT', 'chrome,modal,width=' + width + ',height=' + height + ',left=' + r[0] + ',top=' + r[1]);
 	}
 	else
-		window.openDialog("data:text/xml," + page, 'JIT', 'chrome,modal,width=' + width + ',height=' + height + ',centerscreen=yes');
+	*/	window.openDialog("data:text/xml," + page, 'JIT', 'chrome,modal,width=' + width + ',height=' + height + ',centerscreen=yes');
 
 	logToServer('CLOSE JIT');
 	if (isBlock(xmsg))
