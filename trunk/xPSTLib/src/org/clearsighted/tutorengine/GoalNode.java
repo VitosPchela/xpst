@@ -33,6 +33,7 @@ import antlr.collections.AST;
 public class GoalNode
 {
 	private LinkedList<String> hints = new LinkedList<String>();
+	private LinkedList<String> oncompletes = new LinkedList<String>();
 	private class JIT
 	{
 		ExprNode cond = null;
@@ -46,7 +47,12 @@ public class GoalNode
 	{
 		return hints;
 	}
-
+	
+	public LinkedList<String> getOnCompletes()
+	{
+		return oncompletes;
+	}
+	
 	public LinkedList<JIT> getJITs()
 	{
 		return jits;
@@ -55,6 +61,11 @@ public class GoalNode
 	public void addHint(String hinttext)
 	{
 		hints.add(hinttext);
+	}
+	
+	public void addOnComplete(String otext)
+	{
+		oncompletes.add(otext);
 	}
 	
 	public void addJIT(ExprNode cond, String jittext)

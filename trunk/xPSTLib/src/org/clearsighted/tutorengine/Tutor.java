@@ -133,9 +133,16 @@ public class Tutor implements DorminReceiver, DorminSender
 			DorminMessage outmsg = new DorminMessage();
 			if (gn.check(val))
 			{
+				LinkedList<String> oncompl = gn.getOnCompletes();
+				String[] oncompa = new String[oncompl.size()];
+				for (int i = 0; i < oncompl.size(); i++)
+					oncompa[i] = runExprs(gn, oncompl.get(i), null);
 				outmsg.Verb = DorminMessage.ApproveVerb;
 				String[] names = new String[] { "tool", msg.Address.Names[1], msg.Address.Names[2] };
 				outmsg.Address = new DorminAddress(names);
+				outmsg.Parameters = new DorminParameter[1];
+				DorminList dl = new DorminList(oncompa);
+				outmsg.Parameters[0] = new DorminParameter("MESSAGE", dl);
 				sendOut(outmsg);
 			}
 			else
