@@ -165,7 +165,7 @@ feedbackstmt: (variabledecls | nodefeedback)*;
 /** variable declarations, which are really constant declarations at this point */
 variabledecls: VARIABLES^ LBRACE! (variabledecl SEMI!)* RBRACE!;
 /** feedback for one goalnode */
-nodefeedback: nodeid LBRACE! ((hintdecl | jitdecl | answerdecl | propertydecl) SEMI!)* RBRACE!
+nodefeedback: nodeid LBRACE! ((hintdecl | jitdecl | compdecl | answerdecl | propertydecl) SEMI!)* RBRACE!
 {
 	#nodefeedback = #([NODEFEEDBACK, "NODEFEEDBACK"], #nodefeedback);
 };
@@ -175,6 +175,7 @@ hintdecl: HINT^ COLON! stringlit;
 jitdecl:
 	JIT^ (LBRACE! valexpr RBRACE!) COLON! stringlit
 	| JIT^ COLON! s:stringlit { #jitdecl = #(JIT, s); };
+compdecl: ONCOMPLETE^ COLON! stringlit;
 answerdecl: ANSWER^ COLON! constructor;
 constructor: literal | callconstructor;
 callconstructor: ID^ LPAREN! literal (COMMA literal)* RPAREN!;
@@ -221,6 +222,7 @@ tokens
 	UNTIL="until";
 	AND="and";
 	OR="or";
+	ONCOMPLETE="OnComplete";
 }
 
 // ID component
@@ -350,6 +352,10 @@ nodefeedback {ExprNode c = null;}: #(NODEFEEDBACK n:NODEID
 		#(HINT h:STRINGLIT)
 		{
 			MTutor.getOrCreateGoalNode(n.getText()).addHint(h.getText());
+		}
+		| #(ONCOMPLETE o:STRINGLIT)
+		{
+		  MTutor.getOrCreateGoalNode(n.getText()).addOnComplete(o.getText());
 		}
 		| (#(JIT STRINGLIT)) => #(JIT j2:STRINGLIT)
 		{
