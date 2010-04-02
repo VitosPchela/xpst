@@ -419,6 +419,14 @@ function sendTutorMessage(sendMsg, event)
 					
 			    }
 			}
+			
+			if(msg.arrParameters.length = 1)
+			{
+				if(msg.arrParameters[0].strName == "MESSAGE")
+				{
+					alert(msg.arrParameters[0].objValue.value[0].value);
+				}
+			}
 		}
 		else if (msg.strVerb == "JITMESSAGE")
 		{
