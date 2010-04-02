@@ -13,7 +13,7 @@ feedback
 		answer: "1";
 		Hint: "Go find the Kork and shoot it once.";
 		Hint: "A green horizontal bar appears below the crosshairs when you have correct aim at the Kork.";
-		OnComplete: "Hello1";
+		OnComplete: "You have successfully shot the kork.";
 	}
 
 	pickup-the-crossbows
@@ -22,7 +22,7 @@ feedback
 		Hint: "Go pick up Crossbows.";
 		Hint: "A crossbow is a weapon consisting of a bow mounted on a stock that shoots projectiles.";
 		Hint: "The corssbows are present near the fire place.";
-		OnComplete: "Hello2";
+		OnComplete: "You have picked up the crossbows.";
 	}
 
 	Error-Not-Done
