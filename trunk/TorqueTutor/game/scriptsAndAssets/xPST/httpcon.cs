@@ -141,6 +141,13 @@ function parseReceivedMessage(%message)
 				//implement messagebox to show this
             //stopTutor();
 			}
+			if(%msg.arrParameters.count() == 1)
+			{
+				if(%msg.arrParameters.getValue(0).objValue.value.getValue(0).value !$= "")
+				{
+					MessageBoxOK("Step Completed",%msg.arrParameters.getValue(0).objValue.value.getValue(0).value);
+				}
+			}
 		}
 		else if (%msg.strVerb $= "JITMESSAGE")
 		{
