@@ -208,6 +208,142 @@ public class Operations
 			}
 		}	
 		
+		if((l instanceof Ans && r instanceof String))
+		{
+			switch (op)
+			{
+				case EqOp:
+					return ((Ans)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((Ans)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
+		}
+
+		if((r instanceof Ans && l instanceof String))
+		{
+			switch (op)
+			{
+				case EqOp:
+					return ((Ans)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((Ans)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
+		}	
+		
+		if((l instanceof NumSum && r instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((NumSum)l).compare(gns,(String)r,"ge");
+				case GThanOp:
+					return ((NumSum)l).compare(gns,(String)r,"g");
+				case LEqOp:
+					return ((NumSum)l).compare(gns,(String)r,"le");
+				case LThanOp:
+					return ((NumSum)l).compare(gns,(String)r,"l");
+				case EqOp:
+					return ((NumSum)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((NumSum)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
+		}
+
+		if((r instanceof NumSum && l instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((NumSum)r).compare(gns,(String)l,"ge");
+				case GThanOp:
+					return ((NumSum)r).compare(gns,(String)l,"g");
+				case LEqOp:
+					return ((NumSum)r).compare(gns,(String)l,"le");
+				case LThanOp:
+					return ((NumSum)r).compare(gns,(String)l,"l");
+				case EqOp:
+					return ((NumSum)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((NumSum)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
+		}
+		
+		if((l instanceof DenomSum && r instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((DenomSum)l).compare(gns,(String)r,"ge");
+				case GThanOp:
+					return ((DenomSum)l).compare(gns,(String)r,"g");
+				case LEqOp:
+					return ((DenomSum)l).compare(gns,(String)r,"le");
+				case LThanOp:
+					return ((DenomSum)l).compare(gns,(String)r,"l");
+				case EqOp:
+					return ((DenomSum)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((DenomSum)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
+		}
+
+		if((r instanceof NumSum && l instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((DenomSum)r).compare(gns,(String)l,"ge");
+				case GThanOp:
+					return ((DenomSum)r).compare(gns,(String)l,"g");
+				case LEqOp:
+					return ((DenomSum)r).compare(gns,(String)l,"le");
+				case LThanOp:
+					return ((DenomSum)r).compare(gns,(String)l,"l");
+				case EqOp:
+					return ((DenomSum)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((DenomSum)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
+		}
+		
+		if((l instanceof IsMultiple && r instanceof String))
+		{
+			switch (op)
+			{
+				case EqOp:
+					return ((IsMultiple)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((IsMultiple)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
+		}
+
+		if((r instanceof IsMultiple && l instanceof String))
+		{
+			switch (op)
+			{
+				case EqOp:
+					return ((IsMultiple)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((IsMultiple)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
+		}	
+		
 		
 		double lv = 0, rv = 0;
 		try
