@@ -18,6 +18,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 package org.clearsighted.tutorbase.emscript.exprtree;
 
+import java.util.HashMap;
+
+import org.clearsighted.tutorengine.GoalNode;
 import org.clearsighted.tutorengine.types.Operations;
 import org.clearsighted.tutorengine.types.Operations.Op;
 
@@ -32,9 +35,9 @@ public class CondNode extends ExprNode
 	}
 
 	@Override
-	public Object eval(ExprEnv ee) throws ExprException
+	public Object eval(ExprEnv ee,HashMap<String, GoalNode> gns) throws ExprException
 	{
-		Object lev = leftChild.eval(ee), rev = rightChild.eval(ee);
-		return Operations.doOp(type, lev, rev);
+		Object lev = leftChild.eval(ee,gns), rev = rightChild.eval(ee,gns);
+		return Operations.doOp(type, lev, rev,gns);
 	}
 }

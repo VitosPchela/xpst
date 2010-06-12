@@ -18,6 +18,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 package org.clearsighted.tutorbase.emscript.exprtree;
 
+import java.util.HashMap;
+
+import org.clearsighted.tutorengine.GoalNode;
+
 public class StringLitNode extends ExprNode
 {
 	private String value = null;
@@ -27,7 +31,7 @@ public class StringLitNode extends ExprNode
 	}
 	
 	@Override
-	public Object eval(ExprEnv ee)
+	public Object eval(ExprEnv ee,HashMap<String, GoalNode> gns)
 	{
 		return value;
 	}

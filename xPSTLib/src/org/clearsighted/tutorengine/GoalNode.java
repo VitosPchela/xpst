@@ -96,10 +96,10 @@ public class GoalNode
 		return properties;
 	}
 
-	public boolean check(Object val)
+	public boolean check(HashMap<String, GoalNode> gns,Object val)
 	{
 		if (answer != null)
-			return ((Type)getProperty("answer")).check((String)val);
+			return ((Type)getProperty("answer")).check(gns,(String)val);
 		else
 			return false;
 	}
@@ -112,7 +112,7 @@ public class GoalNode
 			"null";
 	}
 
-	public String checkJITs(Object value)
+	public String checkJITs(Object value,HashMap<String, GoalNode> gns)
 	{
 		for (JIT jit: jits)
 		{
@@ -125,7 +125,7 @@ public class GoalNode
 				ee.putAll(properties);
 				try
 				{
-					if (jit.cond.eval(ee) == Boolean.TRUE)
+					if (jit.cond.eval(ee,gns) == Boolean.TRUE)
 						return jit.message;
 				}
 				catch (ExprException e)

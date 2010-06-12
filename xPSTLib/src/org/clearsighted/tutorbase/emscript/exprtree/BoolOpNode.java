@@ -18,6 +18,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 package org.clearsighted.tutorbase.emscript.exprtree;
 
+import java.util.HashMap;
+
+import org.clearsighted.tutorengine.GoalNode;
+
 public class BoolOpNode extends ExprNode
 {
 	public enum OpType {AndOp, OrOp};
@@ -30,9 +34,9 @@ public class BoolOpNode extends ExprNode
 	}
 	
 	@Override
-	public Object eval(ExprEnv ee) throws ExprException
+	public Object eval(ExprEnv ee,HashMap<String, GoalNode> gns) throws ExprException
 	{
-		boolean lb = (Boolean)leftChild.eval(ee), rb = (Boolean)rightChild.eval(ee);
+		boolean lb = (Boolean)leftChild.eval(ee,gns), rb = (Boolean)rightChild.eval(ee,gns);
 		switch (type)
 		{
 			case AndOp:

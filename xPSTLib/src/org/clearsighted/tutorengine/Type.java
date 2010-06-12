@@ -18,11 +18,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 package org.clearsighted.tutorengine;
 
+import java.util.HashMap;
+
 public abstract class Type
 {
 	public final String ANSWER = "answer";
 	public abstract void construct(Object[] args);
-	public abstract boolean check(String value);
+	public abstract boolean check(HashMap<String, GoalNode> gns,String value);
 	public abstract Object getRepresentativeValue();
 	@Override
 	public abstract String toString();

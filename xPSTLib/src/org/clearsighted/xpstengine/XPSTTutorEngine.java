@@ -51,7 +51,7 @@ public class XPSTTutorEngine extends TutorEngine
 	public boolean testAnswer(DorminMessage dm)
 	{
 		String gnname = dm.Address.Names[2];
-		return tutor.getGoalNode(gnname).check(dm.Parameters[0].Value);
+		return tutor.getGoalNode(gnname).check(tutor.getGoalNodes(),dm.Parameters[0].Value);
 	}
 
 	@Override

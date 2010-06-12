@@ -18,8 +18,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 package org.clearsighted.tutorbase.emscript.exprtree;
 
+import java.util.HashMap;
+
+import org.clearsighted.tutorengine.GoalNode;
+
 public abstract class ExprNode
 {
 	protected ExprNode leftChild = null, rightChild = null;
-	public abstract Object eval(ExprEnv ee) throws ExprException;
+	public abstract Object eval(ExprEnv ee,HashMap<String, GoalNode> gns) throws ExprException;
 }
