@@ -46,6 +46,11 @@ public class Tutor implements DorminReceiver, DorminSender
 	{
 		return goalnodes.get(name);
 	}
+	
+	public HashMap<String, GoalNode> getGoalNodes()
+	{
+		return goalnodes;
+	}
 
 	public GoalNode getOrCreateGoalNode(String name)
 	{
@@ -68,7 +73,7 @@ public class Tutor implements DorminReceiver, DorminSender
 			ee.putAll(gn.getProperties());
 			ee.putAll(constants);
 			ee.put("v", val);
-			ret = n.eval(ee);
+			ret = n.eval(ee,goalnodes);
 		}
 		catch (Exception e)
 		{
@@ -131,8 +136,10 @@ public class Tutor implements DorminReceiver, DorminSender
 		{
 			Object val = msg.Parameters[0].Value;
 			DorminMessage outmsg = new DorminMessage();
-			if (gn.check(val))
+			if (gn.check(goalnodes,val))
 			{
+				//try to store the goalnode answer in a temp file
+				
 				LinkedList<String> oncompl = gn.getOnCompletes();
 				String[] oncompa = new String[oncompl.size()];
 				for (int i = 0; i < oncompl.size(); i++)
@@ -152,7 +159,7 @@ public class Tutor implements DorminReceiver, DorminSender
 				outmsg.Address = new DorminAddress(names);
 				sendOut(outmsg);
 				String jit = null;
-				if ((jit = gn.checkJITs(val)) != null)
+				if ((jit = gn.checkJITs(val,goalnodes)) != null)
 				{
 					outmsg.Verb = DorminMessage.JITMessageVerb;
 					outmsg.Parameters = new DorminParameter[1];

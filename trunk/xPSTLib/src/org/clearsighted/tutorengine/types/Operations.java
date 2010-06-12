@@ -18,11 +18,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 package org.clearsighted.tutorengine.types;
 
+import java.util.HashMap;
+
+import org.clearsighted.tutorengine.GoalNode;
+
 public class Operations
 {
 	public enum Op {LThanOp, GThanOp, LEqOp, GEqOp, EqOp, NotEqOp};
 
-	public static boolean doOp(Op op, Object l, Object r)
+	public static boolean doOp(Op op, Object l, Object r,HashMap<String, GoalNode> gns)
 	{
 		// TODO: I know this isn't very pluggable, but I can't see the structure of the
 		// necessary interfaces until I see the requirements, so I'll just code it in
@@ -31,11 +35,180 @@ public class Operations
 		if (op == Op.EqOp && ((l instanceof RegEx && r instanceof String) || (r instanceof RegEx && l instanceof String)))
 		{
 			if (l instanceof RegEx)
-				return ((RegEx)l).check((String)r);
+				return ((RegEx)l).check(gns,(String)r);
 			if (r instanceof RegEx)
-				return ((RegEx)r).check((String)l);
+				return ((RegEx)r).check(gns,(String)l);
+		}
+		
+		if((l instanceof Sum && r instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((Sum)l).compare(gns,(String)r,"ge");
+				case GThanOp:
+					return ((Sum)l).compare(gns,(String)r,"g");
+				case LEqOp:
+					return ((Sum)l).compare(gns,(String)r,"le");
+				case LThanOp:
+					return ((Sum)l).compare(gns,(String)r,"l");
+				case EqOp:
+					return ((Sum)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((Sum)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
 		}
 
+		if((r instanceof Sum && l instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((Sum)r).compare(gns,(String)l,"ge");
+				case GThanOp:
+					return ((Sum)r).compare(gns,(String)l,"g");
+				case LEqOp:
+					return ((Sum)r).compare(gns,(String)l,"le");
+				case LThanOp:
+					return ((Sum)r).compare(gns,(String)l,"l");
+				case EqOp:
+					return ((Sum)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((Sum)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
+		}		
+		
+		if((l instanceof Multiply && r instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((Multiply)l).compare(gns,(String)r,"ge");
+				case GThanOp:
+					return ((Multiply)l).compare(gns,(String)r,"g");
+				case LEqOp:
+					return ((Multiply)l).compare(gns,(String)r,"le");
+				case LThanOp:
+					return ((Multiply)l).compare(gns,(String)r,"l");
+				case EqOp:
+					return ((Multiply)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((Multiply)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
+		}
+
+		if((r instanceof Multiply && l instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((Multiply)r).compare(gns,(String)l,"ge");
+				case GThanOp:
+					return ((Multiply)r).compare(gns,(String)l,"g");
+				case LEqOp:
+					return ((Multiply)r).compare(gns,(String)l,"le");
+				case LThanOp:
+					return ((Multiply)r).compare(gns,(String)l,"l");
+				case EqOp:
+					return ((Multiply)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((Multiply)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
+		}
+		
+		if((l instanceof Divide && r instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((Divide)l).compare(gns,(String)r,"ge");
+				case GThanOp:
+					return ((Divide)l).compare(gns,(String)r,"g");
+				case LEqOp:
+					return ((Divide)l).compare(gns,(String)r,"le");
+				case LThanOp:
+					return ((Divide)l).compare(gns,(String)r,"l");
+				case EqOp:
+					return ((Divide)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((Divide)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
+		}
+
+		if((r instanceof Divide && l instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((Divide)r).compare(gns,(String)l,"ge");
+				case GThanOp:
+					return ((Divide)r).compare(gns,(String)l,"g");
+				case LEqOp:
+					return ((Divide)r).compare(gns,(String)l,"le");
+				case LThanOp:
+					return ((Divide)r).compare(gns,(String)l,"l");
+				case EqOp:
+					return ((Divide)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((Divide)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
+		}	
+		
+		if((l instanceof Subtract && r instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((Subtract)l).compare(gns,(String)r,"ge");
+				case GThanOp:
+					return ((Subtract)l).compare(gns,(String)r,"g");
+				case LEqOp:
+					return ((Subtract)l).compare(gns,(String)r,"le");
+				case LThanOp:
+					return ((Subtract)l).compare(gns,(String)r,"l");
+				case EqOp:
+					return ((Subtract)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((Subtract)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
+		}
+
+		if((r instanceof Subtract && l instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((Subtract)r).compare(gns,(String)l,"ge");
+				case GThanOp:
+					return ((Subtract)r).compare(gns,(String)l,"g");
+				case LEqOp:
+					return ((Subtract)r).compare(gns,(String)l,"le");
+				case LThanOp:
+					return ((Subtract)r).compare(gns,(String)l,"l");
+				case EqOp:
+					return ((Subtract)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((Subtract)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
+		}	
+		
+		
 		double lv = 0, rv = 0;
 		try
 		{

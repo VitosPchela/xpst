@@ -18,7 +18,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 package org.clearsighted.tutorbase.emscript.exprtree;
 
+import java.util.HashMap;
+
 import org.clearsighted.tutorbase.emscript.EMScriptParserTokenTypes;
+import org.clearsighted.tutorengine.GoalNode;
 import org.clearsighted.tutorengine.Type;
 
 import antlr.collections.AST;
@@ -35,7 +38,7 @@ public class ConstructorNode extends ExprNode
 	}
 	
 	@Override
-	public Object eval(ExprEnv ee) throws ExprException
+	public Object eval(ExprEnv ee,HashMap<String, GoalNode> gns) throws ExprException
 	{
 		return object;
 	}
@@ -61,7 +64,10 @@ public class ConstructorNode extends ExprNode
 					childval = Integer.parseInt(child.getText());
 				else if (child.getType() == EMScriptParserTokenTypes.FLOATLIT)
 					childval = Double.parseDouble(child.getText());
+				else if (child.getType() == EMScriptParserTokenTypes.COMMA)
+					childval = child.getText();
 				typeargs[i] = childval;
+				i++;
 				child = child.getNextSibling();
 			}
 		}

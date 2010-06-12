@@ -18,6 +18,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 package org.clearsighted.tutorengine.types;
 
+import java.util.HashMap;
+
+import org.clearsighted.tutorengine.GoalNode;
 import org.clearsighted.tutorengine.Type;
 
 /**
@@ -29,7 +32,7 @@ public class RegEx extends Type
 	private RegExTypeCore core;
 
 	@Override
-	public boolean check(String value)
+	public boolean check(HashMap<String, GoalNode> gns,String value)
 	{
 		return core.check(value);
 	}
