@@ -356,6 +356,8 @@ function onDone(event)
 {
 	var msg1 = new DorminMessage("TutorLink.Done", "NOTEVALUESET", "1");
 	sendTutorMessage(msg1.MakeString(), event);
+	if(g_isTutorRunning)
+		alert("You are not done with this problem yet. Ask for a hint if you would like help.")
 }
 
 function stop()
