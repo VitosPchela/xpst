@@ -24,8 +24,8 @@ public class Subtract extends Type {
 		{
 			return false;
 		}
-		String t1 = gns.get(s1).getProperty("answer").toString();
-		String t2 = gns.get(s2).getProperty("answer").toString();
+		String t1 = gns.get(s1).getAnsString();
+		String t2 = gns.get(s2).getAnsString();
 		myval = Double.parseDouble(t1) - Double.parseDouble(t2);
 		return myval == si;
 	}
@@ -63,8 +63,8 @@ public class Subtract extends Type {
 		{
 			return false;
 		}
-		String t1 = gns.get(s1).getProperty("answer").toString();
-		String t2 = gns.get(s2).getProperty("answer").toString();
+		String t1 = gns.get(s1).getAnsString();
+		String t2 = gns.get(s2).getAnsString();
 		myval = Double.parseDouble(t1) - Double.parseDouble(t2);
 		
 		if(op.equals("l"))

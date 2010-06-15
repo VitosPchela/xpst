@@ -53,6 +53,6 @@ public class RegEx extends Type
 	public String toString()
 	{
 		// TODO
-		return "TODO: RegEx.toString";
+		return core.getRepresentativeAnswer();
 	}
 }
