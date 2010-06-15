@@ -343,7 +343,32 @@ public class Operations
 					return false;
 			}
 		}	
-		
+
+		if((l instanceof IsNotMultiple && r instanceof String))
+		{
+			switch (op)
+			{
+				case EqOp:
+					return ((IsNotMultiple)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((IsNotMultiple)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
+		}
+
+		if((r instanceof IsNotMultiple && l instanceof String))
+		{
+			switch (op)
+			{
+				case EqOp:
+					return ((IsNotMultiple)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((IsNotMultiple)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
+		}	
 		
 		double lv = 0, rv = 0;
 		try

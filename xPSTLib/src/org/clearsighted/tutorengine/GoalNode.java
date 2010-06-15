@@ -42,10 +42,21 @@ public class GoalNode
 	private LinkedList<JIT> jits = new LinkedList<JIT>();
 	private HashMap<String, Object> properties = new HashMap<String, Object>();
 	private Type answer = null;
+	private String answerstring = "";
 
 	public LinkedList<String> getHints()
 	{
 		return hints;
+	}
+	
+	public String getAnsString()
+	{
+		return answerstring;
+	}
+	
+	public void setAnsString(String ans)
+	{
+		answerstring = ans;
 	}
 	
 	public LinkedList<String> getOnCompletes()

@@ -24,10 +24,10 @@ public class DenomSum extends Type {
 		{
 			return false;
 		}
-		double t1 = Double.parseDouble(gns.get(s1).getProperty("answer").toString());
-		double t2 = Double.parseDouble(gns.get(s2).getProperty("answer").toString());
-		double t3 = Double.parseDouble(gns.get(s3).getProperty("answer").toString());
-		double t4 = Double.parseDouble(gns.get(s4).getProperty("answer").toString());
+		double t1 = Double.parseDouble(gns.get(s1).getAnsString());
+		double t2 = Double.parseDouble(gns.get(s2).getAnsString());
+		double t3 = Double.parseDouble(gns.get(s3).getAnsString());
+		double t4 = Double.parseDouble(gns.get(s4).getAnsString());
 		
 		myval = getDenomSum(t1,t2,t3,t4);
 		return myval == si;
@@ -82,10 +82,10 @@ public class DenomSum extends Type {
 		{
 			return false;
 		}
-		double t1 = Double.parseDouble(gns.get(s1).getProperty("answer").toString());
-		double t2 = Double.parseDouble(gns.get(s2).getProperty("answer").toString());
-		double t3 = Double.parseDouble(gns.get(s3).getProperty("answer").toString());
-		double t4 = Double.parseDouble(gns.get(s4).getProperty("answer").toString());
+		double t1 = Double.parseDouble(gns.get(s1).getAnsString());
+		double t2 = Double.parseDouble(gns.get(s2).getAnsString());
+		double t3 = Double.parseDouble(gns.get(s3).getAnsString());
+		double t4 = Double.parseDouble(gns.get(s4).getAnsString());
 		
 		myval = getDenomSum(t1,t2,t3,t4);
 		

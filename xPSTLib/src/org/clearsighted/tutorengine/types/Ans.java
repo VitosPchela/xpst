@@ -13,10 +13,15 @@ public class Ans extends Type {
 	@Override
 	public boolean check(HashMap<String, GoalNode> gns,String value)
 	{
-		if (myval == null)
+		if(myval == null)
 			return false;
-		myval = gns.get(s1).getProperty("answer").toString();
-		return myval.equals(value);
+		String temp = gns.get(s1).getAnsString();
+		if(!temp.equals(""))
+		{
+			myval = temp;
+			return myval.equals(value);
+		}
+		return false;
 	}
 
 	@Override
@@ -42,12 +47,15 @@ public class Ans extends Type {
 	{
 		if (myval == null)
 			return false;
-		myval = gns.get(s1).getProperty("answer").toString();
-		
-		if(op.equals("e"))
-			return value.equals(myval);
-		if(op.equals("ne"))
-			return !(value.equals(myval));
+		String temp = gns.get(s1).getAnsString();
+		if(!temp.equals(""))
+		{
+			myval = temp;
+			if(op.equals("e"))
+				return value.equals(myval);
+			if(op.equals("ne"))
+				return !(value.equals(myval));
+		}
 		return false;
 	}
 }

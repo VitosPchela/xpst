@@ -138,8 +138,7 @@ public class Tutor implements DorminReceiver, DorminSender
 			DorminMessage outmsg = new DorminMessage();
 			if (gn.check(goalnodes,val))
 			{
-				//try to store the goalnode answer in a temp file
-				
+				gn.setAnsString(val.toString());
 				LinkedList<String> oncompl = gn.getOnCompletes();
 				String[] oncompa = new String[oncompl.size()];
 				for (int i = 0; i < oncompl.size(); i++)

@@ -24,12 +24,14 @@ public class IsMultiple extends Type {
 		{
 			return false;
 		}
-		myval = Double.parseDouble(gns.get(s1).getProperty("answer").toString());
+		myval = Double.parseDouble(gns.get(s1).getAnsString());
 		return isMultiple(myval,si);
 	}
 	
 	public boolean isMultiple(double a,double b)
 	{
+		if(a==0 || b==0)
+			return false;
 		if(b%a == 0)
 			return true;
 		else
@@ -68,7 +70,7 @@ public class IsMultiple extends Type {
 		{
 			return false;
 		}
-		myval = Double.parseDouble(gns.get(s1).getProperty("answer").toString());
+		myval = Double.parseDouble(gns.get(s1).getAnsString());
 		
 		if(op.equals("e"))
 			return isMultiple(myval,si);
