@@ -368,6 +368,91 @@ public class Operations
 				default:
 					return false;
 			}
+		}
+		
+		if((l instanceof Lcm && r instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((Lcm)l).compare(gns,(String)r,"ge");
+				case GThanOp:
+					return ((Lcm)l).compare(gns,(String)r,"g");
+				case LEqOp:
+					return ((Lcm)l).compare(gns,(String)r,"le");
+				case LThanOp:
+					return ((Lcm)l).compare(gns,(String)r,"l");
+				case EqOp:
+					return ((Lcm)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((Lcm)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
+		}
+
+		if((r instanceof Lcm && l instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((Lcm)r).compare(gns,(String)l,"ge");
+				case GThanOp:
+					return ((Lcm)r).compare(gns,(String)l,"g");
+				case LEqOp:
+					return ((Lcm)r).compare(gns,(String)l,"le");
+				case LThanOp:
+					return ((Lcm)r).compare(gns,(String)l,"l");
+				case EqOp:
+					return ((Lcm)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((Lcm)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
+		}
+		
+		
+		if((l instanceof EqNumerator && r instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((EqNumerator)l).compare(gns,(String)r,"ge");
+				case GThanOp:
+					return ((EqNumerator)l).compare(gns,(String)r,"g");
+				case LEqOp:
+					return ((EqNumerator)l).compare(gns,(String)r,"le");
+				case LThanOp:
+					return ((EqNumerator)l).compare(gns,(String)r,"l");
+				case EqOp:
+					return ((EqNumerator)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((EqNumerator)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
+		}
+
+		if((r instanceof EqNumerator && l instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((EqNumerator)r).compare(gns,(String)l,"ge");
+				case GThanOp:
+					return ((EqNumerator)r).compare(gns,(String)l,"g");
+				case LEqOp:
+					return ((EqNumerator)r).compare(gns,(String)l,"le");
+				case LThanOp:
+					return ((EqNumerator)r).compare(gns,(String)l,"l");
+				case EqOp:
+					return ((EqNumerator)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((EqNumerator)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
 		}	
 		
 		double lv = 0, rv = 0;

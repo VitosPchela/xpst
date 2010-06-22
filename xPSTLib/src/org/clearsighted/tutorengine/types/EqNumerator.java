@@ -5,10 +5,10 @@ import java.util.HashMap;
 import org.clearsighted.tutorengine.GoalNode;
 import org.clearsighted.tutorengine.Type;
 
-public class IsNotMultiple extends Type {
+public class EqNumerator extends Type {
 	
 	Double myval = null;
-	String s1;
+	String s1,s2,s3;
 
 	@Override
 	public boolean check(HashMap<String, GoalNode> gns,String value)
@@ -24,26 +24,24 @@ public class IsNotMultiple extends Type {
 		{
 			return false;
 		}
-		myval = Double.parseDouble(gns.get(s1).getAnsString());
-		return isNotMultiple(myval,si);
+		String t1 = gns.get(s1).getAnsString();
+		String t2 = gns.get(s2).getAnsString();
+		String t3 = gns.get(s3).getAnsString();
+		myval = getEqNumerator(Double.parseDouble(t1), Double.parseDouble(t2),Double.parseDouble(t3));
+		return myval == si;
 	}
 	
-	public boolean isNotMultiple(double a,double b)
+	public double getEqNumerator(double d1,double d2,double d3)
 	{
-		if(a == b)
-			return false;
-		if(a==0 ||b==0)
-			return false;
-		if(b%a == 0)
-			return false;
-		else
-			return true;
+		return (d3/d2)*d1;
 	}
 
 	@Override
 	public void construct(Object[] args)
 	{
 		s1 = (String)args[0];
+		s2 = (String)args[2];
+		s3 = (String)args[4];
 		myval = 0.0;
 	}
 
@@ -72,12 +70,23 @@ public class IsNotMultiple extends Type {
 		{
 			return false;
 		}
-		myval = Double.parseDouble(gns.get(s1).getAnsString());
+		String t1 = gns.get(s1).getAnsString();
+		String t2 = gns.get(s2).getAnsString();
+		String t3 = gns.get(s3).getAnsString();
+		myval = getEqNumerator(Double.parseDouble(t1), Double.parseDouble(t2),Double.parseDouble(t3));
 		
+		if(op.equals("l"))
+			return si < myval;
+		if(op.equals("g"))
+			return si > myval;
+		if(op.equals("le"))
+			return si <= myval;
+		if(op.equals("ge"))
+			return si >= myval;
 		if(op.equals("e"))
-			return isNotMultiple(myval,si);
+			return si == myval;
 		if(op.equals("ne"))
-			return !isNotMultiple(myval,si);
+			return si != myval;
 		return false;
 	}
 }

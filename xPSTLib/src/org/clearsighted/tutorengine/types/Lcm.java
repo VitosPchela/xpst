@@ -5,10 +5,10 @@ import java.util.HashMap;
 import org.clearsighted.tutorengine.GoalNode;
 import org.clearsighted.tutorengine.Type;
 
-public class IsNotMultiple extends Type {
+public class Lcm extends Type {
 	
 	Double myval = null;
-	String s1;
+	String s1,s2;
 
 	@Override
 	public boolean check(HashMap<String, GoalNode> gns,String value)
@@ -24,26 +24,28 @@ public class IsNotMultiple extends Type {
 		{
 			return false;
 		}
-		myval = Double.parseDouble(gns.get(s1).getAnsString());
-		return isNotMultiple(myval,si);
+		String t1 = gns.get(s1).getAnsString();
+		String t2 = gns.get(s2).getAnsString();
+		myval = getLCM(Double.parseDouble(t1), Double.parseDouble(t2));
+		return myval == si;
 	}
 	
-	public boolean isNotMultiple(double a,double b)
+	public double getLCM(double d1,double d2)
 	{
-		if(a == b)
-			return false;
-		if(a==0 ||b==0)
-			return false;
-		if(b%a == 0)
-			return false;
-		else
-			return true;
+		for (double count = 1.0 ; ; count++) 
+		{ 
+			if (count % d1 == 0 && count % d2 == 0) 
+			{ 
+				return count; 
+			}
+		}
 	}
 
 	@Override
 	public void construct(Object[] args)
 	{
 		s1 = (String)args[0];
+		s2 = (String)args[2];
 		myval = 0.0;
 	}
 
@@ -72,12 +74,22 @@ public class IsNotMultiple extends Type {
 		{
 			return false;
 		}
-		myval = Double.parseDouble(gns.get(s1).getAnsString());
+		String t1 = gns.get(s1).getAnsString();
+		String t2 = gns.get(s2).getAnsString();
+		myval = getLCM(Double.parseDouble(t1), Double.parseDouble(t2));
 		
+		if(op.equals("l"))
+			return si < myval;
+		if(op.equals("g"))
+			return si > myval;
+		if(op.equals("le"))
+			return si <= myval;
+		if(op.equals("ge"))
+			return si >= myval;
 		if(op.equals("e"))
-			return isNotMultiple(myval,si);
+			return si == myval;
 		if(op.equals("ne"))
-			return !isNotMultiple(myval,si);
+			return si != myval;
 		return false;
 	}
 }
