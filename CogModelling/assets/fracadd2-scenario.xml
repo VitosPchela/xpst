@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+	<h3>Fraction Addition Task 2</h3>
+	<p><strong>Problem Objective: </strong>This task gives tutoring on fraction addition where the denominator of the second fraction is a multiple of the denominator of the first fraction. (eg: 1/3 + 1/6)</p>
+	<hr/>
+	<h3>Detailed Instructions</h3>
+	<p>
+	The page has a total of nine input boxes. The top four input boxes are for entering the numerators and denominators of the input fractions. Out of the bottom first three input boxes the bottom input box is for entering the LCM of the two input denominators. The top two are for entering the equivalent numerators. The final two boxes labeled Fraction sum are for entering the numerator sum and the denominator sum.
+	</p>
+    <h3>Help</h3>
+    <p>
+    You can ask for a hint by clicking the "Hint" button any time during the task for getting help.
+    You can also check if you are done with the task or not any time by clicking on the "Done" button.
+    </p>
+</message>
