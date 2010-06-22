@@ -30,6 +30,8 @@ public class IsMultiple extends Type {
 	
 	public boolean isMultiple(double a,double b)
 	{
+		if(a == b)
+			return false;
 		if(a==0 || b==0)
 			return false;
 		if(b%a == 0)
