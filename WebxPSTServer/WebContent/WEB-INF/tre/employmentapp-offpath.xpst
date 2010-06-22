@@ -1,0 +1,26 @@
+mappings
+{
+	[priority=1]
+	switch
+	{
+		Field19_0:click="Computer Science",
+		Field19_1:click="Computer Engineering",
+		# Field19_2:click="HCI",
+		Field19_3:click="Other"
+	} => Error-Radio-Major;
+	
+	[priority=1]TutorLink.Done=>Error-Not-Done;
+}
+
+feedback 
+{
+	Error-Radio-Major {
+		answer: 0;
+		JIT: "<block/>You selected '{v}' as your major. Please ask for a hint to know the major that you must select.";
+	}
+
+	Error-Not-Done {
+		answer: "0";
+		JIT: "You are not done with this problem yet. Ask for a hint if you would like help.";
+	}
+}

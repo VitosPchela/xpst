@@ -1,0 +1,263 @@
+include "OffPath.xpst";
+
+options
+{
+	tutorname="CAPE";
+}
+
+sequence
+{
+	(
+		# Select AddSubtract problem
+		Selection-Problems then		# QIV: Needed
+
+		# Go to Data view
+		Link-Data-Again then
+
+		# Edit variable C
+		Selection-Data-Variable1 then
+		(Click-Data-Edit1 or Error-Wrong-Edit) then
+		(
+			(
+				Selection-Data-Mode1			# Derived
+			) until
+			Click-Data-Update-edit1
+		) then
+
+		# Edit variable D
+		Selection-Data-Variable2 then
+		(Click-Data-Edit2 or Error-Wrong-Edit) then
+		(
+			(
+				Selection-Data-Mode2			# Derived
+			) until
+			Click-Data-Update-edit2
+		) then
+
+		# Edit variable difference
+		Selection-Data-Variable3 then
+		(Click-Data-Edit3 or Error-Wrong-Edit) then
+		(
+			(
+				Selection-Data-Mode3			# Derived
+			) until
+			Click-Data-Update-edit3
+		) then
+
+		# Edit variable D_minus_C
+		Selection-Data-Variable4 then
+		(Click-Data-Edit4 or Error-Wrong-Edit) then
+		(
+			(
+				Selection-Data-Mode4			# Derived
+			) until
+			Click-Data-Update-edit4
+		) then
+
+		# Edit variable not_sum
+		Selection-Data-Variable5 then
+		(Click-Data-Edit5 or Error-Wrong-Edit) then
+		(
+			(
+				Selection-Data-Mode5			# Derived
+			) until
+			Click-Data-Update-edit5
+		) then
+
+		# Preview the entire problem
+		Click-Problems-Preview then
+
+		# Done
+		AllDone
+	) and
+	Error-Offpath and
+	Error-Offpath-Update and
+	Error-Not-Done;
+}
+
+mappings
+{
+	# Select AddSubtract problem
+	[priority=2]Problems=>Selection-Problems;
+
+	# Go to Data view
+	[priority=2]DataButton.childNodes-0:click=>Link-Data-Again;
+	[priority=2]DataLink.childNodes-3:click=>Link-Data-Again;
+
+	# Edit variable C
+	[priority=2]TreeViewItems=>Selection-Data-Variable1;
+	[priority=2]EditItem:click=>Click-Data-Edit1;
+	[priority=2]ItemMode=>Selection-Data-Mode1;			# Derived
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update-edit1;
+
+	# Edit variable D
+	[priority=2]TreeViewItems=>Selection-Data-Variable2;
+	[priority=2]EditItem:click=>Click-Data-Edit2;
+	[priority=2]ItemMode=>Selection-Data-Mode2;			# Derived
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update-edit2;
+
+	# Edit variable difference
+	[priority=2]TreeViewItems=>Selection-Data-Variable3;
+	[priority=2]EditItem:click=>Click-Data-Edit3;
+	[priority=2]ItemMode=>Selection-Data-Mode3;			# Derived
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update-edit3;
+
+	# Edit variable D_minus_C
+	[priority=2]TreeViewItems=>Selection-Data-Variable4;
+	[priority=2]EditItem:click=>Click-Data-Edit4;
+	[priority=2]ItemMode=>Selection-Data-Mode4;			# Derived
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update-edit4;
+
+	# Edit variable not_sum
+	[priority=2]TreeViewItems=>Selection-Data-Variable5;
+	[priority=2]EditItem:click=>Click-Data-Edit5;
+	[priority=2]ItemMode=>Selection-Data-Mode5;			# Derived
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update-edit5;
+
+	# Preview the entire problem
+	[priority=2]PreviewButton.childNodes-0:click=>Click-Problems-Preview;
+
+	# All done
+	[priority=2]TutorLink.Done=>AllDone;
+}
+
+feedback
+{
+	Link-Data-Again {
+		answer: 1;
+		Hint: "Return to the <strong>Data View</strong> to edit variable you created.";
+		Hint: "Click on the <strong>Data View</strong> icon (blackboard with numbers) or the <strong>Data View</strong> link to go there.  <image src=\"LinkData.png\"/>";
+	}
+
+	Selection-Problems {
+		answer: "AddSubtract";
+		Hint: "You need to select a problem before continuing.";
+		Hint: "Highlight the problem 'AddSubtract' in the <strong>Problems</strong> box.";
+	}
+
+	AllDone {
+		answer: 1;
+		Hint: "You are through with this problem. Move on to a different problem.";
+	}
+
+	Click-Problems-Preview {
+		answer: 1;
+		Hint: "Preview the problem now as described in the assignment.";
+		Hint: "Click on the <strong>Preview</strong> icon in the main toolbar above the <strong>Problems</strong> panel. Then choose the title of your problem from the small menu that appears at the lower left . <image src=\"ProblemPreview.png\"/>";
+	}
+
+	Click-Data-Update-edit1 {
+		answer: 1;
+		Hint: "To save the changes you have made to this variable, click <strong>Update</strong>.";
+	}
+
+	Click-Data-Update-edit2 {
+		answer: 1;
+		Hint: "To save the changes you have made to this variable, click <strong>Update</strong>.";
+	}
+
+	Click-Data-Update-edit3 {
+		answer: 1;
+		Hint: "To save the changes you have made to this variable, click <strong>Update</strong>.";
+	}
+
+	Click-Data-Update-edit4 {
+		answer: 1;
+		Hint: "To save the changes you have made to this variable, click <strong>Update</strong>.";
+	}
+
+	Click-Data-Edit1 {
+		answer: 1;
+		Hint: "Edit the variable you have selected by clicking on the <strong>Edit</strong> button.";
+	}
+
+	Click-Data-Edit2 {
+		answer: 1;
+		Hint: "Edit the variable you have selected by clicking on the <strong>Edit</strong> button.";
+	}
+
+	Click-Data-Edit3 {
+		answer: 1;
+		Hint: "Edit the variable you have selected by clicking on the <strong>Edit</strong> button.";
+	}
+
+	Click-Data-Edit4 {
+		answer: 1;
+		Hint: "Edit the variable you have selected by clicking on the <strong>Edit</strong> button.";
+	}
+
+	Selection-Data-Mode1 {
+		answer: "Dynamic";
+		Hint: "You have to select the <strong>Mode</strong> of variable here.";
+		Hint: "Select 'Dynamic' for the <strong>Mode</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct mode of the variable here. Please select 'Dynamic' from the <strong>Mode</strong> dropdown.";
+	}
+
+	Selection-Data-Mode2 {
+		answer: "Dynamic";
+		Hint: "You have to select the <strong>Mode</strong> of variable here.";
+		Hint: "Select 'Dynamic' for the <strong>Mode</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct mode of the variable here. Please select 'Dynamic' from the <strong>Mode</strong> dropdown.";
+	}
+
+	Selection-Data-Mode3 {
+		answer: "Dynamic";
+		Hint: "You have to select the <strong>Mode</strong> of variable here.";
+		Hint: "Select 'Dynamic' for the <strong>Mode</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct mode of the variable here. Please select 'Dynamic' from the <strong>Mode</strong> dropdown.";
+	}
+
+	Selection-Data-Mode4 {
+		answer: "Dynamic";
+		Hint: "You have to select the <strong>Mode</strong> of variable here.";
+		Hint: "Select 'Dynamic' for the <strong>Mode</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct mode of the variable here. Please select 'Dynamic' from the <strong>Mode</strong> dropdown.";
+	}
+
+	Selection-Data-Mode5 {
+		answer: "Dynamic";
+		Hint: "You have to select the <strong>Mode</strong> of variable here.";
+		Hint: "Select 'Dynamic' for the <strong>Mode</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct mode of the variable here. Please select 'Dynamic' from the <strong>Mode</strong> dropdown.";
+	}
+
+	Click-Data-Edit5 {
+		answer: 1;
+		Hint: "Edit the variable you have selected by clicking on the <strong>Edit</strong> button.";
+	}
+
+	Click-Data-Update-edit5 {
+		answer: 1;
+		Hint: "To save the changes you have made to this variable, click <strong>Update</strong>.";
+	}
+
+	Selection-Data-Variable1 {
+		answer: RegEx("C:.*");
+		Hint: "Select the variable 'C' from the tree of variables so that you can edit it.";
+		JIT: "You need to select the correct variable before you can edit it. Please select the variable 'C' to edit it.";
+	}
+
+	Selection-Data-Variable2 {
+		answer: RegEx("D:.*");
+		Hint: "Select the variable 'D' from the tree of variables so that you can edit it.";
+		JIT: "You need to select the correct variable before you can edit it. Please select the variable 'D' to edit it.";
+	}
+
+	Selection-Data-Variable3 {
+		answer: RegEx("difference:.*");
+		Hint: "Select the variable 'difference' from the tree of variables so that you can edit it.";
+		JIT: "You need to select the correct variable before you can edit it. Please select the variable 'difference' to edit it.";
+	}
+
+	Selection-Data-Variable4 {
+		answer: RegEx("D_minus_C:.*");
+		Hint: "Select the variable 'D_minus_C' from the tree of variables so that you can edit it.";
+		JIT: "You need to select the correct variable before you can edit it. Please select the variable 'D_minus_C' to edit it.";
+	}
+
+	Selection-Data-Variable5 {
+		answer: RegEx("not_sum:.*");
+		Hint: "Select the variable 'not_sum' from the tree of variables so that you can edit it.";
+		JIT: "You need to select the correct variable before you can edit it. Please select the variable 'not_sum' to edit it.";
+	}
+}

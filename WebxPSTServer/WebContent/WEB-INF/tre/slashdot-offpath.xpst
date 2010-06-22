@@ -1,0 +1,41 @@
+mappings
+{
+	[priority=1]
+	switch
+	{
+		users-blocks.childNodes-4.childNodes-1.childNodes-1.childNodes-40:click="Publicize",
+		users-blocks.childNodes-4.childNodes-1.childNodes-1.childNodes-46:click="Publish"
+	} => Error-InvalidPostOption;
+	
+	[priority=1]TutorLink.Done=>Error-Not-Done;
+
+	[priority=0]
+	switch
+	{
+		user-section.childNodes-1.childNodes-1.childNodes-1.childNodes-0:click="clicked on your homepage",
+		user-section.childNodes-1.childNodes-1.childNodes-3.childNodes-0:click="clicked on Help &amp; Preferences",
+		user-section.childNodes-1.childNodes-1.childNodes-5.childNodes-0:click="clicked on Subscribe",
+		user-section.childNodes-1.childNodes-1.childNodes-7.childNodes-0:click="clicked on Firehose",
+		user-section.childNodes-1.childNodes-1.childNodes-9.childNodes-0:click="clicked on Journal",
+		user-section.childNodes-1.childNodes-1.childNodes-11.childNodes-0:click="clicked on Tags",
+		user-section.childNodes-1.childNodes-1.childNodes-13.childNodes-0:click="clicked on Bookmarks"
+	} => Error-Offpath;
+}
+
+feedback 
+{
+	Error-InvalidPostOption {
+		answer: "0";
+		JIT: "<block/>You select the {v} option. For testing it you must select <strong>Post</strong> option.";
+	}
+
+	Error-Not-Done {
+		answer: "0";
+		JIT: "You are not done with this problem yet. Ask for a hint if you would like help.";
+	}
+
+	Error-Offpath {
+		answer: "foo";
+		JIT: "<block/>You {v}. That's not something you need to do right now. Request a hint if you would like to know what to do next.";
+	}
+}

@@ -1,0 +1,106 @@
+include "OffPath.xpst";
+
+options
+{
+	tutorname="CAPE";
+}
+
+sequence
+{
+   (
+    (
+	#---Problem selection---
+	(
+		Selection-Problems until 
+		Link-Data-Again
+	) then
+
+	(Selection-Data-R until 
+	Click-Data-Edit) then 
+	(Selection-Data-Kind then
+	Text-Data-Value-Edit) until
+	Click-Data-Update-R-Again then
+	Click-Problems-Preview
+
+    ) then AllDone
+  ) and Error-Offpath and Error-Offpath-Update and Error-Not-Done;
+
+}
+
+mappings
+{
+
+	#---Select the problem---
+	[priority=2]Problems=>Selection-Problems;
+
+	#Data view again
+	[priority=2]DataButton.childNodes-0:click=>Link-Data-Again;
+	[priority=2]DataLink.childNodes-3:click=>Link-Data-Again;
+	
+	[priority=2]TreeViewItems=>Selection-Data-R;   #R: 5.0 is answer.
+	[priority=2]EditItem:click=>Click-Data-Edit;
+	[priority=2]ItemKind=>Selection-Data-Kind;
+	[priority=2]ItemValue=>Text-Data-Value-Edit;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update-R-Again;
+
+	# Preview the entire problem
+	[priority=2]PreviewButton.childNodes-0:click=>Click-Problems-Preview;
+
+	[priority=2]TutorLink.Done=>AllDone;
+}
+
+feedback
+{
+	Selection-Problems {
+		answer: "Sphere Volume";
+		Hint: "You need to select a problem before continuing.";
+		Hint: "Highlight the problem 'Sphere Volume' in the <strong>Problems</strong> box.";
+	}
+
+	Link-Data-Again {
+		answer: 1;
+		Hint: "Return to the <strong>Data View</strong> to edit variable you created.";
+		Hint: "Click on the <strong>Data View</strong> icon (blackboard with numbers) or the <strong>Data View</strong> link to go there. <image src=\"LinkData.png\"/>";
+	}
+
+	Click-Data-Edit {
+		answer: 1;
+		Hint: "Edit the variable you have selected by clicking on the <strong>Edit</strong> button.";
+	}
+
+	AllDone {
+		answer: 1;
+		Hint: "You are through with this problem. Move on to a different problem.";
+	}
+
+	Click-Data-Update-R-Again {
+		answer: 1;
+		Hint: "To save the changes you have made to this variable, click <strong>Update</strong>.";
+	}
+
+	Selection-Data-Kind {
+		answer: "Derived";
+		Hint: "You have to select the <strong>Kind</strong> of variable here.";
+		Hint: "Select 'Derived' for the <strong>Kind</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct kind of the variable here. Please select 'Derived' from the <strong>Kind</strong> dropdown.";
+	}
+
+	Selection-Data-R {
+		answer: RegEx("R\\:.*");
+		Hint: "Select the variable 'R' from the tree of variables so that you can edit it.";
+		JIT: "You need to select the correct variable before you can edit it. Please select the variable 'R' to edit it.";
+	}
+
+	Text-Data-Value-Edit {
+		answer: RegEx(" *random\\.randrange\\(1, *15, *1\\) *");
+		Hint: "Change R so that it is a randomly generated number between 1 and 15.";
+		Hint: "Enter random.randrange(1,15,1) to generate a random value for R.";
+	}
+
+	Click-Problems-Preview {
+		answer: 1;
+		Hint: "Preview the problem now as described in the assignment.";
+		Hint: "Click on the <strong>Preview</strong> icon in the main toolbar above the <strong>Problems</strong> panel. Then choose the title of your problem from the small menu that appears at the lower left . <image src=\"ProblemPreview.png\"/>";
+	}
+
+}

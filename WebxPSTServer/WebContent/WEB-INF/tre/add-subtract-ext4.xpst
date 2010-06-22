@@ -1,0 +1,259 @@
+include "OffPath.xpst";
+
+options
+{
+	tutorname="CAPE";
+}
+
+sequence
+{
+	(
+		# Select AddSubtract problem
+		Selection-Problems then		# QIV: Needed
+
+		# Go to Data view
+		Link-Data-Again then
+
+		# Edit variable A
+		Selection-Data-Variable1 then
+		(Click-Data-Edit1 or Error-Wrong-Edit) then
+		(
+			(
+				Selection-Data-Kind1 then			# Derived
+				Text-Data-Expression-edit1
+			) until
+			Click-Data-Update-edit1
+		) then
+
+		# Edit variable B
+		Selection-Data-Variable2 then
+		(Click-Data-Edit2 or Error-Wrong-Edit) then
+		(
+			(
+				Selection-Data-Kind2 then			# Derived
+				Text-Data-Expression-edit2
+			) until
+			Click-Data-Update-edit2
+		) then
+
+		# Edit variable C
+		Selection-Data-Variable3 then
+		(Click-Data-Edit3 or Error-Wrong-Edit) then
+		(
+			(
+				Selection-Data-Kind3 then			# Derived
+				Text-Data-Expression-edit3
+			) until
+			Click-Data-Update-edit3
+		) then
+
+		# Edit variable D
+		Selection-Data-Variable4 then
+		(Click-Data-Edit4 or Error-Wrong-Edit) then
+		(
+			(
+				Selection-Data-Kind4 then			# Derived
+				Text-Data-Expression-edit4
+			) until
+			Click-Data-Update-edit4
+		) then
+		
+		# Preview the entire problem
+		Click-Problems-Preview then
+
+		# Done
+		AllDone
+	) and
+	Error-Offpath and
+	Error-Offpath-Update and
+	Error-Not-Done;
+}
+
+mappings
+{
+	# Select AddSubtract problem
+	[priority=2]Problems=>Selection-Problems;
+
+	# Go to Data view
+	[priority=2]DataButton.childNodes-0:click=>Link-Data-Again;
+	[priority=2]DataLink.childNodes-3:click=>Link-Data-Again;
+
+	# Edit variable A
+	[priority=2]TreeViewItems=>Selection-Data-Variable1;
+	[priority=2]EditItem:click=>Click-Data-Edit1;
+	[priority=2]ItemKind=>Selection-Data-Kind1;
+	[priority=2]ItemValue=>Text-Data-Expression-edit1;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update-edit1;
+
+	# Edit variable B
+	[priority=2]TreeViewItems=>Selection-Data-Variable2;
+	[priority=2]EditItem:click=>Click-Data-Edit2;
+	[priority=2]ItemKind=>Selection-Data-Kind2;
+	[priority=2]ItemValue=>Text-Data-Expression-edit2;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update-edit2;
+
+	# Edit variable C
+	[priority=2]TreeViewItems=>Selection-Data-Variable3;
+	[priority=2]EditItem:click=>Click-Data-Edit3;
+	[priority=2]ItemKind=>Selection-Data-Kind3;
+	[priority=2]ItemValue=>Text-Data-Expression-edit3;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update-edit3;
+
+	# Edit variable D
+	[priority=2]TreeViewItems=>Selection-Data-Variable4;
+	[priority=2]EditItem:click=>Click-Data-Edit4;
+	[priority=2]ItemKind=>Selection-Data-Kind4;
+	[priority=2]ItemValue=>Text-Data-Expression-edit4;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update-edit4;
+
+	# Preview the entire problem
+	[priority=2]PreviewButton.childNodes-0:click=>Click-Problems-Preview;
+
+	# All done
+	[priority=2]TutorLink.Done=>AllDone;
+}
+
+feedback
+{
+	Link-Data-Again {
+		answer: 1;
+		Hint: "Return to the <strong>Data View</strong> to edit variable you created.";
+		Hint: "Click on the <strong>Data View</strong> icon (blackboard with numbers) or the <strong>Data View</strong> link to go there.  <image src=\"LinkData.png\"/>";
+	}
+
+	Selection-Problems {
+		answer: "AddSubtract";
+		Hint: "You need to select a problem before continuing.";
+		Hint: "Highlight the problem 'AddSubtract' in the <strong>Problems</strong> box.";
+	}
+
+	AllDone {
+		answer: 1;
+		Hint: "You are through with this problem. Move on to a different problem.";
+	}
+
+	Click-Problems-Preview {
+		answer: 1;
+		Hint: "Preview the problem now as described in the assignment.";
+		Hint: "Click on the <strong>Preview</strong> icon in the main toolbar above the <strong>Problems</strong> panel. Then choose the title of your problem from the small menu that appears at the lower left . <image src=\"ProblemPreview.png\"/>";
+	}
+
+	Click-Data-Update-edit1 {
+		answer: 1;
+		Hint: "To save the changes you have made to this variable, click <strong>Update</strong>.";
+	}
+
+	Click-Data-Update-edit2 {
+		answer: 1;
+		Hint: "To save the changes you have made to this variable, click <strong>Update</strong>.";
+	}
+
+	Click-Data-Update-edit3 {
+		answer: 1;
+		Hint: "To save the changes you have made to this variable, click <strong>Update</strong>.";
+	}
+
+	Click-Data-Update-edit4 {
+		answer: 1;
+		Hint: "To save the changes you have made to this variable, click <strong>Update</strong>.";
+	}
+
+	Click-Data-Edit1 {
+		answer: 1;
+		Hint: "Edit the variable you have selected by clicking on the <strong>Edit</strong> button.";
+	}
+
+	Click-Data-Edit2 {
+		answer: 1;
+		Hint: "Edit the variable you have selected by clicking on the <strong>Edit</strong> button.";
+	}
+
+	Click-Data-Edit3 {
+		answer: 1;
+		Hint: "Edit the variable you have selected by clicking on the <strong>Edit</strong> button.";
+	}
+
+	Click-Data-Edit4 {
+		answer: 1;
+		Hint: "Edit the variable you have selected by clicking on the <strong>Edit</strong> button.";
+	}
+
+	Selection-Data-Kind1 {
+		answer: "Derived";
+		Hint: "You have to select the <strong>Kind</strong> of variable here.";
+		Hint: "Select 'Derived' for the <strong>Kind</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct kind of the variable here. Please select 'Derived' from the <strong>Kind</strong> dropdown.";
+	}
+
+	Selection-Data-Kind2 {
+		answer: "Derived";
+		Hint: "You have to select the <strong>Kind</strong> of variable here.";
+		Hint: "Select 'Derived' for the <strong>Kind</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct kind of the variable here. Please select 'Derived' from the <strong>Kind</strong> dropdown.";
+
+	}
+
+	Selection-Data-Kind3 {
+		answer: "Derived";
+		Hint: "You have to select the <strong>Kind</strong> of variable here.";
+		Hint: "Select 'Derived' for the <strong>Kind</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct kind of the variable here. Please select 'Derived' from the <strong>Kind</strong> dropdown.";
+
+	}
+
+	Selection-Data-Kind4 {
+		answer: "Derived";
+		Hint: "You have to select the <strong>Kind</strong> of variable here.";
+		Hint: "Select 'Derived' for the <strong>Kind</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct kind of the variable here. Please select 'Derived' from the <strong>Kind</strong> dropdown.";
+	}
+
+	Text-Data-Expression-edit1 {
+		answer: RegEx(" *random\\.randrange\\(-10, *10, *1\\) *");
+		Hint: "Use the integer random number generator function 'random.randrange(first, last, interval)' provided by Python language, where 'first' is the lowest number, 'last' is the highest number and 'interval' is the step size between selectable numbers. Here set 'first' to '10', 'last' to '-10', and 'interval' to '1'.";
+		Hint: "Set 'random.randrange(-10, 10, 1)' as <strong>Expression</strong>.";
+	
+	}
+
+	Text-Data-Expression-edit2 {
+		answer: RegEx(" *random\\.randrange\\(-10, *10, *1\\) *");
+		Hint: "Use the integer random number generator function 'random.randrange(first, last, interval)' provided by Python language, where 'first' is the lowest number, 'last' is the highest number and 'interval' is the step size between selectable numbers. Here set 'first' to '10', 'last' to '-10', and 'interval' to '1'.";
+		Hint: "Set 'random.randrange(-10, 10, 1)' as <strong>Expression</strong>.";
+	}
+
+	Text-Data-Expression-edit3 {
+		answer: RegEx(" *random\\.randrange\\(-10, *10, *1\\) *");
+		Hint: "Use the integer random number generator function 'random.randrange(first, last, interval)' provided by Python language, where 'first' is the lowest number, 'last' is the highest number and 'interval' is the step size between selectable numbers. Here set 'first' to '10', 'last' to '-10', and 'interval' to '1'.";
+		Hint: "Set 'random.randrange(-10, 10, 1)' as <strong>Expression</strong>.";
+	}
+
+	Text-Data-Expression-edit4 {
+		answer: RegEx(" *random\\.randrange\\(-10, *10, *1\\) *");
+		Hint: "Use the integer random number generator function 'random.randrange(first, last, interval)' provided by Python language, where 'first' is the lowest number, 'last' is the highest number and 'interval' is the step size between selectable numbers. Here set 'first' to '10', 'last' to '-10', and 'interval' to '1'.";
+		Hint: "Set 'random.randrange(-10, 10, 1)' as <strong>Expression</strong>.";
+	}
+
+	Selection-Data-Variable1 {
+		answer: RegEx("A:.*");
+		Hint: "Select the variable 'A' from the tree of variables so that you can edit it.";
+		JIT: "You need to select the correct variable before you can edit it. Please select the variable 'A' to edit it.";
+	}
+
+	Selection-Data-Variable2 {
+		answer: RegEx("B:.*");
+		Hint: "Select the variable 'B' from the tree of variables so that you can edit it.";
+		JIT: "You need to select the correct variable before you can edit it. Please select the variable 'B' to edit it.";
+	}
+
+	Selection-Data-Variable3 {
+		answer: RegEx("C:.*");
+		Hint: "Select the variable 'C' from the tree of variables so that you can edit it.";
+		JIT: "You need to select the correct variable before you can edit it. Please select the variable 'C' to edit it.";
+	}
+
+	Selection-Data-Variable4 {
+		answer: RegEx("D:.*");
+		Hint: "Select the variable 'D' from the tree of variables so that you can edit it.";
+		JIT: "You need to select the correct variable before you can edit it. Please select the variable 'D' to edit it.";
+	}
+}

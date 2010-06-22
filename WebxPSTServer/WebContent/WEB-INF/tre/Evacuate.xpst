@@ -1,0 +1,77 @@
+
+include "Evacuate-offpath.xpst";
+
+sequence
+{
+	(
+		(cottage1-enter then starttalk then cottage1-evacuate) then
+		(cottage2-enter then starttalk then cottage2-evacuate) then
+		(cottage3-enter then starttalk then cottage3-evacuate) then
+		All-Done
+	)
+	and
+	Error-Not-Done and
+	Error-Offpath;
+}
+
+feedback
+{
+	cottage1-enter
+	{
+		answer: "1";
+		Hint: "Explore to find cottage 1 and enter it";
+	}
+	cottage2-enter
+
+	{
+		answer: "1";
+		Hint: "Explore to find cottage 2 and enter it";
+	}
+	cottage3-enter
+	{
+		answer: "1";
+		Hint: "Explore to find cottage 3 and enter it";
+	}
+	starttalk
+	{
+		answer: "c";
+		Hint: "You need to communicate with the occupant to evacuate the building";
+		Hint: "To start communicating with the occupant of this building, press C";
+		JIT: "You have pressed {v} .It is the wrong key. Ask for a Hint.";
+	}
+	cottage1-evacuate
+	{
+		answer: "Evacuate";
+		Hint: "Select the Evacuate command and Cottage1Occupant";
+		Hint: "Click on the Send Message button to send the command";
+	}
+	cottage2-evacuate
+	{
+		answer: "Evacuate";
+		Hint: "Select the Evacuate command and Cottage2Occupant";
+		Hint: "Click on the Send Message button to send the command";
+	}
+	cottage3-evacuate
+	{
+		answer: "Evacuate";
+		Hint: "Select the Evacuate command and Cottage3Occupant";
+		Hint: "Click on the Send Message button to send the command";
+	}
+	All-Done
+	{
+		answer: "1";
+		Hint: "You have successfully completed the Evacuate task.";
+	}
+}
+
+mappings
+{
+	[priority=2] cottage1Trigger:Enter => cottage1-enter;
+	[priority=2] cottage2Trigger:Enter => cottage2-enter;
+	[priority=2] cottage3Trigger:Enter => cottage3-enter;
+	[priority=2] startcommunicate => starttalk;
+	[priority=2] cottage1Occupant:Evacuate => cottage1-evacuate;
+	[priority=2] cottage2Occupant:Evacuate => cottage2-evacuate;
+	[priority=2] cottage3Occupant:Evacuate => cottage3-evacuate;
+	[priority=2] TutorLink.Done => All-Done;
+}

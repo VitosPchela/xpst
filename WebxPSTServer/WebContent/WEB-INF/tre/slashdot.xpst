@@ -1,0 +1,223 @@
+include "slashdot-offpath.xpst";
+
+options
+{
+	tutorname="slashdot-write-journal";
+}
+
+sequence
+{
+	(
+		# Reach to Slashdot Journal System page
+		(
+			# Option 1
+			Link-HomePage-Journal
+		) then
+		Link-JournalSystemEdit-WriteInJournal then
+		
+		# Write the journal entry
+		(
+			(
+				Text-JournalSystemEdit-Subject and		# NO BLANK
+				Combo-JournalSystemEdit-JournalTopic and	# QIV
+				Combo-JournalSystemEdit-Comments and
+				Text-JournalSystemEdit-Entry and		# NO BLANK
+				Combo-JournalSystemEdit-EntryFormat and
+				Click-JournalSystemEdit-PostOptions
+			) until
+			Click-JournalSystemEdit-Preview
+		) then
+
+		# Save the Journal
+		(
+			(
+				(
+					# QIV for all
+					Text-JournalSystem-Subject and		# NO BLANK
+					Combo-JournalSystem-JournalTopic and	# QIV
+					Combo-JournalSystem-Comments and 
+					Text-JournalSystem-Entry and		# NO BLANK
+					Combo-JournalSystem-EntryFormat and
+					Click-JournalSystem-PostOptions
+				) or
+				Click-JournalSystem-Preview			# OPTIONAL, if Save clicked
+			) until
+			Click-JournalSystem-Save
+		) then
+
+		All-Done
+	) and
+	Error-InvalidPostOption and
+	Error-Not-Done and
+	Error-Offpath;
+}
+
+feedback
+{
+	variables
+	{
+		username: "someuser";
+	}
+
+	Link-HomePage-Journal
+	{
+		answer: "1";
+		Hint: "Go to Slashdot Journal System by clicking the <strong>Journal</strong> link.";
+		Hint: "The <strong>Journal</strong> link is in the menubar below the Slashdot logo.";
+		JIT: "<block/>To write an entry, you need to go to the Slashdot Journal System";
+	}
+	
+	Link-JournalSystemEdit-WriteInJournal
+	{
+		answer: "1";
+		Hint: "To write a new journal entry, click on <strong>Write in Journal</strong> link.";
+		Hint: "The <strong>Write in Journal</strong> link is Journal link is below the Journal of '{username}' section.";
+		JIT: "<block/>To write an entry, you need to go to the Slashdot Journal System";
+	}
+	
+	Text-JournalSystemEdit-Subject
+	{
+		answer: RegEx(".+");
+		Hint: "Write a suitable subject for the new entry.";
+		Hint: "The subject can be written in the <strong>Subject</strong> field.";
+		JIT: "<block/><strong>Subject</strong> is required and cannot be left blank.";
+	}
+
+	Text-JournalSystem-Subject
+	{
+		answer: RegEx(".+");
+		Hint: "Write a suitable subject for the new entry.";
+		Hint: "The subject can be written in the <strong>Subject</strong> field.";
+		JIT: "<block/><strong>Subject</strong> is required and cannot be left blank.";
+	}
+
+	Combo-JournalSystemEdit-JournalTopic
+	{
+		answer: "User Journal";
+		Hint: "Select a suitable <strong>Journal Topic</strong>.";
+		Hint: "For this post, you must select '{answer}' in the <strong>Journal Topic</strong> dropdown.";
+		JIT: "<block/>Please select '{answer}' as the <strong>Journal Topic</strong>.";
+	}
+
+	Combo-JournalSystem-JournalTopic
+	{
+		answer: "User Journal";
+		Hint: "Select a suitable <strong>Journal Topic</strong>.";
+		Hint: "For this post, you must select '{answer}' in the <strong>Journal Topic</strong> dropdown.";
+		JIT: "<block/>Please select '{answer}' as the <strong>Journal Topic</strong>.";
+	}
+
+	Combo-JournalSystemEdit-Comments
+	{
+		answer: "Comments Enabled";
+		Hint: "Allow people to post comments on your journal.";
+		Hint: "To enable comments, select '{answer}' in the <strong>Comments</strong> dropdown.";
+		JIT: "<block/>Please allow other users to post comments.";
+	}
+
+	Combo-JournalSystem-Comments
+	{
+		answer: "Comments Enabled";
+		Hint: "Allow people to post comments on your journal.";
+		Hint: "To enable comments, select '{answer}' in the <strong>Comments</strong> dropdown.";
+		JIT: "<block/>Please allow other users to post comments.";
+	}
+
+	Text-JournalSystemEdit-Entry
+	{
+		answer: RegEx(".+");
+		Hint: "You can now write the article in the <strong>Entry</strong> field.";
+		JIT: "<block/><strong>Entry</strong> must not be left blank.";
+	}
+
+	Text-JournalSystem-Entry
+	{
+		answer: RegEx(".+");
+		Hint: "You can now write the article in the <strong>Entry</strong> field.";
+		JIT: "<block/><strong>Entry</strong> must not be left blank.";
+	}
+
+	Combo-JournalSystemEdit-EntryFormat
+	{
+		answer: "Plain Old Text";
+		Hint: "You can change the format of the entry. For now, we will use simple text format.";
+		Hint: "To change the format, select '{answer}' from the dropdown below the Entry field.";
+		JIT: "<block/>The Entry format must be '{answer}'.";
+	}
+
+	Combo-JournalSystem-EntryFormat
+	{
+		answer: "Plain Old Text";
+		Hint: "You can change the format of the entry. For now, we will use simple text format.";
+		Hint: "To change the format, select '{answer}' from the dropdown below the Entry field.";
+		JIT: "<block/>The Entry format must be '{answer}'.";
+	}
+
+	Click-JournalSystemEdit-PostOptions
+	{
+		answer: 1;
+		Hint: "We are writing an entry for test purpose. Hence, we will not publicize or publish it.";
+		Hint: "Click on the <strong>Post</strong> option.";
+		JIT: "<block/>You must select <strong>Post</strong> option for your entry.";
+	}
+
+	Click-JournalSystem-PostOptions
+	{
+		answer: 1;
+		Hint: "We are writing an entry for test purpose. Hence, we will not publicize or publish it.";
+		Hint: "Click on the <strong>Post</strong> option.";
+		JIT: "<block/>You must select <strong>Post</strong> option for your entry.";
+	}
+
+	Click-JournalSystemEdit-Preview
+	{
+		answer: 1;
+		Hint: "You need to preview your entry, before you can save it.";
+		Hint: "Click on the <strong>Preview</strong> button at the bottom of the page.";
+	}
+
+	Click-JournalSystem-Preview
+	{
+		answer: 1;
+		Hint: "You need to preview your entry, before you can save it.";
+		Hint: "Click on the <strong>Preview</strong> button at the bottom of the page.";
+	}
+	
+	Click-JournalSystem-Save
+	{
+		answer: 1;
+		Hint: "You need to finally save your entry.";
+		Hint: "Click on the <strong>Save</strong> button at the bottom of the page.";
+	}
+
+	All-Done
+	{
+		answer: 1;
+		Hint: "You have successfully posted a new entry. You can quit or logout now.";
+	}
+}
+
+mappings
+{
+	# removed .childNodes-0 from the end of text fields
+	
+	[priority=2] user-section.childNodes-1.childNodes-1.childNodes-9.childNodes-0:click => Link-HomePage-Journal;
+	[priority=2] users-blocks.childNodes-4.childNodes-0.childNodes-2.childNodes-0:click => Link-JournalSystemEdit-WriteInJournal;
+	
+	[priority=2] users-blocks.childNodes-4.childNodes-1.childNodes-1.childNodes-15 => Text-JournalSystemEdit-Subject;
+	[priority=2] tid => Combo-JournalSystemEdit-JournalTopic;
+	[priority=2] journal_discuss => Combo-JournalSystemEdit-Comments;
+	[priority=2] users-blocks.childNodes-4.childNodes-1.childNodes-1.childNodes-30 => Text-JournalSystemEdit-Entry;
+	[priority=2] posttype => Combo-JournalSystemEdit-EntryFormat;
+	[priority=2] users-blocks.childNodes-4.childNodes-1.childNodes-1.childNodes-52:click => Click-JournalSystemEdit-PostOptions; # Post
+	[priority=2] users-blocks.childNodes-4.childNodes-1.childNodes-1.childNodes-60:click => Click-JournalSystemEdit-Preview;
+
+	[priority=2] users-blocks.childNodes-4.childNodes-1.childNodes-1.childNodes-15 => Text-JournalSystem-Subject;
+	[priority=2] tid => Combo-JournalSystem-JournalTopic;
+	[priority=2] journal_discuss => Combo-JournalSystem-Comments;
+	[priority=2] users-blocks.childNodes-4.childNodes-1.childNodes-1.childNodes-30 => Text-JournalSystem-Entry;
+	[priority=2] posttype => Combo-JournalSystem-EntryFormat;
+	[priority=2] users-blocks.childNodes-4.childNodes-1.childNodes-1.childNodes-52:click => Click-JournalSystem-PostOptions;
+	[priority=2] users-blocks.childNodes-4.childNodes-1.childNodes-1.childNodes-60:click => Click-JournalSystem-Preview;
+	[priority=2] users-blocks.childNodes-4.childNodes-1.childNodes-1.childNodes-62:click => Click-JournalSystem-Save;
+}

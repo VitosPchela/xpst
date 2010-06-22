@@ -1,0 +1,56 @@
+sequence
+{
+	(SetNumerator1 and SetDenominator1 and SetNumerator2 and SetDenominator2) then
+	(SetNumeratorAnswer and SetDenominatorAnswer);
+}
+
+mappings
+{
+	numop1 => SetNumerator1;
+	numop2 => SetNumerator2;
+	numans => SetNumeratorAnswer;
+	denop1 => SetDenominator1;
+	denop2 => SetDenominator2;
+	denans => SetDenominatorAnswer;
+}
+
+feedback
+{
+	SetNumerator1
+	{
+		answer: RegEx("[0-9]{1,}");
+		Hint: "Set first numerator to 1";
+	}
+
+	SetNumerator2
+	{
+		answer: 2;
+		Hint: "Set second summand numerator to 2";
+	}
+
+	SetNumeratorAnswer
+	{
+		answer: NumSum("SetNumerator1","SetNumerator2");
+		Hint: "Set answer numerator";
+		JIT : "wrong";
+	}
+
+	SetDenominator1
+	{
+		answer: 3;
+		Hint: "Set first summand denominator to 3";
+	}
+
+	SetDenominator2
+	{
+		answer: IsMultiple("SetDenominator1");
+		Hint: "Set second summand denominator to 5";
+		JIT: "wrong";
+	}
+
+	SetDenominatorAnswer
+	{
+		answer: 15;
+		Hint: "Set answer denominator";
+	}
+}

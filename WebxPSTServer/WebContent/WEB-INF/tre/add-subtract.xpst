@@ -1,0 +1,592 @@
+include "OffPath.xpst";
+
+options
+{
+	tutorname="CAPE";
+}
+
+sequence
+{
+	(
+		#---Problem-creation
+		(Click-New or Error-Wrong-New) then
+		(
+			(
+				Text-ProblemName and
+				Text-Attempts and
+				CheckBox-Start
+			) until
+			Click-Update
+		) then
+
+		#Assessment view for problem
+		Link-Assess then
+		(
+			Text-Assess-Title and
+			Text-Assess-Problem
+		) then
+
+		(
+			(
+				Click-Assess-Init-Update then
+				(
+					Click-Assess-Preview-Init then
+					Click-Assess-NewQuestion
+				) or
+				Click-Assess-NewQuestion
+			) or
+ 			(Click-Assess-NewQuestion or Error-Wrong-New)
+		) then
+		(
+			(
+				#First question creation
+				Text-Assess-QuestionName and
+				Selection-Assess-QuestionType and
+				Text-Assess-BeforeBlank and
+				Text-Assess-Width and
+				Selection-Assess-ResponseType
+			) until
+			Click-Assess-Update
+		) then
+		(
+			(
+				Click-Assess-Preview then
+				(Click-Assess-FinalNewQuestion or Error-Wrong-New)
+			) or
+			(Click-Assess-FinalNewQuestion or Error-Wrong-New)
+		) then
+		(
+			(
+				#Second question creation
+				Text-Assess-FinalQuestionName and
+				Selection-Assess-FinalQuestionType and
+				Text-Assess-FinalBeforeBlank and
+				Text-Assess-FinalWidth and
+				Selection-Assess-FinalResponseType
+			) until
+			Click-Assess-FinalUpdate
+		)  then
+
+		#Preview not optional here because to create Response.Add object for preview in next screen
+		Click-Assess-FinalPreview then
+		Link-Feedback then
+
+		(
+			(Selection-Feedback-Q1-Question and
+			Selection-Feedback-Q1-Correct until
+			(Click-Feedback-Q1-Edit-CorrectCase or Error-Wrong-Edit)) then
+			(Text-Feedback-Q1-CorrectExpression until
+			Click-Feedback-Q1-ExpressionUpdate)
+		) then
+		(
+			(Click-Feedback-Q1-Correct-EditAttempts or Error-Wrong-Edit) then
+			(Text-Feedback-Q1-Correct-Feedback until
+			Click-Feedback-Q1-Correct-Update)
+		) then
+		#Incorrect case feedback with optional preview
+		(
+			(Selection-Feedback-Q1-DefaultIncorrect until
+			(Click-Feedback-Q1-Incorrect-EditAttempts or Error-Wrong-Edit)) then
+			(Text-Feedback-Q1-Incorrect-Feedback until
+			Click-Feedback-Q1-Incorrect-Update)
+		) then
+
+		(
+			(Selection-Feedback-Q2-Question /*and
+			Selection-Feedback-Q2-Correct*/ until
+			(Click-Feedback-Q2-Edit-CorrectCase or Error-Wrong-Edit)) then
+			(Text-Feedback-Q2-CorrectExpression until
+			Click-Feedback-Q2-ExpressionUpdate)
+		) then
+		(
+			(Click-Feedback-Q2-Correct-EditAttempts or Error-Wrong-Edit) then
+			(Text-Feedback-Q2-Correct-Feedback until
+			Click-Feedback-Q2-Correct-Update)
+		) then
+		#Incorrect case feedback with optional preview
+		(
+			(Selection-Feedback-Q2-DefaultIncorrect until
+			(Click-Feedback-Q2-Incorrect-EditAttempts or Error-Wrong-Edit)) then
+			(Text-Feedback-Q2-Incorrect-Feedback until
+			Click-Feedback-Q2-Incorrect-Update)
+		) then
+		Click-Problems-Preview then
+		 AllDone
+
+	) and
+	Error-Offpath and
+	Error-Offpath-Update and
+	Error-Not-Done;
+}
+
+mappings
+{
+
+
+	#Problem-creation
+	[priority=2]ProblemNew:click=>Click-New;
+	[priority=2]ProblemName=>Text-ProblemName;
+	[priority=2]ProblemAttempts=>Text-Attempts;
+	[priority=2]ProblemStart=>CheckBox-Start;
+	[priority=2]ProblemEditControls.childNodes-3:click=>Click-Update;
+
+	#Assessment view for problem
+	[priority=2]AssessmentButton.childNodes-0:click=>Link-Assess;
+	[priority=2]AssessmentLink.childNodes-3:click=>Link-Assess;
+
+
+	[priority=2]ProblemTitle=>Text-Assess-Title;
+	[priority=2]ProblemStatement=>Text-Assess-Problem;
+	[priority=2]AssessmentPreview:click=>Click-Assess-Preview-Init;
+	[priority=2]QuestionNew:click=>Click-Assess-NewQuestion;
+
+
+	#First question creation
+	[priority=2]QuestionName=>Text-Assess-QuestionName;
+	[priority=2]QuestionKind=>Selection-Assess-QuestionType;
+	[priority=2]QuestionText=>Text-Assess-BeforeBlank;
+	[priority=2]Length=>Text-Assess-Width;
+	[priority=2]TextAfter=>Text-Assess-AfterBlank;
+	[priority=2]AnswerType=>Selection-Assess-ResponseType;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Init-Update;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Update;
+
+	[priority=2]AssessmentPreview:click=>Click-Assess-Preview;
+	[priority=2]QuestionNew:click=>Click-Assess-FinalNewQuestion;
+
+
+	#Second question creation
+	[priority=2]QuestionName=>Text-Assess-FinalQuestionName;
+	[priority=2]QuestionKind=>Selection-Assess-FinalQuestionType;
+	[priority=2,noqiv]QuestionText=>Text-Assess-FinalBeforeBlank;
+	[priority=2,noqiv]Length=>Text-Assess-FinalWidth;
+	[priority=2,noqiv]TextAfter=>Text-Assess-FinalAfterBlank;
+	[priority=2,noqiv]AnswerType=>Selection-Assess-FinalResponseType;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-FinalUpdate;
+
+	#Preview not optional here because to create
+	#Response.Add object for preview in next screen
+	[priority=2]AssessmentPreview:click=>Click-Assess-FinalPreview;
+	[priority=2]FeedbackLink.childNodes-3:click=>Link-Feedback;
+	[priority=2]FeedbackButton.childNodes-0:click=>Link-Feedback;
+
+	#Feedback view
+	#For first question correct case
+	#Correct feedback
+	[priority=2]FeedbackQuestions=>Selection-Feedback-Q1-Question;
+	[priority=2]Cases=>Selection-Feedback-Q1-Correct;
+	[priority=2]EditCase:click=>Click-Feedback-Q1-Edit-CorrectCase;
+	[priority=2]CaseExpr=>Text-Feedback-Q1-CorrectExpression;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q1-ExpressionUpdate;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Q1-Correct-EditAttempts;
+	[priority=2,noqiv]AttemptFeedback=>Text-Feedback-Q1-Correct-Feedback;
+
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q1-Correct-Update;
+	[priority=2]FeedbackPreview.childNodes-1:click=>Click-Feedback-Q1-Correct-Preview;
+
+	#Incorrect case feedback with optional preview
+	[priority=2]Cases=>Selection-Feedback-Q1-DefaultIncorrect;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Q1-Incorrect-EditAttempts;
+	[priority=2,noqiv]AttemptFeedback=>Text-Feedback-Q1-Incorrect-Feedback;
+
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q1-Incorrect-Update;
+	[priority=2]FeedbackPreview.childNodes-1:click=>Click-Feedback-Q1-Incorrect-Preview;
+
+
+	#For second question correct case
+	#Correct feedback
+
+	[priority=2]FeedbackQuestions=>Selection-Feedback-Q2-Question;
+	[priority=2]Cases=>Selection-Feedback-Q2-Correct;
+	[priority=2]EditCase:click=>Click-Feedback-Q2-Edit-CorrectCase;
+	[priority=2]CaseExpr=>Text-Feedback-Q2-CorrectExpression;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q2-ExpressionUpdate;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Q2-Correct-EditAttempts;
+	[priority=2,noqiv]AttemptFeedback=>Text-Feedback-Q2-Correct-Feedback;
+
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q2-Correct-Update;
+	[priority=2]FeedbackPreview.childNodes-1:click=>Click-Feedback-Q2-Correct-Preview;
+
+
+	#Incorrect case feedback with optional preview
+	[priority=2]Cases=>Selection-Feedback-Q2-DefaultIncorrect;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Q2-Incorrect-EditAttempts;
+	[priority=2,noqiv]AttemptFeedback=>Text-Feedback-Q2-Incorrect-Feedback;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q2-Incorrect-Update;
+	[priority=2]FeedbackPreview.childNodes-1:click=>Click-Feedback-Q2-Incorrect-Preview;
+
+	# All done
+	[priority=2]TutorLink.Done=>AllDone;
+
+	[priority=2]PreviewButton.childNodes-0:click=>Click-Problems-Preview;
+}
+
+feedback
+{
+	Text-Attempts {
+		answer: "2";
+		Hint: "Set the number of attempts for this problem. This means that the students will have two opportunities to try out this problem and enter the correct answer.";
+		Hint: "Set the <strong>Attempts</strong> field for this problem to '{answer}'.";
+	}
+
+	Text-Assess-Title {
+		answer:  RegEx(".+");
+		Hint: "Provide a title for the problem. This title will appear at the top of the whole problem set displayed to the student.";
+		Hint: "Type 'Add and Subtract Integers' for the <strong>Title</strong>.";
+	}
+
+	Text-Assess-Problem {
+		answer:  RegEx(".+\\s*");
+		Hint: "Provide a problem statement now. The problem statement is an introduction to the problem set, with generic information on the questions that follow.";
+		Hint: "Type 'Please solve the addition and subtraction problems below.' for the <strong>Problem Statement</strong>.";
+	}
+
+	Text-Assess-QuestionName {
+		answer: "Add";
+		Hint: "You are about to create a new question for this problem set. Create new questions and provide their details now.";
+		Hint: "Type 'Add' for the <strong>Name</strong> field under the <strong>Question Details</strong> panel.";
+	}
+
+	Text-Assess-FinalQuestionName {
+		answer: "Subtract";
+		Hint: "You are about to create a new question for this problem set. Create new questions and provide their details now.";
+		Hint: "Type 'Subtract' for the <strong>Name</strong> field under the <strong>Question Details</strong> panel.";
+	}
+
+	Text-Assess-FinalWidth {
+		answer: "3";
+		Hint: "Width of the answer is the size of the blank which the students use for providing their answers.";
+		Hint: "Enter the width of the answer here. Enter '3' for the \"Width\"";
+	}
+
+	Text-Feedback-Q1-Incorrect-Feedback {
+		answer:  RegEx(".+\\s*");
+		Hint: "Provide feedback to the students for any incorrect answer they come up with for this problem.";
+		Hint: "For the <strong>Feedback</strong> field, enter 'Your addition is incorrect. The sum of 1 and -5 is not &lt;py&gt;Response.Add&lt;/py&gt;.' &lt;py&gt;Response.Add&lt;/py&gt; references the value of the student's incorrect response to the 'Add' problem.";
+	}
+
+	Text-Feedback-Q2-Correct-Feedback {
+		answer:  RegEx(".+\\s*");
+		Hint: "It is time to modify the feedback that you wish to provide to the student, when their answer is correct.";
+		Hint: "Type 'Your answer is correct. The difference between -5 and 5 is -10.' for the <strong>Feedback</strong> field.";
+	}
+
+	Text-Feedback-Q2-Incorrect-Feedback {
+		answer:  RegEx(".+\\s*");
+		Hint: "Provide feedback to the students for any incorrect answer they come up with for this problem.";
+		Hint: "For the <strong>Feedback</strong> field, enter 'Your subtraction is incorrect. The difference of -5 and 5 is not &lt;py&gt;Response.Subtract&lt;/py&gt;.' &lt;py&gt;Response.Subtract&lt;/py&gt;. references the value of the student's incorrect response to the 'Subtract' problem.";
+	}
+
+	Click-New {
+		answer: 1;
+		Hint: "Create a new problem first. Use 'AddSubtract' as your Problem Name.";
+		Hint: "To create a new problem, click the <strong>New</strong> button in the Problems panel. Then type 'AddSubtract' for the <strong>Name</strong> field in the <strong>Problem details</strong> section.";
+	}
+
+	Click-Update {
+		answer: 1;
+		Hint: "To save the details of the problem, click the <strong>Update</strong> button.";
+	}
+
+	Click-Assess-NewQuestion {
+		answer: 1;
+		Hint: "You are about to create a new question for your problem set.";
+		Hint: "To create a new question, click on the <strong>New</strong> button under the <strong>Questions</strong> Panel.";
+	}
+
+	Click-Assess-Update {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem. ";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Click-Assess-Preview {
+		answer: 1;
+		Hint: "You can preview the question you just now created by clicking the <strong>Preview</strong> button.";
+	}
+
+	Click-Assess-FinalNewQuestion {
+		answer: 1;
+		Hint: "You are done with creating question 'Add' and you can start creating your next question 'Subtract'.";
+		Hint: "For creating your new question, click on the <strong>New</strong> button under the Questions Panel.";
+	}
+
+	Click-Assess-FinalUpdate {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem. ";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Click-Feedback-Q1-Edit-CorrectCase {
+		answer: 1;
+		Hint: "Check whether the student's input is correct and provide feedback for the correct case now.";
+		Hint: "Edit the <strong>Correct</strong> case now with the expression to check for the sum.";
+		Hint: "Click on the <strong>Edit</strong> button under the <strong>Cases</strong> panel.";
+	}
+
+	Click-Feedback-Q1-ExpressionUpdate {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button under the <strong>Case Details</strong> panel to save the expression.";
+	}
+
+	Click-Feedback-Q1-Correct-EditAttempts {
+		answer: 1;
+		Hint: "Provide feedback for a student's correct answer now.";
+		Hint: "To provide feedback for the Default correct case, click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.";
+	}
+
+	Click-Feedback-Q1-Correct-Update {
+		answer: 1;
+		Hint: "Update to save the changes you made.";
+		Hint: "Click the <strong>Update</strong> button to save the feedback for the correct case.";
+	}
+
+	Click-Feedback-Q1-Correct-Preview {
+		answer: 1;
+		Hint: "Verify if your feedback is correct by taking a preview of it.";
+		Hint: "Preview your feedback by clicking the <strong>Preview</strong> button.";
+	}
+
+	Click-Feedback-Q1-Incorrect-EditAttempts {
+		answer: 1;
+		Hint: "Edit the feedback for the <strong>Default</strong> attempts now, which is the feedback for any incorrect answer the student provides.";
+		Hint: "Click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.";
+	}
+
+	Click-Feedback-Q2-Edit-CorrectCase {
+		answer: 1;
+		Hint: "Check whether the student's input is correct and provide feedback for the correct case now.";
+		Hint: "Edit the <strong>Correct</strong> case now with the expression to check for the difference..";
+		Hint: "Click on the <strong>Edit</strong> button under the <strong>Cases</strong> panel.";
+	}
+
+	Click-Feedback-Q2-ExpressionUpdate {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button under the <strong>Case Details</strong> panel to save the expression.";
+	}
+
+	Click-Feedback-Q2-Correct-EditAttempts {
+		answer: 1;
+		Hint: "Provide feedback for a student's correct answer now.";
+		Hint: "To provide feedback for the Default correct case, click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.";
+	}
+
+	Click-Feedback-Q2-Correct-Update {
+		answer: 1;
+		Hint: "Update to save the changes you made.";
+		Hint: "Click the <strong>Update</strong> button to save the feedback for the correct case.";
+	}
+
+	Click-Feedback-Q2-Correct-Preview {
+		answer: 1;
+		Hint: "Verify if your feedback is correct by taking a preview of it.";
+		Hint: "Preview your feedback by clicking the <strong>Preview</strong> button.";
+	}
+
+	Click-Feedback-Q2-Incorrect-EditAttempts {
+		answer: 1;
+		Hint: "Edit the feedback for the <strong>Default</strong> attempts now, which is the feedback for any incorrect answer the student provides.";
+		Hint: "Click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.";
+	}
+
+	Click-Feedback-Q2-Incorrect-Update {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button to save the feedback.";
+	}
+
+	Click-Feedback-Q2-Incorrect-Preview {
+		answer: 1;
+		Hint: "Verify if your feedback is correct by taking a preview of it.";
+		Hint: "Preview your feedback by clicking the <strong>Preview</strong> button.";
+	}
+
+	Click-Feedback-Q1-Incorrect-Preview {
+		answer: 1;
+		Hint: "Verify if your feedback is correct by taking a preview of it.";
+		Hint: "Preview your feedback by clicking the <strong>Preview</strong> button.";
+	}
+
+	Click-Feedback-Q1-Incorrect-Update {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button to save the feedback.";
+	}
+
+	CheckBox-Start {
+		answer: "true";
+		Hint: "Ensure that this problem is selected as the start problem.";
+		Hint: "Keep the checkbox <strong>Start</strong> checked to ensure that this problem is selected as the start problem. ";
+		JIT: "<block/>Please leave the <strong>Start</strong> box checked for this problem.";
+	}
+
+	Link-Assess {
+		answer: 1;
+		Hint: "Add the question for your problem in the <strong>Assessment View</strong>.";
+		Hint: "Click on the <strong>Assessment View</strong> icon (small pencil image) or the <strong>Assessment View</strong> link to go there.  <image src=\"LinkAssessment.png\"/>";
+	}
+
+	Link-Feedback {
+		answer: 1;
+		Hint: "Provide feedback to the questions you just modified, in the <strong>Feedback View</strong>.";
+		Hint: "Click on the <strong>Feedback View</strong> icon (two persons talking) or the <strong>Feedback View</strong> link to go there.  <image src=\"LinkFeedback.png\"/>";
+	}
+
+	Selection-Assess-QuestionType {
+		answer: "Fill in the Blank";
+		Hint: "Select the <strong>Kind</strong> of question here.";
+		Hint: "Select the 'Fill in the Blank' option for the <strong>Kind</strong> of question.";
+		JIT: "<block/>You selected {v} for the question type, but you need to create a 'Fill in the Blank' type of question.";
+	}
+
+	Selection-Assess-ResponseType {
+		answer: "Integer";
+		Hint: "Select the data type of the <strong>Response</strong>.";
+		Hint: "Select 'Integer' for the <strong>Response</strong> field.";
+		JIT: "<block/>You selected the {v} type for the student's response, but the student's response needs to be of type Integer.";
+	}
+
+	Selection-Assess-FinalQuestionType {
+		answer: "Fill in the Blank";
+		Hint: "Select the <strong>Kind</strong> of question here.";
+		Hint: "Select the 'Fill in the Blank' option for the <strong>Kind</strong> of question.";
+		JIT: "<block/>You selected {v} for the question type, but you need to create a 'Fill in the Blank' type of question.";
+	}
+
+	Selection-Assess-FinalResponseType {
+		answer: "Integer";
+		Hint: "Select the data type of the <strong>Response</strong>.";
+		Hint: "Select 'Integer' for the <strong>Response</strong> field.";
+		JIT: "<block/>You selected the {v} type for the student's response, but the student's response needs to be of type Integer.";
+	}
+
+	Selection-Feedback-Q1-Question {
+		answer: "Add";
+		Hint: "Select the question for which you want to provide feedback.";
+		Hint: "Ensure that the question 'Add' is selected in the <strong>Question</strong> dropbox.";
+		JIT: "<block/> You selected the wrong question.  You need to provide feedback for the 'Add' question now.";
+	}
+
+	Selection-Feedback-Q1-Correct {
+		answer: "Correct";
+		Hint: "Select the <strong>Correct</strong> case now to provide feedback for any correct answer provided by the student.";
+		JIT: "<block/>You need to select the 'Correct' case to provide feedback when the student provide the correct answer.";
+	}
+
+	Selection-Feedback-Q1-DefaultIncorrect {
+		answer: "Default_Incorrect";
+		Hint: "Select the <strong>Default_Incorrect</strong> case now to provide feedback for any wrong answer provided by the student.";
+		JIT: "<block/>You need to select the 'Default_Incorrect' case to provide feedback when the student provide the correct answer.";
+	}
+
+	Selection-Feedback-Q1-DefaultAttempts {
+		answer: "Default";
+		Hint: "You need to select an attempt to edit the feedback.";
+		Hint: "Select the 'Default' attempt to provide feedback.";
+		JIT: "<block/>Please select the 'Default' attempt to edit the feedback for that attempt now.";
+	}
+
+	Selection-Feedback-Q2-Question {
+		answer: "Subtract";
+		Hint: "Select the question for which you want to provide feedback.";
+		Hint: "Ensure that the question 'Subtract' is selected in the <strong>Question</strong> dropbox.";
+		JIT: "<block/> You selected the wrong question.  You need to provide feedback for the 'Subtract' question.";
+	}
+
+	Text-Feedback-Q1-Correct-Feedback {
+		answer:  RegEx(".+\\s*");
+		Hint: "It is time to modify the feedback that you wish to provide to the student, when their answer is correct.";
+		Hint: "Type 'Your answer is correct. The sum of 1 and -5 is -4.' for the <strong>Feedback</strong>  field.";
+	}
+
+	Text-Assess-Width {
+		answer: "3";
+		Hint: "Width of the answer is the size of the blank which the students use for providing their answers.";
+		Hint: "Enter the width of the answer here. Enter '3' for the \"Width\"";
+	}
+
+	Click-Assess-Init-Update {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem. ";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Click-Assess-FinalPreview {
+		answer: 1;
+		Hint: "You can preview the question you just now created by clicking the <strong>Preview</strong> button.";
+	}
+
+	Text-ProblemName {
+		answer: "AddSubtract";
+		Hint: "Provide a name for this problem, which is used to refer to this problem in the authoring tool.";
+		Hint: "Change the Problem Name to 'AddSubtract' in the <strong>Name</strong> field in the Problems panel.";
+	}
+
+	Click-Assess-Preview-Init {
+		answer: 1;
+		Hint: "Click <strong>Preview</strong> now if you would like to see how your problem statement will appear.";
+	}
+
+	Text-Feedback-Q1-CorrectExpression {
+		answer: RegEx(" *Response\\.Add *== *-4 *");
+		Hint: "To check whether the student's answer is correct, provide the expression for correctness now. The response entered by the student is named Response.[Question Name] where [Question Name] is the name of the current question.";
+		Hint: "Type 'Response.Add == -4' in the <strong>Expression</strong> field under the <strong>Case Details</strong> section.";
+	}
+
+	Text-Feedback-Q2-CorrectExpression {
+		answer: RegEx(" *Response\\.Subtract *== *-10 *");
+		Hint: "To check whether the student's answer is correct, provide the expression for correctness now. The response entered by the student is named Response.[Question Name] where [Question Name] is the name of the current question.";
+		Hint: "Type 'Response.Subtract == -10' in the <strong>Expression</strong> field under the <strong>Case Details</strong> section.";
+	}
+
+	Selection-Feedback-Q2-Correct {
+		answer: "Correct";
+		Hint: "Select the <strong>Correct</strong> case now to provide feedback for any correct answer provided by the student.";
+		JIT: "<block/>You need to select the 'Correct' case to provide feedback when the student provide the correct answer.";
+	}
+
+	Selection-Feedback-Q2-DefaultAttempts {
+		answer: "Default";
+		Hint: "You need to select an attempt to edit the feedback.";
+		Hint: "Select the 'Default' attempt to provide feedback.";
+		JIT: "<block/>Please select the 'Default' attempt to edit the feedback for that attempt now.";
+	}
+
+	Selection-Feedback-Q2-DefaultIncorrect {
+		answer: "Default_Incorrect";
+		Hint: "Select the <strong>Default_Incorrect</strong> case now to provide feedback for any wrong answer provided by the student.";
+		JIT: "<block/>You need to select the 'Default_Incorrect' case to provide feedback when the student provide the correct answer.";
+	}
+
+	Error-Wrong-New {
+		answer: "foo";
+		JIT: " <block/>You clicked the wrong new button.  That new button <*>.  Try again.";
+	}
+
+	Text-Assess-FinalAfterBlank {
+		# No Properties!
+		Hint: "Please leave the <strong>After blank</strong> text box blank.";
+	}
+
+	Click-Problems-Preview {
+		answer: 1;
+		Hint: "Preview the problem now as described in the assignment.";
+		Hint: "Click on the <strong>Preview</strong> icon in the main toolbar above the <strong>Problems</strong> panel. Then choose the title of your problem from the small menu that appears at the lower left . <image src=\"ProblemPreview.png\"/>";
+	}
+
+	AllDone {
+		answer: 1;
+		Hint: "You are through with this problem. Move on to a different problem.";
+	}
+
+	Text-Assess-BeforeBlank {
+		answer: RegEx(".*1.*-5.*\\s*");
+		Hint: "Provide the question for the first problem now. This part of the question appears before the blank for the answer.";
+		Hint: "In the <strong>Before Blank</strong> field, enter 'What is the sum of 1 and -5?'";
+	}
+
+	Text-Assess-FinalBeforeBlank {
+		answer: RegEx(".*-5.*5.*\\s*");
+		Hint: "Provide the question for the second problem now. This part of the question appears before the blank for the answer.";
+		Hint: "In the <strong>Before Blank</strong> field, enter 'What is the difference between -5 and 5?'";
+	}
+
+}

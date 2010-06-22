@@ -1,0 +1,77 @@
+sequence
+{
+	(SetNumerator1 and SetDenominator1 and SetNumerator2 and SetDenominator2) then
+	(SetNumeratorAnswer and SetDenominatorAnswer) then
+	All-Done;
+}
+
+mappings
+{
+	numop1 => SetNumerator1;
+	numop2 => SetNumerator2;
+	numans => SetNumeratorAnswer;
+	denop1 => SetDenominator1;
+	denop2 => SetDenominator2;
+	denans => SetDenominatorAnswer;
+	TutorLink.Done => All-Done;
+}
+
+feedback
+{
+	SetNumerator1
+	{
+		answer: RegEx("[1-9]\\d*");
+		JIT {v == 0}: "The number cannot be zero";
+		JIT: "Enter numbers only.";
+		Hint: "Enter the Numerator of Fraction 1";
+	}
+
+	SetNumerator2
+	{
+		answer: RegEx("[1-9]\\d*");
+		JIT {v == 0}: "The number cannot be zero";
+		JIT: "Enter numbers only.";
+		Hint: "Enter the Numerator of Fraction 2";
+	}
+
+	SetNumeratorAnswer
+	{
+		answer: Sum("SetNumerator1","SetNumerator2");
+		Hint: "Enter numerator of the fraction sum.";
+		Hint: "Since the denominators are same, the numerator of the fraction sum is the sum of the two input numerators";		
+		JIT {v == 0}: "The numerator sum cannot be zero";
+		JIT : "You have entered the wrong numerator sum";
+	}
+
+	SetDenominator1
+	{
+		answer: RegEx("[1-9]\\d*");
+		JIT {v == 0}: "The number cannot be zero";
+		JIT: "Enter numbers only.";
+		Hint: "Enter the Denominator of Fraction 1";
+	}
+
+	SetDenominator2
+	{
+		answer: Ans("SetDenominator1");
+		JIT {v == 0}: "The number cannot be zero";
+		JIT {v != Ans("SetDenominator1")} : "The denominator should be same as the denominator of the first fraction for this task";
+		Hint: "Enter the Denominator of Fraction 2";
+	}
+
+	SetDenominatorAnswer
+	{
+		answer: Ans("SetDenominator1");
+		Hint: "Enter denominator of the fraction sum.";
+		Hint: "Since the denominators are same, the denominator of the fraction sum is the input denominator itself.";
+		JIT {v == 0}: "The denominator sum cannot be zero";
+		JIT {v == Sum("SetDenominator1","SetDenominator2")}: "You just added the denominators of two fractions. That's not how you calculate the denominator of fraction sum";
+		JIT : "You have entered the wrong denominator sum";
+	}
+	
+	All-Done
+	{
+		answer: "1";
+		Hint: "You have successfully completed the task.";
+	}
+}
