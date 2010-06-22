@@ -1,0 +1,120 @@
+sequence
+{
+    (SetNumerator1 and SetDenominator1 and SetNumerator2 and SetDenominator2) then SetLcm then
+    (SetEqNumerator1 and SetEqNumerator2) then
+    (SetNumeratorAnswer and SetDenominatorAnswer) then
+    All-Done and
+    Error-Not-Done;
+}
+
+mappings
+{
+    numop1 => SetNumerator1;
+    numop2 => SetNumerator2;
+    numans => SetNumeratorAnswer;
+    denop1 => SetDenominator1;
+    denop2 => SetDenominator2;
+    denans => SetDenominatorAnswer;
+    lcm => SetLcm;
+    eqnumop1 => SetEqNumerator1;
+    eqnumop2 => SetEqNumerator2;
+    [priority=2] TutorLink.Done => All-Done;
+    [priority=1] TutorLink.Done => Error-Not-Done;
+}
+feedback
+{
+	SetNumerator1
+	{
+		answer: RegEx("[1-9]\\d*");
+		JIT {v == 0}: "The number cannot be zero";
+		JIT: "Enter numbers only.";
+		Hint: "Enter the Numerator of Fraction 1";
+	}
+
+	SetNumerator2
+	{
+		answer: RegEx("[1-9]\\d*");
+		JIT {v == 0}: "The number cannot be zero";
+		JIT: "Enter numbers only.";
+		Hint: "Enter the Numerator of Fraction 2";
+	}
+
+    SetLcm
+    {
+       answer: Lcm("SetDenominator1","SetDenominator2");
+       Hint: "Calculate the LCM of the two denominators";
+       Hint: "LCM is the least common multiple of two numbers. For example the LCM of 3 and 5 is 15";
+       JIT {v == 0}: "The LCM cannot be zero";
+       JIT {v == Sum("SetDenominator1","SetDenominator2")}: "You just added the denominators of two fractions. That's not how you calculate the LCM";
+       JIT: "The LCM of two denominators is incorrect";
+    }
+    
+    SetEqNumerator1
+    {
+       answer: EqNumerator("SetNumerator1","SetDenominator1","SetLcm");
+       Hint: "Calculate the equivalent numerator of the first fraction numerator";
+       Hint: "To calculate equivalent numerator divide the lcm by the denominator and then multiply the quotient with the numerator";
+       JIT {v == 0}: "The equivalent numerator1 cannot be zero";
+       JIT: "The equivalent numerator of the numerator1 is not correct. Ask for a hint";
+    }
+
+    SetEqNumerator2
+    {
+       answer: EqNumerator("SetNumerator2","SetDenominator2","SetLcm");
+       Hint: "Calculate the equivalent numerator of the second fraction numerator";
+       Hint: "To calculate equivalent numerator divide the lcm by the denominator and then multiply the quotient with the numerator";
+       JIT {v == 0}: "The equivalent numerator2 cannot be zero";
+       JIT: "The equivalent numerator of the numerator2 is not correct. Ask for a hint";
+    }
+    
+    SetNumeratorAnswer
+    {
+        answer: Sum("SetEqNumerator1","SetEqNumerator2");
+        Hint: "Calculate the numerator fraction sum";
+        Hint: "The numerator fraction sum is obtained by adding the two equivalent numerators";
+        JIT {v == 0}: "The numerator sum cannot be zero";
+        JIT {v == Sum("SetNumerator1","SetNumerator2")}: "You just added the numerators of two fractions. You should add the equivalent numerators";
+        JIT : "You have entered the wrong numerator sum";
+    }
+
+    SetDenominator1
+    {
+        answer: RegEx("[1-9]\\d*");
+        JIT {v == 0}: "The number cannot be zero";
+        JIT: "Enter numbers only.";
+        Hint: "Enter the Denominator of Fraction 1";
+    }
+
+
+	SetDenominator2
+	{
+		answer: IsNotMultiple("SetDenominator1");
+		JIT {v == 0}: "The number cannot be zero";
+		JIT {v == Ans("SetDenominator1")} : "Both the denominators cannot be the same for this task";
+		JIT {v == IsMultiple("SetDenominator1")} : "The denominator of the second fraction cannot be a multiple of the denominator of the first fraction";
+		Hint: "Enter the Denominator of Fraction 2";
+	}
+
+    SetDenominatorAnswer
+    {
+        answer: Ans("SetLcm");
+        Hint: "Enter denominator of the fraction sum.";
+        Hint: "The denominator of the fraction sum is the LCM of the two denominators";
+        JIT {v == 0}: "The denominator sum cannot be zero";
+        JIT {v == Sum("SetDenominator1","SetDenominator2")}: "You just added the denominators of two fractions. That's not how you calculate the denominator of fraction sum";
+        JIT : "You have entered the wrong denominator sum";
+    }
+	
+		
+	Error-Not-Done
+	{
+		answer: "0";
+		JIT: "You are not done with this problem yet. Ask for a hint if you would like help.";
+	}
+	
+	All-Done
+	{
+		answer: "1";
+		Hint: "You have successfully completed the task.";
+	}
+}

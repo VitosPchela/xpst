@@ -1,0 +1,37 @@
+mappings
+{
+	[priority=1]TutorLink.Done=>Error-Not-Done;
+	
+	[priority=0]
+	switch
+	{
+		cottage1Occupant:Ammo = "Ammo command on cottage1Occupant",
+		cottage2Occupant:Ammo = "Ammo command on cottage2Occupant",
+		cottage3Occupant:Ammo = "Ammo command on cottage3Occupant",
+		cottage1Occupant:Fire = "Fire command on cottage1Occupant",
+		cottage2Occupant:Fire = "Fire command on cottage2Occupant",
+		cottage3Occupant:Fire = "Fire command on cottage3Occupant",
+		cottage1Occupant:Jump = "Jump command on cottage1Occupant",
+		cottage2Occupant:Jump = "Jump command on cottage2Occupant",
+		cottage3Occupant:Jump = "Jump command on cottage3Occupant",
+		cottage1Occupant:Destroy = "Destroy command on cottage1Occupant",
+		cottage2Occupant:Destroy = "Destroy command on cottage2Occupant",
+		cottage3Occupant:Destroy = "Destroy command on cottage3Occupant",
+		cottage1Occupant:ReportLoc = "ReportLoc command on cottage1Occupant",
+		cottage2Occupant:ReportLoc = "ReportLoc command on cottage2Occupant",
+		cottage3Occupant:ReportLoc = "ReportLoc command on cottage3Occupant"
+	} => Error-Offpath;
+}
+
+feedback
+{
+	Error-Not-Done {
+		answer: "0";
+		JIT: "You are not done with this problem yet. Ask for a hint if you would like help.";
+	}
+	
+	Error-Offpath {
+		answer: "foo";
+		JIT: "You used {v}. That's not something you need to do right now.";
+	}
+}

@@ -1,0 +1,612 @@
+include "OffPath.xpst";
+
+options
+{
+	tutorname="CAPE";
+}
+
+sequence
+{
+    (
+	#---Problem creation---
+	(Click-New or Error-Wrong-New) then
+	((
+		Text-ProblemName and
+		Text-Attempts and
+		CheckBox-Start-Uncheck
+	) until
+	Click-Update) then
+	(Selection-Problem-Edit until
+	Click-Edit) then
+	((
+		Selection-Followup-Correct and
+		Selection-Followup-Incorrect
+	) until
+	Click-Update-Again) then
+
+	(Selection-Problem-Again until
+	Link-Assess) then
+	(
+		Text-Assess-Title and
+		Text-Assess-Problem
+	) then
+	#need update here??
+	(Click-Assess-NewQuestion or Error-Wrong-New) then
+	(
+		Text-Assess-QuestionName and
+		Selection-Assess-QuestionType and
+		Text-Assess-BeforeSelect and
+		Text-Assess-AfterSelect
+	) then
+	Click-Assess-Update then
+
+	(Click-Assess-New-Choice or Error-Wrong-New) then
+	Text-Assess-ChoiceLabel then
+	Click-Assess-Update-Again then
+
+	(Click-Assess-New-Choice-2 or Error-Wrong-New) then
+	Text-Assess-ChoiceLabel-2 then
+	Click-Assess-Update-Again-2 then
+
+	(Click-Assess-New-Choice-3 or Error-Wrong-New) then
+	Text-Assess-ChoiceLabel-3 then
+	Click-Assess-Update-Again-3 then
+
+	(Click-Assess-New-Choice-4 or Error-Wrong-New) then
+	Text-Assess-ChoiceLabel-4 then
+	Click-Assess-Update-Again-4 then
+	(
+		(
+			Click-Assess-Preview then
+			Link-Feedback
+		) or
+		Link-Feedback
+	) then
+	(
+		Selection-Feedback-Q1-Correct then
+		Click-Feedback-Q1-Edit-CorrectCase then
+		Text-Feedback-Q1-CorrectExpression then
+		Click-Feedback-Q1-ExpressionUpdate
+	) then
+	(
+		Click-Feedback-Q1-Correct-EditAttempts then
+		Text-Feedback-Q1-Correct-Feedback then
+		Click-Feedback-Q1-Correct-Update
+	) then
+	(
+		(Click-Feedback-New-Expression-NotDiameter or Error-Wrong-New) then
+		(
+			Text-Feedback-Q1-Label-NotDiameter and
+			Text-Feedback-Q1-NotDiameter-Expression
+		) then
+		Click-Feedback-Q1-NotDiameter-ExpressionUpdate then
+		Click-Feedback-Q1-NotDiameter-EditAttempts then
+		Text-Feedback-Q1-NotDiameter-Feedback then
+		Click-Feedback-NotDiameter-Feedback-Update
+	) then
+	(
+		(Click-Feedback-New-Expression-MissingFactor or Error-Wrong-New) then
+		(
+			Text-Feedback-Q1-Label-MissingFactor and
+			Text-Feedback-Q1-MissingFactor-Expression
+		) then
+		Click-Feedback-Q1-MissingFactor-ExpressionUpdate then
+		Click-Feedback-Q1-MissingFactor-EditAttempts then
+		Text-Feedback-Q1-MissingFactor-Feedback then
+		Click-Feedback-MissingFactor-Feedback-Update
+	) then
+	(
+		(Click-Feedback-New-Expression-CubeInstead or Error-Wrong-New) then
+		(
+			Text-Feedback-Q1-Label-CubeInstead and
+			Text-Feedback-Q1-CubeInstead-Expression
+		) then
+		Click-Feedback-Q1-CubeInstead-ExpressionUpdate then
+		Click-Feedback-Q1-CubeInstead-EditAttempts then
+		Text-Feedback-Q1-CubeInstead-Feedback then
+		Click-Feedback-CubeInstead-Feedback-Update
+	) then
+
+	(
+		Selection-Feedback-Q1-DefaultIncorrect then
+		Click-Feedback-Q1-Incorrect-EditAttempts then
+		Text-Feedback-Q1-DefaultIncorrect-Feedback then
+		Click-Feedback-Incorrect-Update
+	) then
+	Click-Problems-Preview then
+	AllDone
+    ) and Error-Offpath and Error-Offpath-Update and Error-Not-Done;
+
+}
+
+mappings
+{
+	#---Problem-creation---
+	[priority=2]ProblemNew:click=>Click-New;
+	[priority=2]ProblemName=>Text-ProblemName;
+	[priority=2]ProblemAttempts=>Text-Attempts;
+	[priority=2]ProblemStart=>CheckBox-Start-Uncheck;
+	[priority=2]ProblemEditControls.childNodes-3:click=>Click-Update;
+
+	#---Editing the followup problems---
+	[priority=2]Problems=>Selection-Problem-Edit;
+	[priority=2]ProblemEdit:click=>Click-Edit;
+	[priority=2]NextCorrect=>Selection-Followup-Correct;
+	[priority=2]NextIncorrect=>Selection-Followup-Incorrect;
+	[priority=2]ProblemEditControls.childNodes-3:click=>Click-Update-Again;
+
+	[priority=2]Problems=>Selection-Problem-Again;
+
+	#---Creating assessment---
+	[priority=2]AssessmentLink.childNodes-3:click=>Link-Assess;
+	[priority=2]AssessmentButton.childNodes-0:click=>Link-Assess;
+	[priority=2]ProblemTitle=>Text-Assess-Title;
+	[priority=2]ProblemStatement=>Text-Assess-Problem;
+	[priority=2]QuestionNew:click=>Click-Assess-NewQuestion;
+	[priority=2]QuestionName=>Text-Assess-QuestionName;
+	[priority=2]QuestionKind=>Selection-Assess-QuestionType;
+	[priority=2]QuestionText=>Text-Assess-BeforeSelect;
+	[priority=2]TextAfter=>Text-Assess-AfterSelect;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Update;
+
+	[priority=2]OptionNew:click=>Click-Assess-New-Choice;
+	[priority=2]OptionLabel=>Text-Assess-ChoiceLabel;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Update-Again;
+
+	[priority=2]OptionNew:click=>Click-Assess-New-Choice-2;
+	[priority=2]OptionLabel=>Text-Assess-ChoiceLabel-2;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Update-Again-2;
+
+	[priority=2]OptionNew:click=>Click-Assess-New-Choice-3;
+	[priority=2]OptionLabel=>Text-Assess-ChoiceLabel-3;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Update-Again-3;
+
+	[priority=2]OptionNew:click=>Click-Assess-New-Choice-4;
+	[priority=2]OptionLabel=>Text-Assess-ChoiceLabel-4;
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Update-Again-4;
+
+	[priority=2]AssessmentPreview:click=>Click-Assess-Preview;
+	[priority=2]FeedbackButton.childNodes-0:click=>Link-Feedback;
+
+
+	#---Feedback view---
+	# this step is no longer needed, unless we need to verify when there's only one to select?[priority=2]:click=>Selection-Feedback-Q1-Question;
+	[priority=2]Cases=>Selection-Feedback-Q1-Correct;
+	[priority=2]EditCase:click=>Click-Feedback-Q1-Edit-CorrectCase;
+	[priority=2]CaseExpr=>Text-Feedback-Q1-CorrectExpression;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q1-ExpressionUpdate;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Q1-Correct-EditAttempts;
+	[priority=2,noqiv]AttemptFeedback=>Text-Feedback-Q1-Correct-Feedback;
+	#what happens if they edit the correct case feedback?
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q1-Correct-Update;
+
+	[priority=2]NewCase:click=>Click-Feedback-New-Expression-NotDiameter;
+	[priority=2]CaseExpr=>Text-Feedback-Q1-NotDiameter-Expression;
+	[priority=2]CaseLabel=>Text-Feedback-Q1-Label-NotDiameter;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q1-NotDiameter-ExpressionUpdate;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Q1-NotDiameter-EditAttempts;
+	[priority=2]AttemptFeedback=>Text-Feedback-Q1-NotDiameter-Feedback;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-NotDiameter-Feedback-Update;
+
+	[priority=2]NewCase:click=>Click-Feedback-New-Expression-MissingFactor;
+	[priority=2]CaseExpr=>Text-Feedback-Q1-MissingFactor-Expression;
+	[priority=2]CaseLabel=>Text-Feedback-Q1-Label-MissingFactor;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q1-MissingFactor-ExpressionUpdate;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Q1-MissingFactor-EditAttempts;
+	[priority=2]AttemptFeedback=>Text-Feedback-Q1-MissingFactor-Feedback;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-MissingFactor-Feedback-Update;
+
+	[priority=2]NewCase:click=>Click-Feedback-New-Expression-CubeInstead;
+	[priority=2]CaseExpr=>Text-Feedback-Q1-CubeInstead-Expression;
+	[priority=2]CaseLabel=>Text-Feedback-Q1-Label-CubeInstead;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q1-CubeInstead-ExpressionUpdate;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Q1-CubeInstead-EditAttempts;
+	[priority=2]AttemptFeedback=>Text-Feedback-Q1-CubeInstead-Feedback;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-CubeInstead-Feedback-Update;
+
+	[priority=2]Cases=>Selection-Feedback-Q1-DefaultIncorrect;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Q1-Incorrect-EditAttempts;
+	[priority=2,noqiv]AttemptFeedback=>Text-Feedback-Q1-DefaultIncorrect-Feedback;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Incorrect-Update;
+
+	[priority=2]PreviewButton.childNodes-0:click=>Click-Problems-Preview;
+
+	[priority=2]TutorLink.Done=>AllDone;
+}
+
+feedback
+{
+	Click-New {
+		answer: 1;
+		Hint: "Create a new problem first. Use 'Sphere Volume' as your Problem Name.";
+		Hint: "To create a new problem, click the <strong>New</strong> button in the Problems panel. Then type 'Sphere Volume' for the <strong>Name</strong> field in the <strong>Problem details</strong> section.";
+	}
+
+	Text-ProblemName {
+		answer: "Sphere Volume";
+		Hint: "Provide a name for this problem, which is used to refer to this problem in the authoring tool.";
+		Hint: "Change the Problem Name to 'Sphere Volume' in the <strong>Name</strong> field in the Problems panel.";
+	}
+
+	Text-Attempts {
+		answer: "2";
+		Hint: "Set the number of attempts for this problem. This means that the students will have two opportunities to try out this problem and enter the correct answer.";
+		Hint: "Set the <strong>Attempts</strong> field for this problem to '2'.";
+	}
+
+	CheckBox-Start-Uncheck {
+		answer: "false";
+		Hint: "Since this problem will be selected as a followup to the Sphere Equation problem, keep <strong>Start</strong> unchecked.";
+		JIT: "<block/>Since this problem will be selected as a followup to the Sphere Equation problem, do not check start.";
+	}
+
+	Click-Update {
+		answer: 1;
+		Hint: "To save the details of the problem, click the <strong>Update</strong> button.";
+	}
+
+	Click-Edit {
+		answer: 1;
+		Hint: "Click the <strong>Edit</strong> button to edit the problem details.";
+	}
+
+	Selection-Followup-Correct {
+		answer: "Sphere Volume";
+		Hint: "Select the Sphere Volume problem as a follow up when the student answers correctly.";
+	}
+
+	Selection-Followup-Incorrect {
+		answer: "Sphere Volume";
+		Hint: "Select the Sphere Volume problem as a followup when the student answers incorrectly.";
+	}
+
+	Click-Update-Again {
+		answer: 1;
+		Hint: "To save the details of the problem, click the <strong>Update</strong> button.";
+	}
+
+	Link-Assess {
+		answer: 1;
+		Hint: "Add the question for your problem in the <strong>Assessment View</strong>.";
+		Hint: "Click on the <strong>Assessment View</strong> icon (small pencil image) or the <strong>Assessment View</strong> link to go there. <image src=\"LinkAssessment.png\"/>";
+	}
+
+	Click-Assess-NewQuestion {
+		answer: 1;
+		Hint: "You are about to create a new question for your problem set.";
+		Hint: "To create a new question, click on the <strong>New</strong> button under the <strong>Questions</strong> Panel.";
+	}
+
+	Text-Assess-QuestionName {
+		answer: "Q1";
+		Hint: "You are about to create a new question for this problem set. Create new questions and provide their details now.";
+		Hint: "Type 'Q1' for the <strong>Name</strong> field under the <strong>Question Details</strong> panel.";
+	}
+
+	Selection-Assess-QuestionType {
+		answer: "Selection";
+		Hint: "Select the <strong>Kind</strong> of question here.";
+		Hint: "Select the 'Selection' option for the <strong>Kind</strong> of question.";
+		JIT: "<block/>You selected {v} for the question type, but you need to create a 'Selection' type of question.";
+	}
+
+	Click-Assess-Update {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem. ";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Text-Assess-ChoiceLabel {
+		answer: "524";
+		Hint: "Fill in a label for the choice.";
+		Hint: "Type '524' for the <strong>Label</strong> for this multiple choice option.";
+	}
+
+	Click-Assess-Update-Again {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem. ";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Click-Assess-Update-Again-2 {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem. ";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Click-Assess-Update-Again-3 {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem. ";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Click-Assess-Update-Again-4 {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem. ";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Text-Assess-ChoiceLabel-2 {
+		answer: "4189";
+		Hint: "Fill in a label for the choice.";
+		Hint: "Type '4189' for the <strong>Label</strong> for this multiple choice option.";
+	}
+
+	Text-Assess-ChoiceLabel-3 {
+		answer: "393";
+		Hint: "Fill in a label for the choice.";
+		Hint: "Type '393' for the <strong>Label</strong> for this multiple choice option.";
+	}
+
+	Text-Assess-ChoiceLabel-4 {
+		answer: "105";
+		Hint: "Fill in a label for the choice.";
+		Hint: "Type '105' for the <strong>Label</strong> for this multiple choice option.";
+	}
+
+	Click-Assess-Preview {
+		answer: 1;
+		Hint: "You can preview the question you just now created by clicking the <strong>Preview</strong> button.";
+	}
+
+	Link-Feedback {
+		answer: 1;
+		Hint: "Provide feedback to the questions you just modified, in the <strong>Feedback View</strong>.";
+		Hint: "Click on the <strong>Feedback View</strong> icon (two persons talking) or the <strong>Feedback View</strong> link to go there. <image src=\"LinkFeedback.png\"/>";
+	}
+
+	Selection-Feedback-Q1-Correct {
+		answer: "Correct";
+		Hint: "Select the <strong>Correct</strong> case now to provide feedback for any correct answer provided by the student.";
+		JIT: "<block/>You need to select the 'Correct' case to provide feedback when the student provide the correct answer.";
+	}
+
+	Click-Feedback-Q1-Edit-CorrectCase {
+		answer: 1;
+		Hint: "Check whether the student's input is correct and provide feedback for the correct case now.";
+		Hint: "Edit the <strong>Correct</strong> case now with the expression to check for the right volume.";
+		Hint: "Click on the <strong>Edit</strong> button under the <strong>Cases</strong> panel.";
+	}
+
+	Click-Feedback-Q1-ExpressionUpdate {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button under the <strong>Case Details</strong> panel to save the expression.";
+	}
+
+	Click-Feedback-Q1-Correct-EditAttempts {
+		answer: 1;
+		Hint: "Provide feedback for a student's correct answer now.";
+		Hint: "To provide feedback for the Default correct case, click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.";
+	}
+
+	Click-Feedback-Q1-Correct-Update {
+		answer: 1;
+		Hint: "Update to save the changes you made.";
+		Hint: "Click the <strong>Update</strong> button to save the correct case.";
+	}
+
+	Click-Feedback-New-Expression-NotDiameter {
+		answer: 1;
+		Hint: "Add a new case 'not diameter' for giving feedback.";
+		Hint: "Click the <strong>New</strong> button below the <strong>Cases panel</strong> and above the <strong>Case Details</strong> to create a new feedback case. Call it 'not diameter'.";
+	}
+
+	Text-Feedback-Q1-Label-NotDiameter {
+		answer: "not diameter";
+		Hint: "Enter a label for this case. ";
+		Hint: "For the <strong>Label</strong>, enter something descriptive of this case. For example, here you must enter 'not diameter'.";
+	}
+
+	Click-Feedback-Q1-NotDiameter-ExpressionUpdate {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button under the <strong>Case Details</strong> panel to save the expression.";
+	}
+
+	Click-Feedback-Q1-NotDiameter-EditAttempts {
+		answer: 1;
+		Hint: "You need to modify the feedback text for the Default case of the not diameter condition.";
+		Hint: "Click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.";
+	}
+
+	Click-Feedback-NotDiameter-Feedback-Update {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button to save the feedback.";
+	}
+
+	Click-Feedback-New-Expression-MissingFactor {
+		answer: 1;
+		Hint: "Add a new case 'missing factor' for giving feedback.";
+		Hint: "Click the <strong>New</strong> button below the <strong>Cases panel</strong> and above the <strong>Case Details</strong> to create a new feedback case. Call it 'missing factor'.";
+	}
+
+	Text-Feedback-Q1-Label-MissingFactor {
+		answer: "missing factor";
+		Hint: "Enter a label for this case. ";
+		Hint: "For the <strong>Label</strong>, enter something descriptive of this case. For example, here you must enter 'missing factor'.";
+	}
+
+	Click-Feedback-Q1-MissingFactor-ExpressionUpdate {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button under the <strong>Case Details</strong> panel to save the expression.";
+	}
+
+	Click-Feedback-Q1-MissingFactor-EditAttempts {
+		answer: 1;
+		Hint: "You need to modify the feedback text for the Default case of the missing factor condition.";
+		Hint: "Click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.";
+	}
+
+	Click-Feedback-MissingFactor-Feedback-Update {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button to save the feedback.";
+	}
+
+	Click-Feedback-New-Expression-CubeInstead {
+		answer: 1;
+		Hint: "Add a new case 'cube instead' for giving feedback.";
+		Hint: "Click the <strong>New</strong> button below the <strong>Cases panel</strong> and above the <strong>Case Details</strong> to create a new feedback case. Call it 'cube instead'.";
+	}
+
+	Text-Feedback-Q1-Label-CubeInstead {
+		answer: "cube instead";
+		Hint: "Enter a label for this case. ";
+		Hint: "For the <strong>Label</strong>, enter something descriptive of this case. For example, here you must enter 'cube instead'.";
+	}
+
+	Click-Feedback-Q1-CubeInstead-ExpressionUpdate {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button under the <strong>Case Details</strong> panel to save the expression.";
+	}
+
+	Click-Feedback-Q1-CubeInstead-EditAttempts {
+		answer: 1;
+		Hint: "You need to modify the feedback text for the Default case of the squared instead of cubed condition condition.";
+		Hint: "Click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.";
+	}
+
+	Click-Feedback-CubeInstead-Feedback-Update {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button to save the feedback.";
+	}
+
+	Text-Assess-Title {
+		answer: RegEx(".+");
+		Hint: "Provide a title for the problem. This title will appear at the top of the whole problem set displayed to the student.";
+		Hint: "Type 'Volume of a Sphere' for the <strong>Title</strong>.";
+	}
+
+	Text-Assess-Problem {
+		answer: RegEx(".+\\s*");
+		Hint: "Provide a problem statement now. The problem statement is an introduction to the problem set, with generic information on the questions that follow.";
+		Hint: "Type 'What is the volume of a sphere with radius of 5 cm?' for the <strong>Problem Statement</strong>.";
+	}
+
+	Click-Assess-New-Choice {
+		answer: 1;
+		Hint: "Create a new choice for your selection problem.";
+		Hint: "Click the <strong>New</strong> button below the Question Details section.";
+	}
+
+	Click-Assess-New-Choice-2 {
+		answer: 1;
+		Hint: "Create a new choice for your selection problem.";
+		Hint: "Click the <strong>New</strong> button below the Question Details section.";
+	}
+
+	Click-Assess-New-Choice-3 {
+		answer: 1;
+		Hint: "Create a new choice for your selection problem.";
+		Hint: "Click the <strong>New</strong> button below the Question Details section.";
+	}
+
+	Click-Assess-New-Choice-4 {
+		answer: 1;
+		Hint: "Create a new choice for your selection problem.";
+		Hint: "Click the <strong>New</strong> button below the Question Details section.";
+	}
+
+	Text-Feedback-Q1-Correct-Feedback {
+		answer: RegEx(".+\\s*");
+		Hint: "It is time to modify the feedback that you wish to provide to the student, when their answer is correct.";
+		Hint: "Type 'That is the correct volume.' for the <strong>Feedback</strong> field.";
+	}
+
+	Text-Feedback-Q1-NotDiameter-Feedback {
+		answer: RegEx(".+\\s*");
+		Hint: "Now edit the feedback to be provided to the student. ";
+		Hint: "Type 'You appear to have used diameter instead of radius in your calculation.' in the <strong>Feedback</strong> box.";
+	}
+
+	Text-Feedback-Q1-MissingFactor-Feedback {
+		answer: RegEx(".+\\s*");
+		Hint: "Now edit the feedback to be provided to the student. ";
+		Hint: "Type 'You appear to have forgotten a factor of 4/3 in your volume calculation.' in the <strong>Feedback</strong> box.";
+	}
+
+	Text-Feedback-Q1-CubeInstead-Feedback {
+		answer: RegEx(".+\\s*");
+		Hint: "Now edit the feedback to be provided to the student. ";
+		Hint: "Type 'You appear to have squared the radius instead of cubing it in your volume calculation.' in the <strong>Feedback</strong> box.";
+	}
+
+	AllDone {
+		answer: 1;
+		Hint: "You are through with this problem. Move on to a different problem.";
+	}
+
+	Selection-Problem-Again {
+		answer: "Sphere Volume";
+		Hint: "Select the Sphere Volume problem again.";
+	}
+
+	Selection-Problem-Edit {
+		answer: "Sphere Equation";
+		Hint: "Edit the Sphere Equation problem to use a different problem as a followup.";
+		JIT: "<block/>You need to work with the Sphere Equation problem right now.";
+	}
+
+	Text-Feedback-Q1-CorrectExpression {
+		answer: RegEx(" *Response\\.Q1 *== *'524' *");
+		Hint: "To check whether the student's answer is correct, provide the expression for correctness now. The response entered by the student is named Response.[Question Name] where [Question Name] is the name of the current question.";
+		Hint: "Type 'Response.Q1 == '524'' in the <strong>Expression</strong> field under the <strong>Case Details</strong> section. ";
+	}
+
+	Text-Feedback-Q1-NotDiameter-Expression {
+		answer: RegEx(" *Response\\.Q1 *== *'4189' *");
+		Hint: "Enter the expression for one of the wrong cases now. The response entered by the student is named Response.[Question Name] where [Question Name] is the name of the current question. ";
+		Hint: "Type 'Response.Q1=='4189'' in the <strong>Expression</strong> field under the <strong>Case Details</strong> section. ";
+	}
+
+	Text-Feedback-Q1-CubeInstead-Expression {
+		answer: RegEx(" *Response\\.Q1 *== *'105' *");
+		Hint: "Enter the expression for one of the wrong cases now. The response entered by the student is named Response.[Question Name] where [Question Name] is the name of the current question. ";
+		Hint: "Type 'Response.Q1=='105'' in the <strong>Expression</strong> field under the <strong>Case Details</strong> section. ";
+	}
+
+	Text-Feedback-Q1-MissingFactor-Expression {
+		answer: RegEx(" *Response\\.Q1 *== *'393 *' *");
+		Hint: "Enter the expression for one of the wrong cases now. The response entered by the student is named Response.[Question Name] where [Question Name] is the name of the current question. ";
+		Hint: "Type 'Response.Q1=='393'' in the <strong>Expression</strong> field under the <strong>Case Details</strong> section. ";
+	}
+
+	Text-Assess-AfterSelect {
+		answer: "cm<sup>3</sup>";
+		Hint: "Please enter cm&lt;sup&gt;3&lt;/sup&gt; for <strong>After select</strong>.";
+	}
+
+	Click-Problems-Preview {
+		answer: 1;
+		Hint: "Preview the problem now as described in the assignment.";
+		Hint: "Click on the <strong>Preview</strong> icon in the main toolbar above the <strong>Problems</strong> panel. Then choose the title of your problem from the small menu that appears at the lower left . <image src=\"ProblemPreview.png\"/>";
+	}
+
+	Selection-Feedback-Q1-DefaultIncorrect {
+		answer: "Default_Incorrect";
+		Hint: "Select the <strong>Default_Incorrect</strong> case now to provide feedback for any wrong answer provided by the student.";
+		JIT: "<block/>You need to select the 'Default_Incorrect' case to provide feedback when the student provide the correct answer.";
+	}
+
+	Click-Feedback-Q1-Incorrect-EditAttempts {
+		answer: 1;
+		Hint: "Edit the feedback for the <strong>Default</strong> attempts now, which is the feedback for any incorrect answer the student provides.";
+		Hint: "Click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.";
+	}
+
+	Click-Feedback-Incorrect-Update {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button to save the feedback.";
+	}
+
+	Text-Feedback-Q1-DefaultIncorrect-Feedback {
+		answer:  RegEx(".+\\s*");
+		Hint: "Provide feedback to the students for any incorrect answer they come up with for this problem.";
+		Hint: "For the <strong>Feedback</strong> field, enter 'You must select a numerical answer from the list.'";
+	}
+
+	Text-Assess-BeforeSelect {
+		answer: RegEx(".*volume.*\\s*");
+		Hint: "Fill in the text of the question that will appear before the selection box.";
+		Hint: "In the <strong>Before Select</strong> field, enter 'The Sphere volume is ' ";
+	}
+
+}

@@ -1,0 +1,451 @@
+include "OffPath.xpst";
+
+options
+{
+	tutorname="CAPE";
+}
+
+sequence
+{
+   (
+    (
+	#---Problem creation---
+	(Click-New or Error-Wrong-New) then
+	((
+		Text-ProblemName and
+		Text-Attempts and
+		CheckBox-Start-Uncheck
+	) until
+	Click-Update) then
+
+	#---Assessment view---
+	Link-Assess then
+	(
+		Text-Assess-Title 
+	) then
+	(Click-Assess-NewQuestion or Error-Wrong-New) then
+	((
+		Text-Assess-QuestionName and
+		Selection-Assess-QuestionType then
+		Text-Assess-Question and
+		Text-Assess-Default and
+		Text-Assess-True and
+		Text-Assess-False
+	) until
+	Click-Assess-Update) then
+
+	Link-Feedback then
+	(
+		Selection-Feedback-Cases-Correct-True then
+		(Click-Feedback-Edit-True or Error-Wrong-Edit) then
+		(Text-Feedback-Edit-TrueExpr until
+		Click-Feedback-Update)
+	) and
+	(
+		Selection-Feedback-Q1-DefaultAttempts then
+		(Click-Feedback-Q1-True-EditAttempts or Error-Wrong-Edit) then
+		(Text-Feedback-Q1-True-Feedback until
+		Click-Feedback-Q1-Correct-Update)
+	) and
+
+	((
+		Selection-Feedback-Q1-Question-Msg then			
+		Selection-Feedback-Cases-Q1-DefaultIncorrect then
+		(Click-Feedback-Q1-Incorrect-EditAttempts or Error-Wrong-Edit) then
+		Text-Feedback-FeedbackText-Q1
+	) until
+	Click-Feedback-Q1-Incorrect-Update) then
+
+	(Selection-Problem-Edit until
+	Click-Edit) then
+	((
+		Selection-Followup-Correct and
+		Selection-Followup-Incorrect and
+		CheckBox-Start-Followup-Check
+	) until
+	Click-Update-Again) then
+
+	(Selection-Problem-Edit-2 until
+	Click-Edit-2) then
+	((
+		Selection-Followup-Correct-2 and
+		Selection-Followup-Incorrect-2 and
+		CheckBox-Start-Followup-2-Uncheck
+	) until
+	Click-Update-Again-2) then
+
+	(Selection-Problem-Edit-3 until
+	Click-Edit-3) then
+	((
+		Selection-Followup-Correct-3 and
+		Selection-Followup-Incorrect-3 and
+		CheckBox-Start-Followup-3-Uncheck
+	) until
+	Click-Update-Again-3)
+
+    ) then Click-Problems-Preview then AllDone
+  ) and Error-Offpath and Error-Offpath-Update and Error-Not-Done;
+
+}
+
+mappings
+{
+	#---Problem-creation---
+	[priority=2]ProblemNew:click=>Click-New;
+	[priority=2]ProblemName=>Text-ProblemName;
+	[priority=2]ProblemAttempts=>Text-Attempts;
+	[priority=2]ProblemStart=>CheckBox-Start-Uncheck;
+	[priority=2]ProblemEditControls.childNodes-3:click=>Click-Update;
+
+	#----Create Assessment----
+	[priority=2]AssessmentButton.childNodes-0:click=>Link-Assess;
+	[priority=2]AssessmentLink.childNodes-3:click=>Link-Assess;
+	[priority=2]ProblemTitle=>Text-Assess-Title;
+	[priority=2]QuestionNew:click=>Click-Assess-NewQuestion;
+	[priority=2]QuestionName=>Text-Assess-QuestionName;
+	[priority=2]QuestionKind=>Selection-Assess-QuestionType; # True-False
+	[priority=2]QuestionText=>Text-Assess-Question; 
+	[priority=2]AssessmentUpdate:click=>Click-Assess-Update;
+
+	[priority=2]Default=>Text-Assess-Default;
+	[priority=2]TrueLabel=>Text-Assess-True;
+	[priority=2,noqiv]FalseLabel=>Text-Assess-False;
+
+	[priority=2]FeedbackLink.childNodes-3:click=>Link-Feedback;
+	[priority=2]FeedbackButton.childNodes-0:click=>Link-Feedback;
+	
+	[priority=2]Cases=>Selection-Feedback-Cases-Correct-True;
+	[priority=2]EditCase:click=>Click-Feedback-Edit-True;
+	[priority=2]CaseExpr=>Text-Feedback-Edit-TrueExpr;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update;
+
+	[priority=2]Attempts=>Selection-Feedback-Q1-DefaultAttempts;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Q1-True-EditAttempts;
+	[priority=2,noqiv]AttemptFeedback=>Text-Feedback-Q1-True-Feedback;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q1-Correct-Update;
+
+	[priority=2]FeedbackQuestions=>Selection-Feedback-Q1-Question-Msg;
+	[priority=2]Cases=>Selection-Feedback-Cases-Q1-DefaultIncorrect;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Q1-Incorrect-EditAttempts;
+	[priority=2,noqiv]AttemptFeedback=>Text-Feedback-FeedbackText-Q1;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Q1-Incorrect-Update;
+
+	#---Editing the followup problems---
+	[priority=2]Problems=>Selection-Problem-Edit;
+	[priority=2]ProblemEdit:click=>Click-Edit;
+	[priority=2]NextCorrect=>Selection-Followup-Correct;
+	[priority=2]NextIncorrect=>Selection-Followup-Incorrect;
+	[priority=2]ProblemStart=>CheckBox-Start-Followup-Check;
+	[priority=2]ProblemEditControls.childNodes-3:click=>Click-Update-Again;
+
+	[priority=2]Problems=>Selection-Problem-Edit-2;
+	[priority=2]ProblemEdit:click=>Click-Edit-2;
+	[priority=2]NextCorrect=>Selection-Followup-Correct-2;
+	[priority=2]NextIncorrect=>Selection-Followup-Incorrect-2;
+	[priority=2]ProblemStart=>CheckBox-Start-Followup-2-Uncheck;
+	[priority=2]ProblemEditControls.childNodes-3:click=>Click-Update-Again-2;
+		
+	[priority=2]Problems=>Selection-Problem-Edit-3;
+	[priority=2]ProblemEdit:click=>Click-Edit-3;
+	[priority=2]NextCorrect=>Selection-Followup-Correct-3;
+	[priority=2]NextIncorrect=>Selection-Followup-Incorrect-3;
+	[priority=2]ProblemStart=>CheckBox-Start-Followup-3-Uncheck;
+	[priority=2]ProblemEditControls.childNodes-3:click=>Click-Update-Again-3;
+	
+	[priority=2]PreviewButton.childNodes-0:click=>Click-Problems-Preview;
+		
+	[priority=2]TutorLink.Done=>AllDone;
+}
+
+feedback
+{
+	Click-New {
+		answer: 1;
+		Hint: "Create a new problem first. Use 'Continue' as your Problem Name.";
+		Hint: "To create a new problem, click the <strong>New</strong> button in the Problems panel. Then type 'Continue' for the <strong>Name</strong> field in the <strong>Problem details</strong> section.";
+	}
+
+	Text-ProblemName {
+		answer: "Continue";
+		Hint: "Provide a name for this problem, which is used to refer to this problem in the authoring tool.";
+		Hint: "Change the Problem Name to 'Continue' in the <strong>Name</strong> field in the Problems panel.";
+
+	}
+
+	Text-Attempts {
+		answer: "1";
+		Hint: "Set the number of attempts for this problem. This means that the students will have two opportunities to try out this problem and enter the correct answer.";
+		Hint: "Set the <strong>Attempts</strong> field for this problem to '1'.";
+	}
+
+	CheckBox-Start-Uncheck {
+		answer: "false";
+		Hint: "Since this problem will be selected as a followup to the Sphere Equation problem, keep <strong>Start</strong> unchecked.";
+		JIT: "<block/>Since this problem will be selected as a followup to the Sphere Equation problem, do not check start.";
+	}
+
+	Click-Update {
+		answer: 1;
+		Hint: "To save the details of the problem, click the <strong>Update</strong> button.";
+	}
+
+	Link-Assess {
+		answer: 1;
+		Hint: "Add the question for your problem in the <strong>Assessment View</strong>.";
+		Hint: "Click on the <strong>Assessment View</strong> icon (small pencil image) or the <strong>Assessment View</strong> link to go there. <image src=\"LinkAssessment.png\"/>";
+	}
+
+	Text-Assess-Title {
+		answer: RegEx(".*");
+		Hint: "Provide a title for the problem. This title will appear at the top of the whole problem set displayed to the student.";
+		Hint: "Type 'Try Again?' for the <strong>Title</strong>.";
+	}
+
+	Click-Assess-NewQuestion {
+		answer: 1;
+		Hint: "You are about to create a new question for your problem set.";
+		Hint: "To create a new question, click on the <strong>New</strong> button under the <strong>Questions</strong> Panel.";
+	}
+
+	Text-Assess-QuestionName {
+		answer: "Q1";
+		Hint: "You are about to create a new question for this problem set. Create new questions and provide their details now.";
+		Hint: "Type 'Q1' for the <strong>Name</strong> field under the <strong>Question Details</strong> panel.";
+	}
+
+	Selection-Assess-QuestionType {
+		answer: "True-False";
+		Hint: "Select the <strong>Kind</strong> of question here.";
+		Hint: "Select the 'True-False' option for the <strong>Kind</strong> of question.";
+		JIT: "<block/>You selected {v} for the question type, but you need to create a 'True-False' type of question.";
+	}
+
+	Text-Assess-Question {
+		answer: RegEx(".*\\s*");
+		Hint: "Fill in the text of the question here.";
+		Hint: "In the <strong>Question Text</strong> field, enter 'Choose where to go from here.'.";
+	}
+
+	Click-Assess-Update {
+		answer: 1;
+		Hint: "Save all the information you have entered for the assessment of this problem. ";
+		Hint: "To save this problem, click on the <strong>Update</strong> button to save your changes.";
+	}
+
+	Text-Assess-False {
+		answer: RegEx(".*");
+		Hint: "Enter the text for the second option of this True-False question.";
+		Hint: "Enter 'Move on to the next problem' for the <strong>False</strong> label.";
+	}
+
+	Text-Assess-True {
+		answer: "Return to the previous problem";
+		Hint: "Enter the text for the first option of this True-False question.";
+		Hint: "Enter Return to the previous problem for the <strong>True</strong> label.";
+	}
+
+	Text-Assess-Default {
+		answer: "Return to the previous problem";
+		Hint: "Enter the text for the default option to be selected when the student comes to this question.";
+		Hint: "Enter 'Return to the previous problem' for the default option to be selected.";
+	}
+
+	Link-Feedback {
+		answer: 1;
+		Hint: "Provide feedback to the questions you just modified, in the <strong>Feedback View</strong>.";
+		Hint: "Click on the <strong>Feedback View</strong> icon (two persons talking) or the <strong>Feedback View</strong> link to go there. <image src=\"LinkFeedback.png\"/>";
+	}
+
+	Selection-Feedback-Cases-Correct-True {
+		answer: "Correct";
+		Hint: "Select the <strong>Correct</strong> case now to provide feedback for any correct answer provided by the student.";
+		JIT: "<block/>You need to select the 'Correct' case to provide feedback when the student provide the correct answer.";
+	}
+
+	Click-Feedback-Edit-True {
+		answer: 1;
+		Hint: "Click the <strong>Edit</strong> button to edit the True case of your True-False question.";
+	}
+
+	Click-Feedback-Update {
+		answer: 1;
+		Hint: "Update to save the changes you made to the feedback case.";
+	}
+
+	Selection-Feedback-Q1-DefaultAttempts {
+		answer: "Default";
+		Hint: "You need to select an attempt to edit the feedback.";
+		Hint: "Select the 'Default' attempt to provide feedback.";
+		JIT: "<block/>Please select the 'Default' attempt to edit the feedback for that attempt now.";
+	}
+
+	Click-Feedback-Q1-Correct-Update {
+		answer: 1;
+		Hint: "Update to save the changes you made.";
+		Hint: "Click the <strong>Update</strong> button to save the changes to the feedback text.";
+	}
+
+	Selection-Feedback-Q1-Question-Msg {
+		answer: "Q1";
+		Hint: "Select the question for which you want to provide feedback.";
+		Hint: "Ensure that the question 'Q1' is selected in the <strong>Question</strong> dropbox.";
+		JIT: "<block/> You selected the wrong question. You need to provide feedback for the 'Q1' question now.";
+	}
+
+	Selection-Feedback-Cases-Q1-DefaultIncorrect {
+		answer: "Default_Incorrect";
+		Hint: "Select the <strong>Default_Incorrect</strong> case now to provide feedback for any wrong answer provided by the student.";
+		JIT: "<block/>You need to select the 'Default_Incorrect' case to provide feedback when the student provide the correct answer.";
+	}
+
+	Selection-Feedback-Attempts-Default-Q1 {
+		answer: "Default";
+		Hint: "You need to select an attempt to edit the feedback.";
+		Hint: "Select the 'Default' attempt to provide feedback.";
+		JIT: "<block/>Please select the 'Default' attempt to edit the feedback for that attempt now.";
+	}
+
+	Click-Feedback-Q1-Incorrect-EditAttempts {
+		answer: 1;
+		Hint: "Edit the feedback for the <strong>Default</strong> attempts now, which is the feedback for any incorrect answer the student provides.";
+		Hint: "Click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.";
+	}
+
+	Text-Feedback-FeedbackText-Q1 {
+		answer: RegEx(".*\\s*");
+		Hint: "Now edit the feedback to be provided to the student. ";
+		Hint: "Type 'The correct equation for the volume of a sphere is: &lt;br&gt;&lt;br&gt;&lt;img src='Dynamic/Resources/Global/V.gif'&gt;' in the <strong>Feedback</strong> box.";
+	}
+
+	Click-Feedback-Q1-Incorrect-Update {
+		answer: 1;
+		Hint: "Click the <strong>Update</strong> button to save the feedback.";
+	}
+
+	AllDone {
+		answer: 1;
+		Hint: "You are through with this problem. Move on to a different problem.";
+	}
+
+	Click-Feedback-Q1-True-EditAttempts {
+		answer: 1;
+		Hint: "You need to modify the feedback text for the Default case of the True (Correct) condition.";
+		Hint: "Click the <strong>Edit</strong> button under the <strong>Attempts</strong> panel.";
+	}
+
+	Text-Feedback-Q1-True-Feedback {
+		answer: RegEx(".*\\s*");
+		Hint: "It is time to modify the feedback that you wish to provide to the student, when he or she answers with the True condition.";
+		Hint: "Type 'Okay. Please press the green arrow to return to the previous problem.' for the <strong>Feedback</strong> field.";
+	}
+
+	Text-Feedback-Edit-TrueExpr {
+		answer: RegEx(" *Response\\.Q1 *== *True *");
+		Hint: "Enter the expression for comparing the students input to the True case of your question.";
+		Hint: "Enter 'Response.Q1==True' for the <strong>Expression</strong>.";
+	}
+
+	Selection-Problem-Edit {
+		answer: "Sphere Equation";
+		Hint: "Edit the Sphere Equation problem to use a different problem as a followup.";
+		JIT: "<block/>You need to work with the Sphere Equation problem right now.";
+	}
+
+	Selection-Problem-Edit-2 {
+		answer: "Continue";
+		Hint: "Edit the Continue problem to use a different problem as a followup.";
+		JIT: "<block/>You need to work with the Continue problem right now.";
+	}
+
+	Selection-Problem-Edit-3 {
+		answer: "Sphere Volume";
+		Hint: "Edit the Sphere Volume problem to use a different problem as a followup.";
+		JIT: "<block/>You need to work with the Sphere Volume problem right now.";
+	}
+
+	Click-Edit {
+		answer: 1;
+		Hint: "Click the <strong>Edit</strong> button to edit the problem details.";
+	}
+
+	Click-Edit-2 {
+		answer: 1;
+		Hint: "Click the <strong>Edit</strong> button to edit the problem details.";
+	}
+
+	Click-Edit-3 {
+		answer: 1;
+		Hint: "Click the <strong>Edit</strong> button to edit the problem details.";
+	}
+
+	Click-Update-Again {
+		answer: 1;
+		Hint: "To save the details of the problem, click the <strong>Update</strong> button.";
+	}
+
+	Click-Update-Again-2 {
+		answer: 1;
+		Hint: "To save the details of the problem, click the <strong>Update</strong> button.";
+	}
+
+	Click-Update-Again-3 {
+		answer: 1;
+		Hint: "To save the details of the problem, click the <strong>Update</strong> button.";
+	}
+
+	Selection-Followup-Correct {
+		answer: "Sphere Volume";
+		Hint: "Select the Sphere Volume problem as a follow up when the student answers correctly.";
+	}
+
+	Selection-Followup-Correct-2 {
+		answer: "Sphere Equation";
+		Hint: "Select Sphere Equation as the followup for this problem when the student answers correctly.";
+	}
+
+	Selection-Followup-Correct-3 {
+		answer: "None";
+		Hint: "Select None as the followup for this problem when the student answers correctly.";
+	}
+
+	Selection-Followup-Incorrect {
+		answer: "Continue";
+		Hint: "Select the Continue problem as a followup when the student answers incorrectly.";
+	}
+
+	Selection-Followup-Incorrect-2 {
+		answer: "Sphere Volume";
+		Hint: "Select Sphere Volume as the followup for this problem when the student answers incorrectly.";
+	}
+
+	Selection-Followup-Incorrect-3 {
+		answer: "None";
+		Hint: "Select None as the followup for this problem when the student answers incorrectly.";
+	}
+
+	CheckBox-Start-Followup-Check {
+		answer: "true";
+		Hint: "Ensure that this problem is selected as the start problem.";
+		Hint: "Keep the checkbox <strong>Start</strong> checked to ensure that this problem is selected as the start problem. ";
+		JIT: "<block/>Please leave the <strong>Start</strong> box checked for this problem";
+	}
+
+	CheckBox-Start-Followup-2-Uncheck {
+		answer: "false";
+		Hint: "Uncheck the <strong>Start</strong> checkbox, because you want a different problem to be the start of the problem set.";
+		JIT: "Since this problem will be a followup for a different problem, leave the start box unchecked.";
+	}
+
+	CheckBox-Start-Followup-3-Uncheck {
+		answer: "false";
+		Hint: "Uncheck the <strong>Start</strong> checkbox, because you want a different problem to be the start of the problem set.";
+		JIT: "Since this problem will be a followup for a different problem, leave the start box unchecked.";
+	}
+
+	Click-Problems-Preview {
+		answer: 1;
+		Hint: "Preview the problem now as described in the assignment.";
+		Hint: "Click on the <strong>Preview</strong> icon in the main toolbar above the <strong>Problems</strong> panel. Then choose the title of your problem from the small menu that appears at the lower left . <image src=\"ProblemPreview.png\"/>";
+	}
+
+}

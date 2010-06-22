@@ -1,0 +1,572 @@
+include "OffPath.xpst";
+
+options
+{
+	tutorname="CAPE";
+}
+
+sequence
+{
+	(
+		# Select AddSubtract problem
+		Selection-Problems then		# QIV: Needed
+
+		# Go to Data view
+		Link-Data then
+
+		# Create variable not_difference
+		# Click-Data-Problem then		# QIV: Needed; Won't work for this
+		(Click-Data-New or Error-Wrong-New) then
+		(
+			Text-Data-Name and
+			(
+				Selection-Data-Kind then
+				Text-Data-Expression
+			) until
+			Click-Data-Update
+		) then
+
+		# Create variable not_sum
+		Click-Data-Problem2 then
+		(Click-Data-New2 or Error-Wrong-New) then
+		(
+			Text-Data-Name2 and
+			(
+				Selection-Data-Kind2 then
+				Text-Data-Expression2
+			) until
+			Click-Data-Update2
+		) then
+
+		# Create variable D_minus_C
+		Click-Data-Problem3 then
+		(Click-Data-New3 or Error-Wrong-New) then
+		(
+			Text-Data-Name3 and
+			(
+				Selection-Data-Kind3 then
+				Text-Data-Expression3
+			) until
+			Click-Data-Update3
+		) then
+
+		# Go to Feedback view
+		Link-Feedback-Cases then
+
+		# Add a case not_difference for Add
+		Selection-Feedback-Question-Q1-Expr1 then		# QIV: needed
+		(Click-Feedback-Cases-New-Q1-Expr1 or Error-Wrong-New) then
+		(
+			(
+				Text-Feedback-CaseDetails-Label-Q1-1 then
+				Text-Feedback-CaseDetails-Expression-Q1-1
+			) until
+			Click-Feedback-Update-Q1-Expr1
+		) then
+
+		# Modify feedback message for the case not_difference of Add
+		Selection-Feedback-Question-Q1-Msg1 then		# QIV: Needed
+		Selection-Feedback-Cases-Q1-1 then				# QIV: Needed
+		(Click-Feedback-Attempts-Edit-Q1-1-Default or Error-Wrong-Edit) then
+		(
+			(
+				Text-Feedback-FeedbackText-Q1-1
+			) until
+			Click-Feedback-Update-Q1-Msg1
+		) then
+
+		Selection-Feedback-Question-Q2-Expr1 then
+		(Click-Feedback-Cases-New-Q2-Expr1 or Error-Wrong-New) then
+		(
+			(
+				Text-Feedback-CaseDetails-Label-Q2-1 then
+				Text-Feedback-CaseDetails-Expression-Q2-1
+			) until
+			Click-Feedback-Update-Q2-Expr1
+		) then
+
+		# Modify feedback message for the case not_sum of Subtract
+		Selection-Feedback-Question-Q2-Msg1 then		# QIV: Needed
+		Selection-Feedback-Cases-Q2-1 then				# QIV: Needed
+		(Click-Feedback-Attempts-Edit-Q2-1-Default or Error-Wrong-Edit) then
+		(
+			(
+				Text-Feedback-FeedbackText-Q2-1
+			) until
+			Click-Feedback-Update-Q2-Msg1
+		) then
+
+		# Add a case not_D_minus_C for Subtract
+		Selection-Feedback-Question-Q2-Expr2 then
+		(Click-Feedback-Cases-New-Q2-Expr2 or Error-Wrong-New) then
+		(
+			(
+				Text-Feedback-CaseDetails-Label-Q2-2 then
+				Text-Feedback-CaseDetails-Expression-Q2-2
+			) until
+			Click-Feedback-Update-Q2-Expr2
+		) then
+
+		# Modify feedback message for the case not_D_minus_C of Subtract
+		Selection-Feedback-Question-Q2-Msg2 then		# QIV: Needed
+		Selection-Feedback-Cases-Q2-2 then				# QIV: Needed
+		(Click-Feedback-Attempts-Edit-Q2-2-Default or Error-Wrong-Edit) then
+		(
+			(
+				Text-Feedback-FeedbackText-Q2-2
+			) until
+			Click-Feedback-Update-Q2-Msg2
+		) then
+
+		# Preview the entire problem
+		Click-Problems-Preview then
+
+		# Done
+		AllDone
+	) and
+	Error-Offpath and
+	Error-Offpath-Update and
+	Error-Not-Done;
+}
+
+mappings
+{
+	# Select AddSubtract problem
+	[priority=2]Problems=>Selection-Problems;
+
+	# Go to Data view
+	[priority=2]DataButton.childNodes-0:click=>Link-Data;
+	[priority=2]DataLink.childNodes-3:click=>Link-Data;
+
+	# Create variable A
+	[priority=2]rootItem:click=>Click-Data-Problem;
+	[priority=2]NewItem:click=>Click-Data-New;
+	[priority=2]ItemName=>Text-Data-Name;
+	[priority=2]ItemKind=>Selection-Data-Kind;
+	[priority=2]ItemValue=>Text-Data-Expression;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update;
+
+	# Create variable B
+	[priority=2]rootItem:click=>Click-Data-Problem2;
+	[priority=2]NewItem:click=>Click-Data-New2;
+	[priority=2]ItemName=>Text-Data-Name2;
+	[priority=2]ItemKind=>Selection-Data-Kind2;
+	[priority=2]ItemValue=>Text-Data-Expression2;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update2;
+
+	# Create variable C
+	[priority=2]rootItem:click=>Click-Data-Problem3;
+	[priority=2]NewItem:click=>Click-Data-New3;
+	[priority=2]ItemName=>Text-Data-Name3;
+	[priority=2]ItemKind=>Selection-Data-Kind3;
+	[priority=2]ItemValue=>Text-Data-Expression3;
+	[priority=2]ViewUpdateControls.childNodes-3:click=>Click-Data-Update3;
+
+	# Go to Feedback view
+	[priority=2]FeedbackButton.childNodes-0:click=>Link-Feedback-Cases;
+	[priority=2]FeedbackLink.childNodes-3:click=>Link-Feedback-Cases;
+
+	# Add a case not_difference for Add
+	[priority=2]FeedbackQuestions=>Selection-Feedback-Question-Q1-Expr1;
+	[priority=2]NewCase:click=>Click-Feedback-Cases-New-Q1-Expr1;
+	[priority=2]CaseLabel=>Text-Feedback-CaseDetails-Label-Q1-1;
+	[priority=2]CaseExpr=>Text-Feedback-CaseDetails-Expression-Q1-1;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update-Q1-Expr1;
+
+	# Modify feedback message for the case not_difference of Add
+	[priority=2]FeedbackQuestions=>Selection-Feedback-Question-Q1-Msg1;
+	[priority=2]Cases=>Selection-Feedback-Cases-Q1-1;
+	[priority=2]Attempts=>Selection-Feedback-Attempts-Default-Q1-1;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Attempts-Edit-Q1-1-Default;
+	[priority=2]AttemptFeedback=>Text-Feedback-FeedbackText-Q1-1;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update-Q1-Msg1;
+
+	# Add a case not_sum for Subtract
+	[priority=2]FeedbackQuestions=>Selection-Feedback-Question-Q2-Expr1;
+	[priority=2]NewCase:click=>Click-Feedback-Cases-New-Q2-Expr1;
+	[priority=2]CaseLabel=>Text-Feedback-CaseDetails-Label-Q2-1;
+	[priority=2]CaseExpr=>Text-Feedback-CaseDetails-Expression-Q2-1;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update-Q2-Expr1;
+
+	# Modify feedback message for the case not_sum of Subtract
+	[priority=2]FeedbackQuestions=>Selection-Feedback-Question-Q2-Msg1;
+	[priority=2]Cases=>Selection-Feedback-Cases-Q2-1;
+	[priority=2]Attempts=>Selection-Feedback-Attempts-Default-Q2-1;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Attempts-Edit-Q2-1-Default;
+	[priority=2]AttemptFeedback=>Text-Feedback-FeedbackText-Q2-1;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update-Q2-Msg1;
+
+	# Add a case not_D_minus_C for Subtract
+	[priority=2]FeedbackQuestions=>Selection-Feedback-Question-Q2-Expr2;
+	[priority=2]NewCase:click=>Click-Feedback-Cases-New-Q2-Expr2;
+	[priority=2]CaseLabel=>Text-Feedback-CaseDetails-Label-Q2-2;
+	[priority=2]CaseExpr=>Text-Feedback-CaseDetails-Expression-Q2-2;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update-Q2-Expr2;
+
+	# Modify feedback message for the case not_D_minus_C of Subtract
+	[priority=2]FeedbackQuestions=>Selection-Feedback-Question-Q2-Msg2;
+	[priority=2]Cases=>Selection-Feedback-Cases-Q2-2;
+	[priority=2]Attempts=>Selection-Feedback-Attempts-Default-Q2-2;
+	[priority=2]AttemptEdit:click=>Click-Feedback-Attempts-Edit-Q2-2-Default;
+	[priority=2]AttemptFeedback=>Text-Feedback-FeedbackText-Q2-2;
+	[priority=2]FeedbackUpdate:click=>Click-Feedback-Update-Q2-Msg2;
+
+	# Preview the entire problem
+	[priority=2]PreviewButton.childNodes-0:click=>Click-Problems-Preview;
+
+	# All done
+	[priority=2]TutorLink.Done=>AllDone;
+}
+
+feedback
+{
+	Link-Data {
+		answer: 1;
+		Hint: "Diagnose the cases and create the data variables for your problem in the <strong>Data View</strong>.";
+		Hint: "Click on the <strong>Data View</strong> icon (blackboard with numbers) or the <strong>Data View</strong> link to go there.  <image src=\"LinkData.png\"/>";
+	}
+
+	Click-Data-New {
+		answer: 1;
+		Hint: "Click on the <strong>New</strong> button to create a new Data variable.";
+		Hint: "Click on the <strong>New</strong> button in the <strong>Data</strong> panel of the problem to create 'not_difference'. <image src=\"data/ClickDataNew.png\"/>";
+	}
+
+	Click-Data-Update {
+		answer: 1;
+		Hint: "To save your newly created data variable, click on the <strong>Update</strong> button.";
+	}
+
+	Selection-Data-Kind3 {
+		answer: "Derived";
+		Hint: "You have to select the <strong>Kind</strong> of variable here.";
+		Hint: "Select 'Derived' for the <strong>Kind</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct kind of the variable here. Please select 'Derived' from the <strong>Kind</strong> dropdown.";
+	}
+
+	Click-Data-New2 {
+		answer: 1;
+		Hint: "Click on the <strong>New</strong> button to create a new Data variable.";
+		Hint: "Click on the <strong>New</strong> button in the <strong>Data</strong> panel of the problem to create 'not_sum'. <image src=\"data/ClickDataNew.png\"/>";
+	}
+
+	Click-Data-New3 {
+		answer: 1;
+		Hint: "Click on the <strong>New</strong> button to create a new Data variable.";
+		Hint: "Click on the <strong>New</strong> button in the <strong>Data</strong> panel of the problem to create 'D_minus_C'. <image src=\"data/ClickDataNew.png\"/>";
+	}
+
+	Click-Data-Update3 {
+		answer: 1;
+		Hint: "To save your newly created data variable, click on the <strong>Update</strong> button.";
+	}
+
+	Selection-Data-Kind {
+		answer: "Derived";
+		Hint: "You have to select the <strong>Kind</strong> of variable here.";
+		Hint: "Select 'Derived' for the <strong>Kind</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct kind of the variable here. Please select 'Derived' from the <strong>Kind</strong> dropdown.";
+	}
+
+	Selection-Data-Kind2 {
+		answer: "Derived";
+		Hint: "You have to select the <strong>Kind</strong> of variable here.";
+		Hint: "Select 'Derived' for the <strong>Kind</strong> of the variable you are creating here.";
+		JIT: "<block/>You need to select the correct kind of the variable here. Please select 'Derived' from the <strong>Kind</strong> dropdown.";
+	}
+
+	Click-Data-Update2 {
+		answer: 1;
+		Hint: "To save your newly created data variable, click on the <strong>Update</strong> button.";
+	}
+
+	Text-Data-Name {
+		answer: "not_difference";
+		Hint: "You need to provide a name for the variable.";
+		Hint: "Type 'not_difference' for the <strong>Name</strong> field.";
+		Hint: "You need to provide a name for the variable.";
+		Hint: "Type 'not_difference' for the <strong>Name</strong> field.";
+	}
+
+	Text-Data-Name2 {
+		answer: "not_sum";
+		Hint: "You need to provide a name for the variable.";
+		Hint: "Type 'not_sum' for the <strong>Name</strong> field.";
+		Hint: "You need to provide a name for the variable.";
+		Hint: "Type 'not_sum' for the <strong>Name</strong> field.";
+	}
+
+	Text-Data-Name3 {
+		answer: "D_minus_C";
+		Hint: "You need to provide a name for the variable.";
+		Hint: "Type 'D_minus_C' for the <strong>Name</strong> field.";
+		Hint: "You need to provide a name for the variable.";
+		Hint: "Type 'D_minus_C' for the <strong>Name</strong> field.";
+	}
+
+	Link-Feedback-Cases {
+		answer: 1;
+		Hint: "Go to the feedback view to add the diagnosed cases using the variables you have created.";
+		Hint: "Click on the <strong>Feedback View</strong> icon (two persons talking) or the <strong>Feedback View</strong> link to go there. <image src=\"LinkFeedback.png\"/>";
+	}
+
+	Selection-Feedback-Question-Q1-Expr1 {
+		answer: "Add";
+		Hint: "Select the question for which you want to provide feedback.";
+		Hint: "Ensure that the question 'Add' is selected in the <strong>Question</strong> dropbox.";
+		JIT: "<block/> You selected the wrong question.  You need to provide feedback for the 'Add' question now.";
+	}
+
+	Selection-Feedback-Cases-Q1-1 {
+		answer: "not_difference";
+		Hint: "You need to select a case to edit the attempt feedback to use the variable you created.";
+		Hint: "Select the 'not_difference' case in order to change the attempt feedback to use the variable you created.";
+		JIT: "<block/>You need to select the 'not_difference' case in order to change the attempt feedback to use the variable you created.";
+	}
+
+	Selection-Feedback-Attempts-Default-Q1-1 {
+		answer: "Default";
+		Hint: "You need to select an attempt to edit the feedback.";
+		Hint: "Select the 'Default' attempt to provide feedback.";
+		JIT: "<block/>Please select the 'Default' attempt to edit the feedback for that attempt now.";
+	}
+
+	Selection-Feedback-Question-Q2-Expr2 {
+		answer: "Subtract";
+		Hint: "Select the question for which you want to provide feedback.";
+		Hint: "Ensure that the question 'Subtract' is selected in the <strong>Question</strong> dropbox.";
+		JIT: "<block/> You selected the wrong question.  You need to provide feedback for the 'Subtract' question now.";
+	}
+
+	Selection-Feedback-Cases-Q2-2 {
+		answer: "D_minus_C";
+		Hint: "You need to select a case to edit the attempt feedback to use the variable you created.";
+		Hint: "Select the 'D_minus_C' case in order to change the attempt feedback to use the variable you created.";
+		JIT: "<block/>You need to select the 'D_minus_C' case in order to change the attempt feedback to use the variable you created.";
+	}
+
+	Selection-Feedback-Attempts-Default-Q2-2 {
+		answer: "Default";
+		Hint: "You need to select an attempt to edit the feedback.";
+		Hint: "Select the 'Default' attempt to provide feedback.";
+		JIT: "<block/>Please select the 'Default' attempt to edit the feedback for that attempt now.";
+	}
+
+	Click-Feedback-Update-Q1-Expr1 {
+		answer: 1;
+		Hint: "Update to save the changes you made.";
+		Hint: "Click the <strong>Update</strong> button to save the expression.";
+	}
+
+	Click-Feedback-Update-Q2-Expr1 {
+		answer: 1;
+		Hint: "Update to save the changes you made.";
+		Hint: "Click the <strong>Update</strong> button to save the expression.";
+	}
+
+	Click-Feedback-Attempts-Edit-Q1-1-Default {
+		answer: 1;
+		Hint: "Edit your feedback cases to provide the correct feedback taking into account the variables you created.";
+		Hint: "Click the <strong>Edit</strong> button below the <strong>Attempts panel</strong> and above <strong>Attempt Details</strong> to edit the feedback for this case.";
+	}
+
+	Click-Feedback-Attempts-Edit-Q2-2-Default {
+		answer: 1;
+		Hint: "Edit your feedback cases to provide the correct feedback taking into account the variables you created.";
+		Hint: "Click the <strong>Edit</strong> button below the <strong>Attempts panel</strong> and above <strong>Attempt Details</strong> to edit the feedback for this case.";
+	}
+
+	Click-Feedback-Attempts-Edit-Q2-1-Default {
+		answer: 1;
+		Hint: "Edit your feedback cases to provide the correct feedback taking into account the variables you created.";
+		Hint: "Click the <strong>Edit</strong> button below the <strong>Attempts panel</strong> and above <strong>Attempt Details</strong> to edit the feedback for this case.";
+	}
+
+	Selection-Problems {
+		answer: "AddSubtract";
+		Hint: "You need to select a problem before continuing.";
+		Hint: "Highlight the problem 'AddSubtract' in the <strong>Problems</strong> box.";
+	}
+
+	AllDone {
+		answer: 1;
+		Hint: "You are through with this problem. Move on to a different problem.";
+	}
+
+	Click-Problems-Preview {
+		answer: 1;
+		Hint: "Preview the problem now as described in the assignment.";
+		Hint: "Click on the <strong>Preview</strong> icon in the main toolbar above the <strong>Problems</strong> panel. Then choose the title of your problem from the small menu that appears at the lower left . <image src=\"ProblemPreview.png\"/>";
+	}
+
+	Selection-Feedback-Question-Q1-Msg1 {
+		answer: "Add";
+		Hint: "Select the question for which you want to provide feedback.";
+		Hint: "Ensure that the question 'Add' is selected in the <strong>Question</strong> dropbox.";
+		JIT: "<block/> You selected the wrong question.  You need to provide feedback for the 'Add' question now.";
+	}
+
+	Selection-Feedback-Question-Q2-Msg1 {
+		answer: "Subtract";
+		Hint: "Select the question for which you want to provide feedback.";
+		Hint: "Ensure that the question 'Subtract' is selected in the <strong>Question</strong> dropbox.";
+		JIT: "<block/> You selected the wrong question.  You need to provide feedback for the 'Subtract' question now.";
+	}
+
+	Click-Data-Problem {
+		answer: 1;
+		Hint: "You need to select 'Problem,' the top of the tree, before a variable can be created.";
+	}
+
+	Click-Data-Problem2 {
+		answer: 1;
+		Hint: "You need to select 'Problem,' the top of the tree, before a variable can be created.";
+	}
+
+	Click-Data-Problem3 {
+		answer: 1;
+		Hint: "You need to select 'Problem,' the top of the tree, before a variable can be created.";
+	}
+
+	Selection-Feedback-Question-Q2-Expr1 {
+		answer: "Subtract";
+		Hint: "Select the question for which you want to provide feedback.";
+		Hint: "Ensure that the question 'Subtract' is selected in the <strong>Question</strong> dropbox.";
+		JIT: "<block/> You selected the wrong question.  You need to provide feedback for the 'Subtract' question now.";
+	}
+
+	Selection-Feedback-Question-Q2-Msg2 {
+		answer: "Subtract";
+		Hint: "Select the question for which you want to provide feedback.";
+		Hint: "Ensure that the question 'Subtract' is selected in the <strong>Question</strong> dropbox.";
+		JIT: "<block/> You selected the wrong question.  You need to provide feedback for the 'Subtract' question now.";
+	}
+
+	Selection-Feedback-Cases-Q2-1 {
+		answer: "not_sum";
+		Hint: "You need to select a case to edit the attempt feedback to use the variable you created.";
+		Hint: "Select the 'not_sum' case in order to change the attempt feedback to use the variable you created.";
+		JIT: "<block/>You need to select the 'not_sum' case in order to change the attempt feedback to use the variable you created.";
+	}
+
+	Selection-Feedback-Attempts-Default-Q2-1 {
+		answer: "Default";
+		Hint: "You need to select an attempt to edit the feedback.";
+		Hint: "Select the 'Default' attempt to provide feedback.";
+		JIT: "<block/>Please select the 'Default' attempt to edit the feedback for that attempt now.";
+	}
+
+	Click-Feedback-Cases-New-Q1-Expr1 {
+		answer: 1;
+		Hint: "Add a new case 'not_difference' for giving feedback.";
+		Hint: "Click the <strong>New</strong> button below the <strong>Cases panel</strong> and above the <strong>Case Details</strong> to create a new feedback case. Call it 'not_difference'.";
+	}
+
+	Click-Feedback-Cases-New-Q2-Expr1 {
+		answer: 1;
+		Hint: "Add a new case 'not_sum' for giving feedback.";
+		Hint: "Click the <strong>New</strong> button below the <strong>Cases panel</strong> and above the <strong>Case Details</strong> to create a new feedback case. Call it 'not_sum'.";
+	}
+
+	Click-Feedback-Cases-New-Q2-Expr2 {
+		answer: 1;
+		Hint: "Add a new case 'D_minus_C' for giving feedback.";
+		Hint: "Click the <strong>New</strong> button below the <strong>Cases panel</strong> and above the <strong>Case Details</strong> to create a new feedback case. Call it 'D_minus_C'.";
+	}
+
+	Click-Feedback-Update-Q1-Msg1 {
+		answer: 1;
+		Hint: "Update to save the changes you made.";
+		Hint: "Click the <strong>Update</strong> button to save the feedback message.";
+	}
+
+	Click-Feedback-Update-Q2-Msg1 {
+		answer: 1;
+		Hint: "Update to save the changes you made.";
+		Hint: "Click the <strong>Update</strong> button to save the feedback message.";
+	}
+
+	Click-Feedback-Update-Q2-Msg2 {
+		answer: 1;
+		Hint: "Update to save the changes you made.";
+		Hint: "Click the <strong>Update</strong> button to save the feedback message.";
+	}
+
+	Click-Feedback-Update-Q2-Expr2 {
+		answer: 1;
+		Hint: "Update to save the changes you made.";
+		Hint: "Click the <strong>Update</strong> button to save the expression.";
+	}
+
+	Text-Feedback-CaseDetails-Label-Q1-1 {
+		answer: "not_difference";
+		Hint: "Enter a label for this case. ";
+		Hint: "For the <strong>Label</strong>, enter something descriptive of this case. For example, here you must enter 'not_difference'.";
+	}
+
+	Text-Feedback-CaseDetails-Label-Q2-1 {
+		answer: "not_sum";
+		Hint: "Enter a label for this case. ";
+		Hint: "For the <strong>Label</strong>, enter something descriptive of this case. For example, here you must enter 'not_sum'.";
+	}
+
+	Text-Feedback-CaseDetails-Label-Q2-2 {
+		answer: "D_minus_C";
+		Hint: "Enter a label for this case. ";
+		Hint: "For the <strong>Label</strong>, enter something descriptive of this case. For example, here you must enter 'D_minus_C'.";
+	}
+
+	Text-Data-Expression {
+		answer: RegEx(" *A *- *B *");
+		Hint: "You are calculating the 'not_difference' expression now.";
+		Hint: "Enter 'A - B' in the <strong>Expression</strong> field.";
+	}
+
+	Text-Data-Expression2 {
+		answer: RegEx(" *C *\\+ *D *");
+		Hint: "You are calculating the 'not_sum' expression now.";
+		Hint: "Enter 'C + D' in the <strong>Expression</strong> field.";
+	}
+
+	Text-Data-Expression3 {
+		answer: RegEx(" *D *- *C *");
+		Hint: "You are calculating the 'D_minus_C' expression now.";
+		Hint: "Enter 'D - C' in the <strong>Expression</strong> field.";
+	}
+
+	Text-Feedback-CaseDetails-Expression-Q1-1 {
+		answer: RegEx(" *Response\\.Add *== *Data\\.not_difference *");
+		Hint: "Enter an expression that will be true when the student subtracts B from A instead of adding B and A.";
+		Hint: "Enter the expression 'Response.Add == Data.not_difference' in the <strong>Expression</strong> box.";
+	}
+
+	Text-Feedback-CaseDetails-Expression-Q2-1 {
+		answer: RegEx(" *Response\\.Subtract *== *Data\\.not_sum *");
+		Hint: "Enter an expression that will be true when the student adds C and D instead of subtracting D from C.";
+		Hint: "Enter the expression 'Response.Subtract == Data.not_sum' in the <strong>Expression</strong> box.";
+	}
+
+	Text-Feedback-CaseDetails-Expression-Q2-2 {
+		answer: RegEx(" *Response\\.Subtract *== *Data\\.D_minus_C *");
+		Hint: "Enter an expression that will be true when the student subtracts C from D instead of subtracting D from C.";
+		Hint: "Enter the expression 'Response.Subtract == Data.D_minus_C' in the <strong>Expression</strong> box.";
+	}
+
+	Text-Feedback-FeedbackText-Q1-1 {
+		answer: RegEx(".*<py>Data\\.[AB]</py>.*\\s*");
+		Hint: "Now edit the feedback to be provided to the student using the variables you created, A and B. To display the value of a variable, write the variable within <strong>&lt;py&gt;&lt;/py&gt;</strong> tags. For e.g. <strong>&lt;py&gt;Data.A&lt;/py&gt;</strong> will display the value of the variable <strong>A</strong>.";
+		Hint: "Type 'Your addition is incorrect. You appear to have subtracted &lt;py&gt;Data.B&lt;/py&gt; from &lt;py&gt;Data.A&lt;/py&gt; rather than adding &lt;py&gt;Data.B&lt;/py&gt; to &lt;py&gt;Data.A&lt;/py&gt;.' in the <strong>Feedback</strong> box.";
+	}
+
+	Text-Feedback-FeedbackText-Q2-1 {
+		answer: RegEx(".*<py>Data\\.[CD]</py>.*\\s*");
+		Hint: "Now edit the feedback to be provided to the student using the variables you created, C and D. To display the value of a variable, write the variable within <strong>&lt;py&gt;&lt;/py&gt;</strong> tags. For e.g. <strong>&lt;py&gt;Data.A&lt;/py&gt;</strong> will display the value of the variable <strong>A</strong>. ";
+		Hint: "Type 'Your subtraction is incorrect. You appear to have added &lt;py&gt;Data.C&lt;/py&gt; and &lt;py&gt;Data.D&lt;/py&gt; rather than subtracting &lt;py&gt;Data.D&lt;/py&gt; from &lt;py&gt;Data.C&lt;/py&gt;.' in the <strong>Feedback</strong> box.";
+	}
+
+	Text-Feedback-FeedbackText-Q2-2 {
+		answer: RegEx(".*<py>Data\\.[CD]</py>.*\\s*");
+		Hint: "Now edit the feedback to be provided to the student using the variables you created, C and D. To display the value of a variable, write the variable within <strong>&lt;py&gt;&lt;/py&gt;</strong> tags. For e.g. <strong>&lt;py&gt;Data.A&lt;/py&gt;</strong> will display the value of the variable <strong>A</strong>. ";
+		Hint: "Type 'Your subtraction is incorrect. You appear to have subtracted &lt;py&gt;Data.C&lt;/py&gt; from &lt;py&gt;Data.D&lt;/py&gt; rather than &lt;py&gt;Data.D&lt;/py&gt; from &lt;py&gt;Data.C&lt;/py&gt;.' in the <strong>Feedback</strong> box.";
+	}
+}

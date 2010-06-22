@@ -1,0 +1,48 @@
+
+sequence
+{
+	(shoot-the-kork then pickup-the-crossbows) then
+	All-Done and
+	Error-Not-Done;
+}
+
+feedback
+{
+	shoot-the-kork
+	{
+		answer: "1";
+		Hint: "Go find the Kork and shoot it once.";
+		Hint: "A green horizontal bar appears below the crosshairs when you have correct aim at the Kork.";
+		OnComplete: "You have successfully shot the kork.";
+	}
+
+	pickup-the-crossbows
+	{
+		answer: "1";
+		Hint: "Go pick up Crossbows.";
+		Hint: "A crossbow is a weapon consisting of a bow mounted on a stock that shoots projectiles.";
+		Hint: "The corssbows are present near the fire place.";
+		OnComplete: "You have picked up the crossbows.";
+	}
+
+	Error-Not-Done
+	{
+		answer: "0";
+		JIT: "You are not done with this problem yet. Ask for a hint if you would like help.";
+	}
+	
+	All-Done
+	{
+		answer: "1";
+		Hint: "You have successfully completed the task.";
+	}
+
+}
+
+mappings
+{
+	kork:shoot => shoot-the-kork;
+	crossbow:pickup => pickup-the-crossbows;
+	[priority=2] TutorLink.Done => All-Done;
+	[priority=1] TutorLink.Done=>Error-Not-Done;
+}
