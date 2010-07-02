@@ -44,9 +44,7 @@ sequence
 		All-Done
 	)
 	and
-	Error-Not-Done and
-	Error-Offpath1 and
-	Error-Offpath2;
+	Error-Not-Done;
 }
 
 feedback
