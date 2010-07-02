@@ -1,7 +1,7 @@
 #summary One-sentence summary of this page.
 
 
-Here's the procedure to create a webpage that is "xpst-aware", and also to build the sidebar content. The sample code (to be opened with Notepad) provided is for the 'NCBI Demo' application. 
+Here's the procedure to create a webpage that is "xpst-aware", and also to build the sidebar content. The sample code (to be opened with Notepad) provided is for the  [http://xpst.vrac.iastate.edu/WebxPST/ncbiblastmenu.html 'NCBI Demo'] application. 
 
 
 = Procedure =
