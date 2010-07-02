@@ -10,18 +10,18 @@ Here's the procedure to create a webpage that is "xpst-aware", and also to build
 Save this file in /var/lib/tomcat5/webapps/WebxPST/
 
 {{{
-`<html>`
-	`<body onload="startTask('ncbiblast')">`
-		`<script src="tasklist.js" type="text/javascript">``</script>`
-		`<div>`NCBI DEMO`</div>`
-		`<div>`To start:`</div>`
-		`<ol>`
-			`<li>`Install the WebxPST extension if it isn't already installed, from `<a href="https://its.clearsighted.org/webxpst/WebxPST.xpi">`here`</a>``</li>`
-			`<li>`Open the WebxPST sidebar (if it is not already open)`</li>`
-			`<li>`Browse to `<a href="http://www.ncbi.nlm.nih.gov/">`NCBI`</a>``</li>`
-		`</ol>` 
-	`</body>`
-`</html>`
+<html>
+	<body onload="startTask('ncbiblast')">
+		<script src="tasklist.js" type="text/javascript"></script>
+		<div>`NCBI DEMO`</div>
+		<div>`To start:`</div>
+		<ol>
+			<li>Install the WebxPST extension if it isn't already installed, from <a href="https://its.clearsighted.org/webxpst/WebxPST.xpi">here</a></li>
+			<li>Open the WebxPST sidebar (if it is not already open)</li>
+			<li>Browse to <a href="http://www.ncbi.nlm.nih.gov/">NCBI</a></li>
+		</ol> 
+	</body>
+</html>
 }}}
 
 2. Write the '.xPST' file for the task. The source code for this example is in 'ncbiblast.xml'.
