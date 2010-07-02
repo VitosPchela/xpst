@@ -64,7 +64,6 @@ feedback
 		Hint: "The <strong>Nucleotide blast</strong> link is in the section subtitiled Basic Blast.";
 		JIT: "<block/>To do a search using BLAST, you need to go to the BLAST Homepage";
 	}
-	
 
 	All-Done
 	{
@@ -80,9 +79,36 @@ mappings
 	[priority=2] TutorLink.Done => All-Done;
 }
 }}}
-3. Write the '.properties' file. It has a single line of code, which mentions the name of the task and the xPST file. The source code for this example is in 'ncbiblast.properties'.
+3. Write the '.properties' file. It has a single line of code, which mentions the name of the task and the xPST file. The source code for this example given below is to be saved as 'ncbiblast.properties'.
 Save this file in /var/lib/tomcat5/webapps/WebxPST/WEB-INF/tre
 
+{{{
+tre.task.ncbiblast.emfile=ncbiblast.xpst
+}}}
 
-4. Write the '.xml' file. The sidebar content is mentioned here. The source code for this example is in 'ncbiblast-scenario.xml'.
+4. Write the '.xml' file. The sidebar content is mentioned here. The source code for this example, given below is to be saved as 'ncbiblast-scenario.xml'.
 Save this file in /var/lib/tomcat5/webapps/WebxPST/WEB-INF/tre/assets
+
+{{{
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+	<h3>NCBI Blast: How to search for a DNA Sequence using BLAST</h3>
+	<p>This assignment is designed to familiarize you with the BLAST environment and to teach you how to search for a nucleotide or amino acid sequence using BLAST.</p>
+	<p><strong>Problem Objective:</strong> LATER</p>
+	<p>
+		<strong>Software Tips:</strong> 
+		<ul>
+			<li>LATER</li>
+		</ul>
+	</p>
+	<hr/>
+
+	<h3>Detailed Instructions</h3>
+	<p>LATER</p>
+
+	<h3>LATER</h3>
+	<p><strong>Test Your Problem:</strong> LATER</p>
+	<p><strong>Finished?</strong><br/> 
+	LATER</p>
+</message>
+}}}
