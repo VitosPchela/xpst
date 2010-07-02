@@ -12,7 +12,7 @@ Save this file in /var/lib/tomcat5/webapps/WebxPST/
 <html>
 	<body onload="startTask('ncbiblast')">
 		<script src="tasklist.js" type="text/javascript"></script>
-		/<div>NCBI DEMO</div>/
+		<div>NCBI DEMO</div>
 		<div>To start:</div>
 		<ol>
 			<li>Install the WebxPST extension if it isn't already installed, from <a href="https://its.clearsighted.org/webxpst/WebxPST.xpi">here</a></li>
