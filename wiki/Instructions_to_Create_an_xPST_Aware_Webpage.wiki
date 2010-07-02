@@ -27,7 +27,61 @@ Save this file in /var/lib/tomcat5/webapps/WebxPST/
 2. Write the '.xPST' file for the task. The source code for this example given below is to be saved as 'ncbiblast.xpst'.
 Save this file in /var/lib/tomcat5/webapps/WebxPST/WEB-INF/tre
 
+{{{
+sequence
+{
+	(
+		# goto blast home page
+		(
+			link-homepage-blast
+		) then
+		# goto the nucleotide blast search page
+		(
+			link-nucleotide-blast
+		)
+		
+		then
+		All-Done
+	)
+	and
+	Error-Not-Done and
+	Error-Offpath1 and
+	Error-Offpath2;
+}
 
+feedback
+{
+	link-homepage-blast
+	{
+		answer: "1";
+		Hint: "Go to BLAST homepage by clicking the <strong>BLAST</strong> link.";
+		Hint: "The <strong>BLAST</strong> link is in the menubar below the NCBI logo.";
+		JIT: "<block/>To do a search using BLAST, you need to go to the BLAST Homepage";
+	}
+	
+	link-nucleotide-blast
+	{
+		answer: "1";
+		Hint: "Click on the <strong>Nucleotide blast</strong> link.";
+		Hint: "The <strong>Nucleotide blast</strong> link is in the section subtitiled Basic Blast.";
+		JIT: "<block/>To do a search using BLAST, you need to go to the BLAST Homepage";
+	}
+	
+
+	All-Done
+	{
+		answer: 1;
+		Hint: "You have successfully made the search using BLAST.";
+	}
+}
+
+mappings
+{
+	[priority=2] contentDocument.childNodes-1.childNodes-7.childNodes-1.childNodes-0.childNodes-5.childNodes-0.childNodes-0:click => link-homepage-blast;
+	[priority=2] homeBlastn:click => link-nucleotide-blast;
+	[priority=2] TutorLink.Done => All-Done;
+}
+}}}
 3. Write the '.properties' file. It has a single line of code, which mentions the name of the task and the xPST file. The source code for this example is in 'ncbiblast.properties'.
 Save this file in /var/lib/tomcat5/webapps/WebxPST/WEB-INF/tre
 
