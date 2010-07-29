@@ -6,7 +6,7 @@
 
 2. Download the Root folder from [http://xpst.vrac.iastate.edu/WebxPSTPlugin/Root.rar http://xpst.vrac.iastate.edu/WebxPSTPlugin/Root.rar]. Extract this to any location on your computer. This has the Tomcat server. 
 
-3. Download the .WAR file from [http://xpst.vrac.iastate.edu/WebxPSTPlugin/WebxPST.war http://xpst.vrac.iastate.edu/WebxPSTPlugin/WebxPST.war]. Copy this file to Root\apache-tomcat-6.0.18\webapps. Rename it to WebxPST.war (Remove the .zip extension)
+3. Download the .war file from [http://xpst.vrac.iastate.edu/WebxPSTPlugin/WebxPST.war http://xpst.vrac.iastate.edu/WebxPSTPlugin/WebxPST.war]. Copy this file to Root\apache-tomcat-6.0.18\webapps. Rename it to WebxPST.war (Remove the .zip extension)
 
 4. Start Tomcat by opening Root\apache-tomcat-6.0.18\bin\startup.bat
 
