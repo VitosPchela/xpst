@@ -10,4 +10,4 @@
 
 4. Start Tomcat by opening Root\apache-tomcat-6.0.18\bin\startup.bat
 
-5. Once you have written all the files for your tutor (See [http://code.google.com/p/xpst/wiki/Instructions_to_Create_an_xPST_Aware_Webpage Instructions_to_Create_an_xPST_Aware_Webpage]), you can run your tutor by opening the following link: http://localhost:8080/WebxPST/tutorname.html
+5. Once you have written all the files for your tutor (See [http://code.google.com/p/xpst/wiki/Instructions_to_Create_an_xPST_Aware_Webpage Instructions_to_Create_an_xPST_Aware_Webpage]), you can run your tutor by opening the following link: `http://localhost:8080/WebxPST/tutorname.html`
