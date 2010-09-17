@@ -68,16 +68,22 @@ groupexpr: LBRACK! seqexpr RBRACK! { #groupexpr = #([GROUP, "GROUP"], #groupexpr
 atom: nodeid | LPAREN! seqexpr RPAREN!;
 
 /** this serves for appnode IDs, goalnode IDs, and event IDs (appnode IDs plus a colon and an event name) */
-nodeid {String fullname = null;}:
+ nodeid {String fullname = null;}:
 	i1:ID {fullname = i1.getText();}
 	(DOT i2:ID {fullname = fullname + "." + i2.getText();})*
 	(COLON i3:ID {fullname = fullname + ":" + i3.getText();})?
 {
-	#nodeid = #([NODEID, fullname]);
-	((EMAST)#nodeid).line = i1.getLine();
-	((EMAST)#nodeid).column = i1.getColumn();
-};
-
+ 	#nodeid = #([NODEID, fullname]);
+ 	((EMAST)#nodeid).line = i1.getLine();
+ 	((EMAST)#nodeid).column = i1.getColumn();
+}
+  | s:STRINGLIT
+{
+  #nodeid = #([NODEID, s.getText()]);
+  ((EMAST)#nodeid).line = s.getLine();
+  ((EMAST)#nodeid).column = s.getColumn();
+ };
+ 
 /** the actual mappings from appnodes to goalnodes */
 mappings: MAPPINGS^ LBRACE! (mapexpr)* RBRACE!;
 mapexpr: (mapoptions)? mapexprhalf MAPTO^ mapexprhalf SEMI!;
