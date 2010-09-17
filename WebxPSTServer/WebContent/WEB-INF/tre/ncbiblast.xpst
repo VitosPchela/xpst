@@ -41,7 +41,7 @@ feedback
 	{
 		answer: "1";
 		Hint: "Go to BLAST homepage by clicking the <strong>BLAST</strong> link.";
-		Hint: "The <strong>BLAST</strong> link is in the menubar below the NCBI logo.";
+		Hint: "The <strong>BLAST</strong> link is under 'Popular Resources'.";
 		JIT: "<block/>To do a search using BLAST, you need to go to the BLAST Homepage";
 	}
 	
@@ -56,8 +56,8 @@ feedback
 	dna-sequence
 	{
 		answer: RegEx(".+");
-		Hint: "Copy and paste the DNA sequence given by the instructor into Accession number box.";
-		Hint: "The <strong>Accession Number</strong> textbox is the first box in the page.";
+		Hint: "Enter the DNA sequence in the Accession number box.";
+		Hint: "For this demo, you can enter any text.";
 		JIT: "<block/>Please paste the correct DNA sequence into <strong>Accession Number</strong> textbox.DNA sequence only contains letters G or T or C or A ";
 	}
 	
@@ -95,7 +95,7 @@ feedback
 
 mappings
 {
-	[priority=2] contentDocument.childNodes-1.childNodes-7.childNodes-1.childNodes-0.childNodes-5.childNodes-0.childNodes-0:click => link-homepage-blast;
+	[priority=2] col3.childNodes-1.childNodes-1.childNodes-0.childNodes-0.childNodes-0:click => link-homepage-blast;
 	[priority=2] homeBlastn:click => link-nucleotide-blast;
 	[priority=2] seq => dna-sequence;
 	[priority=2] DATABASE => choose-nucleotide-database;
