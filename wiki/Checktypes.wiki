@@ -1,0 +1,53 @@
+#This page describes the various checktypes that can be used when writing an xPST file.
+
+= Introduction =
+
+*RegEx - *
+Checks if the answer is equivalent to the regular expression mentioned inside the double quotes.
+
+eg: `answer:  RegEx("[0-9]");`
+
+*Sum - *
+Checks if the answer is the sum of "a" and "b".
+
+eg: `answer:  Sum("a","b");`
+
+*Subtract - *
+Checks if the answer is the difference of "a" and "b".
+
+eg: `answer:  Subtract("a","b");`
+
+*Multiply - *
+Checks if the answer is the product of "a" and "b".
+
+eg: `answer: Multiply("a","b");
+
+*Divide - *
+Checks if the answer is the quotient of "a" and "b".
+
+eg: `answer: Divide("a","b");`
+
+*Lcm - *
+Checks if the answer is the Least Common Multiple of "a" and "b".
+
+eg: `answer: Lcm("a","b");`
+
+*IsMultiple - *
+Checks if the answer is a multiple of "a".
+
+eg: answer: IsMultiple("a");`
+
+*IsNotMultiple - *
+Checks if the answer is not a multiple of "a".
+
+eg: `answer: IsNotMultiple("a");`
+
+*NumSum - *
+Checks if the answer equals the numerator of the sum of the fractions "a"/"b" and "c"/"d".
+
+eg: `answer: NumSum("a","b","c","d");`
+
+*DenomSum - *
+Checks if the answer equals the denominator of the sum of the fractions "a"/"b" and "c"/"d".
+
+eg: `answer: DenomSum("a","b","c","d");`
