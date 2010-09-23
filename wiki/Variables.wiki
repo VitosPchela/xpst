@@ -2,18 +2,15 @@
 
 *{answer}* - Refers to the correct answer of the current goal node.
 
-Hint: "Answer is {answer}";
-
+Hint: "Answer is {answer}";<br>
 JIT : "Answer is {answer}";
 
-*{v}* - Refers to answer entered by the student for the current goal node 
-
-This variable can only be used in JITs and not in Hints.
-
-It can be used both inside the JIT message as well as the condition.
-
-JIT : "{v} is not the answer.";                            #default JIT
-JIT {v < "-2"}: "Too small";
-JIT {v < Subtract("a","b") }: "Too small";
-JIT {v == Sum("a","b")}: “Answer is not the sum”;
+<br>
+*{v}* - Refers to answer entered by the student for the current goal node.<br>
+This variable can only be used in JITs and not in Hints.<br>
+It can be used both inside the JIT message as well as the condition.<br><br>
+JIT : "{v} is not the answer.";     #default JIT <br>                      
+JIT {v < "-2"}: "Too small";<br>
+JIT {v < Subtract("a","b") }: "Too small";<br>
+JIT {v == Sum("a","b")}: “Answer is not the sum”;<br>
 JIT {v == Ans("a")}: "Cannot be the same.";
