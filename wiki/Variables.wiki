@@ -1,0 +1,19 @@
+#Description of the use of variables in an xPST file
+
+*{answer}* - Refers to the correct answer of the current goal node.
+
+Hint: "Answer is {answer}";
+
+JIT : "Answer is {answer}";
+
+*{v}* - Refers to answer entered by the student for the current goal node 
+
+This variable can only be used in JITs and not in Hints.
+
+It can be used both inside the JIT message as well as the condition.
+
+JIT : "{v} is not the answer.";                            #default JIT
+JIT {v < "-2"}: "Too small";
+JIT {v < Subtract("a","b") }: "Too small";
+JIT {v == Sum("a","b")}: “Answer is not the sum”;
+JIT {v == Ans("a")}: "Cannot be the same.";
