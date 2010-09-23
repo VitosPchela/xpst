@@ -1,4 +1,4 @@
-#Description of the use of variables in an xPST file
+#summary Description of the use of variables in an xPST file
 
 *{answer}* - Refers to the correct answer of the current goal node.
 
