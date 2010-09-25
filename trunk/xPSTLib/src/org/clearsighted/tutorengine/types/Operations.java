@@ -343,7 +343,185 @@ public class Operations
 					return false;
 			}
 		}	
+		
+		if((l instanceof Floor && r instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((Floor)l).compare(gns,(String)r,"ge");
+				case GThanOp:
+					return ((Floor)l).compare(gns,(String)r,"g");
+				case LEqOp:
+					return ((Floor)l).compare(gns,(String)r,"le");
+				case LThanOp:
+					return ((Floor)l).compare(gns,(String)r,"l");
+				case EqOp:
+					return ((Floor)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((Floor)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
+		}
 
+		if((r instanceof Floor && l instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((Floor)r).compare(gns,(String)l,"ge");
+				case GThanOp:
+					return ((Floor)r).compare(gns,(String)l,"g");
+				case LEqOp:
+					return ((Floor)r).compare(gns,(String)l,"le");
+				case LThanOp:
+					return ((Floor)r).compare(gns,(String)l,"l");
+				case EqOp:
+					return ((Floor)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((Floor)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
+		}	
+		
+		if((l instanceof Ceil && r instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((Ceil)l).compare(gns,(String)r,"ge");
+				case GThanOp:
+					return ((Ceil)l).compare(gns,(String)r,"g");
+				case LEqOp:
+					return ((Ceil)l).compare(gns,(String)r,"le");
+				case LThanOp:
+					return ((Ceil)l).compare(gns,(String)r,"l");
+				case EqOp:
+					return ((Ceil)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((Ceil)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
+		}
+
+		if((r instanceof Ceil && l instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((Ceil)r).compare(gns,(String)l,"ge");
+				case GThanOp:
+					return ((Ceil)r).compare(gns,(String)l,"g");
+				case LEqOp:
+					return ((Ceil)r).compare(gns,(String)l,"le");
+				case LThanOp:
+					return ((Ceil)r).compare(gns,(String)l,"l");
+				case EqOp:
+					return ((Ceil)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((Ceil)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
+		}	
+		
+				if((l instanceof Round && r instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((Round)l).compare(gns,(String)r,"ge");
+				case GThanOp:
+					return ((Round)l).compare(gns,(String)r,"g");
+				case LEqOp:
+					return ((Round)l).compare(gns,(String)r,"le");
+				case LThanOp:
+					return ((Round)l).compare(gns,(String)r,"l");
+				case EqOp:
+					return ((Round)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((Round)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
+		}
+
+		if((r instanceof Round && l instanceof String))
+		{
+			switch (op)
+			{
+				case GEqOp:
+					return ((Round)r).compare(gns,(String)l,"ge");
+				case GThanOp:
+					return ((Round)r).compare(gns,(String)l,"g");
+				case LEqOp:
+					return ((Round)r).compare(gns,(String)l,"le");
+				case LThanOp:
+					return ((Round)r).compare(gns,(String)l,"l");
+				case EqOp:
+					return ((Round)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((Round)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
+		}
+		
+		if((l instanceof IsRange && r instanceof String))
+		{
+			switch (op)
+			{
+				case EqOp:
+					return ((IsRange)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((IsRange)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
+		}
+
+		if((r instanceof IsRange && l instanceof String))
+		{
+			switch (op)
+			{
+				case EqOp:
+					return ((IsRange)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((IsRange)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
+		}	
+		
+		if((l instanceof IsNotRange && r instanceof String))
+		{
+			switch (op)
+			{
+				case EqOp:
+					return ((IsNotRange)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((IsNotRange)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
+		}
+
+		if((r instanceof IsNotRange && l instanceof String))
+		{
+			switch (op)
+			{
+				case EqOp:
+					return ((IsNotRange)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((IsNotRange)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
+		}
+		
 		if((l instanceof IsNotMultiple && r instanceof String))
 		{
 			switch (op)
