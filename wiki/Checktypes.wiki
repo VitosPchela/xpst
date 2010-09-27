@@ -1,56 +1,50 @@
 #summary Description of the various checktypes that can be used when writing an xPST file.
 
-*Ans - *
-Refers to the answer of another goal node.
-
-eg: `JIT {v == Ans("a")}: "Cannot be the same";`
-
-*RegEx - *
-Checks if the answer is equivalent to the regular expression mentioned inside the double quotes.
-
-eg: `answer:  RegEx("[0-9]");`
-
-*Sum - *
-Checks if the answer is the sum of "a" and "b".
-
-eg: `answer:  Sum("a","b");`
-
-*Subtract - *
-Checks if the answer is the difference of "a" and "b".
-
-eg: `answer:  Subtract("a","b");`
-
-*Multiply - *
-Checks if the answer is the product of "a" and "b".
-
-eg: `answer: Multiply("a","b");
-
-*Divide - *
-Checks if the answer is the quotient of "a" and "b".
-
-eg: `answer: Divide("a","b");`
-
-*Lcm - *
-Checks if the answer is the Least Common Multiple of "a" and "b".
-
-eg: `answer: Lcm("a","b");`
-
-*IsMultiple - *
-Checks if the answer is a multiple of "a".
-
-eg: answer: IsMultiple("a");`
-
-*IsNotMultiple - *
-Checks if the answer is not a multiple of "a".
-
-eg: `answer: IsNotMultiple("a");`
-
-*NumSum - *
-Checks if the answer equals the numerator of the sum of the fractions "a"/"b" and "c"/"d".
-
-eg: `answer: NumSum("a","b","c","d");`
-
-*DenomSum - *
-Checks if the answer equals the denominator of the sum of the fractions "a"/"b" and "c"/"d".
-
+*Ans("a") - *
+Refers to the answer of another goal node.<br>
+eg: `JIT {v == Ans("a")}: "Cannot be the same";`<br><br>
+*RegEx("a") - *
+Checks if the entered answer is equivalent to the regular expression mentioned inside the double quotes.<br>
+eg: `answer:  RegEx("[0-9]")`;<br><br>
+*Round("a") - *
+Checks if the rounded entered answer euqals "a".<br>
+eg: `answer:  Round("a");`<br><br>
+*Floor("a") - *
+Checks if the floor of the entered answer euqals "a".<br>
+eg: `answer:  Floor("a");`<br><br>
+*Ceil("a") - *
+Checks if the ceiling of the entered answer euqals "a".<br>
+eg: `answer:  Ceil("a");`<br><br>
+*IsRange("[]","a","b") - *
+Checks if the entered answer is inside the interval ["a","b"]. The other variants of this checktype are Range("()", "a", "b"), Range("[)", "a", "b") and Range("(]", "a", "b").<br>
+eg: `answer:  IsRange("[)","a","b");`<br><br>
+*IsNotRange("[]","a","b") - *
+Checks if the entered answer is outside the interval ["a","b"]. The other variants of this checktype are Range("()", "a", "b"), Range("[)", "a", "b") and Range("(]", "a", "b").<br>
+eg: `answer:  IsNotRange("()","a","b");`<br><br>
+*Sum("a","b") - *
+Checks if the entered answer is the sum of "a" and "b".<br>
+eg: `answer:  Sum("a","b");`<br><br>
+*Subtract("a","b") - *
+Checks if the entered answer is the difference of "a" and "b".<br>
+eg: `answer:  Subtract("a","b");`<br><br>
+*Multiply("a","b") - *
+Checks if the entered answer is the product of "a" and "b".<br>
+eg: `answer: Multiply("a","b");`<br><br>
+*Divide("a","b") - *
+Checks if the entered answer is the quotient of "a" and "b".<br>
+eg: `answer: Divide("a","b");`<br><br>
+*Lcm("a","b") - *
+Checks if the entered answer is the Least Common Multiple of "a" and "b".<br>
+eg: `answer: Lcm("a","b");`<br><br>
+*IsMultiple("a") - *
+Checks if the entered answer is a multiple of "a".<br>
+eg: `answer: IsMultiple("a");`<br><br>
+*IsNotMultiple("a") - *
+Checks if the entered answer is not a multiple of "a".<br>
+eg: `answer: IsNotMultiple("a");`<br><br>
+*NumSum("a","b","c","d") - *
+Checks if the entered answer equals the numerator of the sum of the fractions "a"/"b" and "c"/"d".<br>
+eg: `answer: NumSum("a","b","c","d");`<br><br>
+*DenomSum("a","b","c","d") - *
+Checks if the entered answer equals the denominator of the sum of the fractions "a"/"b" and "c"/"d".<br>
 eg: `answer: DenomSum("a","b","c","d");`
