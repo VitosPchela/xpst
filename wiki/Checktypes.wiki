@@ -15,10 +15,10 @@ eg: `answer:  Floor("a");`<br><br>
 *Ceil("a") - *
 Checks if the ceiling of the entered answer euqals "a".<br>
 eg: `answer:  Ceil("a");`<br><br>
-*IsRange("[]","a","b") - *
+*IsRange("[[]]","a","b") - *
 Checks if the entered answer is inside the interval ["a","b"]. The other variants of this checktype are Range("()", "a", "b"), Range("[)", "a", "b") and Range("(]", "a", "b").<br>
 eg: `answer:  IsRange("[)","a","b");`<br><br>
-*IsNotRange("[]","a","b") - *
+*IsNotRange("[[]]","a","b") - *
 Checks if the entered answer is outside the interval ["a","b"]. The other variants of this checktype are Range("()", "a", "b"), Range("[)", "a", "b") and Range("(]", "a", "b").<br>
 eg: `answer:  IsNotRange("()","a","b");`<br><br>
 *Sum("a","b") - *
