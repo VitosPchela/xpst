@@ -413,13 +413,10 @@ function sendTutorMessage(sendMsg, event)
 				var temp1 = addrarr[1].substr(addrarr[1].indexOf("radioGroup-q") + 12);
 				var temp2 = temp1.substr(0,temp1.indexOf("_radioButton")) + "_0";
 				var widget_goal = "input_" + temp2;
-				var image_goal = "iinput_" + temp2;
-                //alert(widget_goal);
 			}
 			else
 			{
 				var widget_goal = addrarr[0];
-				var image_goal = 'i' + addrarr[0];	
 			}		
 			
 			//Widget Element
@@ -431,24 +428,19 @@ function sendTutorMessage(sendMsg, event)
     			posY += wElement.offsetTop;
     			wElement = wElement.offsetParent;
   			}
-  			//Image Element		
-  			var iElement = content.document.getElementById(image_goal);
-			var style = iElement.style ? iElement.style : iElement;
-			style.position = "absolute";
-			style.left = posX - 20;
-			style.top = posY;
-			style.zIndex = 100;			
- 			style.display = 'block';
- 			
- 			//alert(posX);
- 			//alert(posY);
- 			//alert('i' + widget_goal.substr(1, widget_goal.length-3));
- 			//alert(addrarr[0]);
- 			//alert(addrarr[1]);
- 			//alert(addrarr[2]);
- 			//alert(addrarr[3]);
- 			//alert(image_goal);
-  					
+  			
+  			//Image Element		 	
+  			posX = posX - 20 + "px";
+  			posY = posY + "px";  
+ 			iElement = content.document.createElement("img");
+ 			iElement.src = "http://xpst.vrac.iastate.edu/xPSTImages/tick.png";
+			iElement.style.position = "absolute";
+			iElement.style.left = posX;
+			iElement.style.top = posY;
+			iElement.style.zIndex = 100 + "px";			
+ 			content.document.body.appendChild(iElement);
+ 			var x_dummy = iElement.style.left;
+ 					
 			
 			if (addrarr[0] == 'TutorLink' && addrarr[1] == 'Done')
 			{
@@ -499,7 +491,7 @@ function sendTutorMessage(sendMsg, event)
 		}
 		else if (msg.strVerb == "FLAG")
 		{
-		//Visual feedback (green checks)		
+		//Visual feedback red crosses)		
 			var addrarr = msg.DorminAddr.strArrNames;
 			
 			if(addrarr[0].charAt(0)=="1" && addrarr[1].search('radioButton')!=-1)
@@ -507,13 +499,10 @@ function sendTutorMessage(sendMsg, event)
 				var temp1 = addrarr[1].substr(addrarr[1].indexOf("radioGroup-q") + 12);
 				var temp2 = temp1.substr(0,temp1.indexOf("_radioButton")) + "_0";
 				var widget_goal = "input_" + temp2;
-				var image_goal = "ciinput_" + temp2;
-                //alert(widget_goal);
 			}
 			else
 			{
 				var widget_goal = addrarr[0];
-				var image_goal = 'ci' + addrarr[0];	
 			}	
 			
 			//Widget Element
@@ -525,14 +514,18 @@ function sendTutorMessage(sendMsg, event)
     			posY += wElement.offsetTop;
     			wElement = wElement.offsetParent;
   			}
-  			//Image Element		
-  			var iElement = content.document.getElementById(image_goal);
-			var style = iElement.style ? iElement.style : iElement;
-			style.position = "absolute";
-			style.left = posX - 20;
-			style.top = posY;
-			style.zIndex = 98;			
- 			style.display = 'block';
+  			
+  			//Image Element		 	
+  			posX = posX - 20 + "px";
+  			posY = posY + "px";  
+ 			iElement = content.document.createElement("img");
+ 			iElement.src = "http://xpst.vrac.iastate.edu/xPSTImages/cross.png";
+			iElement.style.position = "absolute";
+			iElement.style.left = posX;
+			iElement.style.top = posY;
+			iElement.style.zIndex = 98 + "px";			
+ 			content.document.body.appendChild(iElement);
+ 			var x_dummy = iElement.style.left;
 		}
 		else if (msg.strVerb == "GETHINT")
 		{
@@ -586,10 +579,7 @@ function completeCurrentGoalnode()
 {
 	logToServer('FORCING COMPLETION');
 	var appns = $.ajax({type: 'GET', url: g_webTREURL + '/WebxPST/' + mytre + '/appnodes', async: false, dataType: 'xml'});
-	var nextnode = $('appnode[isnext=true]', appns.responseXML);
-	
-	
-	
+	var nextnode = $('appnode[isnext=true]', appns.responseXML);	
 	
 	if (nextnode.length == 0)
 		alert('couldn\'t find next node');
@@ -601,8 +591,7 @@ function completeCurrentGoalnode()
 
 		var dm = new DorminMessage(appn, 'NOTEVALUESET', repval);
 		sendTutorMessage(dm.MakeString(), null);
-	}	
-	
+	}		
 }
 
 function onKeypress(evt)
