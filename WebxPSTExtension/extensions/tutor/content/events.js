@@ -337,6 +337,7 @@ function onStart()
 	document.getElementById('taskselect').collapsed = true;
 	document.getElementById('tutorstuff').collapsed = false;
 	//document.getElementById('serverdetails').collapsed = false;
+	
 }
 
 var hintNumber = 0;
@@ -354,6 +355,8 @@ function onHint(event)
 
 function onDone(event)
 {
+	
+
 	var msg1 = new DorminMessage("TutorLink.Done", "NOTEVALUESET", "1");
 	sendTutorMessage(msg1.MakeString(), event);
 	if(g_isTutorRunning)
@@ -402,7 +405,51 @@ function sendTutorMessage(sendMsg, event)
 		loop = false;
 		if (msg.strVerb == "APPROVE")
 		{
+			//Visual feedback (green checks)		
 			var addrarr = msg.DorminAddr.strArrNames;
+			
+			if(addrarr[0].charAt(0)=="1" && addrarr[1].search('radioButton')!=-1)
+			{
+				var temp1 = addrarr[1].substr(addrarr[1].indexOf("radioGroup-q") + 12);
+				var temp2 = temp1.substr(0,temp1.indexOf("_radioButton")) + "_0";
+				var widget_goal = "input_" + temp2;
+				var image_goal = "iinput_" + temp2;
+                //alert(widget_goal);
+			}
+			else
+			{
+				var widget_goal = addrarr[0];
+				var image_goal = 'i' + addrarr[0];	
+			}		
+			
+			//Widget Element
+			var wElement = content.document.getElementById(widget_goal);
+			var posX = 0;
+  			var posY = 0;              
+  			while(wElement != null){
+    			posX += wElement.offsetLeft;
+    			posY += wElement.offsetTop;
+    			wElement = wElement.offsetParent;
+  			}
+  			//Image Element		
+  			var iElement = content.document.getElementById(image_goal);
+			var style = iElement.style ? iElement.style : iElement;
+			style.position = "absolute";
+			style.left = posX - 20;
+			style.top = posY;
+			style.zIndex = 100;			
+ 			style.display = 'block';
+ 			
+ 			//alert(posX);
+ 			//alert(posY);
+ 			//alert('i' + widget_goal.substr(1, widget_goal.length-3));
+ 			//alert(addrarr[0]);
+ 			//alert(addrarr[1]);
+ 			//alert(addrarr[2]);
+ 			//alert(addrarr[3]);
+ 			//alert(image_goal);
+  					
+			
 			if (addrarr[0] == 'TutorLink' && addrarr[1] == 'Done')
 			{
 				alert("Congratulations.You have succesfully completed the task.");
@@ -452,6 +499,40 @@ function sendTutorMessage(sendMsg, event)
 		}
 		else if (msg.strVerb == "FLAG")
 		{
+		//Visual feedback (green checks)		
+			var addrarr = msg.DorminAddr.strArrNames;
+			
+			if(addrarr[0].charAt(0)=="1" && addrarr[1].search('radioButton')!=-1)
+			{
+				var temp1 = addrarr[1].substr(addrarr[1].indexOf("radioGroup-q") + 12);
+				var temp2 = temp1.substr(0,temp1.indexOf("_radioButton")) + "_0";
+				var widget_goal = "input_" + temp2;
+				var image_goal = "ciinput_" + temp2;
+                //alert(widget_goal);
+			}
+			else
+			{
+				var widget_goal = addrarr[0];
+				var image_goal = 'ci' + addrarr[0];	
+			}	
+			
+			//Widget Element
+			var wElement = content.document.getElementById(widget_goal);
+			var posX = 0;
+  			var posY = 0;              
+  			while(wElement != null){
+    			posX += wElement.offsetLeft;
+    			posY += wElement.offsetTop;
+    			wElement = wElement.offsetParent;
+  			}
+  			//Image Element		
+  			var iElement = content.document.getElementById(image_goal);
+			var style = iElement.style ? iElement.style : iElement;
+			style.position = "absolute";
+			style.left = posX - 20;
+			style.top = posY;
+			style.zIndex = 98;			
+ 			style.display = 'block';
 		}
 		else if (msg.strVerb == "GETHINT")
 		{
@@ -506,6 +587,10 @@ function completeCurrentGoalnode()
 	logToServer('FORCING COMPLETION');
 	var appns = $.ajax({type: 'GET', url: g_webTREURL + '/WebxPST/' + mytre + '/appnodes', async: false, dataType: 'xml'});
 	var nextnode = $('appnode[isnext=true]', appns.responseXML);
+	
+	
+	
+	
 	if (nextnode.length == 0)
 		alert('couldn\'t find next node');
 	else
@@ -516,7 +601,8 @@ function completeCurrentGoalnode()
 
 		var dm = new DorminMessage(appn, 'NOTEVALUESET', repval);
 		sendTutorMessage(dm.MakeString(), null);
-	}
+	}	
+	
 }
 
 function onKeypress(evt)
