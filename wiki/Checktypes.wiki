@@ -3,6 +3,9 @@
 *Ans("a") - *
 Refers to the answer of another goal node.<br>
 eg: `JIT {v == Ans("a")}: "Cannot be the same";`<br><br>
+*Abs("a") - *
+Checks if the absolute value of the entered answer equals "a".<br>
+eg: `JIT {v == Abs("1")}: "Cannot be the +/-1";`<br><br>
 *RegEx("a") - *
 Checks if the entered answer is equivalent to the regular expression mentioned inside the double quotes.<br>
 eg: `answer:  RegEx("[0-9]")`;<br><br>
@@ -20,6 +23,12 @@ Checks if the entered answer is inside the interval ["a","b"]. The other variant
 eg: `answer:  IsRange("[)","a","b");`<br><br>
 *IsNotRange("[[]]","a","b") - *
 Checks if the entered answer is outside the interval ["a","b"]. The other variants of this checktype are Range("()", "a", "b"), Range("[)", "a", "b") and Range("(]", "a", "b").<br>
+eg: `answer:  IsNotRange("()","a","b");`<br><br>
+*IsAbsRange("[[]]","a","b") - *
+Checks if the absolute value of the entered answer is inside the interval ["a","b"]. The other variants of this checktype are IsAbsRange("()", "a", "b"), IsAbsRange("[)", "a", "b") and IsAbsRange("(]", "a", "b").<br>
+eg: `answer:  IsRange("[)","a","b");`<br><br>
+*IsNotAbsRange("[[]]","a","b") - *
+Checks if the absolute value of the entered answer is outside the interval ["a","b"]. The other variants of this checktype are IsNotAbsRange("()", "a", "b"), IsNotAbsRange("[)", "a", "b") and IsNotAbsRange("(]", "a", "b").<br>
 eg: `answer:  IsNotRange("()","a","b");`<br><br>
 *Sum("a","b") - *
 Checks if the entered answer is the sum of "a" and "b".<br>
