@@ -417,10 +417,10 @@ function sendTutorMessage(sendMsg, event)
 			else
 			{
 				var widget_goal = addrarr[0];
-			}		
+			}	
 			
-			//Widget Element
-			var wElement = content.document.getElementById(widget_goal);
+			//Widget Element		
+			var wElement = content.document.getElementById(widget_goal);	
 			var posX = 0;
   			var posY = 0;              
   			while(wElement != null){
@@ -432,8 +432,9 @@ function sendTutorMessage(sendMsg, event)
   			//Image Element		 	
   			posX = posX - 20 + "px";
   			posY = posY + "px";  
+  			
  			iElement = content.document.createElement("img");
- 			iElement.src = "http://xpst.vrac.iastate.edu/xPSTImages/tick.png";
+ 			iElement.src = "http://xpst.vrac.iastate.edu/xPSTImages/tick2.gif";
 			iElement.style.position = "absolute";
 			iElement.style.left = posX;
 			iElement.style.top = posY;
@@ -441,6 +442,13 @@ function sendTutorMessage(sendMsg, event)
  			content.document.body.appendChild(iElement);
  			var x_dummy = iElement.style.left;
  					
+			//Remove Red X
+			var removeElement = content.document.getElementById("redXimage");
+			while(removeElement)
+			{
+				removeElement.parentNode.removeChild(removeElement);
+				var removeElement = content.document.getElementById("redXimage");
+			}
 			
 			if (addrarr[0] == 'TutorLink' && addrarr[1] == 'Done')
 			{
@@ -491,7 +499,7 @@ function sendTutorMessage(sendMsg, event)
 		}
 		else if (msg.strVerb == "FLAG")
 		{
-		//Visual feedback red crosses)		
+		//Visual feedback (green checks)		
 			var addrarr = msg.DorminAddr.strArrNames;
 			
 			if(addrarr[0].charAt(0)=="1" && addrarr[1].search('radioButton')!=-1)
@@ -519,13 +527,15 @@ function sendTutorMessage(sendMsg, event)
   			posX = posX - 20 + "px";
   			posY = posY + "px";  
  			iElement = content.document.createElement("img");
- 			iElement.src = "http://xpst.vrac.iastate.edu/xPSTImages/cross.png";
+ 			iElement.src = "http://xpst.vrac.iastate.edu/xPSTImages/cross1.png";
+ 			iElement.id = "redXimage";
 			iElement.style.position = "absolute";
 			iElement.style.left = posX;
 			iElement.style.top = posY;
 			iElement.style.zIndex = 98 + "px";			
  			content.document.body.appendChild(iElement);
  			var x_dummy = iElement.style.left;
+ 			//alert(iElement.id);
 		}
 		else if (msg.strVerb == "GETHINT")
 		{
@@ -579,7 +589,10 @@ function completeCurrentGoalnode()
 {
 	logToServer('FORCING COMPLETION');
 	var appns = $.ajax({type: 'GET', url: g_webTREURL + '/WebxPST/' + mytre + '/appnodes', async: false, dataType: 'xml'});
-	var nextnode = $('appnode[isnext=true]', appns.responseXML);	
+	var nextnode = $('appnode[isnext=true]', appns.responseXML);
+	
+	
+	
 	
 	if (nextnode.length == 0)
 		alert('couldn\'t find next node');
@@ -591,7 +604,8 @@ function completeCurrentGoalnode()
 
 		var dm = new DorminMessage(appn, 'NOTEVALUESET', repval);
 		sendTutorMessage(dm.MakeString(), null);
-	}		
+	}	
+	
 }
 
 function onKeypress(evt)
