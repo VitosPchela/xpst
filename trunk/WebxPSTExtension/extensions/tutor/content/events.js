@@ -442,7 +442,7 @@ function sendTutorMessage(sendMsg, event)
  			content.document.body.appendChild(iElement);
  			var x_dummy = iElement.style.left;
  					
-			//Remove Red X
+			//Remove Red Xs
 			var removeElement = content.document.getElementById("redXimage");
 			while(removeElement)
 			{
@@ -499,7 +499,15 @@ function sendTutorMessage(sendMsg, event)
 		}
 		else if (msg.strVerb == "FLAG")
 		{
-		//Visual feedback (green checks)		
+			//Visual feedback (Red Xs)		
+			//Remove existing Red Xs to prevent overlapping
+			var removeElement = content.document.getElementById("redXimage");
+			while(removeElement)
+			{
+				removeElement.parentNode.removeChild(removeElement);
+				var removeElement = content.document.getElementById("redXimage");
+			}
+			
 			var addrarr = msg.DorminAddr.strArrNames;
 			
 			if(addrarr[0].charAt(0)=="1" && addrarr[1].search('radioButton')!=-1)
