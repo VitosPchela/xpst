@@ -408,10 +408,13 @@ function sendTutorMessage(sendMsg, event)
 			//Visual feedback (green checks)		
 			var addrarr = msg.DorminAddr.strArrNames;
 			
-			if(addrarr[0].charAt(0)=="1" && addrarr[1].search('radioButton')!=-1)
+			if(addrarr[0].charAt(0)=="1" && addrarr[1].search('_')!=-1)
 			{
+				//Jotform Radiobutton
+				//NW 1814629371.radioGroup-q22_inEnglish
+				//W  1994821566.radioGroup-q7_radioButton
 				var temp1 = addrarr[1].substr(addrarr[1].indexOf("radioGroup-q") + 12);
-				var temp2 = temp1.substr(0,temp1.indexOf("_radioButton")) + "_0";
+				var temp2 = temp1.substr(0,temp1.indexOf("_")) + "_0";
 				var widget_goal = "input_" + temp2;
 			}
 			else
@@ -510,10 +513,10 @@ function sendTutorMessage(sendMsg, event)
 			
 			var addrarr = msg.DorminAddr.strArrNames;
 			
-			if(addrarr[0].charAt(0)=="1" && addrarr[1].search('radioButton')!=-1)
+			if(addrarr[0].charAt(0)=="1" && addrarr[1].search('_')!=-1)
 			{
 				var temp1 = addrarr[1].substr(addrarr[1].indexOf("radioGroup-q") + 12);
-				var temp2 = temp1.substr(0,temp1.indexOf("_radioButton")) + "_0";
+				var temp2 = temp1.substr(0,temp1.indexOf("_")) + "_0";
 				var widget_goal = "input_" + temp2;
 			}
 			else
