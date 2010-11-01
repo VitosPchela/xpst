@@ -51,6 +51,13 @@ function onWebxPSTSidebarOpened(evt)
 		openTasklist(g_currentTasklist);
 }
 
+function disableTutorUI()
+{
+	var evt = document.createEvent('Event');
+	evt.initEvent('webxpst-disable-tutor-ui', true, false);
+	document.dispatchEvent(evt);
+}
+
 function startTask(task)
 {
 	var myurl = window.location.href;

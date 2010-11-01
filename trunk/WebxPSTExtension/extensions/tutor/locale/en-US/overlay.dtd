@@ -1,1 +1,5 @@
 <!ENTITY tutor "WebxPST Tutor">
+<!ENTITY help.label "Help">
+<!ENTITY hint.label "Hint">
+<!ENTITY done.label "Done">
+

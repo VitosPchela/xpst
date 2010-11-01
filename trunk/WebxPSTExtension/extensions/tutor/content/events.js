@@ -45,6 +45,7 @@ var mainWindow = window.QueryInterface(Components.interfaces.nsIInterfaceRequest
 	.getInterface(Components.interfaces.nsIDOMWindow);
 mainWindow.document.addEventListener('webxpst-open-tasklist', onOpenTasklist, false, true);
 mainWindow.document.addEventListener('webxpst-start-task', onStartTask, false, true);
+mainWindow.document.addEventListener('webxpst-disable-tutor-ui', onDisableTutorUI, false, true);
 
 var g_prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch('webxpst.');
 
@@ -67,6 +68,28 @@ function onUnload()
 {
 	if (catcher)
 		catcher.removeClickListeners();
+}
+
+function showToolbar()
+{
+	document.getElementById('webxpst-toolbar').collapsed = false;
+	document.persist('webxpst-toolbar', 'collapsed');
+}
+
+function onDisableTutorUI()
+{
+	setButtonsDisabled(true);
+}
+
+function onHelp()
+{
+	window.openDialog('chrome://webxpst/content/help.html', 'Help', 'chrome,modal,width=500,height=300,centerscreen=yes');
+}
+
+function setButtonsDisabled(val)
+{
+	document.getElementById('webxpst-hint-button').disabled = val;
+	document.getElementById('webxpst-done-button').disabled = val;
 }
 
 function onOpenTasklist(evt)
@@ -109,20 +132,23 @@ function onOpenTasklist(evt)
 
 function onStartTask(evt)
 {
+	showToolbar();
+	setButtonsDisabled(false);
+
 	var task = evt.originalTarget;
 	g_webTREURL = task.getAttribute('webtreurl');
 	g_taskName = task.getAttribute('task');
-	document.getElementById('waitingtext').setAttribute('collapsed', true);
+//	document.getElementById('waitingtext').setAttribute('collapsed', true);
 	if(g_observeIDs)
 	{
 		var urlparts = new Array();
 		urlparts=g_webTREURL.split('/');
 		var hostmach=urlparts[2]; 
-		document.getElementById('serverdetails').setAttribute('collapsed', false);
-		document.getElementById('servername').value=hostmach;
+//		document.getElementById('serverdetails').setAttribute('collapsed', false);
+//		document.getElementById('servername').value=hostmach;
 	}
 	else
-		document.getElementById('serverdetails').setAttribute('collapsed', true);
+	;//	document.getElementById('serverdetails').setAttribute('collapsed', true);
 	onStart();
 }
 
@@ -136,9 +162,7 @@ function getBase()
 
 function getSkinBase()
 {
-	var thisurl = window.location.href;
-	var skinbase = thisurl.substring(0, thisurl.lastIndexOf('/')) + '/skin/';
-	return skinbase;
+	return 'chrome://webxpst/content/skin/';
 }
 
 function getBaseTags()
@@ -161,9 +185,7 @@ function getXMLMessage(msg)
 
 function getMessageHTML(xmsg)
 {
-	var thisurl = window.location.href;
-	var skinbase = thisurl.substring(0, thisurl.lastIndexOf('/')) + '/skin/';
-	var xslt = xslTransform.load(skinbase + 'message.xml');
+	var xslt = xslTransform.load(getSkinBase() + 'message.xml');
 	return xslTransform.transform(xslt, xmsg,	{}).string;
 }
 
@@ -355,8 +377,6 @@ function onHint(event)
 
 function onDone(event)
 {
-	
-
 	var msg1 = new DorminMessage("TutorLink.Done", "NOTEVALUESET", "1");
 	sendTutorMessage(msg1.MakeString(), event);
 	if(g_isTutorRunning)
@@ -374,10 +394,10 @@ function stop()
 	xh.setRequestHeader("Connection", "close");
 	xh.send(params);
 	mytre = null;
-
-	document.getElementById('tutorstuff').collapsed = true;
-	document.getElementById('taskselect').collapsed = false;
-	document.getElementById('serverdetails').collapsed = true;
+	setButtonsDisabled(true);
+//	document.getElementById('tutorstuff').collapsed = true;
+//	document.getElementById('taskselect').collapsed = false;
+//	document.getElementById('serverdetails').collapsed = true;
 }
 
 function goQIV(msg)
@@ -457,7 +477,7 @@ function sendTutorMessage(sendMsg, event)
 			{
 				alert("Congratulations.You have succesfully completed the task.");
 			    var taskel = document.getElementById('task');
-			    if(taskel.childNodes.length >1)
+				if (taskel != null && taskel.childNodes.length > 1)
 			    {
 					stop();
 					onLoad();
@@ -465,10 +485,9 @@ function sendTutorMessage(sendMsg, event)
 			    else
 			    {
 					stop();
-					document.getElementById('tutorstuff').collapsed = true;
-					document.getElementById('taskselect').collapsed = true;
-					document.getElementById('waitingtext').setAttribute('collapsed',false);
-					
+					//document.getElementById('tutorstuff').collapsed = true;
+					//document.getElementById('taskselect').collapsed = true;
+					//document.getElementById('waitingtext').setAttribute('collapsed',false);
 			    }
 			}
 			
