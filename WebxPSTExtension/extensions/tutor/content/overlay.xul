@@ -23,33 +23,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 <overlay id="tutor-overlay"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
     <script src="overlay.js"/>
+		<script type="text/javascript" src="sarissa/sarissa.js"></script>
+		<script type="text/javascript" src="sarissa/sarissa_ieemu_xpath.js"></script>
+		<script type="text/javascript" src="jquery/jquery.js"></script>
+		<script type="text/javascript" src="jquery/jquery.xslTransform.js"></script>
+		<script type="text/javascript" src="skin/util.js"/>
+		<script type="text/javascript" src="events.js"/>
     
-    <menupopup id="menu_ToolsPopup">
-        <menuitem id="tutor-hello" key="key_openEmptySidebar" label="&tutor;" oncommand="Tutor.onMenuItemCommand(event);"/>
-    </menupopup>  
-    
-    <popupset id = "mainPopupSet">
-        <menupopup id = "jitPopup">
-            <hbox>
-                <button id = "testButton" label="Close" oncommand="Tutor.closePopup();"/>
-            </hbox>
-        </menupopup>
-    </popupset>
-    
-    <keyset id="mainKeyset">
-        <key id="key_openEmptySidebar" command="viewEmptySidebar"
-        key="E" 
-        modifiers="shift accel" />
-    </keyset>
-    
-    <broadcasterset id="mainBroadcasterSet">
-        <broadcaster id="viewEmptySidebar" 
-        label="Tutoring System"
-        autoCheck="false"
-        type="checkbox"
-        group="sidebar"
-        sidebarurl="chrome://webxpst/content/TutorSideBar.xul"
-        sidebartitle="Tutor"
-        oncommand="Tutor.onMenuItemCommand(event);" />
-    </broadcasterset>
-</overlay> 
+    <toolbox id="navigator-toolbox">
+			<toolbar id="webxpst-toolbar" toolbarname="xPST Toolbar" >
+				<label style="font-weight: bold" value="xPST"/>
+				<toolbarbutton id="webxpst-hint-button" label="&hint.label;" disabled="true" oncommand="onHint(event);" onmousedown="onHintMouseDown()"/>
+				<toolbarbutton id="webxpst-done-button" label="&done.label;" disabled="true" oncommand="onDone(event);"/>
+				<toolbarbutton id="webxpst-help-button" label="&help.label;" oncommand="onHelp(event);"/>
+			</toolbar>
+    </toolbox>
+</overlay>
+

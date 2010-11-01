@@ -6,6 +6,7 @@
 <!ENTITY cancel.label "Cancel">
 <!ENTITY cancel.ID "cancel-button">
 <!ENTITY hint.label "Hint">
+<!ENTITY hint.ID "hint-button">
 <!ENTITY next.label "Next">
 <!ENTITY previous.label "Previous">
 <!ENTITY entry.ID "entry-textbox">
@@ -21,8 +22,6 @@
 <!ENTITY enter.label "Check Answer">
 <!ENTITY enter.ID "answer-button">
 <!ENTITY boxone.ID "box-one">
-<!ENTITY hint.ID "hint-button">
-<!ENTITY hint.label "hint">
 <!ENTITY nextHint.ID "hintNext-button">
 <!ENTITY nextHint.label "Next Hint">
 <!ENTITY previousHint.ID "hintPrev-button">
