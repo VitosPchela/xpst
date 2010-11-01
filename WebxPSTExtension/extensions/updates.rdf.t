@@ -30,7 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
               <id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</id>
               <minVersion>2.0.0.0</minVersion>
               <maxVersion>3.*.*</maxVersion>
-              <updateLink>https://its.clearsighted.org/webxpst/WebxPST.xpi</updateLink>
+              <updateLink>https://xpst.googlecode.com/files/WebxPST.xpi</updateLink>
             </r:Description>
           </targetApplication>
         </r:Description>
