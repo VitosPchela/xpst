@@ -23,12 +23,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 	<property name="build.dir" value="../../builds/WebxPST"/>
 
 	<target name="WebTutorDist" depends="prepare">
-		<property file="../../builtversions.txt"/>
 		<copy file="updates.rdf.t" tofile="updates.rdf" overwrite="true"/>
-		<replace file="updates.rdf" token="@VERSION@" value="0.3.${BuiltPluginVer}" summary="true"/>
+		<replace file="updates.rdf" token="@VERSION@" value="0.3.${version}" summary="true"/>
 		<copy file="tutor/install.rdf" tofile="tutor/install.rdf.bk" overwrite="true"/>
 		<copy file="tutor/install.rdf.t" tofile="tutor/install.rdf" overwrite="true"/>
-		<replace file="tutor/install.rdf" token="@VERSION@" value="0.3.${BuiltPluginVer}" summary="true"/>
+		<replace file="tutor/install.rdf" token="@VERSION@" value="0.3.${version}" summary="true"/>
 		<jar jarfile="WebxPST.xpi" basedir="tutor" excludes="**/.svn"/>
 		<copy file="tutor/install.rdf.bk" tofile="tutor/install.rdf" overwrite="true"/>
 		<delete file="tutor/install.rdf.bk"/>

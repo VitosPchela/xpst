@@ -14,7 +14,7 @@ if [ $NewCogVer -gt $NewWebxPSTVer ]; then NewWebxPSTVer=$NewCogVer; fi
 if [ -f ./builtversions.txt ]; then source ./builtversions.txt; else BuiltWebxPSTVer=0; BuiltPluginVer=0; BuiltCogVer=0; fi
 
 cd WebxPSTExtension/extensions
-if [ $NewPluginVer -gt $BuiltPluginVer ]; then if $ant; then BuiltPluginVer=$NewPluginVer; else echo "bad build"; fi fi
+if [ $NewPluginVer -gt $BuiltPluginVer ]; then if $ant -Dversion=$NewPluginVer; then BuiltPluginVer=$NewPluginVer; else echo "bad build"; fi fi
 cd ../..
 
 BuiltCogVer=$NewCogVer
