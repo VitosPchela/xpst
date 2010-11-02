@@ -45,7 +45,7 @@
 
 *Tips
 
-1. First, test your templates on sample responses, using the NAT.
+1. First, test your templates on sample responses, using the NAT.<br>
 2. Use Levenshtein for matching words of length greater than 5. For shorter words, use 'Almost', unless you want an exact match.<br>
 3. Be liberal while setting the upper limit for 'Any' at the begining and of the template. At other positions, try to use set limits that are neither too high nor too small.<br>
 4. Avoid punctuations in checktypes, though they are ignored by the NAT.<br>
