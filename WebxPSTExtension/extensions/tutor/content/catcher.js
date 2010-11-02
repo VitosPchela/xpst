@@ -265,8 +265,11 @@ EventCatcher.prototype =
 		{
 			if (g_observeIDs && !isinitial)
 			{
-				var list = document.getElementById('evtlist');
-				list.value = path + pathsuffix + '=' + value + '\n';
+				var sidebar = document.getElementById('sidebar');
+				var sidebarDoc = sidebar.contentDocument;
+				var list = sidebarDoc.getElementById('webxpst-evtlist');
+				if (list)
+					list.value = path + pathsuffix + '=' + value + '\n';
 			}
 
 			var msg = new DorminMessage(path + pathsuffix, isinitial ? 'NOTEINITIALVALUE' : 'NOTEVALUESET', value);

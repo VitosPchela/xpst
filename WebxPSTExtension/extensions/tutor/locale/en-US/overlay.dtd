@@ -2,4 +2,6 @@
 <!ENTITY help.label "Help">
 <!ENTITY hint.label "Hint">
 <!ENTITY done.label "Done">
+<!ENTITY scenario.label "Instructions">
+<!ENTITY observe.label "Observe">
 

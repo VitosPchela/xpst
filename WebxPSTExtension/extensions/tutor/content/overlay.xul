@@ -29,12 +29,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 		<script type="text/javascript" src="jquery/jquery.xslTransform.js"></script>
 		<script type="text/javascript" src="skin/util.js"/>
 		<script type="text/javascript" src="events.js"/>
+		<script type="text/javascript" src="chrome://browser/content/browser.js"/>
+    
+    <broadcasterset id="mainBroadcasterSet">
+        <broadcaster id="webxpst-sidebar-broadcaster" 
+        label="Tutoring System"
+        autoCheck="false"
+        type="checkbox"
+        group="sidebar"
+        sidebarurl="chrome://webxpst/content/TutorSideBar.xul"
+        sidebartitle="Tutor"
+        oncommand="Tutor.onMenuItemCommand(event);" />
+    </broadcasterset>
     
     <toolbox id="navigator-toolbox">
 			<toolbar id="webxpst-toolbar" toolbarname="xPST Toolbar" >
 				<label style="font-weight: bold" value="xPST"/>
 				<toolbarbutton id="webxpst-hint-button" label="&hint.label;" disabled="true" oncommand="onHint(event);" onmousedown="onHintMouseDown()"/>
 				<toolbarbutton id="webxpst-done-button" label="&done.label;" disabled="true" oncommand="onDone(event);"/>
+				<toolbarbutton id="webxpst-scenario-button" label="&scenario.label;" disabled="true" oncommand="onScenario(event);"/>
+				<toolbarbutton id="webxpst-observe-button" label="&observe.label;" collapsed="true" oncommand="onObserve(event);"/>
 				<toolbarbutton id="webxpst-help-button" label="&help.label;" oncommand="onHelp(event);"/>
 			</toolbar>
     </toolbox>

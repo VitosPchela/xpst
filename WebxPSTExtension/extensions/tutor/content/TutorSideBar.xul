@@ -21,39 +21,28 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 -->
 
-<page id="sbEmptySidebar" title="Tutor" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" onload="onLoad()">
-	<script type="text/javascript" src="sarissa/sarissa.js"></script>
-	<script type="text/javascript" src="sarissa/sarissa_ieemu_xpath.js"></script>
-	<script type="text/javascript" src="jquery/jquery.js"></script>
-	<script type="text/javascript" src="jquery/jquery.xslTransform.js"></script>
-	<script type="text/javascript" src="skin/util.js"/>
-	<script type="text/javascript" src="events.js"/>
-	<vbox id="waitingtext" style="font-size: 120%; font-weight:bold">
+<page id="webxpst-sidebar" title="Tutor" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" onload="onLoad()">
+	<vbox id="webxpst-waitingtext" style="font-size: 120%; font-weight:bold">
 		<label value="Browse to a"/>
 		<label value="WebxPST-compatible page to begin."/>
 	</vbox>
-	<vbox id="serverdetails" style="font-size: 120%; font-weight:bold" collapsed="true">
+	<vbox id="webxpst-serverdetails" style="font-size: 120%; font-weight:bold" collapsed="true">
 		<label value="The plugin is communicating with"/>
-		<label id="servername" value=""/>
+		<label id="webxpst-servername" value=""/>
 	</vbox>
-	<vbox id="tutorstuff" flex="1" collapsed="true">
-		<iframe flex="1" id="scenario" style="background-color: white"/>
-		<hbox pack="center" collapsed="true" id="suspended">
+	<vbox id="webxpst-tutorstuff" flex="1" collapsed="true">
+		<iframe flex="1" id="webxpst-scenario" style="background-color: white"/>
+		<hbox pack="center" collapsed="true" id="webxpst-suspended">
 			<label value="TUTOR SUSPENDED" style="color: red; font-size: 150%"/>
 		</hbox>
-		<hbox pack="center" id="ctrlbuttons">
-			<button id = "&hint.ID;" label="&hint.label;" oncommand="onHint(event);" onmousedown="onHintMouseDown()"/>
-			<button id="&done.ID;" label="&done.label;" oncommand="onDone(event);"/>
-	<!--		<checkbox id = "observeIds" label="Observe ID mode" checked="false"/> -->
-		</hbox>
 	</vbox>
-	<vbox collapsed="true" id="evtbox">
+	<vbox collapsed="true" id="webxpst-evtbox">
 		<label value="Most Recent events"/>
-		<textbox pack="center" id="evtlist" height="135" multiline="true"/>
+		<textbox pack="center" id="webxpst-evtlist" height="135" multiline="true"/>
 	</vbox>
-	<vbox id="taskselect" flex="1" collapsed="true">
+	<vbox id="webxpst-taskselect" flex="1" collapsed="true">
 		<label value="Select a task then click Start" style="font-size: 120%; font-weight:bold"/>
-		<listbox id="task" label="task" flex="1" seltype="single"/>
+		<listbox id="webxpst-task" label="task" flex="1" seltype="single"/>
 		<hbox pack="center">
 			<button label="Start" oncommand="start()"/>
 		</hbox>

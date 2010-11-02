@@ -25,6 +25,7 @@ var g_blockJITs = false;
 var g_observeIDs = false;
 var mytre = '';
 var g_vanthUsername = null;
+var g_scenarioHTML = null;
 var XULNS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 
 var objScriptLoader1 = Components.classes["@mozilla.org/moz/jssubscript-loader;1"].getService(Components.interfaces.mozIJSSubScriptLoader);
@@ -34,7 +35,7 @@ objScriptLoader2.loadSubScript("chrome://webxpst/content/catcher.js");
 
 var catcher = null;
 
-// window.addEventListener("load", EventCatcher_initialize, false);
+window.addEventListener("load", onLoad, false);
 window.addEventListener('unload', onUnload, false);
 window.addEventListener('keypress', onKeypress, false);
 var mainWindow = window.QueryInterface(Components.interfaces.nsIInterfaceRequestor)
@@ -49,19 +50,27 @@ mainWindow.document.addEventListener('webxpst-disable-tutor-ui', onDisableTutorU
 
 var g_prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch('webxpst.');
 
+g_prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
+function PrefsObserver()
+{
+}
+PrefsObserver.prototype =
+{
+	observe: function(subject, topic, data)
+	{
+		var authoringmode = g_prefs.getBoolPref('authoringmode');
+		document.getElementById('webxpst-observe-button').collapsed = !authoringmode;
+		if (!authoringmode)
+			g_observeIDs = false;
+		updateSidebar();
+	}
+}
+g_prefs.addObserver("", new PrefsObserver(), false);
+
 function onLoad()
 {
 	if (g_prefs.getBoolPref('authoringmode'))
-	{
-		g_observeIDs = true;
-		$('#evtbox').attr('collapsed', false);
-		startEventCatcher();
-	}
-
-	var doc = content.document;
-	var evt = doc.createEvent('Events');
-	evt.initEvent('webxpst-sidebar-opened', true, false);
-	doc.dispatchEvent(evt);
+		document.getElementById('webxpst-observe-button').collapsed = false;
 }
 
 function onUnload()
@@ -86,8 +95,16 @@ function onHelp()
 	window.openDialog('chrome://webxpst/content/help.html', 'Help', 'chrome,modal,width=500,height=300,centerscreen=yes');
 }
 
+function onObserve()
+{
+	g_observeIDs = true;
+	startEventCatcher();
+	openSidebar();
+}
+
 function setButtonsDisabled(val)
 {
+	document.getElementById('webxpst-scenario-button').disabled = g_scenarioHTML ? val : true;
 	document.getElementById('webxpst-hint-button').disabled = val;
 	document.getElementById('webxpst-done-button').disabled = val;
 }
@@ -113,19 +130,6 @@ function onOpenTasklist(evt)
 		taskel.appendChild(listitem);
 	}
 	// taskel.firstChild.setAttribute('selected', true);
-	if(g_observeIDs)
-	{
-		var urlparts = new Array();
-		urlparts=g_webTREURL.split('/');
-		var hostmach=urlparts[2]; 
-		document.getElementById('serverdetails').setAttribute('collapsed', false);
-		document.getElementById('servername').value=hostmach;
-	}
-	else
-	{
-		document.getElementById('serverdetails').setAttribute('collapsed', true);
-	}
-	
 	document.getElementById('waitingtext').setAttribute('collapsed', true);
 	document.getElementById('taskselect').setAttribute('collapsed', false);
 }
@@ -138,17 +142,9 @@ function onStartTask(evt)
 	var task = evt.originalTarget;
 	g_webTREURL = task.getAttribute('webtreurl');
 	g_taskName = task.getAttribute('task');
-//	document.getElementById('waitingtext').setAttribute('collapsed', true);
 	if(g_observeIDs)
-	{
-		var urlparts = new Array();
-		urlparts=g_webTREURL.split('/');
-		var hostmach=urlparts[2]; 
-//		document.getElementById('serverdetails').setAttribute('collapsed', false);
-//		document.getElementById('servername').value=hostmach;
-	}
-	else
-	;//	document.getElementById('serverdetails').setAttribute('collapsed', true);
+		updateSidebar();
+
 	onStart();
 }
 
@@ -211,7 +207,59 @@ function block(event)
 	catcher.sendValueMessage(false, event.originalTarget, event);
 }
 
-function openPopup(event, jitData)
+function openSidebar()
+{
+	toggleSidebar('webxpst-sidebar-broadcaster', true);
+	var sidebar = document.getElementById('sidebar');
+	if (sidebar.contentDocument && sidebar.contentDocument.getElementById('webxpst-waitingtext'))
+		updateSidebar();
+	else
+		sidebar.addEventListener('load', updateSidebar, true);
+}
+
+function updateSidebar()
+{
+	var sidebar = document.getElementById('sidebar');
+	if (!sidebar)
+		return;
+	var sidebarDoc = sidebar.contentDocument;
+	if (!sidebarDoc)
+		return;
+	var scenario = sidebarDoc.getElementById('webxpst-scenario');
+	if (!scenario)
+		return;
+
+	var content = g_scenarioHTML || g_observeIDs;
+	sidebarDoc.getElementById('webxpst-waitingtext').collapsed = content;
+
+	if (g_scenarioHTML)
+	{
+		sidebarDoc.getElementById('webxpst-tutorstuff').collapsed = false;
+		scenario.setAttribute('src', 'data:text/html;base64,' + btoa(g_scenarioHTML));
+	}
+	else
+		sidebarDoc.getElementById('webxpst-tutorstuff').collapsed = true;
+
+	if (g_observeIDs)
+	{
+		if (g_webTREURL)
+		{
+			var urlparts = new Array();
+			urlparts = g_webTREURL.split('/');
+			var hostmach = urlparts[2]; 
+			sidebarDoc.getElementById('webxpst-serverdetails').setAttribute('collapsed', false);
+			sidebarDoc.getElementById('webxpst-servername').value = hostmach;
+		}
+		sidebarDoc.getElementById('webxpst-evtbox').setAttribute('collapsed', false);
+	}
+	else
+	{
+		sidebarDoc.getElementById('webxpst-evtbox').setAttribute('collapsed', true);
+		sidebarDoc.getElementById('webxpst-serverdetails').setAttribute('collapsed', true);
+	}
+}
+
+function openJITPopup(event, jitData)
 {
 	g_blockJITs = true; // we're about to steal focus
 	var xmsg = getXMLMessage(jitData);
@@ -224,16 +272,7 @@ function openPopup(event, jitData)
 	page += '<window id="JIT" title="JIT" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" hidechrome="true">';
 	page += '<iframe id="frameid" src="data:text/html;base64,' + btoa(htmlPage) + '" flex="1"/>';
 	page += '</window>';
-	var el = event.originalTarget;
-	/*var pos;
-	pos = findPos(el);
-	if (pos)
-	{
-		var r = getVisiblePosition(pos[0], pos[0] + pos[2], pos[1], pos[1] + pos[3], width, height);
-		window.openDialog("data:text/xml," + page, 'JIT', 'chrome,modal,width=' + width + ',height=' + height + ',left=' + r[0] + ',top=' + r[1]);
-	}
-	else
-	*/	window.openDialog("data:text/xml," + page, 'JIT', 'chrome,modal,width=' + width + ',height=' + height + ',centerscreen=yes');
+	window.openDialog("data:text/xml," + page, 'JIT', 'chrome,modal,width=' + width + ',height=' + height + ',centerscreen=yes');
 
 	logToServer('CLOSE JIT');
 	if (isBlock(xmsg))
@@ -302,33 +341,44 @@ function startEventCatcher()
 
 function stopEventCatcher()
 {
-	document.getElementById('serverdetails').setAttribute('collapsed', true);
+	if (catcher)
 	catcher.removeClickListeners();
-	windowListener.unregister();
 }
 
-function displayScenario(xml)
+function loadScenario(xml)
 {
-	var scenxml = null;
+	var scenarioDOM = null;
+	g_scenarioHTML = null;
 	try
 	{
-		scenxml = xslTransform.load(getBase() + xml);
+		scenarioDOM = xslTransform.load(getBase() + xml);
 	}
 	catch (e)
 	{
 	}
-	if (scenxml == null || typeof(scenxml) != 'object' || scenxml.documentElement.nodeName == 'parsererror')
-		scenxml = xslTransform.load('<message><p>Scenario XML couldn\'t be parsed.</p></message>');
-
-	var basetag = scenxml.createElement('base');
-	var skinbasetag = scenxml.createElement('skinbase');
-	var scenariotag = scenxml.createElement('isscenario');
+	if (scenarioDOM == null || typeof(scenarioDOM) != 'object' || scenarioDOM.documentElement.nodeName == 'parsererror')
+		scenarioDOM = null;
+	else
+	{
+		var basetag = scenarioDOM.createElement('base');
+		var skinbasetag = scenarioDOM.createElement('skinbase');
+		var scenariotag = scenarioDOM.createElement('isscenario');
 	basetag.setAttribute('href', getBase());
 	skinbasetag.setAttribute('href', getSkinBase());
-	scenxml.documentElement.appendChild(basetag);
-	scenxml.documentElement.appendChild(skinbasetag);
-	scenxml.documentElement.appendChild(scenariotag);
-	$('#scenario').attr('src', 'data:text/html;base64,' + btoa(getMessageHTML(scenxml)));
+		scenarioDOM.documentElement.appendChild(basetag);
+		scenarioDOM.documentElement.appendChild(skinbasetag);
+		scenarioDOM.documentElement.appendChild(scenariotag);
+		g_scenarioHTML = getMessageHTML(scenarioDOM);
+	}
+	if (g_scenarioHTML)
+		updateSidebar();
+	document.getElementById('webxpst-scenario-button').disabled = !g_scenarioHTML;
+}
+
+function onScenario(evt)
+{
+	if (g_scenarioHTML)
+		openSidebar();
 }
 
 function onStart()
@@ -355,11 +405,7 @@ function onStart()
 	g_isTutorRunning = true;
 	sendTutorMessage('', null); // Get initial messages from tutor
 
-	displayScenario(g_taskName + '-scenario.xml');
-	document.getElementById('taskselect').collapsed = true;
-	document.getElementById('tutorstuff').collapsed = false;
-	//document.getElementById('serverdetails').collapsed = false;
-	
+	loadScenario(g_taskName + '-scenario.xml');
 }
 
 var hintNumber = 0;
@@ -502,7 +548,7 @@ function sendTutorMessage(sendMsg, event)
 		else if (msg.strVerb == "JITMESSAGE")
 		{
 			if (!g_blockJITs)
-				openPopup(event, msg.arrParameters[0].objValue.value[0].value);
+				openJITPopup(event, msg.arrParameters[0].objValue.value[0].value);
 			// return false;
 		}
 		else if (msg.strVerb == "HINTMESSAGE")
@@ -621,9 +667,6 @@ function completeCurrentGoalnode()
 	var appns = $.ajax({type: 'GET', url: g_webTREURL + '/WebxPST/' + mytre + '/appnodes', async: false, dataType: 'xml'});
 	var nextnode = $('appnode[isnext=true]', appns.responseXML);
 	
-	
-	
-	
 	if (nextnode.length == 0)
 		alert('couldn\'t find next node');
 	else
@@ -649,3 +692,4 @@ function onKeypress(evt)
 		$('#serverdetails').attr('collapsed',true);
 	}
 }
+
