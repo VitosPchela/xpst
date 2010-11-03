@@ -565,6 +565,59 @@ public class Operations
 			}
 		}	
 		
+		if((l instanceof IsNLP && r instanceof String))
+		{
+			switch (op)
+			{
+				case EqOp:
+					return ((IsNLP)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((IsNLP)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
+		}
+		
+		if((r instanceof IsNLP && l instanceof String))
+		{
+			switch (op)
+			{
+				case EqOp:
+					return ((IsNLP)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((IsNLP)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
+		}
+
+		if((l instanceof IsNotNLP && r instanceof String))
+		{
+			switch (op)
+			{
+				case EqOp:
+					return ((IsNotNLP)l).compare(gns,(String)r,"e");
+				case NotEqOp:
+					return ((IsNotNLP)l).compare(gns,(String)r,"ne");
+				default:
+					return false;
+			}
+		}
+		
+		if((r instanceof IsNotNLP && l instanceof String))
+		{
+			switch (op)
+			{
+				case EqOp:
+					return ((IsNotNLP)r).compare(gns,(String)l,"e");
+				case NotEqOp:
+					return ((IsNotNLP)r).compare(gns,(String)l,"ne");
+				default:
+					return false;
+			}
+		}	
+
+		
 		if((l instanceof IsNotRange && r instanceof String))
 		{
 			switch (op)

@@ -474,7 +474,7 @@ function sendTutorMessage(sendMsg, event)
 			//Visual feedback (green checks)		
 			var addrarr = msg.DorminAddr.strArrNames;
 			
-			if(addrarr[0].charAt(0)=="1" && addrarr[1].search('_')!=-1)
+			if( ( addrarr[0].charAt(0)=="1" || addrarr[0].charAt(0)=="2" || addrarr[0].charAt(0)=="3" || addrarr[0].charAt(0)=="4" || addrarr[0].charAt(0)=="5" || addrarr[0].charAt(0)=="6" || addrarr[0].charAt(0)=="7" || addrarr[0].charAt(0)=="8" || addrarr[0].charAt(0)=="9" ) && addrarr[1].search('_')!=-1)
 			{
 				//Jotform Radiobutton
 				//NW 1814629371.radioGroup-q22_inEnglish
@@ -548,7 +548,11 @@ function sendTutorMessage(sendMsg, event)
 		else if (msg.strVerb == "JITMESSAGE")
 		{
 			if (!g_blockJITs)
-				openJITPopup(event, msg.arrParameters[0].objValue.value[0].value);
+			{	
+				openJITPopup(event, msg.arrParameters[0].objValue.value[0].value);	
+				var hoverElement = content.document.getElementById("redXimage");				
+				hoverElement.title = msg.arrParameters[0].objValue.value[0].value;				
+			}
 			// return false;
 		}
 		else if (msg.strVerb == "HINTMESSAGE")
@@ -578,7 +582,7 @@ function sendTutorMessage(sendMsg, event)
 			
 			var addrarr = msg.DorminAddr.strArrNames;
 			
-			if(addrarr[0].charAt(0)=="1" && addrarr[1].search('_')!=-1)
+			if( ( addrarr[0].charAt(0)=="1" || addrarr[0].charAt(0)=="2" || addrarr[0].charAt(0)=="3" || addrarr[0].charAt(0)=="4" || addrarr[0].charAt(0)=="5" || addrarr[0].charAt(0)=="6" || addrarr[0].charAt(0)=="7" || addrarr[0].charAt(0)=="8" || addrarr[0].charAt(0)=="9" ) && addrarr[1].search('_')!=-1)
 			{
 				var temp1 = addrarr[1].substr(addrarr[1].indexOf("radioGroup-q") + 12);
 				var temp2 = temp1.substr(0,temp1.indexOf("_")) + "_0";
@@ -610,8 +614,7 @@ function sendTutorMessage(sendMsg, event)
 			iElement.style.top = posY;
 			iElement.style.zIndex = 98 + "px";			
  			content.document.body.appendChild(iElement);
- 			var x_dummy = iElement.style.left;
- 			//alert(iElement.id);
+ 			var x_dummy = iElement.style.left; 			
 		}
 		else if (msg.strVerb == "GETHINT")
 		{
