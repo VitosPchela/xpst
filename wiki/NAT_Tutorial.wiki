@@ -32,10 +32,15 @@
 *Example Code (WAT)
 <br><br> 
 `answer: IsNLP("Any(0,4) Not('fail', 'not',5, '<-') Levenshtein('reject') Any(0,3) Levenshtein('null') Levenshtein('hypothesis') Any(0,5) Not('no', 'not', 'isnt', 4, '<-') Levenshtein('significant') Levenshtein('difference') Any(0,2) Levenshtein('between') Any(0,7)");`
-`JIT { v == IsNotNLP("Any(0,20) Levenshtein('difference') Any(0,20)")} : "You did not mention if there is a difference between the 2 conditions." ;`
+`# Checking for the absence of the word 'difference'`
+<br>`JIT { v == IsNotNLP("Any(0,20) Levenshtein('difference') Any(0,20)")} : "You did not mention if there is a difference between the 2 conditions." ;`
+<br>`# Checking for the absence of the word 'reject'`
 <br>`JIT { v == IsNotNLP("Any(0,20) Levenshtein('reject') Any(0,20)")} : "You did not mention if we have to reject or accept the null hypothesis";`
+<br>`# Checking for the presence of the phrase 'reject alternate' and its variants`
 <br>`JIT { v == IsNLP("Any(0,20) Levenshtein('reject') Any(0,3) Levenshtein('alternate') Any(0,20)")} : "Are you sure you want to reject the alternate hypothesis?";`
+<br>`# Checking for the presence of the phrase 'fail to reject' and its variants`
 <br>`JIT { v == IsNLP("Any(0,20) Levenshtein('fail', 'not') Any(0,3) Levenshtein('reject') Any(0,3) Levenshtein('null') Any(0,20)")} : "Are you sure you do not want to reject the null hypothesis?";`
+<br>`# Checking for the presence of the phrase 'no significant difference' and its variants`
 <br>`JIT { v == IsNLP("Any(0,20) Exact('no', 'not', 'isnt') Any(0,3) Levenshtein('significant') Any(0,3) Levenshtein('difference') Any(0, 20)")} : "Are you sure that the difference is not significant? ";`
 <br>`Hint: "Reject the hypothesis.";`
 
