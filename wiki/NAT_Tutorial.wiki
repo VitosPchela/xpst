@@ -32,7 +32,7 @@
 *Example Code (WAT)
 <br><br> 
 `answer: IsNLP("Any(0,4) Not('fail', 'not',5, '<-') Levenshtein('reject') Any(0,3) Levenshtein('null') Levenshtein('hypothesis') Any(0,5) Not('no', 'not', 'isnt', 4, '<-') Levenshtein('significant') Levenshtein('difference') Any(0,2) Levenshtein('between') Any(0,7)");`
-`# Checking for the absence of the word 'difference'`
+<br>`# Checking for the absence of the word 'difference'`
 <br>`JIT { v == IsNotNLP("Any(0,20) Levenshtein('difference') Any(0,20)")} : "You did not mention if there is a difference between the 2 conditions." ;`
 <br>`# Checking for the absence of the word 'reject'`
 <br>`JIT { v == IsNotNLP("Any(0,20) Levenshtein('reject') Any(0,20)")} : "You did not mention if we have to reject or accept the null hypothesis";`
@@ -53,6 +53,6 @@
 
 1. First, test your templates on sample responses, using the NAT.<br>
 2. Use Levenshtein for matching words of length greater than 5. For shorter words, use 'Almost', unless you want an exact match.<br>
-3. Be liberal while setting the upper limit for 'Any' at the begining and of the template. At other positions, try to use set limits that are neither too high nor too small.<br>
+3. Be liberal while setting the upper limit for 'Any' at the begining and end of the template. At other positions, try to use set limits that are neither too high nor too small.<br>
 4. Avoid punctuations in checktypes, though they are ignored by the NAT.<br>
 5. While writing JITs, try to match the presence of wrong phrases, and the absence of key phrases, rather than matching entire answer.<br>
