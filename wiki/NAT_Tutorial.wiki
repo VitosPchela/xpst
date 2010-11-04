@@ -21,8 +21,9 @@
 <br><br>Soundex(str)
 <br>Checks for a match with a word whose soundex code is the same as str
 <br>`Eg: Soundex('project'): This looks for a 'Soundex match' of the word 'project'.`
-<br><br>Porter(str)
+<br><br>Stemmer(str)
 <br>Checks for a match with the stem of a word (uses PorterStemmer)
+<br> `Eg: Stemmer('fish') would return true for the words 'fish', 'fishing' and 'fished'.`
 <br><br>Not(str, n, d)
 <br>Checks if the n words  in direction d are not equal to str
 <br>`Eg: Not('not', 'isnt', 3, '<-') Exact ('significant'): This checks if the three words appearing to the left of 'significant' are neither 'not' nor 'isnt' `
