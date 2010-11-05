@@ -6,8 +6,13 @@ import java.io.*;
 import org.clearsighted.tutorengine.GoalNode;
 import org.clearsighted.tutorengine.Type;
 import org.clearsighted.tutorengine.NAT.Start;
+import org.clearsighted.tutorengine.SynchFile;
 import java.util.ArrayList;
 import java.io.IOException;
+
+import java.io.FileOutputStream;
+import java.io.Writer;
+import java.io.OutputStreamWriter;
 
 
 public class IsNLP extends Type {
@@ -32,6 +37,16 @@ public class IsNLP extends Type {
 	
 	public boolean IsNLP(String xi1, String xs1)
 	{
+
+		SynchFile file = new SynchFile("C:/xPST/xSTATCorpus.txt");
+          try {
+              file.write(xs1, xi1);
+              file.close();
+          } catch (Exception e) {
+              //e.printStackTrace();
+          }
+	
+	
         try
         {
 			String c = xi1;
