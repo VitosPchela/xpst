@@ -27,7 +27,7 @@
 <br><br>Not(str, n, d)
 <br>Checks if the n words  in direction d are not equal to str
 <br>`Eg: Not('not', 'isnt', 3, '<-') Exact ('significant'): This checks if the three words appearing to the left of 'significant' are neither 'not' nor 'isnt' `
-<br>`Eg: Exact ('result') Not('not', 'isnt', 2, '->'): This checks if the two words appearing to the right of 'result' are neither 'not' nor 'isnt' `
+<br>`Eg: Not('not', 'isnt', 2, '->') Exact ('result'): This checks if the two words appearing to the right of 'result' are neither 'not' nor 'isnt' `
 
 *Example Code (WAT)
 <br><br> 
