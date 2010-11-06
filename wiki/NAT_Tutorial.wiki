@@ -31,7 +31,8 @@
 
 *Example Code (WAT)
 <br><br> 
-`answer: IsNLP("Any(0,4) Not('fail', 'not',5, '<-') Levenshtein('reject') Any(0,3) Levenshtein('null') Levenshtein('hypothesis') Any(0,5) Not('no', 'not', 'isnt', 4, '<-') Levenshtein('significant') Levenshtein('difference') Any(0,2) Levenshtein('between') Any(0,7)");`
+# `Checking for answers that match the sentence "Reject the null hypothesis. There is a significant difference between rock music and no music", and its variants. Also making sure that the words 'reject'  and 'significant' are not preceded by 'not'.`
+<br>`answer: IsNLP("Any(0,4) Not('fail', 'not',5, '<-') Levenshtein('reject') Any(0,3) Levenshtein('null') Levenshtein('hypothesis') Any(0,5) Not('no', 'not', 'isnt', 4, '<-') Levenshtein('significant') Levenshtein('difference') Any(0,2) Levenshtein('between') Any(0,7)");`
 <br>`# Checking for the absence of the word 'difference'`
 <br>`JIT { v == IsNotNLP("Any(0,20) Levenshtein('difference') Any(0,20)")} : "You did not mention if there is a difference between the 2 conditions." ;`
 <br>`# Checking for the absence of the word 'reject'`
