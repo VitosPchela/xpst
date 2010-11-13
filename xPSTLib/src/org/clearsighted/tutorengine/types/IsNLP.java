@@ -38,13 +38,13 @@ public class IsNLP extends Type {
 	public boolean IsNLP(String xi1, String xs1)
 	{
 
-		SynchFile file = new SynchFile("C:/xPST/xSTATCorpus.txt");
+		/*SynchFile file = new SynchFile("C:/xPST/xSTATCorpus.txt");
           try {
               file.write(xs1, xi1);
               file.close();
           } catch (Exception e) {
               //e.printStackTrace();
-          }
+          }*/
 	
 	
         try

@@ -20,7 +20,6 @@ public class SynchFile {
 		StringList a = new StringList();
     	a.read(name);
     	boolean checktypeExist = false;
-    	String newline = "Shrenik";
     	
     	for(int i=0; i<a.size(); i++)
     	{
@@ -33,7 +32,7 @@ public class SynchFile {
     	}
     	if(!checktypeExist)
     	{
-			a.add("\nChecktype:\n" + checktype);
+			a.add("\nxPST File:\n" + checktype);
 			a.add("Responses:\n" + response);
     	}
 		
@@ -42,6 +41,7 @@ public class SynchFile {
       	{
 			out.write(a.get(i));
             out.write("\n");
+			out.flush();
       	}
     }
 
