@@ -41,6 +41,18 @@ public class Tutor implements DorminReceiver, DorminSender
 	private LinkedList<DorminReceiver> receivers = new LinkedList<DorminReceiver>();
 	private HashMap<String, GoalNode> goalnodes = new HashMap<String, GoalNode>();
 	private HashMap<String, Object> constants = new HashMap<String, Object>();
+	
+	private String emFile = null;
+
+	public String getEmFile()
+	{
+		return emFile;
+	}
+ 
+	public void setEmFile(String emFile)
+	{
+		this.emFile = emFile;
+	}
 
 	public GoalNode getGoalNode(String name)
 	{
@@ -136,8 +148,28 @@ public class Tutor implements DorminReceiver, DorminSender
 		{
 			Object val = msg.Parameters[0].Value;
 			DorminMessage outmsg = new DorminMessage();
-			if (gn.check(goalnodes,val))
+			
+			String l_response = val.toString();
+			String checktypeName = "";
+			Object answer = gn.getProperty("answer");
+			if (answer != null)
 			{
+				checktypeName = answer.getClass().getSimpleName();
+				if( checktypeName.equals("IsNLP") || checktypeName.equals("IsNotNLP") )
+				{
+					SynchFile file = new SynchFile("C:/xPST/xSTATCorpus.txt");
+					try {
+						file.write(l_response, emFile);
+						file.close();
+					} catch (Exception e) {
+						//e.printStackTrace();
+					}
+				}
+			}	
+				
+				
+			if (gn.check(goalnodes,val))
+			{		
 				gn.setAnsString(val.toString());
 				LinkedList<String> oncompl = gn.getOnCompletes();
 				String[] oncompa = new String[oncompl.size()];

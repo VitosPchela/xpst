@@ -69,6 +69,7 @@ public class XPSTTutorEngine extends TutorEngine
 		}
 		Tree tree = (Tree)t[0];
 		tutor = (org.clearsighted.tutorengine.Tutor)t[1];
+		tutor.setEmFile(properties.get("emfile"));
 		setEventMapper(new EMScriptEventMapper(tree, tree.getTutorName()));
 		setTutorName("emetutor");
 		getEventMapper().tutorEngine = this;
