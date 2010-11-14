@@ -47,6 +47,8 @@ var mainWindow = window.QueryInterface(Components.interfaces.nsIInterfaceRequest
 mainWindow.document.addEventListener('webxpst-open-tasklist', onOpenTasklist, false, true);
 mainWindow.document.addEventListener('webxpst-start-task', onStartTask, false, true);
 mainWindow.document.addEventListener('webxpst-disable-tutor-ui', onDisableTutorUI, false, true);
+mainWindow.document.addEventListener('webxpst-sidebar-load', onSidebarLoad, false, true);
+mainWindow.document.addEventListener('webxpst-sidebar-unload', onSidebarUnload, false, true);
 
 var g_prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch('webxpst.');
 
@@ -97,9 +99,17 @@ function onHelp()
 
 function onObserve()
 {
+	if (document.getElementById('webxpst-observe-button').checked)
+	{
 	g_observeIDs = true;
 	startEventCatcher();
 	openSidebar();
+	}
+	else
+	{
+		g_observeIDs = false;
+		updateSidebar();
+	}
 }
 
 function setButtonsDisabled(val)
@@ -213,8 +223,23 @@ function openSidebar()
 	var sidebar = document.getElementById('sidebar');
 	if (sidebar.contentDocument && sidebar.contentDocument.getElementById('webxpst-waitingtext'))
 		updateSidebar();
-	else
-		sidebar.addEventListener('load', updateSidebar, true);
+}
+
+function closeSidebar()
+{
+	toggleSidebar('webxpst-sidebar-broadcaster', true);
+	toggleSidebar('webxpst-sidebar-broadcaster');
+}
+
+function onSidebarLoad()
+{
+	updateSidebar();
+}
+
+function onSidebarUnload()
+{
+	document.getElementById('webxpst-scenario-button').checked = false;
+	document.getElementById('webxpst-observe-button').checked = false;
 }
 
 function updateSidebar()
@@ -236,6 +261,7 @@ function updateSidebar()
 	{
 		sidebarDoc.getElementById('webxpst-tutorstuff').collapsed = false;
 		scenario.setAttribute('src', 'data:text/html;base64,' + btoa(g_scenarioHTML));
+		document.getElementById('webxpst-scenario-button').checked = true;
 	}
 	else
 		sidebarDoc.getElementById('webxpst-tutorstuff').collapsed = true;
@@ -251,6 +277,7 @@ function updateSidebar()
 			sidebarDoc.getElementById('webxpst-servername').value = hostmach;
 		}
 		sidebarDoc.getElementById('webxpst-evtbox').setAttribute('collapsed', false);
+		document.getElementById('webxpst-observe-button').checked = true;
 	}
 	else
 	{
@@ -377,8 +404,13 @@ function loadScenario(xml)
 
 function onScenario(evt)
 {
+	if (document.getElementById('webxpst-scenario-button').checked)
+	{
 	if (g_scenarioHTML)
 		openSidebar();
+	}
+	else
+		closeSidebar();
 }
 
 function onStart()
