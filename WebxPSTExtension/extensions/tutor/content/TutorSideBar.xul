@@ -21,7 +21,22 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 -->
 
-<page id="webxpst-sidebar" title="Tutor" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" onload="onLoad()">
+<page id="webxpst-sidebar" title="Tutor" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" onload="onLoad()" onunload="onUnload()">
+	<script>
+		function onUnload()
+		{
+			var evt = document.createEvent('Event');
+			evt.initEvent('webxpst-sidebar-unload', true, false);
+			window.dispatchEvent(evt);
+		}
+
+		function onLoad()
+		{
+			var evt = document.createEvent('Event');
+			evt.initEvent('webxpst-sidebar-load', true, false);
+			window.dispatchEvent(evt);
+		}
+	</script>
 	<vbox id="webxpst-waitingtext" style="font-size: 120%; font-weight:bold">
 		<label value="Browse to a"/>
 		<label value="WebxPST-compatible page to begin."/>

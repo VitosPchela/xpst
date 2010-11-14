@@ -49,8 +49,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 						<label id="webxpst-title" value="xPST"/>
 				<toolbarbutton id="webxpst-hint-button" label="&hint.label;" disabled="true" oncommand="onHint(event);" onmousedown="onHintMouseDown()"/>
 				<toolbarbutton id="webxpst-done-button" label="&done.label;" disabled="true" oncommand="onDone(event);"/>
-				<toolbarbutton id="webxpst-scenario-button" label="&scenario.label;" disabled="true" oncommand="onScenario(event);"/>
-				<toolbarbutton id="webxpst-observe-button" label="&observe.label;" collapsed="true" oncommand="onObserve(event);"/>
+							<toolbarbutton id="webxpst-scenario-button" label="&scenario.label;" disabled="true" oncommand="onScenario(event);" type="checkbox"/>
+							<toolbarbutton id="webxpst-observe-button" label="&observe.label;" collapsed="true" oncommand="onObserve(event);" type="checkbox"/>
 				<toolbarbutton id="webxpst-help-button" label="&help.label;" oncommand="onHelp(event);"/>
 					</hbox>
 				</toolbaritem>
