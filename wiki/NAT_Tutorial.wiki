@@ -47,7 +47,7 @@
 
 *Example Code (NAT)
 <br><br> 
-`Checktype: IsNLP("Any(0,4) Not('fail', 'not',5, '<-') Levenshtein('reject') Any(0,3) Levenshtein('null') Levenshtein('hypothesis') Any(0,5) Not('no', 'not', 'isnt', 4, '<-') Levenshtein('significant') Levenshtein('difference') Any(0,2) Levenshtein('between') Any(0,7)")`
+`Checktype: "Any(0,4) Not('fail', 'not',5, '<-') Levenshtein('reject') Any(0,3) Levenshtein('null') Levenshtein('hypothesis') Any(0,5) Not('no', 'not', 'isnt', 4, '<-') Levenshtein('significant') Levenshtein('difference') Any(0,2) Levenshtein('between') Any(0,7)"`
 <br>`Response: Reject the null hypothesis. There is a significant difference between rock music and no music.`
 
 *Tips
