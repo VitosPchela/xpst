@@ -1,0 +1,30 @@
+sequence
+{
+	(a then b) and Disabled;
+}
+
+mappings
+{
+	foo => a;
+	bar => b;
+	[noqiv] Special.Disabled => Disabled;
+}
+
+feedback
+{
+	a
+	{
+		answer: 12;
+	}
+	
+	b
+	{
+		answer: 17;
+	}
+	
+	Disabled
+	{
+		answer: 0;
+		JIT: "Don't do that.";
+	}
+}

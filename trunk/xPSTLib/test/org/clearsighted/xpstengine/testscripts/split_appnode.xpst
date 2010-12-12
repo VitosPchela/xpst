@@ -1,0 +1,50 @@
+sequence
+{
+	((a then b) or (c then d)) and Disabled;
+}
+
+mappings
+{
+	foo => a;
+	bar => b;
+	foo => c;
+	baz => d;
+	[noqiv] Special.Disabled => Disabled;
+}
+
+feedback
+{
+	a
+	{
+		answer: 12;
+		JIT: "JITa";
+		Hint: "Hinta";
+	}
+	
+	b
+	{
+		answer: 17;
+		JIT: "JITb";
+		Hint: "Hintb";
+	}
+	
+	c
+	{
+		answer: 22;
+		JIT: "JITc";
+		Hint: "Hintc";
+	}
+	
+	d
+	{
+		answer: 25;
+		JIT: "JITd";
+		Hint: "Hintd";
+	}
+	
+	Disabled
+	{
+		answer: 0;
+		JIT: "Don't do that.";
+	}
+}
