@@ -39,7 +39,7 @@ import org.clearsighted.tutorengine.Tutor;
 public class XPSTTutorEngine extends TutorEngine
 {
 	private DorminAdapter adapter;
-	private Tutor tutor;
+	public Tutor tutor;
 	
 	@Override
 	public Object getRepresentativeValue(String gnname)

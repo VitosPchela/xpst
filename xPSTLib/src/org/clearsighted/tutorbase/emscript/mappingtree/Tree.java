@@ -20,6 +20,7 @@ package org.clearsighted.tutorbase.emscript.mappingtree;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,8 @@ import org.clearsighted.tutorbase.IEventMapperListener;
 import org.clearsighted.tutorbase.WebDebugFrame;
 import org.clearsighted.tutorbase.dormin.DorminAddress;
 import org.clearsighted.tutorbase.dormin.DorminMessage;
+import org.clearsighted.tutorengine.Type;
+import org.clearsighted.xpstengine.XPSTTutorEngine;
 
 /**
  * Implements the sequence tree in EMScript. The sequence expression in an .xpst file is parsed
@@ -51,6 +54,8 @@ public class Tree implements IEventMapperListener
 	private MappingNode root = null;
 	private Mapping masterMapping = new Mapping();
 	private HashMap<String, Mapping> mappings = new HashMap<String, Mapping>();
+	// because appnodes can now be simultaneously mapped to multiple goalnodes, we need to preserve the order in the merge process in finishConstruction
+	private List<Mapping> orderedMappings = new ArrayList<Mapping>();
 	private List<LeafNode> leafNodes = new ArrayList<LeafNode>();
 	private EventMapper myEventMapper;
 	private String tutorName = "tutor";
@@ -148,15 +153,27 @@ public class Tree implements IEventMapperListener
 		return null;
 	}
 
-	private MappingAction getActiveAction(boolean toapp, String name)
+	private static final Comparator<MappingAction> PriorityComparator = new Comparator<MappingAction>()
+	{
+		@Override
+		public int compare(MappingAction o1, MappingAction o2)
+		{
+			// descending
+			return o1.Options.priority < o2.Options.priority ? 1 : (o1.Options.priority < o2.Options.priority ? 0 : -1);
+		}
+	};
+
+	private List<MappingAction> getActiveActions(boolean toapp, String name)
 	{
 		List<MappingAction> acts = null;
+		List<MappingAction> ret = new ArrayList<MappingAction>();
+
 		acts = masterMapping.get(toapp, name);
 		int toppri = -1;
+
 		if (acts != null)
 		{
-			MappingAction ret = null;
-
+			Collections.sort(acts, PriorityComparator);
 			for (MappingAction act: acts)
 			{
 				String gnname = act.GoalNodeName;
@@ -164,19 +181,29 @@ public class Tree implements IEventMapperListener
 				{
 					if (toapp && lastActionToTutor == act)
 					{
-						ret = act;
+						ret.add(act);
 						break;
 					}
-					if (act.Options.priority > toppri)
+					if (act.Options.priority >= toppri)
 					{
 						toppri = act.Options.priority;
-						ret = act;
+						ret.add(act);
 					}
+					else if (act.Options.priority < toppri)
+						break;
 				}
 			}
-			return ret;
 		}
-		return null;
+		return ret;
+	}
+
+	private MappingAction getActiveAction(boolean toapp, String name)
+	{
+		List<MappingAction> all = getActiveActions(toapp, name);
+		if (all.size() > 0)
+			return all.get(0);
+		else
+			return null;
 	}
 
 	public class MappingSummaryNode
@@ -267,8 +294,10 @@ public class Tree implements IEventMapperListener
 		{
 			return null;
 		}
-		a = getActiveAction(toapp, name);
-		if (a == null)
+
+		List<MappingAction> candidates = getActiveActions(toapp, name);
+		
+		if (candidates.size() == 0)
 		{
 			// uncomplete when a node is flagged that isn't active (that means the tutor triggered the change with a cycle goalnode trigger)
 			if (toapp && in.Verb.equals(DorminMessage.FlagVerb))
@@ -327,6 +356,25 @@ public class Tree implements IEventMapperListener
 				}
 			}
 			return null;
+		}
+		else   // candidates.size() != 0
+		{
+			a = candidates.get(0);
+			if (candidates.size() > 1 && !toapp && in.Verb.equals(DorminMessage.NoteValueSetVerb))
+			{
+				// check candidates answers, choosing the one that matches or the first one if none match
+				// TODO: it's not nice for this code to be looking at answers on goalnodes...
+				for (MappingAction candidate: candidates)
+				{
+					XPSTTutorEngine engine = (XPSTTutorEngine)myEventMapper.tutorEngine;
+					Type answer = (Type)engine.tutor.getGoalNode(candidate.GoalNodeName).getProperty("answer");
+					if (answer.check(engine.tutor.getGoalNodes(), (String)in.Parameters[0].Value))
+					{
+						a = candidate;
+						break;
+					}
+				}
+			}
 		}
 		
 		if (!toapp && a.Options.focusedOnly && !name.equals(myEventMapper.getFocusedNode()))
@@ -465,6 +513,7 @@ public class Tree implements IEventMapperListener
 		{
 			ret = new Mapping();
 			mappings.put(name, ret);
+			orderedMappings.add(ret);
 		}
 
 		return ret;
@@ -486,7 +535,7 @@ public class Tree implements IEventMapperListener
 
 	public void finishConstruction()
 	{
-		for (Mapping m: mappings.values())
+		for (Mapping m: orderedMappings)
 			masterMapping.merge(m);
 	}
 
