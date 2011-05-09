@@ -1,4 +1,5 @@
 content webxpst content/
+content webxpst content/ contentaccessible=yes
 overlay chrome://browser/content/browser.xul chrome://webxpst/content/overlay.xul
 
 locale webxpst en-US locale/en-US/

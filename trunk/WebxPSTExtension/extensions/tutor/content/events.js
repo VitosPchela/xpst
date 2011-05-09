@@ -168,7 +168,7 @@ function getBase()
 
 function getSkinBase()
 {
-	return 'chrome://webxpst/content/skin/';
+	return 'chrome://webxpst/content/skin';
 }
 
 function getBaseTags()
@@ -191,7 +191,7 @@ function getXMLMessage(msg)
 
 function getMessageHTML(xmsg)
 {
-	var xslt = xslTransform.load(getSkinBase() + 'message.xml');
+	var xslt = xslTransform.load(getSkinBase() + '/message.xml');
 	return xslTransform.transform(xslt, xmsg,	{}).string;
 }
 

@@ -33,12 +33,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 						var g_skinbase = '<xsl:value-of select="skinbase/@href"/>';
 					</script>
 					<!-- these xsl:texts are weird, right? But they're necessary because Firefox wants a begin-end tag for script rather than a single closed tag, and XSLT will coalesce the former into the latter if there's no text in there -->
-					<script type="text/javascript" src="{skinbase/@href}../sarissa/sarissa.js"><xsl:text> </xsl:text></script>
-					<script type="text/javascript" src="{skinbase/@href}../sarissa/sarissa_ieemu_xpath.js"><xsl:text> </xsl:text></script>
-					<script type="text/javascript" src="{skinbase/@href}../jquery/jquery.js"><xsl:text> </xsl:text></script>
-					<script type="text/javascript" src="{skinbase/@href}../jquery/jquery.xslTransform.js"><xsl:text> </xsl:text></script>
-					<script type="text/javascript" src="{skinbase/@href}message.js"><xsl:text> </xsl:text></script>
-					<script type="text/javascript" src="{skinbase/@href}util.js"><xsl:text> </xsl:text></script>
+					<script type="text/javascript" src="{skinbase/@href}/../sarissa/sarissa.js"><xsl:text> </xsl:text></script>
+					<script type="text/javascript" src="{skinbase/@href}/../sarissa/sarissa_ieemu_xpath.js"><xsl:text> </xsl:text></script>
+					<script type="text/javascript" src="{skinbase/@href}/../jquery/jquery.js"><xsl:text> </xsl:text></script>
+					<script type="text/javascript" src="{skinbase/@href}/../jquery/jquery.xslTransform.js"><xsl:text> </xsl:text></script>
+					<script type="text/javascript" src="{skinbase/@href}/message.js"><xsl:text> </xsl:text></script>
+					<script type="text/javascript" src="{skinbase/@href}/util.js"><xsl:text> </xsl:text></script>
 				</xsl:if>
 			</head>
 
