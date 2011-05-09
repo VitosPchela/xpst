@@ -26,9 +26,9 @@ function getHintHTMLInner(msg, num, maxnum)
 	var i = serverurl.lastIndexOf('/', serverurl.length - 2);
 	var webtreassets = serverurl.substring(0, i) + '/WebxPST/assets/';
 	var thisurl = window.location.href;
-	var skinbase = thisurl.substring(0, thisurl.lastIndexOf('/')) + '/skin/';
+	var skinbase = thisurl.substring(0, thisurl.lastIndexOf('/')) + '/skin';
 	var wrappedmsg = '<message><ishint/><page index="' + num + '" total="' + maxnum + '"/><base href="' + webtreassets + '"/><skinbase href="' + skinbase + '"/>' + msg + "</message>";
-	var xslt = xslTransform.load(skinbase + 'message.xml');
+	var xslt = xslTransform.load(skinbase + '/message.xml');
 	var xmsg = xslTransform.load(wrappedmsg);
 	if (typeof(xmsg) != 'object' || xmsg.documentElement.nodeName == 'parsererror')
 		return null;

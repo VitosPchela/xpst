@@ -75,7 +75,7 @@ function mousemove(evt)
 function makeHTML(msgcore, type)
 {
 	var wrappedmsg = '<message><is' + type + '/><page index="0" total="0"/><base href="' + g_base + '"/><skinbase href="' + g_skinbase + '"/>' + msgcore + '</message>';
-	var xslt = xslTransform.load(g_skinbase + 'message.xml');
+	var xslt = xslTransform.load(g_skinbase + '/message.xml');
 	var xmsg = xslTransform.load(wrappedmsg);
 	var ret = xslTransform.transform(xslt, xmsg, {}).string;
 	return ret;
@@ -91,7 +91,7 @@ function makeHTMLWithXML(xmsg, type)
 	xmsg.documentElement.appendChild(basetag);
 	xmsg.documentElement.appendChild(skinbasetag);
 	xmsg.documentElement.appendChild(scenariotag);
-	var xslt = xslTransform.load(g_skinbase + 'message.xml');
+	var xslt = xslTransform.load(g_skinbase + '/message.xml');
 	var ret = xslTransform.transform(xslt, xmsg, {}).string;
 	return ret;
 }
