@@ -9,7 +9,7 @@ public class Almost {
 	  for(int i=0; i<arrayList.size(); i++)
 	  {
 		  String temp = arrayList.get(i).replaceAll("[,;:.?!']","");
-		  if(a.replaceAll("(?i)[aeiouAEIOU]", "").equals(temp.replaceAll("(?i)[aeiouAEIOU]", "")))
+		  if( (a.replaceAll("(?i)[aeiouAEIOU]", "").toLowerCase()).equals((temp.replaceAll("(?i)[aeiouAEIOU]", "").toLowerCase())) )
 			  return true;
 	  } 	 
 	  return false;

@@ -8,7 +8,7 @@ public class Not {
   //public static boolean Compare(ArrayList<String> notList, int Index, int n, String direction, ArrayList<String> response)
   public static boolean Compare(ArrayList<String> parameters, int Index, ArrayList<String> response)
   {
-	  ArrayList<String> notList = new ArrayList<String>(); 
+	  /*ArrayList<String> notList = new ArrayList<String>(); 
 	  int not_count = 0;
 	  for(int i=0;i<parameters.size(); i++)
 	  {
@@ -20,12 +20,21 @@ public class Not {
 	  }
 	  
 	  int n = (int) Double.parseDouble(parameters.get(not_count-1));
-	  String direction = parameters.get(not_count).replaceAll("'", "");
+	  String direction = parameters.get(not_count).replaceAll("'", "");*/
+	  
+	  
+	  int n = (int) Double.parseDouble(parameters.get(0));
+	  String direction = parameters.get(1).replaceAll("'", "");
+	  ArrayList<String> notList = new ArrayList<String>(); 
+	  for(int i=2;i<parameters.size(); i++)
+	  {
+		  notList.add(parameters.get(i).replaceAll("[,;:.?!']",""));
+	  }	  
 	  
 	  /*System.out.println("Not list  : " + notList);
 	  System.out.println("Index     : " + Index);
 	  System.out.println("n         : " + n);
-	  System.out.println("Direction : " + direction);*/  
+	  System.out.println("Direction : " + direction);*/
 	  
 	  if(direction.equals("<-"))
 	  {		  
@@ -35,7 +44,7 @@ public class Not {
 				  return true;
 			  
 			  for(int j=0;j<notList.size(); j++)
-				  if(notList.get(j).equals(response.get(i)))
+				  if(notList.get(j).equals(response.get(i).replaceAll("[,;:.?!']","")))
 					  return false;
 		  } 	 
 		  return true;
