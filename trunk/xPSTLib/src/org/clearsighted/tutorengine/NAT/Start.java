@@ -1,10 +1,10 @@
 package org.clearsighted.tutorengine.NAT;
 
 import java.util.ArrayList;
-import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.lang.String;
+import java.net.MalformedURLException;
 
 public class Start
 {	
@@ -119,7 +119,7 @@ public class Start
 		return srtippedWordsList;
 	}
 	// Print results
-	public  void printResults()
+	public  void printResults() throws MalformedURLException
 	{
 		System.out.println("Response             :" + response);
 		System.out.println("Stop Phrases         :" + stopPhrases);
@@ -145,28 +145,29 @@ public class Start
 		}	
 	}
 	// Checktype satisfied?
-	public  boolean checktypeSatisfied(String function, ArrayList<String> arrayList, String word)
+	public  boolean checktypeSatisfied(String function, ArrayList<String> arrayList, String word) throws MalformedURLException
 	{
-		if(function.equals("Almost") || function.equals("almost"))
+		if(function.equals("Almost"))
 			return Almost.Compare(word, arrayList);
-		if(function.equals("Exact") || function.equals("exact"))
+		if(function.equals("Exact"))
 			return Exact.Compare(word, arrayList);
-		if(function.equals("Hamming") || function.equals("hamming"))
+		if(function.equals("Hamming"))
 			return Hamming.Compare(word, arrayList);
-		if(function.equals("Levenshtein") || function.equals("levenshtein"))
+		if(function.equals("Levenshtein"))
 			return Levenshtein.Compare(word, arrayList);
-		if(function.equals("RegEx") || function.equals("regex"))
+		if(function.equals("RegEx"))
 			return RegEx.Compare(word, arrayList);
-		if(function.equals("Soundex") || function.equals("soundex"))
+		if(function.equals("Soundex"))
 			return Soundex.Compare(word, arrayList);
-		if(function.equals("Stemmer") || function.equals("stemmer"))
+		if(function.equals("Stemmer"))
 			return Stemmer.Compare(word, arrayList);
-
+		if(function.equals("Synonym"))
+			return Synonym.Compare(word, arrayList);
 			
 		return false;
 	}
 	// Answer matcched?
-	public  boolean isresponseMatched()
+	public  boolean isresponseMatched() throws MalformedURLException
 	{
 		ArrayList<anyChecktype> anyList = new ArrayList<anyChecktype>();		
 		for(int i=0; i<functionNames.size(); i++)
@@ -334,36 +335,29 @@ public class Start
 		
 	}
 
-	public static void main(String[] args)
+	public static void main(String[] args) throws MalformedURLException
 	{	
 		// Response
 		//String r = "The  result is in the region rejection so this is a significant result";
 		//String r = "reject the null hypothesis. There is a significant difference between rock music and no music.";
-		String r = "";
+		String r = "abcd c a d shrenik 7";
 		// Stop phrases
 		String s = "";
 		// Checktype
 		//String c ="Any(0,4) Levenshtein('reject') Any(0,3) Levenshtein('null') Levenshtein('hypothesis') Any(0,5) Levenshtein('significant') Levenshtein('difference') Any(0,10)";
-		String c ="";
+		//String c ="Not('not', 'isnt', 2, '->') Exact('result')";
+		String c = "Any(0,3) Any(0,6) Almost('Shrenik') RegEx([2-5], [7-9]))";
 		//c += "Any(0,2) Almost('result') Any(0,3) Not('not',3,'<-') Levenshtein('region') Levenshtein('rejection') Any(1,4) Not('not',3,'<-') Levenshtein('significant') Levenshtein('result') Any(0,4)";;
 		//c+= " or Any(1,14)";
 		
 		String[] individualArray = c.split("(?<=\\))\\s+or\\s+");
 		ArrayList<Start> individualChecktypeList = new ArrayList<Start>();
-		try
+		for (int i=0; i<individualArray.length; i++) 
 		{
-			for (int i=0; i<individualArray.length; i++) 
-			{
-				Start tempCheck= new Start(r,s,individualArray[i]);
-				individualChecktypeList.add(tempCheck);
-				tempCheck.printResults();
-				System.out.println();
-			}	
-		}
-		catch(ArrayIndexOutOfBoundsException e)
-		{
-			System.out.println("Invalid input");
-		}
-
+			Start tempCheck= new Start(r,s,individualArray[i]);
+			individualChecktypeList.add(tempCheck);
+			tempCheck.printResults();
+			System.out.println();
+		}		
 	}
 }

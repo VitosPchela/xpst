@@ -68,12 +68,14 @@ public class Hamming {
   
   public static boolean Compare(String a, ArrayList<String> b)
   {
-	  for(int i=0; i<b.size(); i++)
+	  int n = Integer.parseInt(b.get(0));
+	  
+	  for(int i=1; i<b.size(); i++)
 	  {
 		  String temp = b.get(i).replaceAll("[,;:.?!']","");
 		  if(a.length() != temp.length())
 			  return false;			  
-		  if(Hamming.distance(a, temp) <=2 )
+		  if(Hamming.distance(a, temp) <=n )
 			  return true;
 	  } 	 
 	  return false;

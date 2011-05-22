@@ -355,14 +355,16 @@ class Stemmer
    
    public static void main(String[] args)
    {
-		  /*String[] names = {"awesom"}; 
-		    
-		  if(Stemmer.Compare("awesome",names))
+		  ArrayList<String> names = new ArrayList<String>(); 
+		  names.add("region");
+	    	
+	    
+		  if(Stemmer.Compare("region",names))
 		  {
 			  System.out.println("Yes");
 		  }
 		  else
-			  System.out.println("No");*/
+			  System.out.println("No");
    }
 
 }
