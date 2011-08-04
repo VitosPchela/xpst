@@ -29,7 +29,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
             <r:Description>
               <id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</id>
               <minVersion>2.0.0.0</minVersion>
-              <maxVersion>4.*.*</maxVersion>
+              <maxVersion>5.*.*</maxVersion>
               <updateLink>https://xpst.googlecode.com/files/WebxPST.xpi</updateLink>
             </r:Description>
           </targetApplication>
