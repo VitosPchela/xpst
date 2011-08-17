@@ -34,5 +34,5 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
   <RDF:Description RDF:about="rdf:#$ZxpaP3"
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
                    em:minVersion="2.0.0.0"
-                   em:maxVersion="5.*.*" />
+                   em:maxVersion="15.*.*" />
 </RDF:RDF>
