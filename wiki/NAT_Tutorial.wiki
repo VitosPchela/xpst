@@ -12,11 +12,11 @@
 <br><br>Almost(str)
 <br>Checks for a match after ignoring vowels
 <br>`Eg: Almost('result', 'answer'): This looks for a match of either 'result' or 'answer', after ignoring the vowels.`
-<br><br>Hamming(str)
-<br>Checks for a match with a word that is within 2 substitutions of str.
-<br>`Eg: Hamming('project'): This looks for a 'Hamming match' of the word 'project'.`
-<br><br>Levenshtein(str)
-<br>Checks for a match with a word that is within 2 edits of str.
+<br><br>Hamming(str, n)
+<br>Checks for a match with a word that is within n substitutions of str.
+<br>`Eg: Hamming('project', 1): This looks for a 'Hamming match' of the word 'project'.`
+<br><br>Levenshtein(str, n)
+<br>Checks for a match with a word that is within n edits of str.
 <br>`Eg: Levenshtein('project'): This looks for a 'Levenshtein match' of the word 'project'.`
 <br><br>Soundex(str)
 <br>Checks for a match with a word whose soundex code is the same as str
@@ -24,10 +24,10 @@
 <br><br>Stemmer(str)
 <br>Checks for a match with the stem of a word (uses PorterStemmer)
 <br> `Eg: Stemmer('fish') would return true for the words 'fish', 'fishing' and 'fished'.`
-<br><br>Not(str, n, d)
+<br><br>Not(n, d, str)
 <br>Checks if the n words  in direction d are not equal to str
-<br>`Eg: Not('not', 'isnt', 3, '<-') Exact('significant'): This checks if the three words appearing to the left of 'significant' are neither 'not' nor 'isnt' `
-<br>`Eg: Not('not', 'isnt', 2, '->') Exact('result'): This checks if the two words appearing to the right of 'result' are neither 'not' nor 'isnt' `
+<br>`Eg: Not(3, '<-', 'not', 'isnt') Exact('significant'): This checks if the three words appearing to the left of 'significant' are neither 'not' nor 'isnt' `
+<br>`Eg: Not(2, '->', 'not', 'isnt') Exact('result'): This checks if the two words appearing to the right of 'result' are neither 'not' nor 'isnt' `
 
 *Example Code (WAT)
 <br><br> 
