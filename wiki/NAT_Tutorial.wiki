@@ -1,4 +1,4 @@
-#summary Checktypes, sample code and tips to use the NAT.
+#summary Checktypes, sample code and tips to use the NAT / ConceptGrid.
 
 *Checktypes and Their Usage
 
@@ -45,14 +45,14 @@
 <br>`JIT { v == IsNLP("Any(0,20) Exact('no', 'not', 'isnt') Any(0,3) Levenshtein('significant') Any(0,3) Levenshtein('difference') Any(0, 20)")} : "Are you sure that the difference is not significant? ";`
 <br>`Hint: "Reject the hypothesis.";`
 
-*Example Code (NAT)
+*Example Code (NAT/ConceptGrid)
 <br><br> 
 `Checktype: "Any(0,4) Not('fail', 'not',5, '<-') Levenshtein('reject') Any(0,3) Levenshtein('null') Levenshtein('hypothesis') Any(0,5) Not('no', 'not', 'isnt', 4, '<-') Levenshtein('significant') Levenshtein('difference') Any(0,2) Levenshtein('between') Any(0,7)"`
 <br>`Response: Reject the null hypothesis. There is a significant difference between rock music and no music.`
 
 *Tips
 
-1. First, test your templates on sample responses, using the NAT.<br>
+1. First, test your templates on sample responses, using the NAT for ConceptGrids.<br>
 2. Use Levenshtein for matching words of length greater than 5. For shorter words, use 'Almost', unless you want an exact match.<br>
 3. Be liberal while setting the upper limit for 'Any' at the begining and end of the template. At other positions, try to use set limits that are neither too high nor too small.<br>
 4. Avoid punctuations in checktypes, though they are ignored by the NAT.<br>
